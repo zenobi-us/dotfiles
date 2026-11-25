@@ -1,0 +1,200 @@
+{
+  "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+  "credentials": "HA_URL and HA_TOKEN removed",
+  "service": "none; offline reader only",
+  "results": [
+    {
+      "name": "historical",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/historical.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3158595,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v1\",\"valid\":true}\n",
+      "stderr": "",
+      "timed_out": false,
+      "before_sha256": "83561752afa6fb2880961c79d0bc4b7d203de12b5d2ba24bc47ca93ede81e101",
+      "after_sha256": "83561752afa6fb2880961c79d0bc4b7d203de12b5d2ba24bc47ca93ede81e101",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "current",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/current.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3158653,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v2\",\"valid\":true}\n",
+      "stderr": "",
+      "timed_out": false,
+      "before_sha256": "5ece6ecab098d67fa6cda3d58a1d952cace6c539b4362109a884171b4757fff0",
+      "after_sha256": "5ece6ecab098d67fa6cda3d58a1d952cace6c539b4362109a884171b4757fff0",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "unknown",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/unknown.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3158710,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported record contract: homeassistant-cleanup-plan/v999\n",
+      "timed_out": false,
+      "before_sha256": "ef174d5e69d29137fda88769ed70f28db67595c7368ab6f93210acff6999ad93",
+      "after_sha256": "ef174d5e69d29137fda88769ed70f28db67595c7368ab6f93210acff6999ad93",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "stamped-history",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/stamped-history.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3158772,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-cleanup-plan/v1: [{\"instancePath\":\"\",\"schemaPath\":\"#/additionalProperties\",\"keyword\":\"additionalProperties\",\"params\":{\"additionalProperty\":\"schemaVersion\"},\"message\":\"must NOT have additional properties\"}]\n",
+      "timed_out": false,
+      "before_sha256": "a9969ccc42e764b76af04823af4a5263f8bde9d7e3e15ad565e20471a47cbf9d",
+      "after_sha256": "a9969ccc42e764b76af04823af4a5263f8bde9d7e3e15ad565e20471a47cbf9d",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "mixed",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/mixed.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3158830,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported schema field; use a supported schemaVersion\n",
+      "timed_out": false,
+      "before_sha256": "79225a3e43cc7db5db46231d575ff4f2615dc402e3770caca26228374d941357",
+      "after_sha256": "79225a3e43cc7db5db46231d575ff4f2615dc402e3770caca26228374d941357",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "wrong-family",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/wrong-family.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3158894,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-snapshot/v2: [{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"meta\"},\"message\":\"must have required property 'meta'\"},{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"registries\"},\"message\":\"must have required property 'registries'\"},{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"configs\"},\"message\":\"must have required property 'configs'\"}]\n",
+      "timed_out": false,
+      "before_sha256": "7753715a8e6c8a2ad1de99e5a5832a4174b43a5ed343c255255efe8dfa9ce37a",
+      "after_sha256": "7753715a8e6c8a2ad1de99e5a5832a4174b43a5ed343c255255efe8dfa9ce37a",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "unsafe",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/unsafe.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3158958,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Expected exactly one historical record format; found 0\n",
+      "timed_out": false,
+      "before_sha256": "e225db9f315f092b6d5c2fb1ec7143ae53f01b2b1bece9441963013c5e391f9e",
+      "after_sha256": "e225db9f315f092b6d5c2fb1ec7143ae53f01b2b1bece9441963013c5e391f9e",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "malformed-rename",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/malformed-rename.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3159013,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Expected exactly one historical record format; found 0\n",
+      "timed_out": false,
+      "before_sha256": "aa29a4f0588a79ec26d407bb54d196ef150b01f1bcd5bce30cb992bd5326da21",
+      "after_sha256": "aa29a4f0588a79ec26d407bb54d196ef150b01f1bcd5bce30cb992bd5326da21",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "malformed-group",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/malformed-group.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3159068,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Expected exactly one historical record format; found 0\n",
+      "timed_out": false,
+      "before_sha256": "b6db606b0964e186a9fcf8adb2c374432f9db57a510dceb2f0235ad7193ddefe",
+      "after_sha256": "b6db606b0964e186a9fcf8adb2c374432f9db57a510dceb2f0235ad7193ddefe",
+      "bytes_preserved": true,
+      "process_stopped": true
+    },
+    {
+      "name": "malformed-warning",
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-fix-0014-smoke-Fc8goc/malformed-warning.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "pid": 3159125,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stdout": "",
+      "stderr": "Expected exactly one historical record format; found 0\n",
+      "timed_out": false,
+      "before_sha256": "e59cd683638f634e0f87d7e4740686d6fc37655ed947f5e4a15673db2b038d5e",
+      "after_sha256": "e59cd683638f634e0f87d7e4740686d6fc37655ed947f5e4a15673db2b038d5e",
+      "bytes_preserved": true,
+      "process_stopped": true
+    }
+  ],
+  "fixture_directory_removed": true,
+  "owned_children_stopped": true,
+  "failure": null
+}

@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "env",
+    "-u",
+    "HA_URL",
+    "-u",
+    "HA_TOKEN",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0014/smoke.ts",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0014/cli-smoke.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+  "exit_code": 0,
+  "source_commit": "6bee44cc99483bd230e584e36217b86223ad4d6b",
+  "source_tree": "2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5",
+  "source_state": "working tree with lifecycle fix; before changelog and commit",
+  "output": "10 owning CLI cases passed; bytes preserved; all children reaped; fixtures removed\n\n\nWall time: 4.77 seconds"
+}

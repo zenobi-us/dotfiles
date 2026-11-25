@@ -48,3 +48,16 @@ SPEC-001 addressed; independent confirmation pending. Nonblocking P3 duplication
 [Independent review](../artifacts/reviews/review-review-0011.md) returned FAILURE on unchanged source 6bee44cc99483bd230e584e36217b86223ad4d6b. SPEC-001 is independently resolved. VALIDATION-001 blocks progress because the required rejection test exceeded its 5000ms deadline. The suite failed once and was not rerun. Eighteen controlled CLI invocations passed; parent cleanup-plan validation passed offline.
 
 [Review receipt](../events/review-0011.yaml) retains test output and smoke evidence. [Parent completion](../events/review-complete-0012.yaml) records verified delivery, source integrity, reviewer closure and confirmed helper shutdown after scoped approval. No source edits or live Home Assistant operations occurred.
+
+## fix-0014
+
+Source: b0c57a266b38c54f6a02ad1a2d4643f24c12398e; tree: 59ddce610e75c9340a56b2bbbc69ce1c39fb47e1.
+
+[Fix authorization](../events/fix-start-0013.yaml), [fix result](../events/fix-0014.yaml) and [immutable draft](../artifacts/snapshots/pr-draft-fix-0014.md) record only VALIDATION-001. Both reader scenarios now have a bounded 20000ms timeout. Teardown kills still-running owned children, awaits exit and closes the fixture server. All cases and statuses remain unchanged.
+
+Changed files: mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts, mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/CHANGELOG.md. Automatic unrelated bundle-version bumps were removed before the scoped commit.
+
+Validation: the required directory command ran once after the fix and passed 5 tests with 39 assertions. A new offline owning-CLI smoke passed ten cases with byte preservation, expected statuses and child shutdown. No live service or personal credentials. Tests ran before changelog/commit; exact committed test-blob binding is in [source identity](../artifacts/evidence/fix-0014/source-identity.json). No forced-timeout execution or final-commit rerun claimed. See [test record](../artifacts/evidence/fix-0014/tests.json) and [smoke proof](../artifacts/evidence/fix-0014/cli-smoke.json).
+
+VALIDATION-001 addressed; no selected blocking finding remains. Latest historical reviewer verdict remains FAILURE on the prior source. Fresh review required. P3 duplication unchanged. Open questions: none. No merge, push, ticket change or parent closure.
+

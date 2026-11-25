@@ -1,0 +1,8 @@
+{
+  "state": "FIXED",
+  "latest_receipt": "fix-0014",
+  "latest_source_commit": "b0c57a266b38c54f6a02ad1a2d4643f24c12398e",
+  "latest_source_tree": "59ddce610e75c9340a56b2bbbc69ce1c39fb47e1",
+  "latest_review_verdict": "FAILURE",
+  "open_findings": []
+}

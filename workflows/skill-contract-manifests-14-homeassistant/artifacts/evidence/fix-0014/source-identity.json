@@ -1,0 +1,9 @@
+{
+  "source_commit": "b0c57a266b38c54f6a02ad1a2d4643f24c12398e",
+  "source_tree": "59ddce610e75c9340a56b2bbbc69ce1c39fb47e1",
+  "source_branch": "feature/skill-contract-manifests-14-homeassistant",
+  "test_blob": "420db3b5f4ef3094e2aed7c082549e9128022548",
+  "tested_blob": "420db3b5f4ef3094e2aed7c082549e9128022548",
+  "binding": "Required suite and offline smoke ran before commit against the exact test blob now committed; subsequent changes were changelog only. No final-commit rerun claimed.",
+  "hook_note": "The automatic hook added two bundle-version bumps. Both were removed; HK=0 used only for amend to keep the two-file source scope."
+}

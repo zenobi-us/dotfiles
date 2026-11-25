@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "env",
+    "-u",
+    "HA_URL",
+    "-u",
+    "HA_TOKEN",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+  "exit_code": 0,
+  "source_commit": "6bee44cc99483bd230e584e36217b86223ad4d6b",
+  "source_tree": "2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5",
+  "source_state": "working tree with lifecycle fix; before changelog and commit",
+  "output": "bun test v1.4.4 (38afee6c8)\n\n 5 pass\n 0 fail\n 39 expect() calls\nRan 5 tests across 2 files. [16.55s]\n\n\nWall time: 16.88 seconds"
+}
