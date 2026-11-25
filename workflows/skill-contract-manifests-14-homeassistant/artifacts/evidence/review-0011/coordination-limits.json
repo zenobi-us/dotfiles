@@ -1,0 +1,11 @@
+{
+  "inventory_complete": false,
+  "attempt": "Scoped coordination command invoked; eval worker force-killed after 30-second deadline before output was returned.",
+  "source_clean": true,
+  "source_commit": "6bee44cc99483bd230e584e36217b86223ad4d6b",
+  "source_tree": "2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5",
+  "parent_receipt": "review-start-0010",
+  "parent_owner": "herdr-app:t2dv",
+  "approval": "Explicit user review request; dispatched same-owner fresh reviewer; no takeover.",
+  "retained_parent_assessment": "No observed homeassistant-ops overlap. Broad inventory incomplete due to unrelated malformed historical goal events, stale linked copies and absent prototype checkout. Manifest coverage touches homeassistant-router/contracts.json only."
+}

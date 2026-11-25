@@ -1,0 +1,30 @@
+bun test v1.4.4 (38afee6c8)
+killed 1 dangling process
+
+mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts:
+(fail) cleanup plan readers reject unknown, mixed, wrong-family and malformed content without writes [5001.22ms]
+  ^ this test timed out after 5000ms.
+
+# Unhandled error between tests
+-------------------------------
+52 |     ]) {
+53 |       const file = join(dir, "plan.json");
+54 |       const bytes = JSON.stringify(value, null, 3);
+55 |       writeFileSync(file, bytes);
+56 |       const result = await validate(file);
+57 |       expect(result.exit).toBe(2);
+                               ^
+error: expect(received).toBe(expected)
+
+Expected: 2
+Received: 143
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts:57:27)
+-------------------------------
+
+
+ 4 pass
+ 1 fail
+ 1 error
+ 38 expect() calls
+Ran 5 tests across 2 files. [19.55s]

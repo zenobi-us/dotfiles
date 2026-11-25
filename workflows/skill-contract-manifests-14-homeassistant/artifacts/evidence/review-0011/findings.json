@@ -1,0 +1,14 @@
+[
+  {
+    "id": "VALIDATION-001",
+    "severity": "P2",
+    "adr_ref": "NO ADR",
+    "file": "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts",
+    "line": 41,
+    "description": "The new rejection test launches eight owning CLI processes serially under the default 5000ms Bun test deadline. The required full-directory integration command timed out at 5001.22ms and killed its in-flight process (exit 143 rather than expected 2). Result: 4 pass, 1 fail, 1 error, 38 assertions. The declared integration check is not passing on this frozen source. This is a test-lifecycle failure, not evidence that the record rejection behavior is wrong.",
+    "required_change": "Give this multi-process CLI rejection scenario an explicit bounded timeout suited to all eight invocations, consistent with the existing 20000ms fixture CLI test. Keep child cleanup reliable on timeout. Run the declared full-directory check successfully on the fixed source; do not hide the failure by dropping cases or changing expected exit status.",
+    "validation_command": "env -u HA_URL -u HA_TOKEN mise exec -- bun test mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests",
+    "evidence_ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/test-output.txt",
+    "blocking": true
+  }
+]

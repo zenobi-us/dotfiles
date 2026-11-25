@@ -2,10 +2,36 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-14-homeassistant,
   ticket: tracker/tickets/skill-contract-manifests-14-homeassistant.md,
-  state: FIXED,
-  latest_receipt: fix-complete-0009,
+  state: REVIEW_FAILED,
+  latest_receipt: review-complete-0012,
   latest_source_commit: 6bee44cc99483bd230e584e36217b86223ad4d6b,
   latest_source_tree: 2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5,
-  latest_review_verdict: null,
-  open_findings: []
+  latest_review_verdict: FAILURE,
+  open_findings:
+    [
+      {
+          adr_ref: NO ADR,
+          blocking: true,
+          description: "The new rejection test launches eight owning CLI processes
+            serially under the default 5000ms Bun test deadline. The required
+            full-directory integration command timed out at 5001.22ms and killed
+            its in-flight process (exit 143 rather than expected 2). Result: 4
+            pass, 1 fail, 1 error, 38 assertions. The declared integration check
+            is not passing on this frozen source. This is a test-lifecycle
+            failure, not evidence that the record rejection behavior is wrong.",
+          evidence_ref: workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/test-output.txt,
+          file: mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts,
+          id: VALIDATION-001,
+          line: 41,
+          required_change: "Give this multi-process CLI rejection scenario an explicit
+            bounded timeout suited to all eight invocations, consistent with the
+            existing 20000ms fixture CLI test. Keep child cleanup reliable on
+            timeout. Run the declared full-directory check successfully on the
+            fixed source; do not hide the failure by dropping cases or changing
+            expected exit status.",
+          severity: P2,
+          validation_command: env -u HA_URL -u HA_TOKEN mise exec -- bun test
+            mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests
+        }
+    ]
 }

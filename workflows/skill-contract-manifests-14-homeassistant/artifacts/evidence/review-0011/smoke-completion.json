@@ -1,0 +1,8 @@
+{
+  "exit_code": 0,
+  "passed": true,
+  "commands": 18,
+  "mutations": 2,
+  "service_stopped": true,
+  "elapsed_seconds": 71.96
+}

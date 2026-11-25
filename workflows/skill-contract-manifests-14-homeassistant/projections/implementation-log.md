@@ -42,3 +42,9 @@ SPEC-001 addressed; independent confirmation pending. Nonblocking P3 duplication
 ## Parent fix completion
 
 [Parent completion](../events/fix-complete-0009.yaml) validates the exact clean source 6bee44cc99483bd230e584e36217b86223ad4d6b. The parent ran the final committed suite: 5 pass, 0 fail, 39 assertions. The historical review cleanup plan validates offline as homeassistant-cleanup-plan/v1. Fixer tab closed; four surviving owned processes stopped after scoped user approval and identity checks. Resource shutdown is confirmed. Fresh independent review remains required.
+
+## review-0011
+
+[Independent review](../artifacts/reviews/review-review-0011.md) returned FAILURE on unchanged source 6bee44cc99483bd230e584e36217b86223ad4d6b. SPEC-001 is independently resolved. VALIDATION-001 blocks progress because the required rejection test exceeded its 5000ms deadline. The suite failed once and was not rerun. Eighteen controlled CLI invocations passed; parent cleanup-plan validation passed offline.
+
+[Review receipt](../events/review-0011.yaml) retains test output and smoke evidence. [Parent completion](../events/review-complete-0012.yaml) records verified delivery, source integrity, reviewer closure and confirmed helper shutdown after scoped approval. No source edits or live Home Assistant operations occurred.

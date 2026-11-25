@@ -1,0 +1,368 @@
+{
+  "status": "completed",
+  "verdict": "FAILURE",
+  "summary": "SPEC-001 independently resolved. Required full-directory integration check fails on default rejection-test timeout. Eighteen controlled CLI outcomes pass; no live HA. Spec helper orphan cleanup pending scoped approval.",
+  "review_base_commit": "db2b0c3833fc693551b70930e3a4e64226f79aa3",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops"
+  ],
+  "affected_contracts": [
+    "homeassistant-snapshot/v1",
+    "homeassistant-snapshot/v2",
+    "homeassistant-cleanup-plan/v1",
+    "homeassistant-cleanup-plan/v2",
+    "homeassistant-reference-report/v1",
+    "homeassistant-reference-report/v2",
+    "homeassistant-rename-map/v1",
+    "homeassistant-rename-map/v2",
+    "skill-contract-manifest/v1",
+    "Home Assistant REST/WebSocket external payloads",
+    "rollback approval and dry-run boundary"
+  ],
+  "integration_checks": [
+    {
+      "argv": [
+        "env",
+        "-u",
+        "HA_URL",
+        "-u",
+        "HA_TOKEN",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "VALIDATION-001",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "file": "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts",
+      "line": 41,
+      "description": "The new rejection test launches eight owning CLI processes serially under the default 5000ms Bun test deadline. The required full-directory integration command timed out at 5001.22ms and killed its in-flight process (exit 143 rather than expected 2). Result: 4 pass, 1 fail, 1 error, 38 assertions. The declared integration check is not passing on this frozen source. This is a test-lifecycle failure, not evidence that the record rejection behavior is wrong.",
+      "required_change": "Give this multi-process CLI rejection scenario an explicit bounded timeout suited to all eight invocations, consistent with the existing 20000ms fixture CLI test. Keep child cleanup reliable on timeout. Run the declared full-directory check successfully on the fixed source; do not hide the failure by dropping cases or changing expected exit status.",
+      "validation_command": "env -u HA_URL -u HA_TOKEN mise exec -- bun test mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests",
+      "evidence_ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/test-output.txt",
+      "blocking": true
+    }
+  ],
+  "resolved_finding_ids": [
+    "SPEC-001"
+  ],
+  "nonblocking_findings": [
+    {
+      "blocking": false,
+      "classification": "heuristic",
+      "evidence": "records.ts sortKeys repeats the recursive array/object key sorting in ha_ops.ts:114-125 stableStringify.",
+      "file": "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/records.ts",
+      "id": "STANDARDS-P3-serializer-duplication",
+      "lines": [
+        68,
+        73
+      ],
+      "recommendation": "Consider one shared deterministic serializer when this code next changes. This is the previously accepted nonblocking P3, not a new blocker.",
+      "severity": "P3",
+      "status": "known-deliberately-unfixed",
+      "title": "Possible Duplicated Code: recursive key sorting"
+    }
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "env",
+        "-u",
+        "HA_URL",
+        "-u",
+        "HA_TOKEN",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 1,
+      "summary": "Reviewer ran once after both axis reports. 4 pass, 1 fail, 1 error, 38 assertions. Rejection test timed out at 5001.22ms; in-flight child exited 143. No rerun.",
+      "evidence_ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/test-output.txt"
+    },
+    {
+      "argv": [
+        "env",
+        "-u",
+        "HA_URL",
+        "-u",
+        "HA_TOKEN",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/smoke.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "summary": "18 newly executed owning CLI invocations passed expected statuses. Nonempty cleanup renames/groups/warnings; historical reading; snapshot creation and validation; rollback dry-run, declined approval and approved fixture restore; map/report agreement; rejection byte preservation. Exactly two approved fixture updates; service stopped.",
+      "evidence_ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/cli-smoke.json"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "summary": "Manifest and all eight authoritative definitions resolved.",
+      "evidence_ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/manifest-validation.json"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/review-0011-mq.lock",
+        "-I",
+        "raw",
+        "-F",
+        "json",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)",
+        "workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0011.md"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "summary": "Immutable review document validation returned []."
+    }
+  ],
+  "artifact": {
+    "kind": "review",
+    "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0011.md"
+  },
+  "review_artifact": "workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0011.md",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/skill-contract-manifests/index.md"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/events/start-complete-0003.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/events/fix-0008.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/events/fix-complete-0009.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/events/review-0005.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/events/review-start-0010.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/snapshots/pr-draft-fix-0008.md"
+    },
+    {
+      "kind": "prior-review",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0005.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/implementation-0002/cli-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/implementation-0002/validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/cli-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cleanup-plan.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0011.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/events/review-0011.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/smoke.ts"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/smoke-run.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/smoke-completion.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/cli-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/cleanup-plan.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/snapshot.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/historical-snapshot.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/rejected-unknown.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/rejected-mixed.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/rename-map.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/reference-report.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/tests.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/test-output.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/manifest-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/standards-axis.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/spec-axis.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/standards-shutdown.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/spec-shutdown-pending.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/coordination-limits.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/findings.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/phase-context.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/outcome.json"
+    }
+  ],
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011"
+  },
+  "axis_results": [
+    {
+      "axis": "Standards",
+      "run_id": "14402539-f0d5-479e-beba-1ddc4bfde00c",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/standards-axis.json",
+      "shutdown": "confirmed"
+    },
+    {
+      "axis": "Spec",
+      "run_id": "e923d3dd-15f4-401d-8c9d-6b9e49c7f0ee",
+      "ref": "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/spec-axis.json",
+      "shutdown": "pending",
+      "cleanup_blocker": "Terminal removed; owned PID 3004560 remains stopped Tl. Direct SIGTERM plus SIGCONT approval requested from parent, not received. Boot ID 1093b557-9bca-45b2-a143-4217cd820f51, startTicks 28375383."
+    }
+  ],
+  "coordination_assessment": {
+    "decision": "Usable exact-source FAILURE due to observed integration test timeout; parent owns next fix dispatch and orphan cleanup.",
+    "ownership": "Same-owner dispatched fresh review from review-start-0010, parent herdr-app:t2dv. No transfer or takeover.",
+    "inventory_complete": false,
+    "hazards": "Retained assessment has no scoped overlap or hard blockers; fresh scoped coordination observation exceeded 30-second worker deadline. Unrelated malformed goals and linked checkouts remain uncertain. Source-only commits scoped to owner; base divergence requires candidate integration.",
+    "reservations": []
+  },
+  "limitations": [
+    "No live Home Assistant access.",
+    "No typecheck or diagnostics success claim.",
+    "Prior implementation/fix checks are retained evidence, not newly run.",
+    "Spec helper process cleanup pending explicit scoped approval; fixture service stopped."
+  ],
+  "service_cleanup": {
+    "fixture": "stopped",
+    "temporary_logs": "removed",
+    "axis_terminals": "removed",
+    "standards_processes": "confirmed stopped",
+    "spec_processes": "pending scoped orphan cleanup"
+  }
+}

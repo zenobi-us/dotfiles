@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "worktree-phase-context/v2",
+  "receipt_schema": "worktree-receipt/v3",
+  "receipt_id": "review-0011",
+  "workflow_id": "skill-contract-manifests-14-homeassistant",
+  "event": "phase-result",
+  "phase": "review",
+  "attempt": 2,
+  "parent_receipt": "review-start-0010",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-14-homeassistant",
+    "ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md"
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+    "branch": "feature/skill-contract-manifests-14-homeassistant",
+    "base_branch": "master",
+    "commit": "6bee44cc99483bd230e584e36217b86223ad4d6b",
+    "tree": "2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5"
+  },
+  "session": {
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "pane_id": "pbe54c8cd1407a44fc86019b0bddf1392",
+    "session_id": "herdr-app:t2fn",
+    "run_id": "9a1274f7-1f99-4a8f-a55a-ef4f6ce6e13c",
+    "operation_id": "9a1274f7-1f99-4a8f-a55a-ef4f6ce6e13c"
+  }
+}

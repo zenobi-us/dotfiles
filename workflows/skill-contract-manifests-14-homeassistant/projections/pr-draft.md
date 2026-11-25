@@ -74,3 +74,11 @@ Not merged, pushed or rebased. Ticket remains claimed. The parent owns fix compl
 ## Parent validation
 
 [Fix completion](../events/fix-complete-0009.yaml) records final-source tests (5 passed, 39 assertions), offline historical-plan acceptance, verified typed delivery, closed fixer tab and confirmed owned-process shutdown after scoped approval. Source is clean; prior review remains historical. Next phase is fresh independent review.
+
+## Current review status — review-0011
+
+Latest reviewer verdict: FAILURE for unchanged source 6bee44cc99483bd230e584e36217b86223ad4d6b. [Independent review](../artifacts/reviews/review-review-0011.md) confirms SPEC-001 resolved and records new blocking finding VALIDATION-001. Standards retains one nonblocking duplication concern.
+
+The required full tests directory run failed once: 4 pass, 1 fail, 1 error. The eight-process rejection scenario exceeded its default 5000ms deadline. No rerun. Eighteen controlled CLI outcomes and parent offline cleanup-plan validation passed. No live Home Assistant operations ran.
+
+[Review receipt](../events/review-0011.yaml) and [parent completion](../events/review-complete-0012.yaml) preserve exact source, evidence and cleanup approval. Reviewer and helper resources are confirmed stopped. A fresh fix for VALIDATION-001 is required before another independent review. This section supersedes earlier pending-review status while preserving history.

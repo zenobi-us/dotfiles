@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "env",
+    "-u",
+    "HA_URL",
+    "-u",
+    "HA_TOKEN",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+  "output": "bun test v1.4.4 (38afee6c8)\nkilled 1 dangling process\nmise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts:\n(fail) cleanup plan readers reject unknown, mixed, wrong-family and malformed content without writes [5001.22ms]\n  ^ this test timed out after 5000ms.\n# Unhandled error between tests\n-------------------------------\n52 |     ]) {\n53 |       const file = join(dir, \"plan.json\");\n54 |       const bytes = JSON.stringify(value, null, 3);\n55 |       writeFileSync(file, bytes);\n56 |       const result = await validate(file);\n57 |       expect(result.exit).toBe(2);\n                               ^\nerror: expect(received).toBe(expected)\nExpected: 2\nReceived: 143\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts:57…[+4]\n-------------------------------\n 4 pass\n 1 fail\n 1 error\n 38 expect() calls\nRan 5 tests across 2 files. [19.55s]\n[raw output: artifact://43]\n\n\nWall time: 20.06 seconds\n\nCommand exited with code 1",
+  "exit_code": 1
+}
