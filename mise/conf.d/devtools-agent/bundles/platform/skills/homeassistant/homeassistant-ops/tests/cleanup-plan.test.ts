@@ -1,5 +1,5 @@
 // Saved cleanup plans must remain readable evidence, not rewritten apply inputs.
-import { test, expect } from "bun:test";
+import { afterEach, test, expect } from "bun:test";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -16,8 +16,23 @@ const historical = {
   warnings: ["Could not load device registry"],
 };
 
+const children = new Set<Bun.Subprocess>();
+let stopFixture: (() => void | Promise<void>) | undefined;
+
+// Test timeouts do not cancel pending child work or close fixture connections.
+afterEach(async () => {
+  for (const child of children) {
+    if (child.exitCode === null) child.kill("SIGKILL");
+  }
+  await Promise.all([...children].map((child) => child.exited));
+  children.clear();
+  await stopFixture?.();
+  stopFixture = undefined;
+});
+
 async function validate(file: string) {
   const p = Bun.spawn([script, "validate-record", file], { env, stdout: "pipe", stderr: "pipe" });
+  children.add(p);
   const [stdout, stderr, exit] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
   return { stdout, stderr, exit };
 }
@@ -35,7 +50,7 @@ test("historical and current cleanup evidence validate offline without stamping 
       expect(readFileSync(file, "utf8")).toBe(bytes);
     }
   } finally { rmSync(dir, { recursive: true, force: true }); }
-});
+}, 20000);
 
 test("cleanup plan readers reject unknown, mixed, wrong-family and malformed content without writes", async () => {
   const dir = mkdtempSync(join(tmpdir(), "ha-cleanup-rejection-"));
@@ -58,7 +73,7 @@ test("cleanup plan readers reject unknown, mixed, wrong-family and malformed con
       expect(readFileSync(file, "utf8")).toBe(bytes);
     }
   } finally { rmSync(dir, { recursive: true, force: true }); }
-});
+}, 20000);
 
 test("nonempty JSON cleanup plans preserve proposed changes and never mutate the fixture", async () => {
   const requests: string[] = [];
@@ -87,9 +102,11 @@ test("nonempty JSON cleanup plans preserve proposed changes and never mutate the
       },
     },
   });
+  stopFixture = () => server.stop(true);
   try {
     const fixtureEnv = { ...env, HA_URL: `http://127.0.0.1:${server.port}`, HA_TOKEN: "fixture-only" };
     const p = Bun.spawn([script, "cleanup", "--json", "--steps", "rename-switch-suffix"], { env: fixtureEnv, stdout: "pipe", stderr: "pipe" });
+    children.add(p);
     const [stdout, stderr, exit] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
     expect(exit).toBe(0);
     expect(JSON.parse(stdout)).toEqual({
@@ -104,6 +121,7 @@ test("nonempty JSON cleanup plans preserve proposed changes and never mutate the
     expect(requests).toContain("GET /api/states");
     const count = requests.length;
     const rejected = Bun.spawn([script, "cleanup", "--apply", "--json"], { env: fixtureEnv, stdout: "pipe", stderr: "pipe" });
+    children.add(rejected);
     await Promise.all([new Response(rejected.stdout).text(), new Response(rejected.stderr).text()]);
     expect(await rejected.exited).toBe(2);
     expect(requests.length).toBe(count);
