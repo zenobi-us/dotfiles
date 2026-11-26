@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "frontmatter": {
+    "schemaVersion": "worktree-pr-draft/v1",
+    "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+    "receipt_id": "fix-0020",
+    "source_commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+    "source_tree": "bb15b43f805dbc4946d846862e16caddd485621a"
+  },
+  "expected": {
+    "schemaVersion": "worktree-pr-draft/v1",
+    "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+    "receipt_id": "fix-0020",
+    "source_commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+    "source_tree": "bb15b43f805dbc4946d846862e16caddd485621a"
+  },
+  "scalar_literal_output": true,
+  "object_string_extraction": false,
+  "prepared_sha256": "5a02fd24c1af378e09c4286fac71dc19a041eff4aaa65915d1b8c263c41fbda1",
+  "prepared_bytes": 10854
+}

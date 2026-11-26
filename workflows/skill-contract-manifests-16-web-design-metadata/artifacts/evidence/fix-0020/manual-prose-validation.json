@@ -1,0 +1,40 @@
+{
+  "method": "Full short metadata and upgrade definitions read through MQ identity. Added style consumption paragraph inspected through MQ. Manual ASD-STE100 6.3, 8.1, 8.5\u20138.7 and ISO house-format inspection after final edits.",
+  "findings": [
+    {
+      "id": "standards-002",
+      "result": "resolved",
+      "evidence": "Removed all inventory and identify/detectLegacy prose semicolons. Replaced long regression-coverage sentence with nine labelled bullets. Preserved all coverage claims and identifiers."
+    },
+    {
+      "id": "standards-003",
+      "result": "resolved",
+      "evidence": "Authority and integrity statements use separate sentences. Conversion still requires separate authority and consumption still verifies integrity."
+    },
+    {
+      "id": "standards-004",
+      "result": "resolved",
+      "evidence": "Exact requested two sentences replace the checksum semicolon. No other style-selection bytes changed."
+    },
+    {
+      "id": "standards-005",
+      "result": "resolved",
+      "evidence": "Four field bullets have bold labels. Added metadata and upgrade prose series use vertical lists with bold lead-ins, including owner operations, identity refusals, field values, returned/display values, regression coverage, preservation and refusal boundaries."
+    }
+  ],
+  "longest_descriptive_sentences": [
+    {
+      "text": "Selection validates the catalog, verifies bundled checksums, and prints the selected provenance, bundled path, and text.",
+      "words": 18
+    },
+    {
+      "text": "The only declared edge is `design-source-metadata/v1` to `design-source-metadata/v2`, with procedure `file:references/source-metadata-upgrade.md` and trusted adapter `file:scripts/source-metadata.ts`.",
+      "words": 15
+    },
+    {
+      "text": "`readCatalog` rejects malformed UTF-8 bytes before JSON parsing, without normalization or implicit BOM removal.",
+      "words": 15
+    }
+  ],
+  "preserved": "Exact identifiers, wire semantics, commands, code blocks, authority, integrity and regression claims. Ordinary prose has no new schema."
+}

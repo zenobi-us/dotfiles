@@ -1,73 +1,142 @@
 ---
 schemaVersion: worktree-pr-draft/v1
 workflow_id: skill-contract-manifests-16-web-design-metadata
-receipt_id: review-start-0013
-source_commit: fb4104c7ea2e27f215fab95ec69682b71b101c1b
-source_tree: c7ecc92e759b7720f1ffadc4d2377473ff481403
+receipt_id: fix-0020
+source_commit: d50d3bb1719c03c53f9dc911a34017ca09cddfd6
+source_tree: bb15b43f805dbc4946d846862e16caddd485621a
 ---
 # Web-design source metadata contracts
 
-## Ticket and implementation
+This draft records the prose repair for the parent coordinator. Date: 2026-11-26. Fresh source review is pending.
 
-Ticket: `tracker/tickets/skill-contract-manifests-16-web-design-metadata.md`. The owner declares current `design-source-metadata/v2` and historical numeric-1 `design-source-metadata/v1`, validates actual metadata, selects verified bundled assets, and delegates explicit byte-preserving conversion to shared upgrades. Provenance locations are not opened.
+## Overview
 
-The UTF-8 repair reads raw catalog bytes and rejects lossy decoding before JSON parsing. Valid Unicode, including intentionally encoded U+FFFD, remains supported. The catalog and five bundled asset snapshots are unchanged by the fix. Capture time remains `2026-10-22T10:12:43.516Z`.
+Four review17 prose findings are resolved. Runtime bytes remain unchanged. The native runner passed 56 expected outcomes after final prose edits and before commit.
 
-## Frozen source and changed scope
+The new source has no independent verdict. Source is not accepted, merged or pushed. Parent owns review and integration.
 
-Branch: `feature/skill-contract-manifests-16-web-design-metadata`. Base: `master`. Source commit: `fb4104c7ea2e27f215fab95ec69682b71b101c1b`; tree: `c7ecc92e759b7720f1ffadc4d2377473ff481403`.
+## Contents
 
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts`
-- `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts`
-- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
-- `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json`
+- **Ticket scope:** [Problem and implementation](#problem-and-implementation).
+- **Source identity:** [Committed source](#committed-source).
+- **Changed files:** [Prose and generated metadata](#changed-files).
+- **Observed checks:** [Validation and preservation](#validation-and-preservation).
+- **Finding status:** [Resolved findings](#resolved-findings).
+- **Retained history:** [Review and receipt history](#review-and-receipt-history).
+- **Canonical records:** [Consumed and produced references](#consumed-and-produced-references).
+- **Remaining decisions:** [Open questions and merge status](#open-questions-and-merge-status).
 
-## Observed validation
+## Problem and implementation
 
-- Fixer native runner: exit0,56 expected native outcomes. Execution preceded commit and guidance update; three executed runtime/runner blobs match the final committed tree. This is not a post-commit suite claim. Evidence: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/native-smoke.json` and `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/commit-binding.json`.
-- Parent fixed-commit verification: six expected native outcomes. Exact retained malformed bytes now fail validate/select with exit1; valid historical/current Unicode metadata validates and selects correctly, including literal U+FFFD. All fixture bytes remain unchanged. Committed runtime bytes, full catalog bytes and five asset hashes were checked. Evidence: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0002/encoding-native-probes.json`.
-- Catalog/provenance/capture/asset preservation: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/preservation.json`.
+Ticket: `tracker/tickets/skill-contract-manifests-16-web-design-metadata.md`. Initiative: `tracker/initiatives/skill-contract-manifests/index.md`.
 
-## Review history and current limits
+The implementation declares current `design-source-metadata/v2` and historical numeric-1 `design-source-metadata/v1`. Actual consumers validate metadata and select verified bundled assets. Explicit shared upgrades preserve authored bytes except the identity token. Provenance locations are not runtime asset locations.
 
-Review1 was blocked without a verdict. Review2 completed FAILURE for earlier source `9689169146996ad84d19430cd19aa2a386c733b2`, with one UTF-8 finding per independent axis. Its artifact is `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md`. The fix addresses those reported boundaries, but this changed source has no current independent verdict or integration approval. A fresh review is pending.
+Fix11 rejects malformed UTF-8 before JSON parsing and preserves valid Unicode. Its blocked publication result remains blocked.
 
-The fix source is committed and clean; its phase result remains BLOCKED because draft publication failed. Do not reinterpret it as completed source acceptance. All five registered fixer processes stopped after normal closure and signal-free observation; no extra signals were sent. No UI, dependency, global-setting, relocation-defect or serverfiles changes occurred.
+Fix20 changes only prose. Short sentences and labelled vertical lists replace the reported prose violations. Authority and integrity boundaries remain unchanged. Commands and code blocks remain exact.
 
-## Publication recovery
+## Committed source
 
-User approval: `workflows/goal-skill-contract-manifests/events/checkpoint-0086.yaml`. Preparation receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0013.yaml`.
+Branch: `feature/skill-contract-manifests-16-web-design-metadata`. Base: `master`.
 
-This is a NEW immutable draft for the exact fixed source. The invalid immutable `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md` and all prior receipts remain preserved. Its failed output is not a usable draft. Mutable current draft/log views may be repaired from retained valid history to reference this snapshot. No source or receipt-guard changes are authorized by this recovery.
+Commit: `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`. Tree: `bb15b43f805dbc4946d846862e16caddd485621a`.
 
-## Merge status
+Previous source: `fb4104c7ea2e27f215fab95ec69682b71b101c1b`. Previous tree: `c7ecc92e759b7720f1ffadc4d2377473ff481403`.
 
-Source is not pushed or merged. Parent owns independent review, integration, tracker completion and final cleanup. Relocation defect remains escalation-only with no implementation owner.
+## Changed files
 
-## Canonical references
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md`.
 
-- Initiative: `tracker/initiatives/skill-contract-manifests/index.md`.
-- Source fix: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml`.
-- Parent reconciliation: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml`.
-- Publication failure evidence: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/publication-failure.json`.
-- Snapshot: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md`.
+The three authorised references contain the prose repair. Normal hooks changed only the two authorised generated metadata files. Creator version is `0.1.6`.
 
+## Validation and preservation
 
-## Latest review: review-0017
+The owning native executable ran once from `/tmp` after all final prose edits. Exit status was 0. All 56 command rows matched expected outcomes. Stderr was empty.
 
-- **Verdict:** FAILURE for `fb4104c7ea2e27f215fab95ec69682b71b101c1b`, tree `c7ecc92e759b7720f1ffadc4d2377473ff481403`.
-- **Standards:** Four low-severity hard prose-rule findings remain: `standards-002` through `standards-005`.
-- **Spec:** No findings.
-- **Validation:** All 56 native command outcomes match. All eleven source blobs and all five assets remain preserved.
-- **Next action:** A fresh fixer must address the prose findings. Source acceptance and integration remain blocked.
-- **Review:** [Immutable report](../artifacts/reviews/review-review-0017.md).
-- **Result:** [Completed review receipt](../events/review-0017.yaml).
-- **Reconciliation:** [Validated parent completion](../events/review-complete-0018.yaml).
+Execution began at `2026-11-26T21:28:20.408348+00:00` and took 7.675461 seconds. This is precommit execution, not a postcommit run.
 
+Postcommit object equality binds the three executed runtime blobs and final authored documents to the committed tree. Hook-generated metadata is bound separately after commit.
+
+Manual MQ inspection resolves all four exact prose findings. The full short definitions were read. Only the requested checksum punctuation changed in style-selection.
+
+Protected runtime, runner, contract and catalog bytes match `fb4104c7ea2e27f215fab95ec69682b71b101c1b`. All five asset bytes and checksums match both source and parent baselines. Catalog bytes differ from the parent numeric catalog only at the identity token. Capture time remains `2026-10-22T10:12:43.516Z`.
+
+All original events, reviews, snapshots and failed captures remain unchanged. No permanent wording tests were added.
+
+- **Native capture:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/native-smoke.json`.
+- **Complete stdout:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/native-stdout.txt`.
+- **Complete stderr:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/native-stderr.txt`.
+- **Manual prose inspection:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/manual-prose-validation.json`.
+- **Preservation evidence:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/preservation.json`.
+- **Commit binding:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/commit-binding.json`.
+
+## Resolved findings
+
+- **standards-002:** Short coverage bullets replace the long sentence. Inventory and identity prose semicolons are removed.
+- **standards-003:** Separate sentences preserve conversion authority and the consumption integrity boundary.
+- **standards-004:** The checksum stop and no-repair instruction use the requested two sentences.
+- **standards-005:** Field bullets have bold labels. Added prose series use labelled vertical lists.
+
+No assigned finding remains unresolved. This fixer result is not an independent review verdict.
+
+## Review and receipt history
+
+Review1 (`review-0005`) was blocked without a verdict. Review2 (`review-0008`) returned FAILURE for the previous implementation's UTF-8 behavior.
+
+Fix11 committed the UTF-8 repair, but draft publication failed. Its invalid snapshot remains immutable. Approved recovery produced the valid source-bound review-start13 snapshot.
+
+Review14 was blocked. Review17 returned a usable FAILURE with four low hard prose findings. Its 56 native outcomes passed. Spec reported no findings.
+
+The prior verdict applies only to `fb4104c7ea2e27f215fab95ec69682b71b101c1b`. Latest review status for `d50d3bb1719c03c53f9dc911a34017ca09cddfd6` is pending. No stale verdict carries forward.
+
+- **Invalid historical snapshot:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md` remains unchanged.
+- **Valid historical snapshot:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md` remains unchanged.
+- **Current review body:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md`.
+- **Earlier review body:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md`.
+- **Blocked review body:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0014.md`.
+- **Initial blocked review:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0005.md`.
+
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0010.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-0005.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-0008.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-0014.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-0017.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0009.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0015.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0004.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0007.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0013.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0016.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/start-0001.yaml`.
+- **Receipt history:** `workflows/skill-contract-manifests-16-web-design-metadata/events/start-complete-0003.yaml`.
+
+## Consumed and produced references
+
+- **Consumed review:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-0017.yaml`.
+- **Consumed completion:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml`.
+- **Phase authorization:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml`.
+- **Goal reservation:** `workflows/goal-skill-contract-manifests/events/dispatch-reserved-0097.yaml`.
+- **Goal run:** `skill-contract-manifests-20261125-t2dv`.
+- **Produced receipt:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0020.yaml` is the assigned final result publication.
+- **Produced snapshot:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0020.md`.
+- **Current draft:** `workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md`.
+- **Implementation log:** `workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md`.
+
+## Open questions and merge status
+
+No implementation question remains for this prose repair. Fresh independent review is required before acceptance.
+
+Relocation remains escalation-only. No relocation, infrastructure or serverfiles work occurred. No extra agents, services, dependency installation or configuration changes occurred.
+
+Source remains clean and local. Parent owns publication-checkout commits, tracker changes, integration and normal primary-session closure.

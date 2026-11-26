@@ -1,0 +1,114 @@
+{
+  "baseline_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "runtime_contract_catalog": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "git_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "git_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "git_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "git_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "git_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "sha256": "d17c8c7cc80f6174804cee8204ad88414adf16fe32fd9656b8123593bff592ea",
+      "git_blob": "654c3c8566efe8d83bc4b43030d8c462c2461399",
+      "baseline_equal": true
+    }
+  ],
+  "assets": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md",
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "git_blob": "f6a33e7fcb5ecbf918674b9394ad6321e2da9d75",
+      "baseline_fb4104c7_equal": true,
+      "review_base_equal": true,
+      "catalog_checksum_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "git_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "baseline_fb4104c7_equal": true,
+      "review_base_equal": true,
+      "catalog_checksum_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "git_blob": "6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f",
+      "baseline_fb4104c7_equal": true,
+      "review_base_equal": true,
+      "catalog_checksum_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "git_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "baseline_fb4104c7_equal": true,
+      "review_base_equal": true,
+      "catalog_checksum_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "git_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "baseline_fb4104c7_equal": true,
+      "review_base_equal": true,
+      "catalog_checksum_equal": true
+    }
+  ],
+  "capture_time": "2026-10-22T10:12:43.516Z",
+  "parent_catalog_identity_only": true,
+  "asset_baseline_checksums_equal": true,
+  "immutable_history": {
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0017.yaml": "c8a098effadbf8dcec9a781a3e21703adeb6d18e81368c12809f8d6b8b70d0fd",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0009.yaml": "614583005f96a87450ecb22c3da1d23b9aebff2d4e8c33309b33c7964f3a6560",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0016.yaml": "6a50d0950b046b76623db81082af415f276ee9a1a9a84c592c3f578de73553bc",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml": "06ab6c029e1cfcda668149a5d507eee4b766c9a2a7702ed5a508c141a23b3fbb",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/start-0001.yaml": "89e605ae883128ce60d030addbd769a2191e14f7bfe6cdce6fd6ca73fc015312",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0004.yaml": "dd682fcd0645c11ff1716e1da532cc04c3d68e282d116f1f32cd0ae02394e6f8",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0008.yaml": "6b30c732e767686b34d7bc2f2f67642a592966f7a29f3a0fefed80c5221e34b7",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml": "de27b23930e3b3901605e078921a8a3250867079c6f34f0f87b17c10814b4693",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0005.yaml": "5b1ed71dddd69697a593b3feb872ec4d48e242fe4017620a205a726b1ed307f7",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml": "5f1827b26142365145a0a76e945f32c39ad186f2b3342423b4c72be562c03fa2",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0007.yaml": "ace4be9079f686f79245e814ad043a19d0c2b9e3b2a019daf9e3ccf607654d99",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/start-complete-0003.yaml": "a203331bbcadd7566b1fc4525ad291a88e986ff98c5dd5e41b5a4348741cdfbf",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0013.yaml": "3b4db899e8f855464136c6c1e851b4da94c449c158756e1d032e9f586df71163",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml": "967951f0592fdb611cc264a9476e979e56247047bd08c658edc19f070d5e5fdf",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0010.yaml": "40d49ae6f86df8b89a51785e3e15b5a6cf2f22664a4ce4fb5a83b1d4462901bc",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0015.yaml": "e8ef7ab094d076bf08348bce38bdf3087842108665050c4b70870734076307b5",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml": "7a3733762deaeb63abb7965994cea2f808f3e091e6890f24d6fe9a13d709334a",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0014.yaml": "e2b02d4856fa5de45e6fd2db62fde5cc7a0df56041e152832188be9f57643ec3",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml": "b7cc23ed4388f70551a83c733f30eb598278badef9283a098e33ea2b9ec94d88",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md": "9b173d428b9612c0a48b4c4e76743c9a68d0d37ffae0bb5da0ffbd68f5ce7e69",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0005.md": "06964c90488213910ad0dc2e388fea399f4a201b6cf9ca4fca601b92d8962079",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md": "16660038c8cb5146603ae401e33cf39f7e350c4d4680285615217c3a3f2665f8",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0014.md": "688d823ee90fabec5625b1be3eda700f806a119cf0bfbe36178cabaa0dd816fb",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md": "f40118376a16e24d338799f9744b1a54657f82542713deaf4d3ce1d782df8e9c",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-implementation-0002.md": "9f12aec4dbe259e6e0a09c543a7619a529d199e94188f93189f695f6a81eb333",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md": "ba14200676485217c6562929683398d1e143a6d897cd1d82e98ed842da82915e"
+  }
+}

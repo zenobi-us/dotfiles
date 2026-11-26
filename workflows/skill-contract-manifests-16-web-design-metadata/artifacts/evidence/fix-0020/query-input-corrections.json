@@ -1,0 +1,4 @@
+{
+  "description": "Read-only MQ receipt projection used unsupported .status then recursive .[\"status\"] syntax. Corrected to documented identity query and decoded full JSON output. No validation or native check rerun.",
+  "native_runs_before_correction": 0
+}

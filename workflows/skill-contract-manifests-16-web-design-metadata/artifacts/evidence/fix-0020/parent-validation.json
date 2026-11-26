@@ -1,0 +1,49 @@
+{
+  "receipt_id": "fix-0020",
+  "transport_sha256": "1ea15faae1a7b7094f79684618e9fb684f84b3705704116f7bff58e926d85ca1",
+  "authoritative_event_equal": true,
+  "source_commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+  "source_tree": "bb15b43f805dbc4946d846862e16caddd485621a",
+  "changed_authored_files": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "normal_hook_metadata_files": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "native_outcomes_observed": 56,
+  "all_expected": true,
+  "native_timing": "After final prose edits before commit; six executed code/document bindings equal final commit. No postcommit native run claimed.",
+  "snapshot_frontmatter_valid": true,
+  "matching_current_draft_frontmatter": true,
+  "protected_runtime_contract_catalog_and_skill_preserved": true,
+  "all5_assets_preserved": true,
+  "resolved_selected_ids": [
+    "standards-002",
+    "standards-003",
+    "standards-004",
+    "standards-005"
+  ],
+  "review_required": true,
+  "source_accepted": false,
+  "parent_registered_processes": 4,
+  "resource_shutdown": "confirmed",
+  "owned_source_desktop_absent": true,
+  "extra_signals_sent": 0,
+  "next_review_focus": [
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "check": "Verify all original coverage and identity claims survived list/sentence changes."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "check": "Verify pure conversion, shared persistence, immutable/path refusals, independent item outcomes and separate integrity checks remain exact."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "check": "Independently assess ISO house formatting of the added Metadata consumption paragraph. Parent MQ reading notices inline three-action and three-value series. This is a review question, not a fabricated or relabelled finding. Do not promote unchanged baseline prose."
+    }
+  ]
+}

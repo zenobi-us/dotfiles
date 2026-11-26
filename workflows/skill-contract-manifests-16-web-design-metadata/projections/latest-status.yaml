@@ -2,90 +2,10 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-16-web-design-metadata,
   ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
-  state: FIXING,
-  latest_receipt: fix-start-0019,
-  latest_source_commit: fb4104c7ea2e27f215fab95ec69682b71b101c1b,
-  latest_source_tree: c7ecc92e759b7720f1ffadc4d2377473ff481403,
-  latest_review_verdict: FAILURE,
-  open_findings:
-    [
-      {
-          adr: null,
-          axis: standards,
-          description: "Hard prose-rule breach. code-review/SKILL.md, Language, requires
-            ASD-STE100. ASD-STE100 rule 6.3 limits descriptive sentences to 25
-            words. The sentence beginning 'It exercises public manifest
-            resolution' exceeds this limit. Rule 8.1 prohibits semicolons. The
-            new inventory cells on lines 9-10 and the identify/detectLegacy
-            sentence on line 20 contain semicolons. No applicable repository
-            override was found.",
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md,
-          id: standards-002,
-          line: 53,
-          required_change: Split the coverage sentence into short sentences or a vertical
-            list. Replace the semicolons with periods or separate table entries.
-            Preserve identifiers and coverage claims.,
-          severity: low,
-          validation_command: "Read references/source-metadata.md through MQ. Apply
-            ASD-STE100 rules 6.3, 8.1, and 8.5-8.7 manually."
-        },
-      {
-          adr: null,
-          axis: standards,
-          description: "Hard prose-rule breach. code-review/SKILL.md, Language, requires
-            ASD-STE100. Rule 8.1 prohibits semicolons. Line 11 states
-            'Conversion requires separate user authority; reading and
-            installation never run it.' Line 17 states 'Conversion validates
-            metadata; actual consumption separately verifies bundled integrity.'
-            No applicable repository override was found.",
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md,
-          id: standards-003,
-          line: 11,
-          required_change: Replace both semicolons with periods. Preserve the separate
-            authority and integrity boundaries.,
-          severity: low,
-          validation_command: Read references/source-metadata-upgrade.md through MQ. Apply
-            ASD-STE100 rule 8.1 manually.
-        },
-      {
-          adr: null,
-          axis: standards,
-          description: "Hard prose-rule breach. code-review/SKILL.md, Language, requires
-            ASD-STE100. Rule 8.1 prohibits semicolons. The added
-            metadata-consumption paragraph states 'A checksum mismatch stops
-            consumption; do not repair or refresh content implicitly.' This is
-            new prose, not an unchanged example or command. No applicable
-            repository override was found.",
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md,
-          id: standards-004,
-          line: 54,
-          required_change: Write 'A checksum mismatch stops consumption. Do not repair or
-            refresh content implicitly.',
-          severity: low,
-          validation_command: Read references/style-selection.md through MQ. Apply
-            ASD-STE100 rule 8.1 to the added metadata-consumption paragraph.
-        },
-      {
-          adr: null,
-          axis: standards,
-          description: "Hard house-format breach. iso-24495-1/SKILL.md, Scannability &
-            Layout, requires bold bullet lead-ins and vertical lists for series
-            of three or more items. The four new field bullets on lines 26-29
-            have no bold lead-ins. New prose also contains inline series,
-            including the owner responsibilities on line 3 and regression
-            coverage on line 53. The upgrade definition on lines 5 and 7
-            contains further inline series. No applicable repository override
-            was found.",
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md,
-          id: standards-005,
-          line: 26,
-          required_change: Add bold lead-ins to the four field bullets without changing
-            identifiers. Convert the new prose series into vertical lists across
-            the metadata and upgrade definitions.,
-          severity: low,
-          validation_command: Read the added metadata guidance through MQ. Apply
-            iso-24495-1 Scannability & Layout manually. Preserve code and
-            commands.
-        }
-    ]
+  state: FIXED,
+  latest_receipt: fix-complete-0021,
+  latest_source_commit: d50d3bb1719c03c53f9dc911a34017ca09cddfd6,
+  latest_source_tree: bb15b43f805dbc4946d846862e16caddd485621a,
+  latest_review_verdict: null,
+  open_findings: []
 }
