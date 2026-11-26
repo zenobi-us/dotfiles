@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "worktree-phase-context/v2",
+  "receipt_schema": "worktree-receipt/v3",
+  "receipt_id": "implementation-0020",
+  "workflow_id": "skill-contract-manifests-15-plain-language",
+  "event": "phase-result",
+  "phase": "implementation",
+  "attempt": 7,
+  "parent_receipt": "start-0019",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-15-plain-language",
+    "ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md"
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+    "branch": "feature/skill-contract-manifests-15-plain-language",
+    "base_branch": "master"
+  },
+  "session": {
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "pane_id": "t2hh",
+    "session_id": "herdr-app:t2hh",
+    "run_id": "e43cf149-861e-419c-98dc-8427882bedcc",
+    "operation_id": "e43cf149-861e-419c-98dc-8427882bedcc"
+  },
+  "goal_run_id": "skill-contract-manifests-20261125-t2dv",
+  "goal_dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0045.yaml"
+}

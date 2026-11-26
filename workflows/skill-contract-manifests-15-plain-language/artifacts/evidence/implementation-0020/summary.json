@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "source_commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+  "source_tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6",
+  "checks_ran_before_commit": true,
+  "tested_source_binding": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0020/source-binding.json",
+  "suite": {
+    "passed": 148,
+    "failed": 0,
+    "assertions": 2143
+  },
+  "cli": {
+    "commands": 54,
+    "status": "passed",
+    "fixture_only": true,
+    "includes_public_manifest_validation_and_resolution": true
+  },
+  "commit": {
+    "normal_hooks": true,
+    "agent_core_version": "0.1.46",
+    "generated_files": [
+      "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json"
+    ]
+  },
+  "resources": {
+    "owned_alias_removed": true,
+    "parent_temp_install_retained": true,
+    "owned_services": [],
+    "fixture_scaffolding_removed": true
+  },
+  "review": "Independent parent-owned review remains required. No helper launched."
+}

@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "env",
+    "BUN_OPTIONS=--install=fallback",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "exit_code": 0,
+  "status": "passed",
+  "passed": 148,
+  "failed": 0,
+  "assertions": 2143,
+  "source_binding": "source-binding.json",
+  "committed_run": false
+}

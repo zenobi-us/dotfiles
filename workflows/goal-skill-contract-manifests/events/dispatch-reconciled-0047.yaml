@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0047",
+  "parent_event": "dispatch-observed-0046",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "start",
+  "attempt": 7,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0045.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0021.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/implementation-0020.yaml",
+  "status": "completed",
+  "source_identity": {
+    "commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+    "tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6",
+    "source_dirty": false,
+    "source_files_matched_tested_hashes": 22,
+    "generated_metadata_files": 2
+  },
+  "verification": {
+    "suite": {
+      "passed": 148,
+      "failed": 0,
+      "assertions": 2143,
+      "checks_ran_before_commit": true
+    },
+    "actual_cli_commands": 54,
+    "actual_cli_unexpected_exits": 0,
+    "parent_blob_binding_exit_code": 0,
+    "claim": "Complete implementation accepted. Not ticket completion; independent review and integration required."
+  },
+  "resource_shutdown": {
+    "run_id": "e43cf149-861e-419c-98dc-8427882bedcc",
+    "shutdown": "confirmed",
+    "live_processes": [],
+    "desktop": {
+      "owned_terminal_absent": true,
+      "owned_source_space_absent": true
+    }
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 7,
+    "ticket_attempts_remaining": 93,
+    "dispatches_consumed": 10,
+    "dispatches_remaining": 2490,
+    "omp_token_budget": null
+  },
+  "remaining_scope": "Review clean source and explicit prerequisite88bdcdf101a487b1cb0daa10bbebbf50d86a0128, then integrate/publish/complete/cleanup. Do not select another ticket.",
+  "created_at": "2026-11-26T02:04:19.856Z"
+}

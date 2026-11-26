@@ -1,0 +1,8 @@
+{
+  "state": "IMPLEMENTED",
+  "latest_receipt": "implementation-0020",
+  "latest_source_commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+  "latest_source_tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6",
+  "latest_review_verdict": null,
+  "open_findings": []
+}
