@@ -8,7 +8,7 @@ sequence: 15
 title: Adopt contracts in plain-language assessments
 triage: ready-for-agent
 type: enhancement
-work_status: "claimed"
+work_status: "completed"
 ---
 
 ## What to build
