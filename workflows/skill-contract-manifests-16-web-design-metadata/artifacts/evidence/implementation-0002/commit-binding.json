@@ -1,0 +1,105 @@
+{
+  "source_commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+  "source_tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7",
+  "tested_before_commit": true,
+  "final_commit_test_rerun": false,
+  "binding_method": "Pre-commit authored Git blob SHA-1 values equal observed git ls-tree entries in committed tree.",
+  "tested_authored_blobs": {
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md": {
+      "sha256": "d17c8c7cc80f6174804cee8204ad88414adf16fe32fd9656b8123593bff592ea",
+      "git_blob": "654c3c8566efe8d83bc4b43030d8c462c2461399"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json": {
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "git_blob": "16d989843ab202569632d7af4372e14804a1cc60"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json": {
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "git_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md": {
+      "sha256": "5c053db65be93c374ad996480656b9f908aa2019f83046793715e2f66ea138bf",
+      "git_blob": "fc0495cb93375a6042a74ca7dc63d9d2e03a726b"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md": {
+      "sha256": "e24331896b2cab353acab10d265f8d76ff90037413c14ac3185a1f458a9e3edd",
+      "git_blob": "ad0ea92bd3fa7142f0a9362cb80c0f5010f531d9"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md": {
+      "sha256": "f33fdaa2c48551eeb3d4f19f4bddc8177a1d602cfd8cf616288dd920e92716af",
+      "git_blob": "a11b0e35503ace85e168299bc53a6fca1dec582f"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts": {
+      "sha256": "c83c9067a51d6a5061b239d5268e545264a53aac7c663343a47694f936cff6b9",
+      "git_blob": "de5fca05c9e3555d347eecdde2192143119ac8ea"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts": {
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "git_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts": {
+      "sha256": "7e11e4ff841e722e952cf8515d624b165c121fed14e749ed3d60d401f9950119",
+      "git_blob": "274486958d579e822fe64bbdef5ac50a92b1368e"
+    }
+  },
+  "normal_commit_hook": {
+    "argv": [
+      "git",
+      "commit",
+      "-m",
+      "feat: adopt skill-contract-manifests-16-web-design-metadata"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "exit_code": 0,
+    "observed_stdout": "ok 96891691 (11 files +407 -4)"
+  },
+  "generated_blobs": {
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json": "4308918b2a917ecbbf1ad4abf94563203636b39c",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json": "8fac829ff63626f77aceb8c3082ef4b5e9463dd2"
+  },
+  "installed_public_checks": {
+    "entrypoint": "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+    "cwd": "/tmp",
+    "operations": [
+      [
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design"
+      ],
+      [
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design",
+        "--contract",
+        "design-source-metadata/v1"
+      ],
+      [
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design",
+        "--contract",
+        "design-source-metadata/v2"
+      ]
+    ],
+    "exit_code": 0
+  },
+  "bundled_conversion": {
+    "entrypoint": "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+    "args": [
+      "safe-upgrade",
+      "--skill",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design",
+      "--owner",
+      "file:scripts/source-metadata.ts",
+      "--artifact",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "--operation",
+      "upgrade"
+    ],
+    "exit_code": 0,
+    "status": "completed",
+    "changed": true,
+    "from": "design-source-metadata/v1",
+    "to": "design-source-metadata/v2"
+  }
+}

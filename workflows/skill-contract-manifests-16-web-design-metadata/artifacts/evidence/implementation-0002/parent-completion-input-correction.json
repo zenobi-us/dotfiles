@@ -1,0 +1,8 @@
+{
+  "attempted_parent_status": "blocked",
+  "child_status": "completed",
+  "diagnostic": "completion_status_mismatch",
+  "authoritative_parent_written_by_failed_attempt": false,
+  "owner_rule": "receipt-diagnostics.ts:43 requires exact child/completion status matching.",
+  "correction": "Reconcile completed child lifecycle with status completed, record parent validation failure explicitly, and keep goal acceptance blocked pending user approval. No receipt-contract changes and no successful acceptance claim."
+}

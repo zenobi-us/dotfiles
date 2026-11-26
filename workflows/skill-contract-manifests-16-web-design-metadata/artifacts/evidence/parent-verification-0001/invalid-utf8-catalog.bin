@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-22T10:12:43.516Z",
+  "sources": [
+    {
+      "style": "report-dashboard",
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://example.invalid/ÿixture-provenance",
+        "path": "provenance-only/entry-0.md",
+        "localPath": "/tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-0.md"
+      },
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc"
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://example.invalid/fixture-provenance",
+        "path": "provenance-only/entry-1.md",
+        "localPath": "/tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-1.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "source": {
+        "repository": "https://example.invalid/fixture-provenance",
+        "path": "provenance-only/entry-2.md",
+        "localPath": "/tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-2.md"
+      },
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3"
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/DESIGN.md",
+      "source": {
+        "repository": "https://example.invalid/fixture-provenance",
+        "path": "provenance-only/entry-3.md",
+        "localPath": "/tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-3.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "source": {
+        "repository": "https://example.invalid/fixture-provenance",
+        "path": "provenance-only/entry-4.md",
+        "localPath": "/tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-4.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    }
+  ]
+}

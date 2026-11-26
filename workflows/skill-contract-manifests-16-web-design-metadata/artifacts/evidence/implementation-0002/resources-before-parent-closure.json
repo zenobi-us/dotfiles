@@ -1,0 +1,35 @@
+{
+  "run_id": "d359223c-7100-4eb8-861f-a3dc5e9b7575",
+  "observed_at": "2026-11-26T04:43:59.744Z",
+  "shutdown": "pending",
+  "exit_code": 1,
+  "note": "Primary implementation session remains open for parent normal closure. No service or child terminal was launched. Do not kill these identities outside normal child closure. Parent must observe resources after closure.",
+  "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+  "processes": [
+    {
+      "pid": 21359,
+      "start_ticks": "37306221",
+      "command": "omp"
+    },
+    {
+      "pid": 24627,
+      "start_ticks": "37320978",
+      "command": "omp daemon brok"
+    },
+    {
+      "pid": 24654,
+      "start_ticks": "37320983",
+      "command": "omp"
+    },
+    {
+      "pid": 25434,
+      "start_ticks": "37329853",
+      "command": "python"
+    },
+    {
+      "pid": 30906,
+      "start_ticks": "37353944",
+      "command": "bun"
+    }
+  ]
+}

@@ -1,1 +1,11 @@
-{schemaVersion: worktree-latest-status/v2,workflow_id: skill-contract-manifests-16-web-design-metadata,ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,state: IMPLEMENTING,latest_receipt: start-0001,latest_source_commit: 8070acd067a70b4a844a62ba357de8395c4c1c13,latest_source_tree: 64868de286e51646cda9bddb0e2c681168c27626,latest_review_verdict: null,open_findings: []}
+{
+  schemaVersion: worktree-latest-status/v2,
+  workflow_id: skill-contract-manifests-16-web-design-metadata,
+  ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
+  state: BLOCKED,
+  latest_receipt: start-complete-0003,
+  latest_source_commit: 9689169146996ad84d19430cd19aa2a386c733b2,
+  latest_source_tree: 67e2145f36f92662554a7bc7c9d2a0032c5a3bb7,
+  latest_review_verdict: null,
+  open_findings: []
+}

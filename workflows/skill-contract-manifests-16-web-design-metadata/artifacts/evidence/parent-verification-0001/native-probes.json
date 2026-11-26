@@ -1,0 +1,382 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+    "tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7"
+  },
+  "status": "failed",
+  "failure": "reject invalid UTF-8 catalog: expected exit 1, observed 0; preserved=true",
+  "catalog_fixtures_only": true,
+  "bundled_asset_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets",
+  "original_provenance_paths_never_opened": true,
+  "records": [
+    {
+      "label": "validate historical",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 666,
+      "stdout_sha256": "4f274cd5ce98ffb9e7b9b9ea6a7a7a6de2e377a9808387978135637be561f5aa",
+      "stdout_summary": "Validated catalog identity: 1\nCaptured at: 2026-10-22T10:12:43.516Z\nreport-dashboard\tstyles/report-dashboard/DESIGN.md\t93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/UI-FOUNDATION.md\t2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\nproject-info\tstyles/project-info/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nproject-info\tstyles/project-info/EDITOR-DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate authored",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/authored/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 666,
+      "stdout_sha256": "4f274cd5ce98ffb9e7b9b9ea6a7a7a6de2e377a9808387978135637be561f5aa",
+      "stdout_summary": "Validated catalog identity: 1\nCaptured at: 2026-10-22T10:12:43.516Z\nreport-dashboard\tstyles/report-dashboard/DESIGN.md\t93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/UI-FOUNDATION.md\t2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\nproject-info\tstyles/project-info/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nproject-info\tstyles/project-info/EDITOR-DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate unknown-number",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/unknown-number/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": "",
+      "stderr": "Unsupported explicit catalog schemaVersion; expected numeric 1 or design-source-metadata/v2.\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate unknown-string",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/unknown-string/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": "",
+      "stderr": "Unsupported explicit catalog schemaVersion; expected numeric 1 or design-source-metadata/v2.\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate mixed",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/mixed/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": "",
+      "stderr": "Catalog schema is unsupported; use exactly one schemaVersion field.\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate absent",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/absent/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": "",
+      "stderr": "Catalog identity does not match its declared contract.\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate null",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/null/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": "",
+      "stderr": "Unsupported explicit catalog schemaVersion; expected numeric 1 or design-source-metadata/v2.\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate checksum-mismatch",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/checksum-mismatch/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": "",
+      "stderr": "Bundled asset checksum mismatch; catalog and asset remain unchanged.\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "validate numeric-string",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/numeric-string/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": "",
+      "stderr": "Unsupported explicit catalog schemaVersion; expected numeric 1 or design-source-metadata/v2.\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "select report-dashboard styles/report-dashboard/DESIGN.md",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "report-dashboard",
+        "styles/report-dashboard/DESIGN.md",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 19409,
+      "stdout_sha256": "e6c729c1ba30eb8e6c05b638c15f44b4101fdb89d2bfebe3703c95f257d3594d",
+      "stdout_summary": "Style: report-dashboard\nAsset: styles/report-dashboard/DESIGN.md\nBundled path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md\nRepository: https://example.invalid/fixture-provenance\nSource path: provenance-only/entry-0.md\nRefresh local path: /tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-0.md\nSHA-256: 93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\n\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "select widget-grid-dashboard styles/widget-grid-dashboard/DESIGN.md",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "widget-grid-dashboard",
+        "styles/widget-grid-dashboard/DESIGN.md",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 22086,
+      "stdout_sha256": "60dfc93936d0f5e1190fd7afc05ccb6ecd05db6f1273797e5ea953ad88931b47",
+      "stdout_summary": "Style: widget-grid-dashboard\nAsset: styles/widget-grid-dashboard/DESIGN.md\nBundled path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md\nRepository: https://example.invalid/fixture-provenance\nSource path: provenance-only/entry-1.md\nRefresh local path: /tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-1.md\nSHA-256: c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "select widget-grid-dashboard styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "widget-grid-dashboard",
+        "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 24386,
+      "stdout_sha256": "43678a091b54b4102e182e68fca9d76c55fd4d41787298deee8324e5fc9160c2",
+      "stdout_summary": "Style: widget-grid-dashboard\nAsset: styles/widget-grid-dashboard/UI-FOUNDATION.md\nBundled path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md\nRepository: https://example.invalid/fixture-provenance\nSource path: provenance-only/entry-2.md\nRefresh local path: /tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-2.md\nSHA-256: 2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\n\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "select project-info styles/project-info/DESIGN.md",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "project-info",
+        "styles/project-info/DESIGN.md",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 22059,
+      "stdout_sha256": "53fab1251d20f49afb968b4dd69c8b3c6aa51038c76f861c35f7881edc97a317",
+      "stdout_summary": "Style: project-info\nAsset: styles/project-info/DESIGN.md\nBundled path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md\nRepository: https://example.invalid/fixture-provenance\nSource path: provenance-only/entry-3.md\nRefresh local path: /tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-3.md\nSHA-256: c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "select project-info styles/project-info/EDITOR-DESIGN.md",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "project-info",
+        "styles/project-info/EDITOR-DESIGN.md",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 22073,
+      "stdout_sha256": "b0b0565d4e4ce6b06805e3b2a9094ca53489ee1b374970e70be427100f3b5577",
+      "stdout_summary": "Style: project-info\nAsset: styles/project-info/EDITOR-DESIGN.md\nBundled path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md\nRepository: https://example.invalid/fixture-provenance\nSource path: provenance-only/entry-4.md\nRefresh local path: /tmp/scm16-parent-verification-BhTkKm/historical/unavailable-originals/entry-4.md\nSHA-256: c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "upgrade historical",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 202,
+      "stdout_sha256": "c40d77952b8eb90cfac8f71f2dbdeebfce60bfca69b22d636835cedd079c925b",
+      "stdout_summary": "{\n  \"artifact\": \"/tmp/scm16-parent-verification-BhTkKm/historical/sources.json\",\n  \"changed\": true,\n  \"from\": \"design-source-metadata/v1\",\n  \"to\": \"design-source-metadata/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": "",
+      "input_bytes_preserved": false
+    },
+    {
+      "label": "validate converted historical",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/historical/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 690,
+      "stdout_sha256": "aa1f1f18639915418b33cdc9ffcb9b7a700819aacd8d0296b1fa1bb542670d05",
+      "stdout_summary": "Validated catalog identity: design-source-metadata/v2\nCaptured at: 2026-10-22T10:12:43.516Z\nreport-dashboard\tstyles/report-dashboard/DESIGN.md\t93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/UI-FOUNDATION.md\t2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\nproject-info\tstyles/project-info/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nproject-info\tstyles/project-info/EDITOR-DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "upgrade authored",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/scm16-parent-verification-BhTkKm/authored/sources.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 200,
+      "stdout_sha256": "021f82609f342240e31279b6a2fc0fcc33d1114b7d126054b1bc2d344310bf65",
+      "stdout_summary": "{\n  \"artifact\": \"/tmp/scm16-parent-verification-BhTkKm/authored/sources.json\",\n  \"changed\": true,\n  \"from\": \"design-source-metadata/v1\",\n  \"to\": \"design-source-metadata/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": "",
+      "input_bytes_preserved": false
+    },
+    {
+      "label": "validate converted authored",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/authored/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout_bytes": 690,
+      "stdout_sha256": "aa1f1f18639915418b33cdc9ffcb9b7a700819aacd8d0296b1fa1bb542670d05",
+      "stdout_summary": "Validated catalog identity: design-source-metadata/v2\nCaptured at: 2026-10-22T10:12:43.516Z\nreport-dashboard\tstyles/report-dashboard/DESIGN.md\t93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/UI-FOUNDATION.md\t2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\nproject-info\tstyles/project-info/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nproject-info\tstyles/project-info/EDITOR-DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "label": "reject invalid UTF-8 catalog",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/scm16-parent-verification-BhTkKm/invalid-utf8/sources.json"
+      ],
+      "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+      "expected_exit": 1,
+      "exit_code": 0,
+      "stdout_bytes": 666,
+      "stdout_sha256": "4f274cd5ce98ffb9e7b9b9ea6a7a7a6de2e377a9808387978135637be561f5aa",
+      "stdout_summary": "Validated catalog identity: 1\nCaptured at: 2026-10-22T10:12:43.516Z\nreport-dashboard\tstyles/report-dashboard/DESIGN.md\t93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/UI-FOUNDATION.md\t2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\nproject-info\tstyles/project-info/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nproject-info\tstyles/project-info/EDITOR-DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    }
+  ]
+}

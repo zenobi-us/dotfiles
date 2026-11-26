@@ -1,0 +1,102 @@
+{
+  "phase": "implementation-0002",
+  "execution": "Pre-commit native smoke; not a final-commit run. Tested authored bytes will be bound to committed blobs.",
+  "argv": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "exit_code": 0,
+  "stdout_summary": "PASS: 52 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries.",
+  "fixture_cwd": "/tmp/web-design-metadata-SHPzR9",
+  "fixture_cleanup": "Removed by native test finally block on successful completion.",
+  "coverage": [
+    "public manifest validate and both definition resolutions",
+    "current and numeric-1 historical native validation",
+    "all five associations selected under both formats; exact provenance and bundled text asserted",
+    "wrong style/asset association rejected",
+    "safe conversion preserves unknown nested data and large number lexeme byte-for-byte",
+    "current safe conversion is a byte-preserving no-op",
+    "nine invalid explicit identity values rejected by reader and shared upgrade",
+    "absent/mixed/duplicate/malformed identities and invalid associations rejected byte-preserved",
+    "immutable catalog readable but upgrade refused",
+    "unsupported mutation refused",
+    "bulk reports partial: historical converted, immutable byte-preserved",
+    "isolated checksum mismatch fails consumption without catalog or asset repair"
+  ],
+  "baseline_comparison": "Only the top-level identity token differs from parent numeric baseline; every other metadata byte matches.",
+  "assets": [
+    {
+      "style": "report-dashboard",
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "matches_parent_baseline": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "matches_parent_baseline": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "matches_parent_baseline": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "matches_parent_baseline": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "matches_parent_baseline": true
+    }
+  ],
+  "tested_authored_blobs": {
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md": {
+      "sha256": "d17c8c7cc80f6174804cee8204ad88414adf16fe32fd9656b8123593bff592ea",
+      "git_blob": "654c3c8566efe8d83bc4b43030d8c462c2461399"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json": {
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "git_blob": "16d989843ab202569632d7af4372e14804a1cc60"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json": {
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "git_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md": {
+      "sha256": "5c053db65be93c374ad996480656b9f908aa2019f83046793715e2f66ea138bf",
+      "git_blob": "fc0495cb93375a6042a74ca7dc63d9d2e03a726b"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md": {
+      "sha256": "e24331896b2cab353acab10d265f8d76ff90037413c14ac3185a1f458a9e3edd",
+      "git_blob": "ad0ea92bd3fa7142f0a9362cb80c0f5010f531d9"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md": {
+      "sha256": "f33fdaa2c48551eeb3d4f19f4bddc8177a1d602cfd8cf616288dd920e92716af",
+      "git_blob": "a11b0e35503ace85e168299bc53a6fca1dec582f"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts": {
+      "sha256": "c83c9067a51d6a5061b239d5268e545264a53aac7c663343a47694f936cff6b9",
+      "git_blob": "de5fca05c9e3555d347eecdde2192143119ac8ea"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts": {
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "git_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe"
+    },
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts": {
+      "sha256": "7e11e4ff841e722e952cf8515d624b165c121fed14e749ed3d60d401f9950119",
+      "git_blob": "274486958d579e822fe64bbdef5ac50a92b1368e"
+    }
+  },
+  "limits": [
+    "No web page or browser surface changed; no screenshots requested.",
+    "No dependency installation or version change performed.",
+    "Independent worktree review remains a parent phase."
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+    "tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7"
+  },
+  "transport_sha256": "9b57f99ead8668c67e5ae5982689c8e86234be4daac84409c22234eb4056256f",
+  "authoritative_receipt_matches_transport": true,
+  "child_native_outcomes": 52,
+  "child_tested_before_commit": true,
+  "all_nine_tested_authored_hashes_match": true,
+  "parent_native_outcomes": {
+    "total": 19,
+    "passed": 18,
+    "failed": 1
+  },
+  "failed_check": {
+    "label": "reject invalid UTF-8 catalog",
+    "argv": [
+      "env",
+      "BUN_OPTIONS=--install=fallback",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "validate",
+      "/tmp/scm16-parent-verification-BhTkKm/invalid-utf8/sources.json"
+    ],
+    "cwd": "/tmp/scm16-parent-verification-BhTkKm",
+    "expected_exit": 1,
+    "exit_code": 0,
+    "stdout_bytes": 666,
+    "stdout_sha256": "4f274cd5ce98ffb9e7b9b9ea6a7a7a6de2e377a9808387978135637be561f5aa",
+    "stdout_summary": "Validated catalog identity: 1\nCaptured at: 2026-10-22T10:12:43.516Z\nreport-dashboard\tstyles/report-dashboard/DESIGN.md\t93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nwidget-grid-dashboard\tstyles/widget-grid-dashboard/UI-FOUNDATION.md\t2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\nproject-info\tstyles/project-info/DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\nproject-info\tstyles/project-info/EDITOR-DESIGN.md\tc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\n",
+    "stderr": "",
+    "input_bytes_preserved": true
+  },
+  "failure_evidence_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/native-probes.json",
+  "failure_fixture_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/invalid-utf8-catalog.bin",
+  "cause": {
+    "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "line": 27,
+    "observed_code": "readFile(path, \"utf8\")",
+    "problem": "Lossy decoding allows an invalid UTF-8 catalog to pass read-only validation instead of rejecting it."
+  },
+  "resources": {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "d359223c-7100-4eb8-861f-a3dc5e9b7575",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t2j7",
+      "createdAt": "2026-11-26T04:36:00.072Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "operationId": "d359223c-7100-4eb8-861f-a3dc5e9b7575"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "d359223c-7100-4eb8-861f-a3dc5e9b7575",
+      "observedAt": "2026-11-26T04:56:22.150Z",
+      "processes": [
+        {
+          "pid": 21359,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "37306221",
+          "command": "omp",
+          "parentPid": 21038,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 24627,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "37320978",
+          "command": "omp daemon brok",
+          "parentPid": 21359,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 24654,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "37320983",
+          "command": "omp",
+          "parentPid": 24627,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 25434,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "37329853",
+          "command": "python",
+          "parentPid": 21359,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 30906,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "37353944",
+          "command": "bun",
+          "parentPid": 21359,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "desktop": {
+    "owned_terminal_absent": true,
+    "owned_source_space_absent": true
+  },
+  "fixture_cleanup": {
+    "owned_root": "/tmp/scm16-parent-verification-BhTkKm",
+    "removed": true,
+    "canonical_inputs_retained": true
+  },
+  "remaining_scope": "Stop for scoped approval to repair catalog UTF-8 decoding and retry this same ticket; no review or integration."
+}

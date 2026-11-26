@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "d359223c-7100-4eb8-861f-a3dc5e9b7575",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2j7",
+    "createdAt": "2026-11-26T04:36:00.072Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "operationId": "d359223c-7100-4eb8-861f-a3dc5e9b7575"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "d359223c-7100-4eb8-861f-a3dc5e9b7575",
+    "observedAt": "2026-11-26T04:49:44.323Z",
+    "processes": [
+      {
+        "pid": 21359,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "37306221",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 24627,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "37320978",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 24654,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "37320983",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 25434,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "37329853",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 30906,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "37353944",
+        "command": "bun",
+        "parentPid": 21359,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

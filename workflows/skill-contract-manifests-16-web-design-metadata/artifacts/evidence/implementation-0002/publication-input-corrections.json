@@ -1,0 +1,18 @@
+{
+  "source_mutated": false,
+  "corrections": [
+    {
+      "command": "mq --args body <frontmatter beginning with --->",
+      "exit_code": 2,
+      "issue": "Leading hyphens were parsed as an option.",
+      "correction": "Use --argjson body with a JSON-encoded string."
+    },
+    {
+      "command": "mq -o <resolved snapshot path> --no-clobber",
+      "exit_code": 1,
+      "issue": "Authorized artifacts/snapshots parent directory did not exist.",
+      "correction": "Create the authorized snapshot directory before exclusive publication."
+    }
+  ],
+  "semantic_check_failures": []
+}
