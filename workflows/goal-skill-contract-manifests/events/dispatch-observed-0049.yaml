@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-observed-0049",
+  "parent_event": "dispatch-reserved-0048",
+  "kind": "dispatch_observed",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "review",
+  "attempt": 1,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0048.yaml",
+  "phase_start_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/review-start-0022.yaml",
+  "child_run_id": "9dcea644-5951-4ea8-90b1-1246c31c76c5",
+  "child_terminal": "t2hk",
+  "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/9dcea644-5951-4ea8-90b1-1246c31c76c5/context.json",
+  "result_target": "/var/home/zenobius/.local/state/result-delivery/runs/9dcea644-5951-4ea8-90b1-1246c31c76c5/result.json",
+  "source_branch": "feature/skill-contract-manifests-15-plain-language",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "launch_source_commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+  "launch_source_tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6",
+  "review_base_commit": "6beaf578a762e1b47cb9947227cbfc7910a5487b",
+  "additional_prerequisite_commit": "88bdcdf101a487b1cb0daa10bbebbf50d86a0128",
+  "launch_coordination": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0021.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "sourceBranch": "feature/skill-contract-manifests-15-plain-language",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "overlaps": [],
+    "snapshot_reservation": "Inventory started before reconciliation47; its sole observed reservation45 is now closed by published valid start-complete0021 and dispatch-reconciled0047. All seven starts reconciled. No other scoped owner or reservation observed.",
+    "decision": "Read-only review of exact clean source and already published prerequisite88. Source implementation run fully stopped. Current coordinator remains sole recorded owner; bounded same-owner approval applies. Incomplete stale linked inventory is unrelated/unknown. Generated plugin/marketplace entries are compatible integration metadata; retain target-base developer version with source agent-core version through normal merge/check hooks."
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 8,
+    "ticket_attempts_remaining": 92,
+    "dispatches_consumed": 11,
+    "dispatches_remaining": 2489,
+    "omp_token_budget": null
+  },
+  "created_at": "2026-11-26T02:16:47.877Z"
+}
