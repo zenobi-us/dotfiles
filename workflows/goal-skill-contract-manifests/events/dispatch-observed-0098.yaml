@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-observed-0098",
+  "parent_event": "dispatch-reserved-0097",
+  "kind": "dispatch_observed",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 2,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0097.yaml",
+  "phase_start_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml",
+  "child_run_id": "eb0035b3-6993-4226-b69e-d02df8ff52cd",
+  "child_terminal": "t2kr",
+  "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/eb0035b3-6993-4226-b69e-d02df8ff52cd/context.json",
+  "result_target": "/var/home/zenobius/.local/state/result-delivery/runs/eb0035b3-6993-4226-b69e-d02df8ff52cd/result.json",
+  "source_branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "launch_source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "launch_source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "launch_coordination": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+          "commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "reservations": [],
+    "generated_file_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "Fresh102.67-second coordination across all3 scope paths: no hard blockers or record diagnostics, sole recorded owner/live coordinator t2dv, exact unique sourcefb4104c7, no proposed reservation.93 is verified reconciled to18; prior64/69/79/82/87 also verified. Generic ownership value unknown is assessed by sole matching recorded/live parent and prior approved ownership; no takeover. Incomplete other inventory remains unknown. Same4 generated-file overlaps in distinct worktrees remain future integration risks, not shared mutable checkout/index. Fresh DAG confirms direct03 completed. Both leaves/all5 primary processes stopped/confirmed, owned source desktop absent. Prose-only fixer owns3 references in isolated source, normal hooks may update2 metadata paths there. No integration or relocation/serverfiles work.",
+    "reservation93": {
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0093.yaml",
+      "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml",
+      "ambiguous": false,
+      "reconciliationVerified": true
+    },
+    "ownership_reported": "unknown"
+  },
+  "retained_findings_to_reassess": [
+    "standards-002",
+    "standards-003",
+    "standards-004",
+    "standards-005"
+  ],
+  "verification_policy": "Prose-only3 references and normal2 hook metadata. Manual MQ check all4 hard findings; native56 once after final edits, full output; immutable snapshot validated before exclusive publication; source/runtime/catalog/assets preserved. New required failure stops before publication.",
+  "accounting": {
+    "ticket_attempts_consumed": 7,
+    "ticket_attempts_remaining": 93,
+    "dispatches_consumed": 21,
+    "dispatches_remaining": 2479,
+    "omp_token_budget": null
+  },
+  "created_at": "2026-11-26T21:24:25.742Z"
+}
