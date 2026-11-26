@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0103",
+  "parent_event": "dispatch-reconciled-0102",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 3,
+  "ticket_attempt": 9,
+  "consumed_receipt_refs": [
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0023.yaml",
+    "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0024.yaml"
+  ],
+  "planned_source_branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "base_branch": "master",
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "remaining_allowances": {
+    "ticket_attempts": 91,
+    "dispatches": 2477
+  },
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "ownership_reported": "unknown",
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0024.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+          "commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "reservations": [],
+    "reservation100": {
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0100.yaml",
+      "runId": "skill-contract-manifests-20261125-t2dv",
+      "ticketRef": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "phase": "review",
+      "coordinator": {
+        "session_id": "herdr-app:t2dv",
+        "muxer": "herdr-app",
+        "pane_id": "t2dv",
+        "agent": "omp"
+      },
+      "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0024.yaml",
+      "locations": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reserved-0100.yaml"
+      ],
+      "ambiguous": false,
+      "reconciliationVerified": true
+    },
+    "generated_file_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "Fresh101.87-second three-scope coordination. No hard blockers or record diagnostics. Sole recorded/live parent t2dv, exact unique d50d3bb1 source, no proposed reservation.100 verified reconciled to parent24. All prior owned review processes stopped/confirmed and source desktop absent. Generic unknown ownership is assessed by sole matching parent and existing goal authority, not takeover. Incomplete other inventory remains unknown. Same4 metadata overlaps in other isolated worktrees are future integration risks, not shared source index edits. Fixer changes only3 declared added-prose sections and normal2 hook metadata paths in this source worktree. No merge or relocation/serverfiles work."
+  },
+  "source_commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+  "source_tree": "bb15b43f805dbc4946d846862e16caddd485621a",
+  "parent_verification_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0002/encoding-native-probes.json",
+  "preservation_policy": "Preserve all prior receipts, reviews, snapshots and failed captures. Authorize only the selected three added-prose sections and normal two hook metadata outputs in isolated source. Preserve all runtime, contracts, catalog, source-metadata.md, assets and unchanged baseline prose. New source requires fresh review. No relocation repair.",
+  "goal_authorization": "Active user-approved goal normal matching FAILURE -> fresh fixer -> fresh review loop. Original scope/100-ticket-attempt allowance unchanged. No new semantic or repair scope.",
+  "selected_findings": [
+    "standards-006",
+    "standards-007",
+    "standards-008"
+  ],
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+  ],
+  "created_at": "2026-11-26T21:54:45.336Z"
+}
