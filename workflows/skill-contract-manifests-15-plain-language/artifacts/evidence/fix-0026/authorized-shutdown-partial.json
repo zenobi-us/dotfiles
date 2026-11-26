@@ -1,0 +1,24 @@
+{
+  "observations": {
+    "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0055.yaml",
+    "run_id": "aea941bf-9b89-4523-895b-4e07a90e0d21",
+    "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+    "processes": [
+      {
+        "pid": 4005694,
+        "start_ticks": "36606136",
+        "signals": [
+          "TERM",
+          "KILL"
+        ],
+        "state": "exit_observed"
+      },
+      {
+        "pid": 4005975,
+        "start_ticks": "36606751",
+        "signals": []
+      }
+    ]
+  },
+  "interruption": "PermissionError reading /proc/4005975/environ before any signal to that PID. Preserve identity checks; inspect pidfd/exit state before continuing."
+}
