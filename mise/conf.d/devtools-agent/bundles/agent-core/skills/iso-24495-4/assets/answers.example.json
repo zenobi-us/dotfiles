@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "plain-language-answers/v2",
+  "organisation": "Example fixture organisation",
+  "dimensions": {
+    "governance": {
+      "policy-documented": true
+    },
+    "capability": {},
+    "process": {},
+    "measurement": {},
+    "culture": {}
+  },
+  "citations": {
+    "policy-documented": [
+      "docs/plain-language-policy.md"
+    ]
+  }
+}

@@ -35,7 +35,7 @@ The audit reads Markdown as written and does not interpret raw HTML. It sets HTM
 6. Run the script with Bun:
 
 ```text
-bun <skill-directory>/scripts/audit-text-cli.ts <file-or-directory> --project-dir <project-directory>
+BUN_OPTIONS=--install=fallback mise exec -- bun <skill-directory>/scripts/audit-text-cli.ts <file-or-directory> --project-dir <project-directory>
 ```
 
    Add `--no-front-matter` for text that cannot carry metadata, such as a pull request description. A leading `---` block is then read as text, not set aside as front matter.
@@ -53,3 +53,9 @@ bun <skill-directory>/scripts/audit-text-cli.ts <file-or-directory> --project-di
 - Do not create a report file unless the user requests one and names its location.
 - Do not describe zero findings as proof that text is valid, compliant, or suitable.
 - Use the relevant sector skill when interpreting findings in legal, technical, scientific, or designed documents.
+
+## Findings JSON contract
+
+If the user requests findings JSON, add `--json <absolute-output-path>` to the command. The output uses schemaVersion: plain-language-findings/v2. The assessment owner defines [the shared findings contract](../iso-24495-4/references/contracts.md). It includes skipped entries and feeds that owner’s report command. This skill consumes selected prose, not assessment JSON; it declares no structured input or conversion.
+
+Resolve this installed skill directory as TEXT_AUDIT_SKILL_ROOT. From the caller directory, run `BUN_OPTIONS=--install=fallback mise exec -- bun "$TEXT_AUDIT_SKILL_ROOT/scripts/audit-text-cli.ts" <absolute-selected-path> --project-dir <absolute-project-directory> --json <absolute-output-path>`. Use only a separately requested destination. The command rejects source/output aliases and unsafe destinations. Selected text and external frontmatter remain read-only. The existing --no-front-matter option changes reading only.

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "plain-language-findings/v2"
+  ],
+  "accepts": [],
+  "contracts": {
+    "plain-language-findings/v2": "file:../iso-24495-4/references/contracts.md"
+  },
+  "upgrades": []
+}

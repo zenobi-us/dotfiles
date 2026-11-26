@@ -5,14 +5,18 @@
 import { MATURITY_MODEL } from "./lib/types.ts";
 import type { Maturity } from "./lib/types.ts";
 import { readFileSync, writeFileSync } from "node:fs";
+import { parseRecord, readRecord } from "./lib/contracts.ts";
+import { checkDestinations } from "./lib/destinations.ts";
 
 export interface Answers {
+  schemaVersion?: "plain-language-answers/v2";
   organisation?: string;
   dimensions: Record<string, Record<string, boolean>>;
 }
 
 export function scoreMaturity(answers: Answers): Maturity {
-  const maturity: Maturity = { dimensions: {}, overall: 0 };
+  readRecord("answers", answers);
+  const maturity: Maturity = { schemaVersion: "plain-language-maturity/v2", dimensions: {}, overall: 0 };
   let overall = Number.POSITIVE_INFINITY;
   for (const [dimension, levels] of Object.entries(MATURITY_MODEL)) {
     const given = answers.dimensions?.[dimension] ?? {};
@@ -46,8 +50,10 @@ export function runCli(
     return 2;
   }
   try {
-    const maturity = scoreMaturity(JSON.parse(readFileSync(path, "utf8")));
+    const answers = readRecord("answers", parseRecord(readFileSync(path, "utf8")));
+    const maturity = scoreMaturity(answers);
     if (jsonFlag !== -1) {
+      checkDestinations([argv[jsonFlag + 1]], [path]);
       writeFileSync(argv[jsonFlag + 1], JSON.stringify(maturity, null, 2));
     }
     stdout("| Dimension | Level | Blocking criteria |");

@@ -9,6 +9,7 @@ import {
 } from "../../iso-24495-4/scripts/audit-corpus.ts";
 import type { Reading } from "../../iso-24495-4/scripts/lib/parse.ts";
 import type { Findings } from "../../iso-24495-4/scripts/lib/types.ts";
+import { checkDestinations } from "../../iso-24495-4/scripts/lib/destinations.ts";
 
 export interface TextAuditResult extends Findings {
   skipped: string[];
@@ -31,7 +32,7 @@ export function auditTarget(
   const skipped: string[] = [];
   const targetStat = lstatSync(absoluteTarget);
   if (targetStat.isSymbolicLink()) {
-    return { configHash: configHash(), files: {}, totals: {}, skipped: [absoluteTarget] };
+    return { schemaVersion: "plain-language-findings/v2", configHash: configHash(), files: {}, totals: {}, skipped: [absoluteTarget] };
   }
   const paths = targetStat.isDirectory()
     ? listTextFiles(absoluteTarget, (path) => skipped.push(path))
@@ -42,6 +43,7 @@ export function auditTarget(
 
   const knownAcronyms = projectAcronyms(absoluteProject);
   const findings: TextAuditResult = {
+    schemaVersion: "plain-language-findings/v2",
     configHash: configHash(),
     files: {},
     totals: {},
@@ -145,6 +147,7 @@ export function runCli(
       stderr(`warning: skipped unreadable entry: ${path}`);
     }
     if (jsonPath !== undefined) {
+      checkDestinations([jsonPath], [target, ...Object.keys(findings.files).map((path) => resolve(projectDir, path))]);
       writeFileSync(jsonPath, JSON.stringify(findings, null, 2));
     }
     stdout(formatFindings(findings));

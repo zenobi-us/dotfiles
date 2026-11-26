@@ -4,6 +4,10 @@
 
 import type { AuditState, Evidence, Findings, Maturity } from "./lib/types.ts";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { authored, parseRecord, readRecord } from "./lib/contracts.ts";
+import { checkDestinations } from "./lib/destinations.ts";
+import { safeUpgrade } from "../../skill-contracts/scripts/upgrades.ts";
+import { resolve } from "node:path";
 
 export interface ReportInput {
   findings: Findings;
@@ -15,6 +19,11 @@ export interface ReportInput {
 }
 
 export function generateReport(input: ReportInput): { report: string; state: AuditState } {
+  readRecord("findings", input.findings);
+  readRecord("evidence", input.evidence);
+  readRecord("maturity", input.maturity);
+  if (input.state !== null) readRecord("state", input.state);
+  if (!Number.isFinite(Date.parse(input.now))) throw new Error("Audit timestamp must be a valid date.");
   const { findings, evidence, maturity, now } = input;
   const snapshots = input.state ? structuredClone(input.state.snapshots) : [];
   snapshots.push({
@@ -22,7 +31,7 @@ export function generateReport(input: ReportInput): { report: string; state: Aud
     totals: structuredClone(findings.totals),
     overall: maturity.overall,
   });
-  const state: AuditState = { snapshots };
+  const state: AuditState = { ...input.state, schemaVersion: "plain-language-audit-state/v2", snapshots };
 
   const lines: string[] = [];
   lines.push("# Plain Language Gap Analysis");
@@ -85,12 +94,12 @@ export function generateReport(input: ReportInput): { report: string; state: Aud
   return { report: lines.join("\n"), state };
 }
 
-export function runCli(
+export async function runCli(
   argv: string[],
   stdout: (text: string) => void,
   stderr: (text: string) => void,
   now: () => string = () => new Date().toISOString(),
-): number {
+): Promise<number> {
   const [findingsPath, evidencePath, maturityPath] = argv.slice(2);
   if (!findingsPath || !evidencePath || !maturityPath) {
     stderr(
@@ -111,16 +120,35 @@ export function runCli(
   try {
     const statePath = stateFlag !== -1 ? argv[stateFlag + 1] : null;
     const priorState = statePath && existsSync(statePath)
-      ? JSON.parse(readFileSync(statePath, "utf8"))
+      ? readRecord("state", parseRecord(readFileSync(statePath, "utf8")))
       : null;
     const { report, state } = generateReport({
-      findings: JSON.parse(readFileSync(findingsPath, "utf8")),
-      evidence: JSON.parse(readFileSync(evidencePath, "utf8")),
-      maturity: JSON.parse(readFileSync(maturityPath, "utf8")),
+      findings: readRecord("findings", parseRecord(readFileSync(findingsPath, "utf8"))),
+      evidence: readRecord("evidence", parseRecord(readFileSync(evidencePath, "utf8"))),
+      maturity: readRecord("maturity", parseRecord(readFileSync(maturityPath, "utf8"))),
       state: priorState,
       now: now(),
     });
-    if (statePath) writeFileSync(statePath, JSON.stringify(state, null, 2));
+    const reportPath = outFlag !== -1 ? argv[outFlag + 1] : null;
+    checkDestinations(
+      [statePath, reportPath].filter((path): path is string => path !== null),
+      [findingsPath, evidencePath, maturityPath],
+    );
+    if (statePath) {
+      if (priorState) {
+        const result = await safeUpgrade({
+          skill: resolve(import.meta.dir, ".."),
+          owner: "file:scripts/assessment-contracts.ts",
+          artifact: statePath,
+          operation: "append",
+          request: { snapshot: state.snapshots.at(-1), expected: authored(priorState as unknown as Record<string, unknown>) },
+        });
+        if (result.status !== "completed") throw new Error("Audit-state append committed but cleanup failed.");
+      } else {
+        // An absent destination is new output, never an upgrade candidate.
+        writeFileSync(statePath, JSON.stringify(state, null, 2), { flag: "wx" });
+      }
+    }
     if (outFlag !== -1) {
       writeFileSync(argv[outFlag + 1], report);
     } else {
