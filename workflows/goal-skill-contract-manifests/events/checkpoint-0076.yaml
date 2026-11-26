@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0076",
+  "parent_event": "checkpoint-0075",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "state": "blocked",
+  "reason": "Requester t2fh definitively reinstates OWNERSHIP EPOCH2: t2fk sole implementation/regression/documentation/verification owner; t2dv read-only independent reviewer/coordinator. It withdraws ALL intervening role messages, including t2dv-owner correction, and directs actual work with no more counter-proposals. No source edits by t2dv.",
+  "coordination": {
+    "authoritative_requester": "herdr-app:t2fh",
+    "implementation_owner": "herdr-app:t2fk",
+    "read_only_reviewer": "herdr-app:t2dv",
+    "ownership_acknowledged": true,
+    "implementation_scope": [
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repository-relocation.ts",
+      "scoped relocation replay callsite if necessary",
+      "focused relocation/finish/source-removal regression",
+      "matching owner documentation"
+    ],
+    "required_outcome": "Published validated completed finish and retained Git/integration evidence must permit replay after source removal; preserve unrelated-repository and invalid historical identity rejection.",
+    "boundaries": [
+      "No staging or commit of repair without separate user authorization",
+      "No source edits by t2dv",
+      "No historical receipt rewrites",
+      "No dummy worktree recreation",
+      "No serverfiles merge/push/tracker/cleanup mutations",
+      "No infrastructure or services-lan operations",
+      "No process termination authorized"
+    ],
+    "failing_evidence": {
+      "repository": "/run/media/zenobius/Store/Projects/Mine/Github/serverfiles",
+      "ref": "workflows/flux-production-architecture-04-production-k0s/artifacts/snapshots/finish-inspection-error-0036.json"
+    },
+    "failing_command_not_rerun": true,
+    "ownership_epoch": 2
+  },
+  "ticket16_gate": {
+    "action": "review",
+    "mode": "retry",
+    "label": "Retry interrupted review",
+    "reason": "Inspect prior review output, then use a fresh reviewer. An interrupted review is not a verdict.",
+    "requiredApproval": true,
+    "parentReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml",
+    "inputs": [
+      "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-validation.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-resources-after.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0005.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0005.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/blocked-checks.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/failure-provenance.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0004.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/start-complete-0003.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/parent-validation.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/native-smoke.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/commit-binding.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/resources-before-parent-closure.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/publication-input-corrections.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/manifest.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/latest-status.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/start-0001.yaml"
+    ]
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 2,
+    "ticket_attempts_remaining": 98,
+    "dispatches_consumed": 16,
+    "dispatches_remaining": 2484
+  },
+  "publication_note": "Supersedes ownership fields of74/75 per requester epoch2. Local canonical coordinator journal, no separate board; not staged/committed under current repair restriction.",
+  "created_at": "2026-11-26T07:05:08.031Z"
+}
