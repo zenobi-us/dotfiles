@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0043",
+  "parent_event": "dispatch-reconciled-0042",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "status": "blocked",
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0040.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/implementation-0017.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0018.yaml",
+  "blockers": [
+    {
+      "kind": "required_check_failure",
+      "error": "The required scoped suite exited 1 after the approved temporary real-AJV alias preparation. Bun test loaded AJV8.20.0 but could not resolve its transitive dependency fast-deep-equal from /var/home/zenobius/.bun/install/cache/ajv@8.20.0@@@1/dist/compile/resolve.js. Result:119 pass,3 fail,3 errors,1894 expect calls. Required-check stop policy applies; no further repair, smoke, commit or hooks.",
+      "evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0017/suite.json"
+    }
+  ],
+  "proposed_recovery": "Approve complete isolated local dependency setup for the already used AJV8.20.0 and its real transitive dependencies, with temporary manifest/install artifacts outside tracked source and only an owned ignored local alias as needed. Preserve repository dependency declarations, versions, lockfiles and global configuration. Prepare the entire dependency graph before the suite, not one cache symlink. Fresh attempt7, full required suite and actual CLI smoke before normal source commit. Optionally authorize bounded recovery only for this same dependency-loading blocker; other new required failures still stop and100 attempts remains hard cap.",
+  "cleanup": "Confirmed all sixth-run processes stopped and owned terminal/source space absent; no extra signal approval needed.",
+  "accounting": {
+    "ticket_attempts_consumed": 6,
+    "ticket_attempts_remaining": 94,
+    "dispatches_consumed": 9,
+    "dispatches_remaining": 2491,
+    "omp_token_budget": null
+  },
+  "created_at": "2026-11-26T00:19:59.411Z"
+}

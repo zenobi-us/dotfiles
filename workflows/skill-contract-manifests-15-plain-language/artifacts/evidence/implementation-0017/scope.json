@@ -1,0 +1,8 @@
+{
+  "run": "implementation-0017",
+  "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "fixture_only": true,
+  "required_suite_only": true,
+  "stop_after_required_failure": true,
+  "prior_evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0014"
+}

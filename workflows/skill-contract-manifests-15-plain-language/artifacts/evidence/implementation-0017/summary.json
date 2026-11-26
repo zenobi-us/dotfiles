@@ -1,0 +1,75 @@
+{
+  "status": "blocked",
+  "failure_reason": "The required scoped suite exited 1 after the approved temporary real-AJV alias preparation. Bun test loaded AJV8.20.0 but could not resolve its transitive dependency fast-deep-equal from /var/home/zenobius/.bun/install/cache/ajv@8.20.0@@@1/dist/compile/resolve.js. Result:119 pass,3 fail,3 errors,1894 expect calls. Required-check stop policy applies; no further repair, smoke, commit or hooks.",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-evidence.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/lib/types.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/behaviour-contract.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/generate-report.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/assets/answers.example.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/assessment-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/assessment-contracts.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/lib/contracts.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/lib/destinations.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/contracts.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/interview-guide.md"
+  ],
+  "source_edited": false,
+  "new_commit": false,
+  "temporary_dependency": {
+    "alias": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/node_modules/ajv@^8.17.1",
+    "target": "/var/home/zenobius/.bun/install/cache/ajv@8.20.0@@@1",
+    "package_name": "ajv",
+    "package_version": "8.20.0",
+    "ignored": true,
+    "real_validator_probe": {
+      "exit_code": 0,
+      "integer_accepted": true,
+      "string_rejected": true
+    },
+    "removed": true,
+    "global_config_changed": false,
+    "lockfiles_changed": false
+  },
+  "verification": {
+    "required_suite": {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+      "exit_code": 1,
+      "status": "failed",
+      "output": "bun test v1.4.4 (38afee6c8)\n\nmise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts:\n\n# Unhandled error between tests\n-------------------------------\nerror: Cannot find package 'fast-deep-equal' from '/var/home/zenobius/.bun/install/cache/ajv@8.20.0@@@1/dist/compile/resolve.js'\n-------------------------------\n\n\nmise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/generate-report.test.ts:\n\n# Unhandled error between tests\n-------------------------------\n-------------------------------\n\n\nmise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/contracts.test.ts:\n\n# Unhandled error between tests\n-------------------------------\n-------------------------------\n\n\n 119 pass\n 3 fail\n 3 errors\n 1894 expect() calls\nRan 122 tests across 9 files. [4.02s]\n\n\nWall time: 4.41 seconds\n\nCommand exited with code 1",
+      "source_binding_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0017/source-binding.json"
+    },
+    "fresh_cli_smoke": "not run: stopped after required-suite failure",
+    "prior_smoke_ref": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0014/commands-and-observations.json",
+    "prior_smoke_is_not_fresh_acceptance": true
+  },
+  "source_preserved": {
+    "files": 22,
+    "hashes_unchanged": true
+  },
+  "services": [],
+  "helpers": [],
+  "source_commit_attempted": false,
+  "fixture_scaffolds_created": false
+}
