@@ -1,0 +1,28 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+    "branch": "feature/skill-contract-manifests-15-plain-language",
+    "base_branch": "master",
+    "commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+    "tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6"
+  },
+  "axes": [
+    {
+      "axis": "standards",
+      "runId": "d5e30a70-ca33-421c-9571-73e80ea40dd5",
+      "target": "t2hn",
+      "contextFile": "/var/home/zenobius/.local/state/result-delivery/runs/d5e30a70-ca33-421c-9571-73e80ea40dd5/context.json"
+    },
+    {
+      "axis": "spec",
+      "runId": "474aa59a-49f7-47e1-b244-815cd0ff1c79",
+      "target": "t2hm",
+      "contextFile": "/var/home/zenobius/.local/state/result-delivery/runs/474aa59a-49f7-47e1-b244-815cd0ff1c79/context.json"
+    }
+  ],
+  "alias": {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/node_modules/ajv@^8.17.1",
+    "target": "/tmp/scm15-test-deps-rDy0rx/node_modules/ajv",
+    "owned": true
+  }
+}

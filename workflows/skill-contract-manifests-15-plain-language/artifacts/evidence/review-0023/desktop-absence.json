@@ -1,0 +1,174 @@
+{
+  "observed_at": "2026-11-26T02:23:26.219Z",
+  "owned_targets": [
+    "t2hn",
+    "t2hm"
+  ],
+  "absent": true,
+  "primary": {
+    "terminal": "t2hk",
+    "pane": "p33738a173ee202df6a80e1648138307e",
+    "status": "working",
+    "app": "omp",
+    "name": null,
+    "sub_agents": []
+  },
+  "spaces": [
+    {
+      "id": "spe45e3a290a7169a83b0357ebf63b9682",
+      "name": "Dotfiles",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tbae75d29018190fc873ff17539081b275",
+          "name": "t1tb",
+          "active": false,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t22q",
+              "pane": "pc78c05551647f17deb76a347fb5e2e39",
+              "status": "idle",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2cv",
+              "pane": "pe1fb3662488c708bc3066b2baf709325",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t27n",
+              "pane": "p680d280643e3f3e7674213a70d811960",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        },
+        {
+          "id": "tbe54ef9a9c03991c5c02d91d7247a167c",
+          "name": "OMP",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t2dv",
+              "pane": "p7e1ee1978781e9c7b30772486cbade2c",
+              "status": "working",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2fk",
+              "pane": "p43e69170a0d825108d665d877fb0b92c",
+              "status": "idle",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2fy",
+              "pane": "pd94ddce2a31161af5a86fa10fe98e06e",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sp3cc1aa0923daafe8a9cb305581b1378f",
+      "name": "feature-skill-contract-manifests-15-plain-language",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tb194542338be8c629102a1c36b366401d",
+          "name": "skill-contract-manifests-15-plain-language · review",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t2hk",
+              "pane": "p33738a173ee202df6a80e1648138307e",
+              "status": "working",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spca1c0868790ec1d450089b3788844696",
+      "name": "finance",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tbfb2960b90a0820f66d7835405342e851",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t1yk",
+              "pane": "p3f03a96212d38abe75e76f2c3118a3e3",
+              "status": "idle",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spfc73af3306768ff31c4d6084d01dbdfe",
+      "name": "serverfiles",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+      "machine": null,
+      "active": true,
+      "tabs": [
+        {
+          "id": "tb5a7fba06a9a7805c438ad5d0c234a067",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t2fh",
+              "pane": "p28fbf7e5af1654d46388e7d337b3250f",
+              "status": "done",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2h5",
+              "pane": "peffd8f5f8a76a0de38a293c939115168",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

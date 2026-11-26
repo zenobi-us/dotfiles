@@ -1,0 +1,114 @@
+{
+  "source_commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+  "source_tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6",
+  "artifact_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/reviews/review-review-0023.md",
+  "artifact_read_via": "mq -I markdown -F markdown",
+  "verdict": "FAILURE",
+  "open_findings": [
+    "SPEC-001"
+  ],
+  "source_clean_observed": true,
+  "resource_shutdown": {
+    "primary": {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "9dcea644-5951-4ea8-90b1-1246c31c76c5",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t2hk",
+        "createdAt": "2026-11-26T02:16:33.452Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "operationId": "9dcea644-5951-4ea8-90b1-1246c31c76c5"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "9dcea644-5951-4ea8-90b1-1246c31c76c5",
+        "observedAt": "2026-11-26T02:29:06.005Z",
+        "processes": [
+          {
+            "pid": 3940324,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "36469558",
+            "command": "omp",
+            "parentPid": 3940010,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+            "state": "stopped"
+          },
+          {
+            "pid": 3940595,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "36470228",
+            "command": "omp",
+            "parentPid": 3940324,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      },
+      "desktop": {
+        "owned_terminal_absent": true,
+        "owned_source_space_absent": true
+      }
+    },
+    "axes": {
+      "axes": [
+        {
+          "processes": [
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "omp",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+              "parentPid": 3943324,
+              "pid": 3943937,
+              "startTicks": "36479397",
+              "state": "stopped"
+            }
+          ],
+          "run_id": "d5e30a70-ca33-421c-9571-73e80ea40dd5",
+          "shutdown": "confirmed"
+        },
+        {
+          "processes": [
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "omp",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+              "parentPid": 3943308,
+              "pid": 3943857,
+              "startTicks": "36479394",
+              "state": "stopped"
+            },
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "python",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+              "parentPid": 3943857,
+              "pid": 3948236,
+              "startTicks": "36490018",
+              "state": "stopped"
+            }
+          ],
+          "run_id": "474aa59a-49f7-47e1-b244-815cd0ff1c79",
+          "shutdown": "confirmed"
+        }
+      ],
+      "desktop_targets_absent": [
+        "t2hn",
+        "t2hm"
+      ],
+      "evidence_refs": [
+        "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/review-0023/resources-before.json",
+        "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/review-0023/resources-after.json",
+        "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/review-0023/desktop-absence.json"
+      ],
+      "extra_signal_authorization_required": false,
+      "normal_closure_only": true,
+      "owned_source_alias_removed": true,
+      "parent_dependency_install_preserved": true,
+      "primary_terminal_left_for_parent": "t2hk",
+      "shutdown": "confirmed"
+    }
+  }
+}

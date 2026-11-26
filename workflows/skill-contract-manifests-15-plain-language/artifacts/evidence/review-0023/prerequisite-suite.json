@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "env",
+    "BUN_OPTIONS=--install=fallback",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "prerequisite": "88bdcdf101a487b1cb0daa10bbebbf50d86a0128",
+  "status": "passed",
+  "passed": 64,
+  "failed": 0,
+  "assertions": 484,
+  "output": "bun test v1.4.4 (38afee6c8)\n64 pass\n0 fail\n484 expect() calls\nRan 64 tests across 1 file. [107.50s]\nWall time: 107.81 seconds"
+}

@@ -1,0 +1,60 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0044.yaml",
+  "reason": "integration.ts creates candidate inside apply, so dependency preparation must be an argv check before both unchanged review-required checks.",
+  "preparation": {
+    "argv": [
+      "env",
+      "BUN_OPTIONS=--install=fallback",
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import { existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, symlinkSync } from 'node:fs';\nimport { join, resolve } from 'node:path';\nconst target = '/tmp/scm15-test-deps-rDy0rx/node_modules/ajv';\nconst pkg = JSON.parse(readFileSync(join(target, 'package.json'), 'utf8'));\nif (pkg.name !== 'ajv' || pkg.version !== '8.20.0') throw new Error('Unexpected real validator dependency');\nconst modules = resolve('node_modules');\nif (existsSync(modules) && !lstatSync(modules).isDirectory()) throw new Error('Refuse non-directory dependency root');\nmkdirSync(modules, { recursive: true });\nconst alias = join(modules, 'ajv@^8.17.1');\nif (existsSync(alias)) {\n  if (!lstatSync(alias).isSymbolicLink() || realpathSync(alias) !== realpathSync(target)) throw new Error('Preserve conflicting dependency path');\n} else {\n  symlinkSync(target, alias);\n}\nconsole.log(JSON.stringify({ status: 'prepared', cwd: process.cwd(), alias, target }));"
+    ],
+    "cwd": "/tmp/scm15-nodepath-probe-QEzYoa",
+    "exit_code": 0,
+    "stdout": "{\"status\":\"prepared\",\"cwd\":\"/tmp/scm15-nodepath-probe-QEzYoa\",\"alias\":\"/tmp/scm15-nodepath-probe-QEzYoa/node_modules/ajv@^8.17.1\",\"target\":\"/tmp/scm15-test-deps-rDy0rx/node_modules/ajv\"}\n"
+  },
+  "loader_probe": {
+    "source": "import { expect, test } from \"bun:test\";\nimport { realpathSync } from \"node:fs\";\nimport { fileURLToPath } from \"node:url\";\nimport Ajv from \"ajv@^8.17.1\";\n\ntest(\"per-command NODE_PATH supplies the real complete graph outside its installation\", () => {\n  const resolved = realpathSync(fileURLToPath(import.meta.resolve(\"ajv@^8.17.1\")));\n  expect(resolved.startsWith(\"/tmp/scm15-test-deps-rDy0rx/node_modules/ajv/\")).toBe(true);\n  const validate = new Ajv().compile({ type: \"integer\", minimum: 1 });\n  expect(validate(2)).toBe(true);\n  expect(validate(\"2\")).toBe(false);\n});\n",
+    "failed_node_path_only": {
+      "argv": [
+        "env",
+        "NODE_PATH=/tmp/scm15-test-deps-rDy0rx/node_modules",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "/tmp/scm15-nodepath-probe-QEzYoa/loader.test.ts"
+      ],
+      "exit_code": 1,
+      "passed": 0,
+      "failed": 1,
+      "errors": 1,
+      "error": "Cannot find package ajv@^8.17.1"
+    },
+    "passed_after_candidate_local_alias": {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "/tmp/scm15-nodepath-probe-QEzYoa/loader.test.ts"
+      ],
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "assertions": 3
+    },
+    "note": "Probe title came from the failed NODE_PATH diagnostic. The passing run proves the candidate-local alias and real validator, NOT NODE_PATH support."
+  },
+  "integration_policy": "Prepend only runtime preparation; retain both exact review-required validation commands. No source/version/lockfile/global config change. Candidate-only alias is ignored and removed with the owned candidate during cleanup.",
+  "scope_limit": "This proves setup only. Actual candidate-bound suite and native smoke remain required.",
+  "fixture_cleanup": "Owned external probe directory removed after capture. Parent real dependency install retained."
+}

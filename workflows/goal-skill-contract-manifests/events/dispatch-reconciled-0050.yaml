@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0050",
+  "parent_event": "dispatch-observed-0049",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "review",
+  "attempt": 1,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0048.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/review-complete-0024.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/review-0023.yaml",
+  "status": "completed",
+  "review_verdict": "FAILURE",
+  "source_commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+  "source_tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6",
+  "open_finding_ids": [
+    "SPEC-001"
+  ],
+  "finding": "Both audit output guards omit the consumed acronym lexicon; actual isolated text audit overwrote it with exit0. Fix input-alias protection, not heuristics or exception suppression.",
+  "prerequisite_decisions": {
+    "basis": "Exact commit diff independently inspected by both axes and primary. Fresh publication-base writer suite passed 64 tests, 0 failures, 484 assertions. Child SHA/tree and clean success/review/submit/finish gates remain protected.",
+    "commit": "88bdcdf101a487b1cb0daa10bbebbf50d86a0128",
+    "primary": "ACCEPT",
+    "spec": "ACCEPT",
+    "standards": "ACCEPT"
+  },
+  "validation": [
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+      ],
+      "assertions": 2143,
+      "committed_run": true,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+      "evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/review-0023/suite.json",
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 148,
+      "status": "passed"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+      ],
+      "asserted_negative_or_partial_cases": 20,
+      "commands": 54,
+      "committed_run": true,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+      "evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/review-0023/commands-and-observations.json",
+      "exit_code": 0,
+      "status": "passed"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+      ],
+      "assertions": 484,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/review-0023/prerequisite-suite.json",
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 64,
+      "scope": "publication-base writer suite; not feature source framework suite",
+      "status": "passed"
+    },
+    {
+      "axis": "spec",
+      "evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/review-0023/spec-result.json",
+      "finding_id": "SPEC-001",
+      "observed": "Actual isolated audit-text CLI overwrote the consumed project acronym lexicon and exited 0.",
+      "status": "blocking-finding"
+    }
+  ],
+  "resource_shutdown": {
+    "primary": "confirmed",
+    "axes": "confirmed",
+    "desktop": {
+      "owned_terminal_absent": true,
+      "owned_source_space_absent": true
+    }
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 8,
+    "ticket_attempts_remaining": 92,
+    "dispatches_consumed": 11,
+    "dispatches_remaining": 2489,
+    "omp_token_budget": null
+  },
+  "next_action": "Fresh scoped fix of SPEC-001 on this same ticket, then a fresh independent review. No integration from FAILURE.",
+  "created_at": "2026-11-26T02:31:50.070Z"
+}

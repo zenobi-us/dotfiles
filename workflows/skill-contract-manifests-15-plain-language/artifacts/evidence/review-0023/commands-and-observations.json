@@ -1,0 +1,1056 @@
+{
+  "status": "passed",
+  "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "commands": [
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [\n      \"plain-language-answers/v2\",\n      \"plain-language-findings/v2\",\n      \"plain-language-evidence/v2\",\n      \"plain-language-maturity/v2\",\n      \"plain-language-audit-state/v2\"\n    ],\n    \"accepts\": [\n      \"plain-language-answers/v1\",\n      \"plain-language-answers/v2\",\n      \"plain-language-findings/v1\",\n      \"plain-language-findings/v2\",\n      \"plain-language-evidence/v1\",\n      \"plain-language-evidence/v2\",\n      \"plain-language-maturity/v1\",\n      \"plain-language-maturity/v2\",\n      \"plain-language-audit-state/v1\",\n      \"plain-language-audit-state/v2\"\n    ],\n    \"contracts\": {\n      \"plain-language-answers/v1\": \"file:references/contracts.md\",\n      \"plain-language-answers/v2\": \"file:references/contracts.md\",\n      \"plain-language-findings/v1\": \"file:references/contracts.md\",\n      \"plain-language-findings/v2\": \"file:references/contracts.md\",\n      \"plain-language-evidence/v1\": \"file:references/contracts.md\",\n      \"plain-language-evidence/v2\": \"file:references/contracts.md\",\n      \"plain-language-maturity/v1\": \"file:references/contracts.md\",\n      \"plain-language-maturity/v2\": \"file:references/contracts.md\",\n      \"plain-language-audit-state/v1\": \"file:references/contracts.md\",\n      \"plain-language-audit-state/v2\": \"file:references/contracts.md\"\n    },\n    \"upgrades\": [\n      {\n        \"from\": \"plain-language-answers/v1\",\n        \"to\": \"plain-language-answers/v2\",\n        \"procedure\": \"file:references/assessment-upgrade.md\"\n      },\n      {\n        \"from\": \"plain-language-findings/v1\",\n        \"to\": \"plain-language-findings/v2\",\n        \"procedure\": \"file:references/assessment-upgrade.md\"\n      },\n      {\n        \"from\": \"plain-language-evidence/v1\",\n        \"to\": \"plain-language-evidence/v2\",\n        \"procedure\": \"file:references/assessment-upgrade.md\"\n      },\n      {\n        \"from\": \"plain-language-maturity/v1\",\n        \"to\": \"plain-language-maturity/v2\",\n        \"procedure\": \"file:references/assessment-upgrade.md\"\n      },\n      {\n        \"from\": \"plain-language-audit-state/v1\",\n        \"to\": \"plain-language-audit-state/v2\",\n        \"procedure\": \"file:references/assessment-upgrade.md\"\n      }\n    ]\n  },\n  \"definitions\": {\n    \"plain-language-answers/v1\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-answers/v2\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-findings/v1\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-findings/v2\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-evidence/v1\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-evidence/v2\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-maturity/v1\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-maturity/v2\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-audit-state/v1\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    },\n    \"plain-language-audit-state/v2\": {\n      \"reference\": \"file:references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    }\n  },\n  \"procedures\": [\n    {\n      \"reference\": \"file:references/assessment-upgrade.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/assessment-upgrade.md\",\n      \"content\": \"# Lossless assessment upgrade\\n\\nThe declared procedure is file:references/assessment-upgrade.md. The installed adapter is file:scripts/assessment-contracts.ts, relative to the iso-24495-4 skill directory.\\n\\n1. Obtain authorization for the selected mutation or explicit conversion. Read-only inspection never grants conversion authority.\\n2. Use the shared skill-contracts safe-upgrade or bulk-upgrade command. Resolve that installed skill directory and invoke its absolute scripts/router.ts from the caller directory. Pass --skill with the absolute iso-24495-4 directory and --owner file:scripts/assessment-contracts.ts. Bulk conversion uses --artifacts with an explicit JSON array of selected absolute paths.\\n3. Identify exactly one unversioned v1 shape. Reject explicit identities other than the matching current v2. Validate complete source content, including historic snapshot entries. Reject ambiguous JSON keys or numbers that cannot round-trip.\\n4. Follow only the matching family/v1 to family/v2 edge. Add schemaVersion while retaining every content field. The destination must satisfy the same content invariants and the required current identity; changing a label on invalid content fails. The shared layer compares all authored content before persistence.\\n5. Refuse immutable: true and paths with events, snapshots, receipts, or artifacts components. Use historical readers for these records. Do not select immutable evidence for bulk conversion.\\n6. For the owning report append, accept only a validated snapshot and the expected prior authored state. Reject changed state. Append exactly one entry, retaining the complete prior array and all container fields. Validate the resulting v2 state under the shared lock before atomic replacement.\\n\\nAll five families have one lossless declared edge. Explicit conversion can produce current answers; scoring itself only reads answers. No other mutation is supported. The shared writer owns locking, filesystem safety, preservation checks, and atomic replacement. Failed source, destination, preservation, or path checks leave original bytes unchanged. Report any post-commit cleanup failure as a failure with its actual persistence outcome.\\n\"\n    },\n    {\n      \"reference\": \"file:references/assessment-upgrade.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/assessment-upgrade.md\",\n      \"content\": \"# Lossless assessment upgrade\\n\\nThe declared procedure is file:references/assessment-upgrade.md. The installed adapter is file:scripts/assessment-contracts.ts, relative to the iso-24495-4 skill directory.\\n\\n1. Obtain authorization for the selected mutation or explicit conversion. Read-only inspection never grants conversion authority.\\n2. Use the shared skill-contracts safe-upgrade or bulk-upgrade command. Resolve that installed skill directory and invoke its absolute scripts/router.ts from the caller directory. Pass --skill with the absolute iso-24495-4 directory and --owner file:scripts/assessment-contracts.ts. Bulk conversion uses --artifacts with an explicit JSON array of selected absolute paths.\\n3. Identify exactly one unversioned v1 shape. Reject explicit identities other than the matching current v2. Validate complete source content, including historic snapshot entries. Reject ambiguous JSON keys or numbers that cannot round-trip.\\n4. Follow only the matching family/v1 to family/v2 edge. Add schemaVersion while retaining every content field. The destination must satisfy the same content invariants and the required current identity; changing a label on invalid content fails. The shared layer compares all authored content before persistence.\\n5. Refuse immutable: true and paths with events, snapshots, receipts, or artifacts components. Use historical readers for these records. Do not select immutable evidence for bulk conversion.\\n6. For the owning report append, accept only a validated snapshot and the expected prior authored state. Reject changed state. Append exactly one entry, retaining the complete prior array and all container fields. Validate the resulting v2 state under the shared lock before atomic replacement.\\n\\nAll five families have one lossless declared edge. Explicit conversion can produce current answers; scoring itself only reads answers. No other mutation is supported. The shared writer owns locking, filesystem safety, preservation checks, and atomic replacement. Failed source, destination, preservation, or path checks leave original bytes unchanged. Report any post-commit cleanup failure as a failure with its actual persistence outcome.\\n\"\n    },\n    {\n      \"reference\": \"file:references/assessment-upgrade.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/assessment-upgrade.md\",\n      \"content\": \"# Lossless assessment upgrade\\n\\nThe declared procedure is file:references/assessment-upgrade.md. The installed adapter is file:scripts/assessment-contracts.ts, relative to the iso-24495-4 skill directory.\\n\\n1. Obtain authorization for the selected mutation or explicit conversion. Read-only inspection never grants conversion authority.\\n2. Use the shared skill-contracts safe-upgrade or bulk-upgrade command. Resolve that installed skill directory and invoke its absolute scripts/router.ts from the caller directory. Pass --skill with the absolute iso-24495-4 directory and --owner file:scripts/assessment-contracts.ts. Bulk conversion uses --artifacts with an explicit JSON array of selected absolute paths.\\n3. Identify exactly one unversioned v1 shape. Reject explicit identities other than the matching current v2. Validate complete source content, including historic snapshot entries. Reject ambiguous JSON keys or numbers that cannot round-trip.\\n4. Follow only the matching family/v1 to family/v2 edge. Add schemaVersion while retaining every content field. The destination must satisfy the same content invariants and the required current identity; changing a label on invalid content fails. The shared layer compares all authored content before persistence.\\n5. Refuse immutable: true and paths with events, snapshots, receipts, or artifacts components. Use historical readers for these records. Do not select immutable evidence for bulk conversion.\\n6. For the owning report append, accept only a validated snapshot and the expected prior authored state. Reject changed state. Append exactly one entry, retaining the complete prior array and all container fields. Validate the resulting v2 state under the shared lock before atomic replacement.\\n\\nAll five families have one lossless declared edge. Explicit conversion can produce current answers; scoring itself only reads answers. No other mutation is supported. The shared writer owns locking, filesystem safety, preservation checks, and atomic replacement. Failed source, destination, preservation, or path checks leave original bytes unchanged. Report any post-commit cleanup failure as a failure with its actual persistence outcome.\\n\"\n    },\n    {\n      \"reference\": \"file:references/assessment-upgrade.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/assessment-upgrade.md\",\n      \"content\": \"# Lossless assessment upgrade\\n\\nThe declared procedure is file:references/assessment-upgrade.md. The installed adapter is file:scripts/assessment-contracts.ts, relative to the iso-24495-4 skill directory.\\n\\n1. Obtain authorization for the selected mutation or explicit conversion. Read-only inspection never grants conversion authority.\\n2. Use the shared skill-contracts safe-upgrade or bulk-upgrade command. Resolve that installed skill directory and invoke its absolute scripts/router.ts from the caller directory. Pass --skill with the absolute iso-24495-4 directory and --owner file:scripts/assessment-contracts.ts. Bulk conversion uses --artifacts with an explicit JSON array of selected absolute paths.\\n3. Identify exactly one unversioned v1 shape. Reject explicit identities other than the matching current v2. Validate complete source content, including historic snapshot entries. Reject ambiguous JSON keys or numbers that cannot round-trip.\\n4. Follow only the matching family/v1 to family/v2 edge. Add schemaVersion while retaining every content field. The destination must satisfy the same content invariants and the required current identity; changing a label on invalid content fails. The shared layer compares all authored content before persistence.\\n5. Refuse immutable: true and paths with events, snapshots, receipts, or artifacts components. Use historical readers for these records. Do not select immutable evidence for bulk conversion.\\n6. For the owning report append, accept only a validated snapshot and the expected prior authored state. Reject changed state. Append exactly one entry, retaining the complete prior array and all container fields. Validate the resulting v2 state under the shared lock before atomic replacement.\\n\\nAll five families have one lossless declared edge. Explicit conversion can produce current answers; scoring itself only reads answers. No other mutation is supported. The shared writer owns locking, filesystem safety, preservation checks, and atomic replacement. Failed source, destination, preservation, or path checks leave original bytes unchanged. Report any post-commit cleanup failure as a failure with its actual persistence outcome.\\n\"\n    },\n    {\n      \"reference\": \"file:references/assessment-upgrade.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/assessment-upgrade.md\",\n      \"content\": \"# Lossless assessment upgrade\\n\\nThe declared procedure is file:references/assessment-upgrade.md. The installed adapter is file:scripts/assessment-contracts.ts, relative to the iso-24495-4 skill directory.\\n\\n1. Obtain authorization for the selected mutation or explicit conversion. Read-only inspection never grants conversion authority.\\n2. Use the shared skill-contracts safe-upgrade or bulk-upgrade command. Resolve that installed skill directory and invoke its absolute scripts/router.ts from the caller directory. Pass --skill with the absolute iso-24495-4 directory and --owner file:scripts/assessment-contracts.ts. Bulk conversion uses --artifacts with an explicit JSON array of selected absolute paths.\\n3. Identify exactly one unversioned v1 shape. Reject explicit identities other than the matching current v2. Validate complete source content, including historic snapshot entries. Reject ambiguous JSON keys or numbers that cannot round-trip.\\n4. Follow only the matching family/v1 to family/v2 edge. Add schemaVersion while retaining every content field. The destination must satisfy the same content invariants and the required current identity; changing a label on invalid content fails. The shared layer compares all authored content before persistence.\\n5. Refuse immutable: true and paths with events, snapshots, receipts, or artifacts components. Use historical readers for these records. Do not select immutable evidence for bulk conversion.\\n6. For the owning report append, accept only a validated snapshot and the expected prior authored state. Reject changed state. Append exactly one entry, retaining the complete prior array and all container fields. Validate the resulting v2 state under the shared lock before atomic replacement.\\n\\nAll five families have one lossless declared edge. Explicit conversion can produce current answers; scoring itself only reads answers. No other mutation is supported. The shared writer owns locking, filesystem safety, preservation checks, and atomic replacement. Failed source, destination, preservation, or path checks leave original bytes unchanged. Report any post-commit cleanup failure as a failure with its actual persistence outcome.\\n\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-answers/v1"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-answers/v2"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-findings/v1"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-findings/v2"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-evidence/v1"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-evidence/v2"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-maturity/v1"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-maturity/v2"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-audit-state/v1"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--contract",
+        "plain-language-audit-state/v2"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [\n      \"plain-language-findings/v2\"\n    ],\n    \"accepts\": [],\n    \"contracts\": {\n      \"plain-language-findings/v2\": \"file:../iso-24495-4/references/contracts.md\"\n    },\n    \"upgrades\": []\n  },\n  \"definitions\": {\n    \"plain-language-findings/v2\": {\n      \"reference\": \"file:../iso-24495-4/references/contracts.md\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n      \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n    }\n  },\n  \"procedures\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit",
+        "--contract",
+        "plain-language-findings/v2"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"reference\": \"file:../iso-24495-4/references/contracts.md\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md\",\n  \"content\": \"# Plain-language assessment contracts\\n\\nThe iso-24495-4 skill owns these five record families. scripts/lib/contracts.ts validates content. contracts.json uses the shared manifest validator.\\n\\n## Identity and historical detection\\n\\nCurrent JSON uses exactly one identity: schemaVersion: <family>/v2. A schema field, a non-string identity, an unknown version, or a wrong family fails interpretation. Explicit v1 labels are not historical formats.\\n\\nEach <family>/v1 denotes the existing unversioned shape, with neither identity field. The reader tests all five shapes below. Exactly one must match. Zero or multiple matches fail. Read-only scoring and reporting never rewrite these inputs.\\n\\nUnknown authored properties remain allowed at every level. Conversion preserves them, array order, citations, and snapshot references. JSON must round-trip without numeric loss. Duplicate keys, negative zero, non-finite or rounded numbers fail the JSON reader. Contract validity is not ISO compliance or certification.\\n\\n## Families and content\\n\\n| Family | Required content and meaning | Producer and consumer |\\n| --- | --- | --- |\\n| plain-language-answers | dimensions is an object of dimension objects with Boolean criterion answers; optional organisation is a string | Human-authored answers or explicit conversion; score-maturity reads both versions |\\n| plain-language-findings | configHash string; files maps paths to objects with violations arrays; totals maps rule names to nonnegative safe integer counts | audit-corpus and audit-text produce v2; generate-report reads both versions |\\n| plain-language-evidence | artefacts maps categories to found Boolean and paths string array; found equals whether paths has entries | audit-evidence produces v2; generate-report reads both versions |\\n| plain-language-maturity | dimensions includes every MATURITY_MODEL dimension with integer level 0–4 and missing string array; overall is the weakest level | score-maturity produces v2; generate-report reads both versions |\\n| plain-language-audit-state | snapshots array of historical entries described below | generate-report produces and appends v2; reads both versions |\\n\\nA finding has a nonempty rule string, positive safe integer line, and detail string. Totals must equal the per-rule counts of every recorded violation. Zero counts are allowed. Optional skipped is a string array. The text-audit producer always includes it, including unreadable and symlink selections. Report consumption does not remove it or rewrite the source.\\n\\nMaturity missing criteria belong to the next level in the unchanged MATURITY_MODEL catalogue. At levels below four, at least one next criterion is missing. At four, missing is empty. Answers can omit dimensions and criteria; the scorer treats absent evidence as absent. Unknown Boolean criteria do not award levels. Evidence presence never proves evidence quality.\\n\\nSnapshots have timestamp (a parseable date string), totals (nonnegative safe integer counts), and overall (integer 0–4). They have no independent identity. Existing entries retain all unknown fields and references. The state container can adopt v2 during an authorized append, but no historical entry is stamped, sorted, or rewritten independently.\\n\\n## Operations and scope\\n\\nAll report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.\\n\\nOrdinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.\\n\\nRead [the upgrade procedure](assessment-upgrade.md) before an authorized append or explicit conversion. Use [the current answers example](../assets/answers.example.json). The test fixtures retain unversioned inputs to exercise historical readers.\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-evidence-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/workspace",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Artefact category | Found | Paths |\n|-------------------|-------|-------|\n| policy | yes | docs/plain-language-policy.md |\n| review-workflow | no | - |\n| automated-checks | no | - |\n| training | no | - |\n| glossary | no | - |\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/corpus",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Rule | Violations |\n|------|------------|\n| legalese | 1 |\n\nTotal: 1 across 1 files.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/answers-legacy.json",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 1 | owner-accountable |\n| capability | 1 | training-delivered |\n| process | 1 | checks-in-workflow |\n| measurement | 1 | regular-sampling |\n| culture | 1 | leadership-champions |\n\nOverall (weakest dimension): 1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/answers-current.json",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity2.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 1 | owner-accountable |\n| capability | 1 | training-delivered |\n| process | 1 | checks-in-workflow |\n| measurement | 1 | regular-sampling |\n| culture | 1 | leadership-champions |\n\nOverall (weakest dimension): 1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings-legacy.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence-legacy.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity-legacy.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/corpus",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Rule | Violations |\n|------|------------|\n\nTotal: 0 across 1 files.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/corpus",
+        "--project-dir",
+        "/tmp/scm15-source-verification-jiFcl9/corpus",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/text-findings.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n\nFinding count: 0. Files read: 1. Skipped entries: 1.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+      "stderr": "warning: skipped unreadable entry: /tmp/scm15-source-verification-jiFcl9/corpus/skipped.txt\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/corpus/policy.md",
+        "--project-dir",
+        "/tmp/scm15-source-verification-jiFcl9/corpus",
+        "--no-front-matter",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/text-visible.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n| policy.md | 2 | legalese | banned term \"shall\" |\n\nFinding count: 1. Files read: 1. Skipped entries: 0.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/text-findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/text-report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/text-legacy.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence-legacy.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity-legacy.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/legacy-text-report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported assessment contract for this input.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Explicit schemaVersion must be a string.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported or mixed assessment identity fields.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported assessment contract for this input.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Explicit schemaVersion must be a string.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported or mixed assessment identity fields.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported assessment contract for this input.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Explicit schemaVersion must be a string.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported or mixed assessment identity fields.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported assessment contract for this input.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Explicit schemaVersion must be a string.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unsupported or mixed assessment identity fields.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Assessment number cannot round-trip without loss.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Assessment number cannot round-trip without loss.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Duplicate assessment JSON keys are ambiguous.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Unversioned assessment requires exactly one historical shape.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Output destinations must be distinct from consumed inputs and each other.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report-alias.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Output must be a regular, non-symlink, singly linked file.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/findings.json",
+        "/tmp/scm15-source-verification-jiFcl9/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/maturity.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/state-hardlink.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/report.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "generate-report: Output must be a regular, non-symlink, singly linked file.\n"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--owner",
+        "file:scripts/assessment-contracts.ts",
+        "--artifact",
+        "/tmp/scm15-source-verification-jiFcl9/convert-answers.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\n  \"artifact\": \"/tmp/scm15-source-verification-jiFcl9/convert-answers.json\",\n  \"changed\": true,\n  \"from\": \"plain-language-answers/v1\",\n  \"to\": \"plain-language-answers/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "bulk-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+        "--owner",
+        "file:scripts/assessment-contracts.ts",
+        "--artifacts",
+        "/tmp/scm15-source-verification-jiFcl9/batch.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "{\n  \"status\": \"partial\",\n  \"results\": [\n    {\n      \"artifact\": \"/tmp/scm15-source-verification-jiFcl9/evidence-legacy.json\",\n      \"changed\": true,\n      \"from\": \"plain-language-evidence/v1\",\n      \"to\": \"plain-language-evidence/v2\",\n      \"status\": \"completed\"\n    },\n    {\n      \"artifact\": \"/tmp/scm15-source-verification-jiFcl9/immutable.json\",\n      \"status\": \"failed\",\n      \"changed\": false,\n      \"error\": \"Immutable artifact requires a historical reader; conversion is forbidden.\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-evidence-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/workspace",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/evidence.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Artefact category | Found | Paths |\n|-------------------|-------|-------|\n| policy | yes | plain-language-policy.txt |\n| review-workflow | yes | review-workflow.txt |\n| automated-checks | yes | .vale.ini |\n| training | yes | training/lesson.txt |\n| glossary | yes | glossary.txt |\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/corpus",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/findings1.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Rule | Violations |\n|------|------------|\n| prose-enumeration | 1 |\n| wordy-phrase | 2 |\n| complex-word | 1 |\n\nTotal: 4 across 1 files.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/corpus/sample.txt",
+        "--project-dir",
+        "/tmp/scm15-source-verification-jiFcl9/baseline",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/text-findings1.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n| corpus/sample.txt | 1 | prose-enumeration | enumeration ranks 1, 2, 3 in prose; consider a list |\n| corpus/sample.txt | 1 | wordy-phrase | \"in order to\" says what \"to\" says |\n| corpus/sample.txt | 1 | wordy-phrase | \"make a decision\" says what \"decide\" says |\n| corpus/sample.txt | 1 | complex-word | \"utilise\" where \"use\" would do |\n\nFinding count: 4. Files read: 1. Skipped entries: 0.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/answers1.json",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/maturity1.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 2 | resourced-mandated |\n| capability | 1 | training-delivered |\n| process | 1 | checks-in-workflow |\n| measurement | 1 | regular-sampling |\n| culture | 1 | leadership-champions |\n\nOverall (weakest dimension): 1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/text-findings1.json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/maturity1.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/report1.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/corpus",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/findings2.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Rule | Violations |\n|------|------------|\n\nTotal: 0 across 1 files.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/corpus/sample.txt",
+        "--project-dir",
+        "/tmp/scm15-source-verification-jiFcl9/baseline",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/text-findings2.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n\nFinding count: 0. Files read: 1. Skipped entries: 0.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/answers2.json",
+        "--json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/maturity2.json"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 2 | resourced-mandated |\n| capability | 2 | competence-maintained |\n| process | 2 | signoff-gates |\n| measurement | 2 | user-testing |\n| culture | 2 | feedback-loops |\n\nOverall (weakest dimension): 2\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/text-findings2.json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/evidence.json",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/maturity2.json",
+        "--state",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/state.json",
+        "--out",
+        "/tmp/scm15-source-verification-jiFcl9/baseline/report2.md"
+      ],
+      "cwd": "/tmp/scm15-source-verification-jiFcl9",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "artifacts": {
+    "findings-legacy.json": "{\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"policy.md\": {\n      \"violations\": [\n        {\n          \"rule\": \"legalese\",\n          \"line\": 3,\n          \"detail\": \"banned term \\\"shall\\\"\"\n        }\n      ]\n    }\n  },\n  \"totals\": {\n    \"legalese\": 1\n  },\n  \"reviewer\": {\n    \"name\": \"Fixture\"\n  }\n}",
+    "evidence-legacy.json": "{\n  \"artefacts\": {\n    \"policy\": {\n      \"found\": true,\n      \"paths\": [\n        \"docs/plain-language-policy.md\"\n      ]\n    },\n    \"review-workflow\": {\n      \"found\": false,\n      \"paths\": []\n    },\n    \"automated-checks\": {\n      \"found\": false,\n      \"paths\": []\n    },\n    \"training\": {\n      \"found\": false,\n      \"paths\": []\n    },\n    \"glossary\": {\n      \"found\": false,\n      \"paths\": []\n    }\n  }\n}",
+    "maturity-legacy.json": "{\n  \"dimensions\": {\n    \"governance\": {\n      \"level\": 1,\n      \"missing\": [\n        \"owner-accountable\"\n      ]\n    },\n    \"capability\": {\n      \"level\": 1,\n      \"missing\": [\n        \"training-delivered\"\n      ]\n    },\n    \"process\": {\n      \"level\": 1,\n      \"missing\": [\n        \"checks-in-workflow\"\n      ]\n    },\n    \"measurement\": {\n      \"level\": 1,\n      \"missing\": [\n        \"regular-sampling\"\n      ]\n    },\n    \"culture\": {\n      \"level\": 1,\n      \"missing\": [\n        \"leadership-champions\"\n      ]\n    }\n  },\n  \"overall\": 1\n}",
+    "state-first.json": "{\n  \"snapshots\": [\n    {\n      \"timestamp\": \"2026-01-01T00:00:00Z\",\n      \"totals\": {\n        \"legalese\": 3\n      },\n      \"overall\": 0,\n      \"report_ref\": \"history/report.md\",\n      \"notes\": {\n        \"author\": \"Fixture\",\n        \"citations\": [\n          \"history/evidence.json\"\n        ]\n      }\n    },\n    {\n      \"timestamp\": \"2026-11-26T02:19:12.017Z\",\n      \"totals\": {\n        \"legalese\": 1\n      },\n      \"overall\": 1\n    }\n  ],\n  \"reviewer\": {\n    \"name\": \"Fixture\",\n    \"sequence\": [\n      \"A\",\n      \"B\"\n    ]\n  },\n  \"schemaVersion\": \"plain-language-audit-state/v2\"\n}",
+    "report-first.md": "# Plain Language Gap Analysis\n\n> Provisional: this analysis is based on the public scope of ISO/CD 24495-4 (committee draft, unpublished). It is not a compliance statement and confers no certification. Audit date: 2026-11-26T02:19:12.017Z.\n\n## Maturity\n\n| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 1 | owner-accountable |\n| capability | 1 | training-delivered |\n| process | 1 | checks-in-workflow |\n| measurement | 1 | regular-sampling |\n| culture | 1 | leadership-champions |\n\nOverall maturity (weakest dimension): **1**.\n\n## Evidence\n\n| Artefact category | Found | Paths |\n|-------------------|-------|-------|\n| policy | yes | docs/plain-language-policy.md |\n| review-workflow | no | - |\n| automated-checks | no | - |\n| training | no | - |\n| glossary | no | - |\n\n## Corpus findings\n\n| Rule | Violations |\n|------|------------|\n| legalese | 1 |\n\nCorpus metrics are proxies for the Measurement dimension only. Text quality alone never raises a maturity level.\n\n## Trend\n\n| Audit date | Overall | Total violations |\n|------------|---------|------------------|\n| 2026-01-01T00:00:00Z | 0 | 3 |\n| 2026-11-26T02:19:12.017Z | 1 | 1 |\n\n## Limitations\n\n- The underlying standard is an unpublished committee draft; criteria may change.\n- Text heuristics are English-centric and approximate.\n- Maturity levels reflect the evidence supplied; absent evidence scores as absent.\n- A human reviewer must validate this report before the organisation acts on it.\n",
+    "state-second.json": "{\n  \"snapshots\": [\n    {\n      \"timestamp\": \"2026-01-01T00:00:00Z\",\n      \"totals\": {\n        \"legalese\": 3\n      },\n      \"overall\": 0,\n      \"report_ref\": \"history/report.md\",\n      \"notes\": {\n        \"author\": \"Fixture\",\n        \"citations\": [\n          \"history/evidence.json\"\n        ]\n      }\n    },\n    {\n      \"timestamp\": \"2026-11-26T02:19:12.017Z\",\n      \"totals\": {\n        \"legalese\": 1\n      },\n      \"overall\": 1\n    },\n    {\n      \"timestamp\": \"2026-11-26T02:19:12.124Z\",\n      \"totals\": {},\n      \"overall\": 1\n    }\n  ],\n  \"reviewer\": {\n    \"name\": \"Fixture\",\n    \"sequence\": [\n      \"A\",\n      \"B\"\n    ]\n  },\n  \"schemaVersion\": \"plain-language-audit-state/v2\"\n}",
+    "report-second.md": "# Plain Language Gap Analysis\n\n> Provisional: this analysis is based on the public scope of ISO/CD 24495-4 (committee draft, unpublished). It is not a compliance statement and confers no certification. Audit date: 2026-11-26T02:19:12.124Z.\n\n## Maturity\n\n| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 1 | owner-accountable |\n| capability | 1 | training-delivered |\n| process | 1 | checks-in-workflow |\n| measurement | 1 | regular-sampling |\n| culture | 1 | leadership-champions |\n\nOverall maturity (weakest dimension): **1**.\n\n## Evidence\n\n| Artefact category | Found | Paths |\n|-------------------|-------|-------|\n| policy | yes | docs/plain-language-policy.md |\n| review-workflow | no | - |\n| automated-checks | no | - |\n| training | no | - |\n| glossary | no | - |\n\n## Corpus findings\n\n| Rule | Violations |\n|------|------------|\n\nCorpus metrics are proxies for the Measurement dimension only. Text quality alone never raises a maturity level.\n\n## Trend\n\n| Audit date | Overall | Total violations |\n|------------|---------|------------------|\n| 2026-01-01T00:00:00Z | 0 | 3 |\n| 2026-11-26T02:19:12.017Z | 1 | 1 |\n| 2026-11-26T02:19:12.124Z | 1 | 0 |\n\n## Limitations\n\n- The underlying standard is an unpublished committee draft; criteria may change.\n- Text heuristics are English-centric and approximate.\n- Maturity levels reflect the evidence supplied; absent evidence scores as absent.\n- A human reviewer must validate this report before the organisation acts on it.\n",
+    "answers-legacy.json": "{\n  \"organisation\": \"Owned fixture\",\n  \"dimensions\": {\n    \"governance\": {\n      \"policy-documented\": true\n    },\n    \"capability\": {\n      \"style-guide-available\": true\n    },\n    \"process\": {\n      \"review-step-exists\": true\n    },\n    \"measurement\": {\n      \"corpus-baseline-taken\": true\n    },\n    \"culture\": {\n      \"leadership-aware\": true\n    }\n  },\n  \"citations\": [\n    \"docs/plain-language-policy.md\"\n  ]\n}",
+    "answers-current.json": "{\n  \"schemaVersion\": \"plain-language-answers/v2\",\n  \"organisation\": \"Owned fixture\",\n  \"dimensions\": {\n    \"governance\": {\n      \"policy-documented\": true\n    },\n    \"capability\": {\n      \"style-guide-available\": true\n    },\n    \"process\": {\n      \"review-step-exists\": true\n    },\n    \"measurement\": {\n      \"corpus-baseline-taken\": true\n    },\n    \"culture\": {\n      \"leadership-aware\": true\n    }\n  },\n  \"citations\": [\n    \"docs/plain-language-policy.md\"\n  ]\n}",
+    "findings.json": "{\n  \"schemaVersion\": \"plain-language-findings/v2\",\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"policy.md\": {\n      \"violations\": []\n    }\n  },\n  \"totals\": {}\n}",
+    "evidence.json": "{\n  \"schemaVersion\": \"plain-language-evidence/v2\",\n  \"artefacts\": {\n    \"policy\": {\n      \"found\": true,\n      \"paths\": [\n        \"docs/plain-language-policy.md\"\n      ]\n    },\n    \"review-workflow\": {\n      \"found\": false,\n      \"paths\": []\n    },\n    \"automated-checks\": {\n      \"found\": false,\n      \"paths\": []\n    },\n    \"training\": {\n      \"found\": false,\n      \"paths\": []\n    },\n    \"glossary\": {\n      \"found\": false,\n      \"paths\": []\n    }\n  }\n}",
+    "maturity.json": "{\n  \"schemaVersion\": \"plain-language-maturity/v2\",\n  \"dimensions\": {\n    \"governance\": {\n      \"level\": 1,\n      \"missing\": [\n        \"owner-accountable\"\n      ]\n    },\n    \"capability\": {\n      \"level\": 1,\n      \"missing\": [\n        \"training-delivered\"\n      ]\n    },\n    \"process\": {\n      \"level\": 1,\n      \"missing\": [\n        \"checks-in-workflow\"\n      ]\n    },\n    \"measurement\": {\n      \"level\": 1,\n      \"missing\": [\n        \"regular-sampling\"\n      ]\n    },\n    \"culture\": {\n      \"level\": 1,\n      \"missing\": [\n        \"leadership-champions\"\n      ]\n    }\n  },\n  \"overall\": 1\n}",
+    "text-findings.json": "{\n  \"schemaVersion\": \"plain-language-findings/v2\",\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"policy.md\": {\n      \"violations\": []\n    }\n  },\n  \"totals\": {},\n  \"skipped\": [\n    \"/tmp/scm15-source-verification-jiFcl9/corpus/skipped.txt\"\n  ]\n}",
+    "text-visible.json": "{\n  \"schemaVersion\": \"plain-language-findings/v2\",\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"policy.md\": {\n      \"violations\": [\n        {\n          \"rule\": \"legalese\",\n          \"line\": 2,\n          \"detail\": \"banned term \\\"shall\\\"\"\n        }\n      ]\n    }\n  },\n  \"totals\": {\n    \"legalese\": 1\n  },\n  \"skipped\": []\n}",
+    "state-final.json": "{\n  \"snapshots\": [\n    {\n      \"timestamp\": \"2026-01-01T00:00:00Z\",\n      \"totals\": {\n        \"legalese\": 3\n      },\n      \"overall\": 0,\n      \"report_ref\": \"history/report.md\",\n      \"notes\": {\n        \"author\": \"Fixture\",\n        \"citations\": [\n          \"history/evidence.json\"\n        ]\n      }\n    },\n    {\n      \"timestamp\": \"2026-11-26T02:19:12.017Z\",\n      \"totals\": {\n        \"legalese\": 1\n      },\n      \"overall\": 1\n    },\n    {\n      \"timestamp\": \"2026-11-26T02:19:12.124Z\",\n      \"totals\": {},\n      \"overall\": 1\n    }\n  ],\n  \"reviewer\": {\n    \"name\": \"Fixture\",\n    \"sequence\": [\n      \"A\",\n      \"B\"\n    ]\n  },\n  \"schemaVersion\": \"plain-language-audit-state/v2\"\n}",
+    "report-final.md": "# Plain Language Gap Analysis\n\n> Provisional: this analysis is based on the public scope of ISO/CD 24495-4 (committee draft, unpublished). It is not a compliance statement and confers no certification. Audit date: 2026-11-26T02:19:12.124Z.\n\n## Maturity\n\n| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 1 | owner-accountable |\n| capability | 1 | training-delivered |\n| process | 1 | checks-in-workflow |\n| measurement | 1 | regular-sampling |\n| culture | 1 | leadership-champions |\n\nOverall maturity (weakest dimension): **1**.\n\n## Evidence\n\n| Artefact category | Found | Paths |\n|-------------------|-------|-------|\n| policy | yes | docs/plain-language-policy.md |\n| review-workflow | no | - |\n| automated-checks | no | - |\n| training | no | - |\n| glossary | no | - |\n\n## Corpus findings\n\n| Rule | Violations |\n|------|------------|\n\nCorpus metrics are proxies for the Measurement dimension only. Text quality alone never raises a maturity level.\n\n## Trend\n\n| Audit date | Overall | Total violations |\n|------------|---------|------------------|\n| 2026-01-01T00:00:00Z | 0 | 3 |\n| 2026-11-26T02:19:12.017Z | 1 | 1 |\n| 2026-11-26T02:19:12.124Z | 1 | 0 |\n\n## Limitations\n\n- The underlying standard is an unpublished committee draft; criteria may change.\n- Text heuristics are English-centric and approximate.\n- Maturity levels reflect the evidence supplied; absent evidence scores as absent.\n- A human reviewer must validate this report before the organisation acts on it.\n",
+    "baseline-evidence.json": "{\n  \"schemaVersion\": \"plain-language-evidence/v2\",\n  \"artefacts\": {\n    \"policy\": {\n      \"found\": true,\n      \"paths\": [\n        \"plain-language-policy.txt\"\n      ]\n    },\n    \"review-workflow\": {\n      \"found\": true,\n      \"paths\": [\n        \"review-workflow.txt\"\n      ]\n    },\n    \"automated-checks\": {\n      \"found\": true,\n      \"paths\": [\n        \".vale.ini\"\n      ]\n    },\n    \"training\": {\n      \"found\": true,\n      \"paths\": [\n        \"training/lesson.txt\"\n      ]\n    },\n    \"glossary\": {\n      \"found\": true,\n      \"paths\": [\n        \"glossary.txt\"\n      ]\n    }\n  }\n}",
+    "baseline-findings1.json": "{\n  \"schemaVersion\": \"plain-language-findings/v2\",\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"sample.txt\": {\n      \"violations\": [\n        {\n          \"rule\": \"prose-enumeration\",\n          \"line\": 1,\n          \"detail\": \"enumeration ranks 1, 2, 3 in prose; consider a list\"\n        },\n        {\n          \"rule\": \"wordy-phrase\",\n          \"line\": 1,\n          \"detail\": \"\\\"in order to\\\" says what \\\"to\\\" says\"\n        },\n        {\n          \"rule\": \"wordy-phrase\",\n          \"line\": 1,\n          \"detail\": \"\\\"make a decision\\\" says what \\\"decide\\\" says\"\n        },\n        {\n          \"rule\": \"complex-word\",\n          \"line\": 1,\n          \"detail\": \"\\\"utilise\\\" where \\\"use\\\" would do\"\n        }\n      ]\n    }\n  },\n  \"totals\": {\n    \"prose-enumeration\": 1,\n    \"wordy-phrase\": 2,\n    \"complex-word\": 1\n  }\n}",
+    "baseline-findings2.json": "{\n  \"schemaVersion\": \"plain-language-findings/v2\",\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"sample.txt\": {\n      \"violations\": []\n    }\n  },\n  \"totals\": {}\n}",
+    "baseline-text-findings1.json": "{\n  \"schemaVersion\": \"plain-language-findings/v2\",\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"corpus/sample.txt\": {\n      \"violations\": [\n        {\n          \"rule\": \"prose-enumeration\",\n          \"line\": 1,\n          \"detail\": \"enumeration ranks 1, 2, 3 in prose; consider a list\"\n        },\n        {\n          \"rule\": \"wordy-phrase\",\n          \"line\": 1,\n          \"detail\": \"\\\"in order to\\\" says what \\\"to\\\" says\"\n        },\n        {\n          \"rule\": \"wordy-phrase\",\n          \"line\": 1,\n          \"detail\": \"\\\"make a decision\\\" says what \\\"decide\\\" says\"\n        },\n        {\n          \"rule\": \"complex-word\",\n          \"line\": 1,\n          \"detail\": \"\\\"utilise\\\" where \\\"use\\\" would do\"\n        }\n      ]\n    }\n  },\n  \"totals\": {\n    \"prose-enumeration\": 1,\n    \"wordy-phrase\": 2,\n    \"complex-word\": 1\n  },\n  \"skipped\": []\n}",
+    "baseline-text-findings2.json": "{\n  \"schemaVersion\": \"plain-language-findings/v2\",\n  \"configHash\": \"ca6f9562\",\n  \"files\": {\n    \"corpus/sample.txt\": {\n      \"violations\": []\n    }\n  },\n  \"totals\": {},\n  \"skipped\": []\n}",
+    "baseline-maturity1.json": "{\n  \"schemaVersion\": \"plain-language-maturity/v2\",\n  \"dimensions\": {\n    \"governance\": {\n      \"level\": 2,\n      \"missing\": [\n        \"resourced-mandated\"\n      ]\n    },\n    \"capability\": {\n      \"level\": 1,\n      \"missing\": [\n        \"training-delivered\"\n      ]\n    },\n    \"process\": {\n      \"level\": 1,\n      \"missing\": [\n        \"checks-in-workflow\"\n      ]\n    },\n    \"measurement\": {\n      \"level\": 1,\n      \"missing\": [\n        \"regular-sampling\"\n      ]\n    },\n    \"culture\": {\n      \"level\": 1,\n      \"missing\": [\n        \"leadership-champions\"\n      ]\n    }\n  },\n  \"overall\": 1\n}",
+    "baseline-maturity2.json": "{\n  \"schemaVersion\": \"plain-language-maturity/v2\",\n  \"dimensions\": {\n    \"governance\": {\n      \"level\": 2,\n      \"missing\": [\n        \"resourced-mandated\"\n      ]\n    },\n    \"capability\": {\n      \"level\": 2,\n      \"missing\": [\n        \"competence-maintained\"\n      ]\n    },\n    \"process\": {\n      \"level\": 2,\n      \"missing\": [\n        \"signoff-gates\"\n      ]\n    },\n    \"measurement\": {\n      \"level\": 2,\n      \"missing\": [\n        \"user-testing\"\n      ]\n    },\n    \"culture\": {\n      \"level\": 2,\n      \"missing\": [\n        \"feedback-loops\"\n      ]\n    }\n  },\n  \"overall\": 2\n}",
+    "baseline-state.json": "{\n  \"schemaVersion\": \"plain-language-audit-state/v2\",\n  \"snapshots\": [\n    {\n      \"timestamp\": \"2026-11-26T02:19:14.081Z\",\n      \"totals\": {\n        \"prose-enumeration\": 1,\n        \"wordy-phrase\": 2,\n        \"complex-word\": 1\n      },\n      \"overall\": 1\n    },\n    {\n      \"timestamp\": \"2026-11-26T02:19:14.195Z\",\n      \"totals\": {},\n      \"overall\": 2\n    }\n  ]\n}",
+    "baseline-report.md": "# Plain Language Gap Analysis\n\n> Provisional: this analysis is based on the public scope of ISO/CD 24495-4 (committee draft, unpublished). It is not a compliance statement and confers no certification. Audit date: 2026-11-26T02:19:14.195Z.\n\n## Maturity\n\n| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 2 | resourced-mandated |\n| capability | 2 | competence-maintained |\n| process | 2 | signoff-gates |\n| measurement | 2 | user-testing |\n| culture | 2 | feedback-loops |\n\nOverall maturity (weakest dimension): **2**.\n\n## Evidence\n\n| Artefact category | Found | Paths |\n|-------------------|-------|-------|\n| policy | yes | plain-language-policy.txt |\n| review-workflow | yes | review-workflow.txt |\n| automated-checks | yes | .vale.ini |\n| training | yes | training/lesson.txt |\n| glossary | yes | glossary.txt |\n\n## Corpus findings\n\n| Rule | Violations |\n|------|------------|\n\nCorpus metrics are proxies for the Measurement dimension only. Text quality alone never raises a maturity level.\n\n## Trend\n\n| Audit date | Overall | Total violations |\n|------------|---------|------------------|\n| 2026-11-26T02:19:14.081Z | 1 | 4 |\n| 2026-11-26T02:19:14.195Z | 2 | 0 |\n\n## Limitations\n\n- The underlying standard is an unpublished committee draft; criteria may change.\n- Text heuristics are English-centric and approximate.\n- Maturity levels reflect the evidence supplied; absent evidence scores as absent.\n- A human reviewer must validate this report before the organisation acts on it.\n"
+  },
+  "assertions": [
+    "actual scoring and report generation",
+    "legacy/current read-only byte equality",
+    "two state appends retain all historical fields",
+    "trend totals 3 -> 1 -> 0",
+    "evidence citations and limitations retained",
+    "text frontmatter read behavior and skipped entries retained",
+    "unknown/mixed/ambiguous/lossy/unsafe refusal byte equality",
+    "explicit safe and partial bulk conversion preserve authored content"
+  ],
+  "artifact_sha256": {
+    "findings-legacy.json": "f3ec006c939e0644a109a55918667cfbdd484487561520fe28a721c1a18b7430",
+    "evidence-legacy.json": "2536f88c59f274a2c9d0d295e7538ac9a94c60a3ad8e64c6694ba5d26b2a2a7e",
+    "maturity-legacy.json": "2e2b0b98210eaff627a89709767924f4358e77cff14e92bb0a8ed325eed4c477",
+    "state-first.json": "ba1fb3bd79829159181eaee4b85b4ac6c1e21a3317d687cbbb242e70a5b835ce",
+    "report-first.md": "3482410b91d3dc4bbee01312f13fba83a5cf44ce60d5aced36e62947320ddee6",
+    "state-second.json": "63f8b5b3f526143f060247748ad51a76567bb93be83305630b74a84e28c8c050",
+    "report-second.md": "def2e95123f06d84739db3234d788a50aadcd7e99bd23d3665ef273df016f8a2",
+    "answers-legacy.json": "9e87b6c54644a34e888c42cb7838c2e8fc2611c5a0765a30c50c67339726334c",
+    "answers-current.json": "489fa29a382d27215067709b59aa7b03e52e0a2398be5c2b8ad43d0c3716abdb",
+    "findings.json": "7a62ef1065a64ecb2249ea9378b11909d76b472bb2a99780cdd5815ec89ff8c1",
+    "evidence.json": "57e91885b7b730579abc0834e7218387c977595b83f4fb291cce807d5dbbaebc",
+    "maturity.json": "4815f2c36086c6a2e6ac023c1519374aa58d5940232ddc13d360169d9f2020cb",
+    "text-findings.json": "402a10d3a2df96e042792c6fd95b3206fcb1d9db3c19d6b26b61054e6c42b6c4",
+    "text-visible.json": "316b846086733be841265463d37220302e6266ba7e06b66c1bacc556766d8c12",
+    "state-final.json": "63f8b5b3f526143f060247748ad51a76567bb93be83305630b74a84e28c8c050",
+    "report-final.md": "def2e95123f06d84739db3234d788a50aadcd7e99bd23d3665ef273df016f8a2",
+    "baseline-evidence.json": "6a70ddbcef4e58b9c15986920ea220a75643fa024b4ab1458b19a11dcb17e511",
+    "baseline-findings1.json": "9fec79ed6bf5ea8be45b835c19c325b7d942f4790b4a92c9fe61831cd3289144",
+    "baseline-findings2.json": "e5548d46d0198fd2fca9b0af5bca48e5eb8460b5b15a45a93709de6f4c2482f6",
+    "baseline-text-findings1.json": "134db567a616d33ee339780130f97acf6c2c3d7ffc94769c12d2b25b34526992",
+    "baseline-text-findings2.json": "473830f267a233454608c5e9c2f3cc4d45fdfb6ebb0846f644bfb167f8f96b62",
+    "baseline-maturity1.json": "24e3e5cb7eb5630b952e834cc6ea6167312d91080abd3d196fda883dd5b48282",
+    "baseline-maturity2.json": "97217b386aab4c58d5ea575e6ff4ca0f3d3d9ad33b6240f6f8e125d9b8f84e4a",
+    "baseline-state.json": "fbac38bbb2a28a6e456e3e2847d76220de5f8b48c7051830c07d41488ee303a2",
+    "baseline-report.md": "cfd4c4a900f9ffbe9bf74a12658c6b1f0170d4a493dbaaffc72f6bf21ff04358"
+  }
+}

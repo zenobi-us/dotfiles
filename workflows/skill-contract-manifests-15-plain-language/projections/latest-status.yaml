@@ -2,10 +2,55 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-15-plain-language,
   ticket: tracker/tickets/skill-contract-manifests-15-plain-language.md,
-  state: REVIEWING,
-  latest_receipt: review-start-0022,
+  state: CHANGES_REQUESTED,
+  latest_receipt: review-complete-0024,
   latest_source_commit: a33155b7b6f74e8b2437a1c631578fb500d84eb1,
   latest_source_tree: 2a365abea33be13b00bcd8cfb92737dfc49a38a6,
-  latest_review_verdict: null,
-  open_findings: []
+  latest_review_verdict: FAILURE,
+  open_findings:
+    [
+      {
+          adr: NO ADR,
+          axis: spec,
+          blocking: true,
+          description: 'The destination guard includes selected prose but omits the
+            consumed <project-dir>/.iso-24495-4/acronyms.json. An actual
+            audit-text-cli.ts invocation with --json pointing there exited 0 and
+            replaced ["XYZ"] with findings JSON. Later audits silently lose the
+            project acronym configuration. audit-corpus.ts:1208 has the same
+            omission. Include the consumed lexicon path in alias protection
+            before any write.',
+          file: mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text.ts,
+          id: SPEC-001,
+          line: 150,
+          related_locations:
+            [
+              {
+                  file: mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus.ts,
+                  line: 1208
+                }
+            ],
+          reproduction: 'Create an isolated project containing selected.txt and
+            .iso-24495-4/acronyms.json=["XYZ"]. Run
+            BUN_OPTIONS=--install=fallback mise exec -- bun
+            <text-audit-skill>/scripts/audit-text-cli.ts <project>/selected.txt
+            --project-dir <project> --json <project>/.iso-24495-4/acronyms.json.
+            Observed exit 0; lexicon replaced by plain-language-findings/v2.
+            Temporary fixture removed.',
+          required_change: Include the consumed project acronym lexicon in destination
+            alias protection for both audit-text and audit-corpus before any
+            output write. Preserve lexicon and selected prose bytes on refusal.,
+          requirement: "Ticket acceptance: 'Read-only access and rejected conversion
+            preserve stored inputs and state.' Parent acceptance boundary:
+            'Preserve English heuristics, lexicon and scoring policy.'
+            references/contracts.md, Operations and scope: 'Destinations must be
+            distinct from consumed sources and each other.'",
+          severity: high,
+          validation_command: 'In an isolated fixture with
+            .iso-24495-4/acronyms.json=["XYZ"], run each actual audit CLI with
+            --json set to that lexicon. Require nonzero exit and byte-identical
+            lexicon and selected prose. Also cover ancestor aliases. Use
+            BUN_OPTIONS=--install=fallback.'
+        }
+    ]
 }

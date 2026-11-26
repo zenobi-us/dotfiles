@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "env",
+    "BUN_OPTIONS=--install=fallback",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+  ],
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+    "branch": "feature/skill-contract-manifests-15-plain-language",
+    "base_branch": "master",
+    "commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+    "tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6"
+  },
+  "output": "{\"status\":\"passed\",\"commands\":54,\"fixture_only\":true,\"retained\":\"/tmp/scm15-verification-evidence-RwiL1r/commands-and-observations.json\"}\n\n\nWall time: 5.02 seconds"
+}

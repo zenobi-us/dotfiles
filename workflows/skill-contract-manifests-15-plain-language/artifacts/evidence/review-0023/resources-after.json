@@ -1,0 +1,73 @@
+[
+  {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "d5e30a70-ca33-421c-9571-73e80ea40dd5",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t2hn",
+      "createdAt": "2026-11-26T02:18:11.650Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+      "operationId": "d5e30a70-ca33-421c-9571-73e80ea40dd5",
+      "parentRunId": "9dcea644-5951-4ea8-90b1-1246c31c76c5"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "d5e30a70-ca33-421c-9571-73e80ea40dd5",
+      "observedAt": "2026-11-26T02:23:25.684Z",
+      "processes": [
+        {
+          "pid": 3943937,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "36479397",
+          "command": "omp",
+          "parentPid": 3943324,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "474aa59a-49f7-47e1-b244-815cd0ff1c79",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t2hm",
+      "createdAt": "2026-11-26T02:18:11.643Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+      "operationId": "474aa59a-49f7-47e1-b244-815cd0ff1c79",
+      "parentRunId": "9dcea644-5951-4ea8-90b1-1246c31c76c5"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "474aa59a-49f7-47e1-b244-815cd0ff1c79",
+      "observedAt": "2026-11-26T02:23:26.206Z",
+      "processes": [
+        {
+          "pid": 3943857,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "36479394",
+          "command": "omp",
+          "parentPid": 3943308,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+          "state": "stopped"
+        },
+        {
+          "pid": 3948236,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "36490018",
+          "command": "python",
+          "parentPid": 3943857,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "assignment": {
+    "axis": "standards",
+    "runId": "d5e30a70-ca33-421c-9571-73e80ea40dd5",
+    "target": "t2hn",
+    "contextFile": "/var/home/zenobius/.local/state/result-delivery/runs/d5e30a70-ca33-421c-9571-73e80ea40dd5/context.json"
+  },
+  "transport_sha256": "e039834c8eae9636a2455f38813299ebbda13927d491db64e60b5592d64cd9f8",
+  "result": {
+    "axis": "standards",
+    "findings": [],
+    "report": "Standards: PASS. Reviewed the committed three-dot diff from 6beaf578a762e1b47cb9947227cbfc7910a5487b to a33155b7b6f74e8b2437a1c631578fb500d84eb1, tree 2a365abea33be13b00bcd8cfb92737dfc49a38a6. No material documented-standard breaches or baseline smells found.\n\nSources: injected AGENTS communication rules; typescript, code-comments, iso-24495-code, iso-24495-1, and skill-contracts guidance. Read the canonical ticket, initiative, domain documents, and ADR index from the publication checkout through mq and resolved tracker routes. The indexed Pi Ink ADR does not apply.\n\nThe change keeps assessment content validation with its owner and persistence with the shared safe-upgrade writer. Type-only imports avoid a runtime scoring/validator cycle. New regression tests check preserved authored history, rejected identities, semantic errors, aliases, and lossy conversion. Removed source-wording and full-report-copy assertions match the verification rules. No additional smell finding warrants a judgement-call warning. Tooling-enforced style is excluded.\n\nPrerequisite 88bdcdf101a487b1cb0daa10bbebbf50d86a0128: ACCEPT. Independently inspected its exact diff and complete phase-context.ts at that commit. The exception applies only to failed/blocked start, implementation, or fix completions with a matching failed/blocked result. It retains source commit/tree checks, parent validation, and clean-source gates for successful completion and review/submit/finish. Tests cover changed HEAD and a completed-child bypass. Guidance and developer release metadata match the change. It is base-only; an ordinary merge retains it.\n\nObserved verification: two actual score-maturity CLI invocations used an isolated temporary fixture with BUN_OPTIONS=--install=fallback. Current v2 answers produced governance level 1, overall 0, and v2 maturity without changing the input. An unknown explicit version returned exit 1 and preserved the existing output bytes. Removed only the owned fixture. Did not run the full suite, prerequisite suite, or fixed-path smoke. No source, tracker, dependency, or historical artifact changes.",
+    "schemaVersion": "review-axis/v1"
+  }
+}
