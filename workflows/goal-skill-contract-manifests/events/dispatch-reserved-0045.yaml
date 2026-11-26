@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0045",
+  "parent_event": "checkpoint-0044",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "start",
+  "attempt": 7,
+  "ticket_attempt": 7,
+  "consumed_receipt_refs": [
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0018.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0017.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0016.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0015.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0014.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0013.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0012.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0011.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0010.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0009.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0008.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0007.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0006.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0005.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0004.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0003.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0002.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0001.yaml"
+  ],
+  "planned_source_branch": "feature/skill-contract-manifests-15-plain-language",
+  "base_branch": "master",
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit"
+  ],
+  "remaining_allowances": {
+    "ticket_attempts": 93,
+    "dispatches": 2490
+  },
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0018.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "sourceBranch": "feature/skill-contract-manifests-15-plain-language",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "reservations": [],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+          "branch": "feature/skill-contract-manifests-15-plain-language",
+          "commit": "b86a0bf271c034d7a644a699db06ff8b0dfa9078",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "record_diagnostics": [],
+    "overlaps": [],
+    "decision": "Explicit same-owner takeover and complete isolated dependency setup approved. Current coordinator sole recorded owner. All six prior start reservations verified reconciled; no active reservations, hard blockers, diagnostics or scoped overlaps. Preserve22 byte-identical partial owner files at original HEAD. Incomplete stale linked inventory remains unrelated/unknown, not compatibility proof."
+  },
+  "implementation_boundaries": "Two related plain-language owner directories only, plus required generated plugin metadata. Do not change English heuristics, scoring policy, or actual user corpora/preferences. Exercise owned isolated fixtures, not real workspace sweeps. Preserve historical audit snapshots and all unrelated changes.",
+  "runtime_preparation": {
+    "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0044.yaml",
+    "directory": "/tmp/scm15-test-deps-rDy0rx",
+    "package_json": {
+      "name": "scm15-owned-test-dependencies",
+      "private": true,
+      "dependencies": {
+        "ajv": "8.20.0",
+        "fast-deep-equal": "3.1.3",
+        "fast-uri": "3.1.9",
+        "json-schema-traverse": "1.0.0",
+        "require-from-string": "2.0.2"
+      }
+    },
+    "install": {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "install",
+        "--cwd",
+        "/tmp/scm15-test-deps-rDy0rx",
+        "--offline",
+        "--ignore-scripts",
+        "--no-save",
+        "--linker=hoisted"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "installed_packages": 5,
+      "network": false,
+      "repository_manifest_or_lock_changes": false
+    },
+    "probe": {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "/tmp/scm15-test-deps-rDy0rx/validator.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "assertions": 4,
+      "source": "import { expect, test } from \"bun:test\";\nimport Ajv from \"ajv@^8.17.1\";\n\nconst validate = new Ajv({ allErrors: true }).compile({\n  type: \"object\",\n  definitions: { positive: { type: \"integer\", minimum: 1 } },\n  properties: {\n    values: { type: \"array\", items: { $ref: \"#/definitions/positive\" } },\n    state: { enum: [\"ready\", \"done\"] },\n    marker: { const: { owned: true } },\n  },\n  required: [\"values\", \"state\", \"marker\"],\n  additionalProperties: false,\n});\ntest(\"real cached validator accepts valid nested references and rejects invalid values\", () => {\n  expect(validate({ values: [1, 2], state: \"done\", marker: { owned: true } })).toBe(true);\n  expect(validate({ values: [0], state: \"done\", marker: { owned: true } })).toBe(false);\n  expect(validate({ values: [1], state: \"unknown\", marker: { owned: true } })).toBe(false);\n  expect(validate({ values: [1], state: \"done\", marker: { owned: false } })).toBe(false);\n});\n",
+      "claim": "Real version-qualified AJV8.20.0 under actual Bun test loader accepts nested references and rejects invalid minimum/enum/const. This proves isolated dependency preparation only, not feature acceptance."
+    },
+    "lifetime": "Parent owns temporary install; retain for source review/candidate checks as needed, then remove. Source-root alias not created yet. Throwaway probe removed after capture.",
+    "typescript": "5.9.3",
+    "source_alias_prepared": false
+  },
+  "operator_approval_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0044.yaml",
+  "cleanup_observation": {
+    "run_id": "3d497e9c-79d2-470a-8780-ae4432811e0d",
+    "shutdown": "confirmed",
+    "live_processes": [],
+    "desktop_owned_space_absent": true,
+    "desktop_owned_terminal_absent": true
+  },
+  "resolved_scope": "Preserve actual read-only selected text. Corrected parent handoff removed nonexistent stamping claim; no canonical acceptance criterion removed.",
+  "retained_partial_source": {
+    "dirty": true,
+    "new_commit": false,
+    "files": 22,
+    "source_binding_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0017/source-binding.json",
+    "integrity_verified": true
+  },
+  "prerequisite_commit": "88bdcdf101a487b1cb0daa10bbebbf50d86a0128",
+  "known_blocker_retry_exception": "Only existing Bun test dependency-loading errors may recover under approval44. End a failed required-suite attempt honestly; parent may reserve a fresh attempt without another question for that same blocker. New non-loader required failures still stop.",
+  "created_at": "2026-11-26T01:54:13.050Z"
+}
