@@ -1,0 +1,104 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+    "branch": "feature/skill-contract-manifests-15-plain-language",
+    "base_branch": "master",
+    "commit": "5456c4a5dfda4e5634a383a2236e4ad0630e6c06",
+    "tree": "6d818ee3eb08d7ae44c233b53dfac6b308096cae"
+  },
+  "fixture_only": true,
+  "records": [
+    {
+      "producer": "corpus",
+      "kind": "direct",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-parent-review29-pCX1Gi/project",
+        "--json",
+        "/tmp/scm15-parent-review29-pCX1Gi/project/.iso-24495-4/acronyms.json"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "audit-corpus: Output destinations must be distinct from consumed inputs and each other.\n",
+      "lexicon_preserved": true,
+      "prose_preserved": true
+    },
+    {
+      "producer": "corpus",
+      "kind": "distinct",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-parent-review29-pCX1Gi/project",
+        "--json",
+        "/tmp/scm15-parent-review29-pCX1Gi/corpus-findings.json"
+      ],
+      "exit_code": 0,
+      "stdout": "| Rule | Violations |\n|------|------------|\n| legalese | 1 |\n\nTotal: 1 across 1 files.\n",
+      "stderr": "",
+      "lexicon_preserved": true,
+      "prose_preserved": true,
+      "output_identity": "plain-language-findings/v2",
+      "legalese_count": 1
+    },
+    {
+      "producer": "text",
+      "kind": "direct",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-parent-review29-pCX1Gi/project/selected.txt",
+        "--project-dir",
+        "/tmp/scm15-parent-review29-pCX1Gi/project",
+        "--json",
+        "/tmp/scm15-parent-review29-pCX1Gi/project/.iso-24495-4/acronyms.json"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "audit-text: Output destinations must be distinct from consumed inputs and each other.\n",
+      "lexicon_preserved": true,
+      "prose_preserved": true
+    },
+    {
+      "producer": "text",
+      "kind": "distinct",
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-parent-review29-pCX1Gi/project/selected.txt",
+        "--project-dir",
+        "/tmp/scm15-parent-review29-pCX1Gi/project",
+        "--json",
+        "/tmp/scm15-parent-review29-pCX1Gi/text-findings.json"
+      ],
+      "exit_code": 0,
+      "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n| selected.txt | 1 | legalese | banned term \"shall\" |\n\nFinding count: 1. Files read: 1. Skipped entries: 0.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+      "stderr": "",
+      "lexicon_preserved": true,
+      "prose_preserved": true,
+      "output_identity": "plain-language-findings/v2",
+      "legalese_count": 1
+    }
+  ]
+}

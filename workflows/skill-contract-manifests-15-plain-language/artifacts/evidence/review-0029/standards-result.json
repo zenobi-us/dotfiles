@@ -1,0 +1,15 @@
+{
+  "kind": "result",
+  "operationId": "e95be360-d383-47a4-baff-90a7b47ca1cd",
+  "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/e95be360-d383-47a4-baff-90a7b47ca1cd/result.json",
+  "result": {
+    "axis": "standards",
+    "findings": [],
+    "report": "Standards: PASS. Reviewed all 24 changed files in git diff f16863f6619b8db9fbf3829c2ff17577ed095012...5456c4a5dfda4e5634a383a2236e4ad0630e6c06, including implementation a33155b7 and fix 5456c4a5. No material documented-standard violation or baseline smell found. Tooling-enforced formatting is excluded.\n\nRead the complete review contract, canonical publication ticket and initiative through shared-context routes and mq with okf. Read CONTEXT-MAP.md, CONTEXT.md, the ADR index, fix-0026, fix-complete-0027, its snapshot, and prior review-0023. The Pi Ink ADR is unrelated. Applied AGENTS communication rules and the loaded contract, TypeScript, comment, and plain-language guidance. Considered all twelve required smell categories as judgement calls, not hard rules.\n\nAssessment content validation stays with its owner; shared safeUpgrade owns persistence. Type-only scoring imports avoid a runtime cycle. One family dispatch validates all five shapes. Historical readers reject unknown or mixed identities. The adapter preserves authored content and historical entries. Regression assertions target observable preservation and refusal. Removed source-wording and whole-report-copy assertions match the verification rules. Shared findings ownership avoids a second text-audit schema.\n\nSPEC-001 source inspection: audit-corpus.ts:1208 and audit-text.ts:150 now protect the same project acronym path consumed by projectAcronyms. checkDestinations canonicalizes sources and destination parents, rejects direct and ancestor aliases, and does not ban a distinct same-basename file. The added real-CLI regression covers both producers and these outcomes. This is inspection, not an independently executed CLI claim.\n\nPrerequisite 88bdcdf101a487b1cb0daa10bbebbf50d86a0128: ACCEPT. Inspected its exact diff and complete phase-context.ts at that commit. Dirty-source closure applies only to matching failed/blocked results and failed/blocked start, implementation, or fix completions. Child commit/tree checks remain. Successful closures and review/submit/finish keep clean-source gates. Tests cover changed HEAD, repinning, and completed-child bypass. Base-only changes are not source deletions.\n\nNo builds, lint, tests, formatters, or smoke commands ran in this axis. Prior suite counts are retained evidence, not this run. The primary owns fresh runtime verification. No source, ticket, projection, or historical artifact was edited.",
+    "schemaVersion": "review-axis/v1"
+  },
+  "resultSchema": "review-axis/v1",
+  "runId": "e95be360-d383-47a4-baff-90a7b47ca1cd",
+  "schemaVersion": "result-delivery/v2",
+  "sha256": "d018bf94ef18dabe9d7323733445cf52eb6aaf4dba07ce4b96b2f3773b6badc4"
+}

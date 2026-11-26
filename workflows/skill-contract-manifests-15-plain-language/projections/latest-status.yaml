@@ -2,10 +2,10 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-15-plain-language,
   ticket: tracker/tickets/skill-contract-manifests-15-plain-language.md,
-  state: BLOCKED,
-  latest_receipt: fix-complete-0027,
+  state: REVIEWED,
+  latest_receipt: review-complete-0030,
   latest_source_commit: 5456c4a5dfda4e5634a383a2236e4ad0630e6c06,
   latest_source_tree: 6d818ee3eb08d7ae44c233b53dfac6b308096cae,
-  latest_review_verdict: null,
+  latest_review_verdict: SUCCESS,
   open_findings: []
 }
