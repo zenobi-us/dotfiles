@@ -222,7 +222,7 @@ describe("score-maturity runCli", () => {
 });
 
 describe("generate-report runCli", () => {
-  test("writes the report and append-only state deterministically", () => {
+  test("writes the report and append-only state deterministically", async () => {
     const temp = mkdtempSync(join(tmpdir(), "iso-report-cli-"));
     try {
       const findingsPath = join(temp, "findings.json");
@@ -230,11 +230,11 @@ describe("generate-report runCli", () => {
       const maturityPath = join(temp, "maturity.json");
       const statePath = join(temp, "state.json");
       const reportPath = join(temp, "report.md");
-      runCorpusCli(["bun", "audit-corpus-cli.ts", CORPUS, "--json", findingsPath], () => {}, () => {});
-      runEvidenceCli(["bun", "audit-evidence-cli.ts", REPOSITORY, "--json", evidencePath], () => {}, () => {});
-      runMaturityCli(["bun", "score-maturity-cli.ts", ANSWERS, "--json", maturityPath], () => {}, () => {});
+      runCorpusCli(["bun", "audit-corpus-cli.ts", CORPUS, "--json", findingsPath], () => { }, () => { });
+      runEvidenceCli(["bun", "audit-evidence-cli.ts", REPOSITORY, "--json", evidencePath], () => { }, () => { });
+      runMaturityCli(["bun", "score-maturity-cli.ts", ANSWERS, "--json", maturityPath], () => { }, () => { });
       const output = capture();
-      expect(runReportCli(
+      expect(await runReportCli(
         ["bun", "generate-report-cli.ts", findingsPath, evidencePath, maturityPath, "--state", statePath, "--out", reportPath],
         output.writeOut,
         output.writeErr,
@@ -245,7 +245,7 @@ describe("generate-report runCli", () => {
       expect(JSON.parse(readFileSync(statePath, "utf8")).snapshots).toHaveLength(1);
 
       const printed = capture();
-      expect(runReportCli(
+      expect(await runReportCli(
         ["bun", "generate-report-cli.ts", findingsPath, evidencePath, maturityPath, "--state", statePath],
         printed.writeOut,
         printed.writeErr,
@@ -259,38 +259,38 @@ describe("generate-report runCli", () => {
     }
   });
 
-  test("reports usage, malformed flags, missing files, and invalid JSON", () => {
+  test("reports usage, malformed flags, missing files, and invalid JSON", async () => {
     const missing = capture();
-    expect(runReportCli(["bun", "generate-report-cli.ts"], missing.writeOut, missing.writeErr)).toBe(2);
+    expect(await runReportCli(["bun", "generate-report-cli.ts"], missing.writeOut, missing.writeErr)).toBe(2);
     const flag = capture();
-    expect(runReportCli(["bun", "generate-report-cli.ts", "a", "b", "c", "--out"], flag.writeOut, flag.writeErr)).toBe(2);
+    expect(await runReportCli(["bun", "generate-report-cli.ts", "a", "b", "c", "--out"], flag.writeOut, flag.writeErr)).toBe(2);
     const stateFlag = capture();
-    expect(runReportCli(["bun", "generate-report-cli.ts", "a", "b", "c", "--state"], stateFlag.writeOut, stateFlag.writeErr)).toBe(2);
+    expect(await runReportCli(["bun", "generate-report-cli.ts", "a", "b", "c", "--state"], stateFlag.writeOut, stateFlag.writeErr)).toBe(2);
     const absent = capture();
-    expect(runReportCli(["bun", "generate-report-cli.ts", "missing-a", "missing-b", "missing-c"], absent.writeOut, absent.writeErr)).toBe(1);
+    expect(await runReportCli(["bun", "generate-report-cli.ts", "missing-a", "missing-b", "missing-c"], absent.writeOut, absent.writeErr)).toBe(1);
     expect(absent.stderr[0]).toStartWith("generate-report:");
     const temp = mkdtempSync(join(tmpdir(), "iso-report-bad-"));
     try {
       const bad = join(temp, "bad.json");
       writeFileSync(bad, "{not json");
       const malformed = capture();
-      expect(runReportCli(["bun", "generate-report-cli.ts", bad, bad, bad], malformed.writeOut, malformed.writeErr)).toBe(1);
+      expect(await runReportCli(["bun", "generate-report-cli.ts", bad, bad, bad], malformed.writeOut, malformed.writeErr)).toBe(1);
     } finally {
       rmSync(temp, { recursive: true, force: true });
     }
   });
 
-  test("uses the real clock when no clock is injected", () => {
+  test("uses the real clock when no clock is injected", async () => {
     const temp = mkdtempSync(join(tmpdir(), "iso-report-clock-"));
     try {
       const findingsPath = join(temp, "findings.json");
       const evidencePath = join(temp, "evidence.json");
       const maturityPath = join(temp, "maturity.json");
-      runCorpusCli(["bun", "audit-corpus-cli.ts", CORPUS, "--json", findingsPath], () => {}, () => {});
-      runEvidenceCli(["bun", "audit-evidence-cli.ts", REPOSITORY, "--json", evidencePath], () => {}, () => {});
-      runMaturityCli(["bun", "score-maturity-cli.ts", ANSWERS, "--json", maturityPath], () => {}, () => {});
+      runCorpusCli(["bun", "audit-corpus-cli.ts", CORPUS, "--json", findingsPath], () => { }, () => { });
+      runEvidenceCli(["bun", "audit-evidence-cli.ts", REPOSITORY, "--json", evidencePath], () => { }, () => { });
+      runMaturityCli(["bun", "score-maturity-cli.ts", ANSWERS, "--json", maturityPath], () => { }, () => { });
       const output = capture();
-      expect(runReportCli(
+      expect(await runReportCli(
         ["bun", "generate-report-cli.ts", findingsPath, evidencePath, maturityPath],
         output.writeOut,
         output.writeErr,
@@ -340,6 +340,58 @@ describe("command line entry files", () => {
     expect(stdout).toContain("| legalese-sample.md | 3 | legalese |");
     expect(stdout).toContain("The user decides whether the text suits its readers and purpose.");
   }, ENTRY_TIMEOUT_MS);
+
+  for (const producer of ["corpus", "text"] as const) {
+    test(`${producer} CLI preserves consumed acronym configuration through destination aliases`, async () => {
+      const root = mkdtempSync(join(tmpdir(), "iso-lexicon-destination-"));
+      try {
+        const project = join(root, "project");
+        const config = join(project, ".iso-24495-4");
+        mkdirSync(config, { recursive: true });
+        const lexicon = join(config, "acronyms.json");
+        const selected = join(project, "selected.txt");
+        writeFileSync(lexicon, '["XYZ"]\n');
+        writeFileSync(selected, "XYZ shall act.\n");
+        const lexiconBytes = readFileSync(lexicon);
+        const selectedBytes = readFileSync(selected);
+        const alias = join(root, "project-alias");
+        symlinkSync(project, alias, "dir");
+        const script = producer === "corpus" ? join(SCRIPTS, "audit-corpus-cli.ts") : TEXT_AUDIT_SCRIPT;
+        const inputs = producer === "corpus" ? [project] : [selected, "--project-dir", project];
+        for (const destination of [lexicon, join(alias, ".iso-24495-4", "acronyms.json")]) {
+          const proc = Bun.spawn(["bun", script, ...inputs, "--json", destination], {
+            stdout: "pipe",
+            stderr: "pipe",
+          });
+          const [stdout, stderr, status] = await Promise.all([
+            new Response(proc.stdout).text(),
+            new Response(proc.stderr).text(),
+            proc.exited,
+          ]);
+          expect(status).toBe(1);
+          expect(stderr).toContain("Output destinations must be distinct from consumed inputs");
+          expect(stdout).toBe("");
+          expect(readFileSync(lexicon)).toEqual(lexiconBytes);
+          expect(readFileSync(selected)).toEqual(selectedBytes);
+        }
+        const output = join(root, "acronyms.json");
+        const result = await runScript(script, [...inputs, "--json", output]);
+        expect(result.exitCode).toBe(0);
+        const findings = JSON.parse(readFileSync(output, "utf8"));
+        expect(findings.schemaVersion).toBe("plain-language-findings/v2");
+        expect(findings.files).toEqual({
+          "selected.txt": {
+            violations: [{ rule: "legalese", line: 1, detail: 'banned term "shall"' }],
+          },
+        });
+        expect(findings.totals).toEqual({ legalese: 1 });
+        expect(readFileSync(lexicon)).toEqual(lexiconBytes);
+        expect(readFileSync(selected)).toEqual(selectedBytes);
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
+    }, ENTRY_TIMEOUT_MS);
+  }
 
   test("audit-evidence-cli reports the fixture repository", async () => {
     const { stdout, exitCode } = await run("audit-evidence-cli.ts", [REPOSITORY]);
@@ -396,7 +448,7 @@ describe("command line entry files", () => {
   // So each command runs twice on the same input, once to a file and once to
   // the terminal, and the two are compared whole. A reader keeps the file:
   // it is the copy that gets circulated and the one nobody re-runs.
-  test("what a command writes is what it would have printed", () => {
+  test("what a command writes is what it would have printed", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "iso-write-through-"));
     try {
       // A command prints a table and saves JSON, so the two are compared
@@ -414,8 +466,8 @@ describe("command line entry files", () => {
       const findingsPath = join(workspace, "findings.json");
       const printedCorpus = capture();
       runCorpusCli(["bun", "audit-corpus-cli.ts", CORPUS, "--json", findingsPath],
-        () => {}, () => {});
-      runCorpusCli(["bun", "audit-corpus-cli.ts", CORPUS], printedCorpus.writeOut, () => {});
+        () => { }, () => { });
+      runCorpusCli(["bun", "audit-corpus-cli.ts", CORPUS], printedCorpus.writeOut, () => { });
       const savedFindings = JSON.parse(readFileSync(findingsPath, "utf8"));
       expect(
         rows(printedCorpus.stdout.join("\n")),
@@ -439,9 +491,9 @@ describe("command line entry files", () => {
       const evidencePath = join(workspace, "evidence.json");
       const printedEvidence = capture();
       runEvidenceCli(["bun", "audit-evidence-cli.ts", REPOSITORY, "--json", evidencePath],
-        () => {}, () => {});
+        () => { }, () => { });
       runEvidenceCli(["bun", "audit-evidence-cli.ts", REPOSITORY],
-        printedEvidence.writeOut, () => {});
+        printedEvidence.writeOut, () => { });
       const savedEvidence = JSON.parse(readFileSync(evidencePath, "utf8"));
       expect(
         rows(printedEvidence.stdout.join("\n")),
@@ -458,9 +510,9 @@ describe("command line entry files", () => {
       const maturityPath = join(workspace, "maturity.json");
       const printedMaturity = capture();
       runMaturityCli(["bun", "score-maturity-cli.ts", ANSWERS, "--json", maturityPath],
-        () => {}, () => {});
+        () => { }, () => { });
       runMaturityCli(["bun", "score-maturity-cli.ts", ANSWERS],
-        printedMaturity.writeOut, () => {});
+        printedMaturity.writeOut, () => { });
       const savedMaturity = JSON.parse(readFileSync(maturityPath, "utf8"));
       expect(
         rows(printedMaturity.stdout.join("\n")),
@@ -481,13 +533,13 @@ describe("command line entry files", () => {
       const printedReport = capture();
       const reportArgv = ["bun", "generate-report-cli.ts", findingsPath, evidencePath,
         maturityPath];
-      runReportCli(
+      await runReportCli(
         [...reportArgv, "--out", reportPath],
-        () => {}, () => {}, () => "2026-08-13T12:00:00.000Z",
+        () => { }, () => { }, () => "2026-08-13T12:00:00.000Z",
       );
-      runReportCli(
+      await runReportCli(
         reportArgv,
-        printedReport.writeOut, () => {}, () => "2026-08-13T12:00:00.000Z",
+        printedReport.writeOut, () => { }, () => "2026-08-13T12:00:00.000Z",
       );
       expect(readFileSync(reportPath, "utf8"),
         "the saved report must be the report it prints")
@@ -499,14 +551,14 @@ describe("command line entry files", () => {
       const withState = [...reportArgv, "--state", statePath];
       const statefulPath = join(workspace, "stateful.md");
       const printedStateful = capture();
-      runReportCli(
+      await runReportCli(
         [...withState, "--out", statefulPath],
-        () => {}, () => {}, () => "2026-08-14T12:00:00.000Z",
+        () => { }, () => { }, () => "2026-08-14T12:00:00.000Z",
       );
       rmSync(statePath, { force: true });
-      runReportCli(
+      await runReportCli(
         withState,
-        printedStateful.writeOut, () => {}, () => "2026-08-14T12:00:00.000Z",
+        printedStateful.writeOut, () => { }, () => "2026-08-14T12:00:00.000Z",
       );
       expect(readFileSync(statefulPath, "utf8"),
         "saving with a state file must not change the report")
@@ -520,11 +572,11 @@ describe("command line entry files", () => {
       const printedAudit = capture();
       runTextAuditCli(
         ["bun", "audit-text-cli.ts", auditTarget, "--json", auditJson],
-        () => {}, () => {},
+        () => { }, () => { },
       );
       runTextAuditCli(
         ["bun", "audit-text-cli.ts", auditTarget],
-        printedAudit.writeOut, () => {},
+        printedAudit.writeOut, () => { },
       );
       // Every finding, with the file it belongs to, compared as the table.
       // A review renamed the saved file key and kept only the first finding

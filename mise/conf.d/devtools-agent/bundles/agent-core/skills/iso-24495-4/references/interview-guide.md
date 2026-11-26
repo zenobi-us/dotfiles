@@ -17,4 +17,4 @@ Pick 3 to 5. One question per line; ask them plainly.
 
 - Record each answer as `true` only with evidence: a named artefact, date, person, or example.
 - An enthusiastic "yes" without evidence records as `false` with a note.
-- Write results into the `answers.json` structure (see `tests/fixtures/answers.sample.json` for the shape) and score with `scripts/score-maturity-cli.ts`.
+- Write results into the `answers.json` structure (see `assets/answers.example.json` for the shape) and score with the absolute command in [the audit workflow](../SKILL.md#the-audit-workflow). The example declares plain-language-answers/v2; the unversioned test fixture exists only for historical-reader verification.

@@ -5,6 +5,7 @@
 import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import type { Evidence } from "./lib/types.ts";
+import { checkDestinations } from "./lib/destinations.ts";
 
 export const CATEGORIES = [
   "policy",
@@ -52,7 +53,7 @@ function matchCategory(category: string, path: string, root: string): boolean {
 export function auditEvidence(dir: string): Evidence {
   const paths: string[] = [];
   walk(dir, dir, paths);
-  const evidence: Evidence = { artefacts: {} };
+  const evidence: Evidence = { schemaVersion: "plain-language-evidence/v2", artefacts: {} };
   for (const category of CATEGORIES) {
     const matched = paths.filter((p) => matchCategory(category, p, dir)).sort();
     evidence.artefacts[category] = { found: matched.length > 0, paths: matched };
@@ -78,6 +79,7 @@ export function runCli(
   try {
     const evidence = auditEvidence(dir);
     if (jsonFlag !== -1) {
+      checkDestinations([argv[jsonFlag + 1]], Object.values(evidence.artefacts).flatMap((entry) => entry.paths.map((path) => join(dir, path))));
       writeFileSync(argv[jsonFlag + 1], JSON.stringify(evidence, null, 2));
     }
     stdout("| Artefact category | Found | Paths |");

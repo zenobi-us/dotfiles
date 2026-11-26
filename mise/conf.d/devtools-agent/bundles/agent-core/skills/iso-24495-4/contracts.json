@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "plain-language-answers/v2",
+    "plain-language-findings/v2",
+    "plain-language-evidence/v2",
+    "plain-language-maturity/v2",
+    "plain-language-audit-state/v2"
+  ],
+  "accepts": [
+    "plain-language-answers/v1",
+    "plain-language-answers/v2",
+    "plain-language-findings/v1",
+    "plain-language-findings/v2",
+    "plain-language-evidence/v1",
+    "plain-language-evidence/v2",
+    "plain-language-maturity/v1",
+    "plain-language-maturity/v2",
+    "plain-language-audit-state/v1",
+    "plain-language-audit-state/v2"
+  ],
+  "contracts": {
+    "plain-language-answers/v1": "file:references/contracts.md",
+    "plain-language-answers/v2": "file:references/contracts.md",
+    "plain-language-findings/v1": "file:references/contracts.md",
+    "plain-language-findings/v2": "file:references/contracts.md",
+    "plain-language-evidence/v1": "file:references/contracts.md",
+    "plain-language-evidence/v2": "file:references/contracts.md",
+    "plain-language-maturity/v1": "file:references/contracts.md",
+    "plain-language-maturity/v2": "file:references/contracts.md",
+    "plain-language-audit-state/v1": "file:references/contracts.md",
+    "plain-language-audit-state/v2": "file:references/contracts.md"
+  },
+  "upgrades": [
+    {
+      "from": "plain-language-answers/v1",
+      "to": "plain-language-answers/v2",
+      "procedure": "file:references/assessment-upgrade.md"
+    },
+    {
+      "from": "plain-language-findings/v1",
+      "to": "plain-language-findings/v2",
+      "procedure": "file:references/assessment-upgrade.md"
+    },
+    {
+      "from": "plain-language-evidence/v1",
+      "to": "plain-language-evidence/v2",
+      "procedure": "file:references/assessment-upgrade.md"
+    },
+    {
+      "from": "plain-language-maturity/v1",
+      "to": "plain-language-maturity/v2",
+      "procedure": "file:references/assessment-upgrade.md"
+    },
+    {
+      "from": "plain-language-audit-state/v1",
+      "to": "plain-language-audit-state/v2",
+      "procedure": "file:references/assessment-upgrade.md"
+    }
+  ]
+}
