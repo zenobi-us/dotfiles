@@ -1,0 +1,8 @@
+{
+  "fixture_only": true,
+  "run": "implementation-0014",
+  "baseline": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-legacy-baseline-0001",
+  "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "runtime": "BUN_OPTIONS=--install=fallback",
+  "changed_probe": "frontmatter fixture uses actual legalese token shall; no engine change"
+}

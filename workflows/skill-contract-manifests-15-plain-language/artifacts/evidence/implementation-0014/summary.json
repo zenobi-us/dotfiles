@@ -1,0 +1,28 @@
+{
+  "status": "blocked",
+  "failure_reason": "The required scoped suite exited 1: bun test could not load ajv@^8.17.1 from the shared skill-contracts/scripts/contracts.ts even with the approved BUN_OPTIONS=--install=fallback invocation. It reported 119 pass, 3 fail and 3 errors. The 54-command owning-CLI fixture smoke passed under the same per-command fallback. Stop policy forbids another repair or retry in attempt5.",
+  "partial_source": {
+    "files": 22,
+    "dirty": true,
+    "new_commit": false,
+    "binding_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0014/source-binding.json"
+  },
+  "completed_observations": [
+    "Preserved all 21 original partial files and added only the owning interview guidance change. Updated owner command examples to use absolute installed script paths and per-command Bun fallback.",
+    "54 actual CLI commands passed their expected outcomes, including 20 asserted negative/partial outcomes with byte preservation. Two public manifests validated; every declared contract resolved for both owners.",
+    "Current/historical scoring and reports worked. Two state appends preserved historical entries and unknown authored fields. Trends retained totals 3 -> 1 -> 0.",
+    "The parent nine-command baseline reproduced all seven business JSON outputs after removing current schemaVersion only. Maturity moved 1 -> 2 and findings moved 4 -> 0, with preserved state history.",
+    "Text-audit retained frontmatter reading, --no-front-matter behavior, skipped entries and read-only selected text. Current/historical findings fed actual reports."
+  ],
+  "not_completed": [
+    "Scoped suite did not pass. Three files could not import the shared validator dependency.",
+    "No source commit, hooks, final-commit validation, independent review or integration.",
+    "Success-only PR snapshot and projection publication were not performed. Parent retains workflow lifecycle ownership."
+  ],
+  "open_questions": [
+    "Approve a scoped test-runner dependency-loading repair and a fresh attempt. No global configuration, dependency-version change or additional TypeScript installation was performed.",
+    "Parent must independently review prerequisite commit 88bdcdf101a487b1cb0daa10bbebbf50d86a0128; it was not merged or cherry-picked into this source."
+  ],
+  "services": [],
+  "fixture_cleanup": "Driver finally removed the isolated fixture directory. No services or helper agents were launched."
+}

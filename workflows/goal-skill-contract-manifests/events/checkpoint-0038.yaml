@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0038",
+  "parent_event": "dispatch-reconciled-0037",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "status": "blocked",
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0035.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/implementation-0014.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0015.yaml",
+  "blockers": [
+    {
+      "kind": "required_check_failure",
+      "error": "The required scoped suite exited 1: bun test could not load ajv@^8.17.1 from the shared skill-contracts/scripts/contracts.ts even with the approved BUN_OPTIONS=--install=fallback invocation. It reported 119 pass, 3 fail and 3 errors. The 54-command owning-CLI fixture smoke passed under the same per-command fallback. Stop policy forbids another repair or retry in attempt5.",
+      "evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0014/suite.json"
+    },
+    {
+      "kind": "owned_resource_cleanup_pending",
+      "run_id": "e3b0960d-3442-410c-a2eb-5e7b51c505ac",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "exact_processes": [
+        {
+          "pid": 3809108,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "35641609",
+          "command": "omp daemon brok",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+          "state": "running"
+        },
+        {
+          "pid": 3809134,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "35641614",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+          "state": "running"
+        }
+      ],
+      "normal_closure": "hc kill/rm succeeded; exact owned desktop terminal and source space absent. No additional signals sent."
+    }
+  ],
+  "proposed_recovery": {
+    "test_runner": "Approve scoped test-runner dependency-loading repair in owned source and fresh attempt6. Reuse an already installed compatible AJV through temporary ignored local dependency preparation, as documented by muxer-subagents verification, or equivalent per-command loader configuration. No global configuration, version or lockfile changes. Run full required suite and actual CLI smoke before source commit.",
+    "cleanup": "Approve TERM, then KILL only if needed, for exact recorded identities PID3809108/start35641609 and PID3809134/start35641614 in boot1093b557-9bca-45b2-a143-4217cd820f51, tagged to run e3b0960d-3442-410c-a2eb-5e7b51c505ac. Recheck identity and run tag immediately before signaling."
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 5,
+    "ticket_attempts_remaining": 95,
+    "dispatches_consumed": 8,
+    "dispatches_remaining": 2492,
+    "omp_token_budget": null
+  },
+  "remaining_scope": "Continue only ticket15 after explicit recovery approval. Required new CLI/check failures still stop. Never select ticket16 while15 remains unfinished.",
+  "created_at": "2026-11-26T00:06:25.596Z"
+}
