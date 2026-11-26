@@ -1,0 +1,16 @@
+{
+  "failed_message": "Source transition requires exact operator-approved candidate identity and a fresh review start",
+  "cause": "Parent context retained nested source.commit/tree for96891691 while incorrectly adding new values at top level. Authoritative phase-context.ts reads context.source, not those top-level properties. This falsely requested a transition away from actual child fb4104c7.",
+  "before_nested_source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+    "tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7"
+  },
+  "actual_child_source": {
+    "commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+    "tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403"
+  },
+  "resolution": "Set context.source.commit/tree to exact blocked child result; remove unused top-level fields. Preserve child status, source and all identity/transition guards. No source/workflow implementation repair."
+}

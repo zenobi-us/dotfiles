@@ -1,0 +1,16 @@
+{
+  "stage": "immutable draft snapshot validation",
+  "observed_frontmatter": {},
+  "observed_body": "{\"snapshot\": , \"logAddition\": }",
+  "cause": "MQ JSON selection exited zero but emitted an invalid object representation instead of the selected string.",
+  "snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md",
+  "affected_projections": [
+    "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+    "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md"
+  ],
+  "action": "Stopped on new required publication check failure. Preserve immutable artifact; parent owns recovery. Source is clean and committed; no source changes after freeze.",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "native_smoke_exit_code": 0,
+  "native_smoke_count": 56
+}

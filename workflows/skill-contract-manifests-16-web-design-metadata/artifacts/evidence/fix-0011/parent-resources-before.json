@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "muxer-wait/v2",
+  "signal": {
+    "schemaVersion": "muxer-completion/v2",
+    "runId": "3cd9f75f-74ca-4184-a933-6934e1caa064",
+    "sequence": 2,
+    "state": "completed",
+    "source": "agent",
+    "timestamp": "2026-11-26T09:30:58.941Z"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "3cd9f75f-74ca-4184-a933-6934e1caa064",
+    "observedAt": "2026-11-26T09:30:59.085Z",
+    "processes": [
+      {
+        "pid": 310646,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39034047",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 313213,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39040836",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 313241,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39040842",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 317530,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39052828",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 318678,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39059029",
+        "command": "bun",
+        "parentPid": 310646,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

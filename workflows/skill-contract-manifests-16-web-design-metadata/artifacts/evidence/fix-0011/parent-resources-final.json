@@ -1,0 +1,79 @@
+{
+  "final": {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "3cd9f75f-74ca-4184-a933-6934e1caa064",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t2jy",
+      "createdAt": "2026-11-26T09:23:58.333Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "operationId": "3cd9f75f-74ca-4184-a933-6934e1caa064"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "3cd9f75f-74ca-4184-a933-6934e1caa064",
+      "observedAt": "2026-11-26T09:36:55.930Z",
+      "processes": [
+        {
+          "pid": 310646,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39034047",
+          "command": "omp",
+          "parentPid": 310329,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 313213,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39040836",
+          "command": "omp daemon brok",
+          "parentPid": 310646,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 313241,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39040842",
+          "command": "omp",
+          "parentPid": 313213,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 317530,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39052828",
+          "command": "omp",
+          "parentPid": 310646,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 318678,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39059029",
+          "command": "bun",
+          "parentPid": 310646,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "normal_closure_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/parent-resources-after.json",
+  "signal_free_observation": {
+    "deadline_seconds": 30,
+    "pids": [
+      313213,
+      313241
+    ],
+    "both_already_stopped": true,
+    "extra_signals_sent": []
+  },
+  "desktop_owned_source_space_absent": true
+}

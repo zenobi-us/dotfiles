@@ -1,0 +1,50 @@
+{
+  "transport_equal_authoritative_receipt": true,
+  "delivery_reader_success": true,
+  "status": "blocked",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "fresh_native_outcomes": 56,
+  "all_expected": true,
+  "test_timing": "before commit and guidance update; hashes bind tested executable bytes",
+  "tested_committed_bindings": [
+    {
+      "committed_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "matches": true,
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "tested_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7"
+    },
+    {
+      "committed_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "matches": true,
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "tested_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415"
+    },
+    {
+      "committed_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "matches": true,
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "tested_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1"
+    }
+  ],
+  "publication_failure": {
+    "action": "Stopped on new required publication check failure. Preserve immutable artifact; parent owns recovery. Source is clean and committed; no source changes after freeze.",
+    "affected_projections": [
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md"
+    ],
+    "cause": "MQ JSON selection exited zero but emitted an invalid object representation instead of the selected string.",
+    "native_smoke_count": 56,
+    "native_smoke_exit_code": 0,
+    "observed_body": "{\"snapshot\": , \"logAddition\": }",
+    "observed_frontmatter": {},
+    "snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md",
+    "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+    "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+    "stage": "immutable draft snapshot validation"
+  },
+  "source_accepted": false,
+  "publication_accepted": false,
+  "parent_encoding_smoke_executed": false,
+  "reason": "Stop on new required publication failure; no further native verification or review dispatch until user approval."
+}

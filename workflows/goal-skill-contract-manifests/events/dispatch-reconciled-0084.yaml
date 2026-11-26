@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0084",
+  "parent_event": "dispatch-observed-0083",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 1,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0082.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml",
+  "status": "blocked",
+  "acceptance_status": "blocked_publication_failure",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "validation": {
+    "native_outcomes": 56,
+    "all_expected": true,
+    "timing": "before commit and guidance update; hashes bind tested executable bytes",
+    "tested_committed_blobs": 3,
+    "publication_failure": {
+      "action": "Stopped on new required publication check failure. Preserve immutable artifact; parent owns recovery. Source is clean and committed; no source changes after freeze.",
+      "affected_projections": [
+        "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+        "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md"
+      ],
+      "cause": "MQ JSON selection exited zero but emitted an invalid object representation instead of the selected string.",
+      "native_smoke_count": 56,
+      "native_smoke_exit_code": 0,
+      "observed_body": "{\"snapshot\": , \"logAddition\": }",
+      "observed_frontmatter": {},
+      "snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md",
+      "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+      "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+      "stage": "immutable draft snapshot validation"
+    },
+    "parent_context_input_correction_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/parent-context-input-correction.json",
+    "parent_post_fix_smoke_not_executed": true
+  },
+  "resource_shutdown": "confirmed",
+  "registered_processes_stopped": 5,
+  "extra_signals_sent": false,
+  "accounting": {
+    "ticket_attempts_consumed": 4,
+    "ticket_attempts_remaining": 96,
+    "dispatches_consumed": 18,
+    "dispatches_remaining": 2482,
+    "omp_token_budget": null
+  },
+  "next_action": "User approval required to recover failed publication with a new immutable snapshot and repaired mutable projections, preserving failed artifacts and unchanged committed source. No further checks/review dispatch before approval. Relocation escalation remains read-only.",
+  "created_at": "2026-11-26T09:38:26.757Z"
+}
