@@ -3,55 +3,48 @@
   workflow_id: skill-contract-manifests-16-web-design-metadata,
   ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
   state: BLOCKED,
-  latest_receipt: fix-complete-0012,
+  latest_receipt: review-complete-0015,
   latest_source_commit: fb4104c7ea2e27f215fab95ec69682b71b101c1b,
   latest_source_tree: c7ecc92e759b7720f1ffadc4d2377473ff481403,
   latest_review_verdict: null,
   open_findings:
     [
       {
-          adr: NO ADR,
+          adr: null,
           axis: standards,
-          description: 'Hard violation of checkpoint-0068.yaml approval.scope: Reject
-            invalid UTF-8 before parsing; add native regression. readCatalog
-            uses readFile(path, "utf8"), which replaces invalid byte sequences
-            before validateCatalog receives the text. The retained
-            native-probes.json records expected exit 1 but observed exit 0 for
-            the invalid UTF-8 catalog at the frozen commit. The native smoke
-            suite creates string fixtures only and has no malformed-byte
-            regression.',
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts,
-          id: standards-001,
-          line: 27,
-          required_change: "Read catalog bytes and reject invalid UTF-8 before JSON
-            parsing. Preserve valid inputs and original bytes. Add a native
-            malformed-byte regression that asserts command rejection and byte
-            preservation, alongside valid current and historical input
-            coverage.",
-          severity: high,
-          validation_command: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts
+          description: "Documented prose-standard violation, not a runtime blocker.
+            ASD-STE100 rules 6.3 and 8.1 require descriptive sentences of at
+            most 25 words and prohibit semicolons. The new sentence beginning
+            'It exercises public manifest resolution' exceeds that limit. Line
+            20 also joins the identify and detectLegacy descriptions with a
+            semicolon.",
+          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md,
+          id: standards-002,
+          line: 53,
+          required_change: Split the regression coverage into short sentences or a list.
+            Replace the semicolon on line 20 with a period. Keep all contract
+            identifiers and coverage claims unchanged.,
+          severity: low,
+          validation_command: Read references/source-metadata.md through MQ. Manually
+            apply ASD-STE100 rules 6.3 and 8.1.
         },
       {
-          adr: NO ADR,
-          axis: spec,
-          description: 'Approval68 requires: "Reject invalid UTF-8 before parsing; add
-            native regression." readCatalog decodes with readFile(path, "utf8"),
-            which replaces invalid bytes before validateCatalog parses the text.
-            The pinned native-probes.json records expected exit 1 but observed
-            exit 0 for an invalid UTF-8 historical catalog. The native smoke
-            suite has no invalid-byte fixture, so its existing passing run does
-            not satisfy this boundary.',
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts,
-          id: spec-001,
-          line: 27,
-          required_change: "Read catalog bytes and reject invalid UTF-8 before JSON
-            parsing. Preserve valid inputs and input bytes. Add a native
-            malformed-byte regression through the owning validate and select
-            commands, with byte-level preservation assertions and valid
-            historical/current controls. Keep persistence in the shared upgrade
-            operations.",
-          severity: high,
-          validation_command: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts
+          adr: null,
+          axis: standards,
+          description: "Documented prose-standard violation, not a runtime blocker.
+            ASD-STE100 rule 8.1 prohibits semicolons. The new prose uses them in
+            'Conversion requires separate user authority; reading and
+            installation never run it' and 'Conversion validates metadata;
+            actual consumption separately verifies bundled integrity' on line
+            17.",
+          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md,
+          id: standards-003,
+          line: 11,
+          required_change: Replace both semicolons with periods. Preserve the authority
+            and integrity boundaries.,
+          severity: low,
+          validation_command: Read references/source-metadata-upgrade.md through MQ.
+            Manually apply ASD-STE100 rule 8.1.
         }
     ]
 }

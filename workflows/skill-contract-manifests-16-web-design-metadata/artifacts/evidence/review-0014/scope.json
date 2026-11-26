@@ -1,0 +1,145 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+    "tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403"
+  },
+  "review_base_commit": "6fc49adca3bf1e570ec1fdc9c7ac659f76471ef8",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "affected_contracts": [
+    "design-source-metadata/v1",
+    "design-source-metadata/v2",
+    "skill-contract-manifest/v1",
+    "UpgradeOwner/safeUpgrade/bulkUpgrade",
+    "bundled asset SHA-256 and style/provenance associations",
+    "readCatalog/selectSource",
+    "worktree-receipt/v3",
+    "Creator plugin/marketplace version synchronization"
+  ],
+  "integration_checks": [
+    {
+      "argv": [
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      ]
+    }
+  ],
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+          "commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "reservations": [],
+    "reservation82": {
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0082.yaml",
+      "runId": "skill-contract-manifests-20261125-t2dv",
+      "ticketRef": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "phase": "fix",
+      "coordinator": {
+        "session_id": "herdr-app:t2dv",
+        "muxer": "herdr-app",
+        "pane_id": "t2dv",
+        "agent": "omp"
+      },
+      "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml",
+      "locations": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reserved-0082.yaml"
+      ],
+      "ambiguous": false,
+      "reconciliationVerified": true
+    },
+    "generated_file_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "Sole parent t2dv; exact fixed sourcefb4104c7 unique. All5 registered fixer processes stopped after normal close plus signal-free observation, source desktop space absent.82 reconciled to blocked parent12. Fresh coordination100.18s has no hard blockers/record diagnostics. Inventory omissions stay unknown. Generated-file overlaps exist in other distinct worktrees; this phase changes only designated publication metadata and reads frozen source. No source/generator changes or integration; reassess before future merge. User86 authorizes new immutable snapshot/current-view repair and fresh native/review; relocation remains escalation-only."
+  },
+  "diff_command": [
+    "git",
+    "diff",
+    "6fc49adca3bf1e570ec1fdc9c7ac659f76471ef8...fb4104c7ea2e27f215fab95ec69682b71b101c1b"
+  ],
+  "source_commits": [
+    "fb4104c7 fix: skill-contract-manifests-16-web-design-metadata utf-8",
+    "96891691 feat: adopt skill-contract-manifests-16-web-design-metadata"
+  ],
+  "scope_count": 11
+}

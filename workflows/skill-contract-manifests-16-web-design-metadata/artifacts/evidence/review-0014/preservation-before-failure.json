@@ -1,0 +1,130 @@
+{
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "source_clean_observed_before_failure": true,
+  "catalog_sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+  "captured_at": "2026-10-22T10:12:43.516Z",
+  "catalog_except_initial_identity_exact_baseline": true,
+  "reviewed_paths_unchanged_before_failure": true,
+  "committed_bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "sha256": "d17c8c7cc80f6174804cee8204ad88414adf16fe32fd9656b8123593bff592ea",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "sha256": "5c053db65be93c374ad996480656b9f908aa2019f83046793715e2f66ea138bf",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "sha256": "50eafc08a31144faf0f27b2104cf2aef5c589e74b3badae861cdfb91b262718b",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "sha256": "f33fdaa2c48551eeb3d4f19f4bddc8177a1d602cfd8cf616288dd920e92716af",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "sha256": "b62b34b80d0037c56540d434afcbffb3f383c748d3d4d362b46b85e2cd9a98ab",
+      "matches_committed_blob": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "sha256": "dfdeb57895206749a51d1ecbb48d6a2e9c752333c9c19b2f7ebcef9313a87984",
+      "matches_committed_blob": true
+    }
+  ],
+  "assets": [
+    {
+      "style": "report-dashboard",
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/llm-benchmarking-margin",
+        "path": "dashboard/DESIGN.md",
+        "localPath": "../llm-benchmarking-margin/dashboard/DESIGN.md"
+      },
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "matches_catalog": true,
+      "matches_source_baseline": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/DESIGN.md",
+        "localPath": "../finance/pkgs/ledger-app/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "matches_catalog": true,
+      "matches_source_baseline": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/UI-FOUNDATION.md",
+        "localPath": "../finance/pkgs/ledger-app/UI-FOUNDATION.md"
+      },
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "matches_catalog": true,
+      "matches_source_baseline": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/dotfiles",
+        "path": "DESIGN.md",
+        "localPath": "DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "matches_catalog": true,
+      "matches_source_baseline": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/lazyvim.profile",
+        "path": "DESIGN.md",
+        "localPath": "/home/zenobius/.config/nvim/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "matches_catalog": true,
+      "matches_source_baseline": true
+    }
+  ],
+  "common_directory_check": "failed due reviewer-relative-path handling; no usable verdict",
+  "verification_failure_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/verification-failure.json"
+}

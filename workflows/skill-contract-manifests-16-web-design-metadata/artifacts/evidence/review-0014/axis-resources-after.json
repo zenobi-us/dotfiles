@@ -1,0 +1,90 @@
+{
+  "standards": {
+    "exit_code": 0,
+    "report": {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "638dbacd-edbd-4953-9ab7-9afd96ebc739",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t2k5",
+        "createdAt": "2026-11-26T10:07:17.447Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "operationId": "638dbacd-edbd-4953-9ab7-9afd96ebc739",
+        "parentRunId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "638dbacd-edbd-4953-9ab7-9afd96ebc739",
+        "observedAt": "2026-11-26T10:10:57.046Z",
+        "processes": [
+          {
+            "pid": 403156,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "39294006",
+            "command": "omp",
+            "parentPid": 402534,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "state": "stopped"
+          },
+          {
+            "pid": 416525,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "39308043",
+            "command": "python",
+            "parentPid": 403156,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  },
+  "spec": {
+    "exit_code": 0,
+    "report": {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "364ecc07-d23d-4aa8-a0b9-f459580ec144",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t2k4",
+        "createdAt": "2026-11-26T10:07:17.443Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "operationId": "364ecc07-d23d-4aa8-a0b9-f459580ec144",
+        "parentRunId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "364ecc07-d23d-4aa8-a0b9-f459580ec144",
+        "observedAt": "2026-11-26T10:10:57.569Z",
+        "processes": [
+          {
+            "pid": 403076,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "39294004",
+            "command": "omp",
+            "parentPid": 402524,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "state": "stopped"
+          },
+          {
+            "pid": 419140,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "39309332",
+            "command": "python",
+            "parentPid": 403076,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  }
+}

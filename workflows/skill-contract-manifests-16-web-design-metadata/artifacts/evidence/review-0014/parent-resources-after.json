@@ -1,0 +1,73 @@
+{
+  "final": {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t2k3",
+      "createdAt": "2026-11-26T10:02:53.642Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "operationId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c",
+      "observedAt": "2026-11-26T20:54:35.631Z",
+      "processes": [
+        {
+          "pid": 389194,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39267589",
+          "command": "omp",
+          "parentPid": 388868,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 398860,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39284820",
+          "command": "python",
+          "parentPid": 389194,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        },
+        {
+          "pid": 419937,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "39309402",
+          "command": "omp daemon brok",
+          "parentPid": 389194,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "normal_closure_ref": "artifact://1060",
+  "desktop_owned_source_space_absent": true,
+  "signal_free_observation": {
+    "pid": 419937,
+    "expected_start_ticks": "39309402",
+    "deadline_seconds": 30,
+    "state": "stopped",
+    "extra_signals_sent": []
+  },
+  "leaf_shutdown": {
+    "spec": {
+      "evidence_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-resources-after.json",
+      "run_id": "364ecc07-d23d-4aa8-a0b9-f459580ec144",
+      "shutdown": "confirmed",
+      "terminal": "t2k4"
+    },
+    "standards": {
+      "evidence_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-resources-after.json",
+      "run_id": "638dbacd-edbd-4953-9ab7-9afd96ebc739",
+      "shutdown": "confirmed",
+      "terminal": "t2k5"
+    }
+  }
+}

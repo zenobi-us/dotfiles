@@ -1,0 +1,39 @@
+{
+  "approval_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0089.yaml",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "prior_failure_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/verification-failure.json",
+  "comparison": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "exit_code": 0,
+      "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git\n",
+      "stderr": ""
+    }
+  ],
+  "common_directories_equal": true,
+  "native_suite_rerun": false,
+  "axis_reviews_rerun": false,
+  "source_or_receipt_guard_changes": false,
+  "prior_failure_preserved": true,
+  "existing_immutable_review_artifact": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0014.md",
+  "formal_result_not_emitted": true
+}

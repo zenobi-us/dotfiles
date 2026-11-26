@@ -1,0 +1,12 @@
+{
+  "artifact_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0014.md",
+  "sha256": "688d823ee90fabec5625b1be3eda700f806a119cf0bfbe36178cabaa0dd816fb",
+  "mq_read_matches_original_immutable_body": true,
+  "source_commit_present": true,
+  "source_tree_present": true,
+  "review_base_present": true,
+  "blocked_body_preserved": true,
+  "second_review_body_created": false,
+  "aggregate_verdict": null,
+  "closure_instruction": "Parent t2dv requires blocked closure on sole immutable body; corrected comparison passed under checkpoint-0089 but does not rewrite the body."
+}

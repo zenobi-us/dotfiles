@@ -1,0 +1,20 @@
+{
+  "stage": "post-suite verification: Git common-directory comparison",
+  "exception": "AssertionError",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "native_suite_exit_code": 0,
+  "native_command_count": 56,
+  "native_all_expected": true,
+  "publication_git_common_dir_raw": ".git",
+  "source_git_common_dir_raw": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git",
+  "erroneous_comparison": "Path(publication_git_common_dir_raw).resolve() == Path(source_git_common_dir_raw).resolve()",
+  "cause": "The review verifier resolved publication-relative .git against its Eval cwd instead of the publication checkout. This is a reviewer-verifier error, not evidence of a source defect.",
+  "required_check_failed": true,
+  "usable_verdict": false,
+  "action": "Stop required verification, preserve actual failure, retain native results and leaf reports, publish blocked review. No verifier repair or rerun without parent authorization.",
+  "limits": [
+    "No source edits, commits, pushes, tracker/projection/snapshot updates or integration.",
+    "No relocation or serverfiles work."
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0090",
+  "parent_event": "checkpoint-0089",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 3,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0087.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0015.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0014.yaml",
+  "status": "blocked",
+  "acceptance_status": "blocked_immutable_body_no_verdict",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "validation": {
+    "fresh_native_outcomes": 56,
+    "all_expected": true,
+    "verifier_correction_passed": true,
+    "suite_or_axis_rerun_after_correction": false,
+    "standards_low_findings": 2,
+    "spec_findings": 0,
+    "sole_immutable_body_preserved": true,
+    "no_addendum_or_second_body": true
+  },
+  "resource_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 3,
+  "leaf_shutdown": {
+    "spec": {
+      "evidence_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-resources-after.json",
+      "run_id": "364ecc07-d23d-4aa8-a0b9-f459580ec144",
+      "shutdown": "confirmed",
+      "terminal": "t2k4"
+    },
+    "standards": {
+      "evidence_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-resources-after.json",
+      "run_id": "638dbacd-edbd-4953-9ab7-9afd96ebc739",
+      "shutdown": "confirmed",
+      "terminal": "t2k5"
+    }
+  },
+  "extra_signals_sent": false,
+  "accounting": {
+    "ticket_attempts_consumed": 5,
+    "ticket_attempts_remaining": 95,
+    "dispatches_consumed": 19,
+    "dispatches_remaining": 2481,
+    "omp_token_budget": null
+  },
+  "next_action": "Use actual shared inspector recovery decision. No aggregate verdict may be inferred from retained axes/corrected check while sole immutable body remains blocked. New attempt needs scoped approval; source unchanged and relocation escalation-only.",
+  "created_at": "2026-11-26T20:56:13.934Z"
+}

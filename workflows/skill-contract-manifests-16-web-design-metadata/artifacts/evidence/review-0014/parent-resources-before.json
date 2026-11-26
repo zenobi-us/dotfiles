@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2k3",
+    "createdAt": "2026-11-26T10:02:53.642Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "operationId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "8c63317d-daed-4c84-a1d6-a7cf6e77d33c",
+    "observedAt": "2026-11-26T20:52:29.186Z",
+    "processes": [
+      {
+        "pid": 389194,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39267589",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 398860,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39284820",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 419937,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "39309402",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

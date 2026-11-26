@@ -1,0 +1,11 @@
+{
+  "owned_leaf_terminals": [
+    "t2k4",
+    "t2k5"
+  ],
+  "remaining_owned_leaf_terminals": [],
+  "primary_terminal": "t2k3",
+  "primary_left_for_parent": true,
+  "source_space_retained_for_primary": true,
+  "unrelated_resources_preserved": true
+}

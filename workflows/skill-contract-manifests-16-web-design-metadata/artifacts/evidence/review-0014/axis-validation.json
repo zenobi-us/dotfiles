@@ -1,0 +1,24 @@
+{
+  "standards": {
+    "schema": "review-axis/v1",
+    "assigned_axis": "standards",
+    "valid": true,
+    "report_word_count": 131,
+    "sha256": "6339ef9038084317d65959906e6d84a046fa1266cd74e8188c83d32d5a6fa764",
+    "acknowledged": true,
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/638dbacd-edbd-4953-9ab7-9afd96ebc739/context.json",
+    "run_id": "638dbacd-edbd-4953-9ab7-9afd96ebc739",
+    "target": "t2k5"
+  },
+  "spec": {
+    "schema": "review-axis/v1",
+    "assigned_axis": "spec",
+    "valid": true,
+    "report_word_count": 192,
+    "sha256": "6a375f534f67f3a6194f3c65464d1fb4ea8e76633d908003b8378891bc898e18",
+    "acknowledged": true,
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/364ecc07-d23d-4aa8-a0b9-f459580ec144/context.json",
+    "run_id": "364ecc07-d23d-4aa8-a0b9-f459580ec144",
+    "target": "t2k4"
+  }
+}

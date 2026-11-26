@@ -1,0 +1,28 @@
+{
+  "transport_equal_authoritative_receipt": true,
+  "delivery_reader_success": true,
+  "status": "blocked",
+  "verdict_present": false,
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "fresh_native_outcomes": 56,
+  "all_expected": true,
+  "approved_verifier_correction_passed": true,
+  "native_or_axis_reruns": false,
+  "sole_immutable_blocked_artifact_preserved": true,
+  "no_second_review_artifact": true,
+  "retained_findings": [
+    {
+      "id": "standards-002",
+      "severity": "low",
+      "axis": "standards"
+    },
+    {
+      "id": "standards-003",
+      "severity": "low",
+      "axis": "standards"
+    }
+  ],
+  "source_accepted": false,
+  "reason": "The full immutable body remains blocked. Corrected verifier input cannot rewrite that body or create a second aggregate artifact for the same attempt."
+}

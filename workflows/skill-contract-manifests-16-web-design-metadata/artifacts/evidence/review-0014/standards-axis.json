@@ -1,0 +1,29 @@
+{
+  "axis": "standards",
+  "findings": [
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Documented prose-standard violation, not a runtime blocker. ASD-STE100 rules 6.3 and 8.1 require descriptive sentences of at most 25 words and prohibit semicolons. The new sentence beginning 'It exercises public manifest resolution' exceeds that limit. Line 20 also joins the identify and detectLegacy descriptions with a semicolon.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "id": "standards-002",
+      "line": 53,
+      "required_change": "Split the regression coverage into short sentences or a list. Replace the semicolon on line 20 with a period. Keep all contract identifiers and coverage claims unchanged.",
+      "severity": "low",
+      "validation_command": "Read references/source-metadata.md through MQ. Manually apply ASD-STE100 rules 6.3 and 8.1."
+    },
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Documented prose-standard violation, not a runtime blocker. ASD-STE100 rule 8.1 prohibits semicolons. The new prose uses them in 'Conversion requires separate user authority; reading and installation never run it' and 'Conversion validates metadata; actual consumption separately verifies bundled integrity' on line 17.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "id": "standards-003",
+      "line": 11,
+      "required_change": "Replace both semicolons with periods. Preserve the authority and integrity boundaries.",
+      "severity": "low",
+      "validation_command": "Read references/source-metadata-upgrade.md through MQ. Manually apply ASD-STE100 rule 8.1."
+    }
+  ],
+  "report": "Reviewed the whole feature at fb4104c7ea2e27f215fab95ec69682b71b101c1b against the canonical ticket, initiative, repository context, shared manifest and upgrade rules, and installed language and TypeScript guidance. Two low-severity documentation findings remain. Neither blocks runtime correctness. No applicable ADR exists. No material Fowler heuristic finding was identified. The old malformed UTF-8 finding is resolved in the reviewed source: readCatalog checks raw-byte round-trip equality before JSON parsing. The native runner includes malformed-byte refusal and valid Unicode selection coverage. Retained parent encoding evidence records the fixed-commit outcomes. I did not run builds, lint, tests, formatters, or native probes, as instructed. The primary must own fresh suite execution. The recovered review-start-0013 snapshot names the reviewed commit and tree. The earlier blocked draft publication does not itself invalidate the source. No source, tracker, receipt, or snapshot was changed.",
+  "schemaVersion": "review-axis/v1"
+}
