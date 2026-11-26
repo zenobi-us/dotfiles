@@ -1,0 +1,47 @@
+{
+  "run_id": "aea941bf-9b89-4523-895b-4e07a90e0d21",
+  "signals_sent": [],
+  "deadline_seconds": 90,
+  "processes": [
+    {
+      "pid": 4005694,
+      "start_ticks": "36606136",
+      "state": "still_live_after_bounded_wait"
+    },
+    {
+      "pid": 4005975,
+      "start_ticks": "36606751",
+      "state": "still_live_after_bounded_wait"
+    },
+    {
+      "pid": 4007856,
+      "start_ticks": "36613009",
+      "state": "still_live_after_bounded_wait"
+    },
+    {
+      "pid": 4007883,
+      "start_ticks": "36613014",
+      "state": "still_live_after_bounded_wait"
+    },
+    {
+      "pid": 4007906,
+      "start_ticks": "36613020",
+      "state": "still_live_after_bounded_wait"
+    },
+    {
+      "pid": 4007918,
+      "start_ticks": "36613027",
+      "state": "still_live_after_bounded_wait"
+    },
+    {
+      "pid": 4007919,
+      "start_ticks": "36613027",
+      "state": "still_live_after_bounded_wait"
+    },
+    {
+      "pid": 4007932,
+      "start_ticks": "36613046",
+      "state": "still_live_after_bounded_wait"
+    }
+  ]
+}

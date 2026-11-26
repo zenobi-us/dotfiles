@@ -1,0 +1,203 @@
+{
+  "text": "ok 5456c4a5 (6 files +64 -5)\n[raw output: artifact://37]\n\n\nWall time: 1.67 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 1670.1869179999921,
+    "trace": {
+      "v": 1,
+      "seq": 16,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 1668571814,
+      "script": "git commit -m \"fix: skill-contract-manifests-15-plain-language lexicon guard\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 77,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 77,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 77,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 77,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 1668514116,
+              "at": 32601,
+              "argv": [
+                "git",
+                "commit",
+                "-m",
+                "fix: skill-contract-manifests-15-plain-language lexicon guard"
+              ],
+              "res": "external",
+              "pid": 4011556,
+              "end_ns": 1668546717,
+              "end_seq": 15
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 10,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 11,
+              "hi": 13,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 14,
+              "hi": 77,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAE0BAE0AAAECAE0AAAQDAAMBAANnaXQEBAoBAAZjb21taXQFCw0BAAItbQYOTQEDAQA9Zml4OiBza2lsbC1jb250cmFjdC1tYW5pZmVzdHMtMTUtcGxhaW4tbGFuZ3VhZ2UgbGV4aWNvbiBndWFyZAAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 155,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 32601,
+          "event_seq": 157,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 47018,
+          "event_seq": 158,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "commit",
+            "-m",
+            "fix: skill-contract-manifests-15-plain-language lexicon guard"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 400560,
+          "event_seq": 159,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 4011556,
+          "argv": [
+            "git",
+            "commit",
+            "-m",
+            "fix: skill-contract-manifests-15-plain-language lexicon guard"
+          ]
+        },
+        {
+          "seq": 14,
+          "t_ns": 55787065,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "  files - Fetching git status\n  files - Fetching staged files\n  files - Fetching staged files (4 files)\n✔ files - Fetching staged files (4 files)\n❯ bundle-versions\n  bundle-versions – 4 files –  – mise run checks:agent-bundle-versions -- fix --staged\n  bundle-versions – [checks:agent-bundle-versions] $ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/tasks/checks/agent-bundle-versions.ts fix --staged\n  bundle-versions – bundle-versions: set agent-core to 0.1.47\n❯ bundle-versions – 2 files modified – mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json, mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json\n✔ bundle-versions – 2 files modified – mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json, mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json\n[feature/skill-contract-manifests-15-plain-language 5456c4a5] fix: skill-contract-manifests-15-plain-language lexicon guard\n 6 files changed, 64 insertions(+), 5 deletions(-)\n",
+          "fd": 1
+        },
+        {
+          "seq": 15,
+          "t_ns": 1668546717,
+          "event_seq": 160,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 1668514116,
+          "pipestatus": []
+        },
+        {
+          "seq": 16,
+          "t_ns": 1668571814,
+          "event_seq": 161,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "minimized": {
+        "filter": "git",
+        "inputBytes": 1100,
+        "outputBytes": 29,
+        "artifactId": "37"
+      }
+    }
+  }
+}

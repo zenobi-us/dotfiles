@@ -1,0 +1,189 @@
+{
+  "records": [
+    {
+      "producer": "corpus",
+      "kind": "direct",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-fix-0026-XUhUnY/project",
+        "--json",
+        "/tmp/scm15-fix-0026-XUhUnY/project/.iso-24495-4/acronyms.json"
+      ],
+      "cwd": "/tmp/scm15-fix-0026-XUhUnY",
+      "env": {
+        "BUN_OPTIONS": "--install=fallback"
+      },
+      "status": 1,
+      "stdout": "",
+      "stderr": "audit-corpus: Output destinations must be distinct from consumed inputs and each other.\n",
+      "lexicon_preserved": true,
+      "selected_prose_preserved": true,
+      "findings": null
+    },
+    {
+      "producer": "corpus",
+      "kind": "ancestor",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-fix-0026-XUhUnY/project",
+        "--json",
+        "/tmp/scm15-fix-0026-XUhUnY/alias/.iso-24495-4/acronyms.json"
+      ],
+      "cwd": "/tmp/scm15-fix-0026-XUhUnY",
+      "env": {
+        "BUN_OPTIONS": "--install=fallback"
+      },
+      "status": 1,
+      "stdout": "",
+      "stderr": "audit-corpus: Output destinations must be distinct from consumed inputs and each other.\n",
+      "lexicon_preserved": true,
+      "selected_prose_preserved": true,
+      "findings": null
+    },
+    {
+      "producer": "corpus",
+      "kind": "distinct",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+        "/tmp/scm15-fix-0026-XUhUnY/project",
+        "--json",
+        "/tmp/scm15-fix-0026-XUhUnY/acronyms.json"
+      ],
+      "cwd": "/tmp/scm15-fix-0026-XUhUnY",
+      "env": {
+        "BUN_OPTIONS": "--install=fallback"
+      },
+      "status": 0,
+      "stdout": "| Rule | Violations |\n|------|------------|\n| legalese | 1 |\n\nTotal: 1 across 1 files.\n",
+      "stderr": "",
+      "lexicon_preserved": true,
+      "selected_prose_preserved": true,
+      "findings": {
+        "schemaVersion": "plain-language-findings/v2",
+        "configHash": "ca6f9562",
+        "files": {
+          "selected.txt": {
+            "violations": [
+              {
+                "rule": "legalese",
+                "line": 1,
+                "detail": "banned term \"shall\""
+              }
+            ]
+          }
+        },
+        "totals": {
+          "legalese": 1
+        }
+      }
+    },
+    {
+      "producer": "text",
+      "kind": "direct",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-fix-0026-XUhUnY/project/selected.txt",
+        "--project-dir",
+        "/tmp/scm15-fix-0026-XUhUnY/project",
+        "--json",
+        "/tmp/scm15-fix-0026-XUhUnY/project/.iso-24495-4/acronyms.json"
+      ],
+      "cwd": "/tmp/scm15-fix-0026-XUhUnY",
+      "env": {
+        "BUN_OPTIONS": "--install=fallback"
+      },
+      "status": 1,
+      "stdout": "",
+      "stderr": "audit-text: Output destinations must be distinct from consumed inputs and each other.\n",
+      "lexicon_preserved": true,
+      "selected_prose_preserved": true,
+      "findings": null
+    },
+    {
+      "producer": "text",
+      "kind": "ancestor",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-fix-0026-XUhUnY/project/selected.txt",
+        "--project-dir",
+        "/tmp/scm15-fix-0026-XUhUnY/project",
+        "--json",
+        "/tmp/scm15-fix-0026-XUhUnY/alias/.iso-24495-4/acronyms.json"
+      ],
+      "cwd": "/tmp/scm15-fix-0026-XUhUnY",
+      "env": {
+        "BUN_OPTIONS": "--install=fallback"
+      },
+      "status": 1,
+      "stdout": "",
+      "stderr": "audit-text: Output destinations must be distinct from consumed inputs and each other.\n",
+      "lexicon_preserved": true,
+      "selected_prose_preserved": true,
+      "findings": null
+    },
+    {
+      "producer": "text",
+      "kind": "distinct",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+        "/tmp/scm15-fix-0026-XUhUnY/project/selected.txt",
+        "--project-dir",
+        "/tmp/scm15-fix-0026-XUhUnY/project",
+        "--json",
+        "/tmp/scm15-fix-0026-XUhUnY/acronyms.json"
+      ],
+      "cwd": "/tmp/scm15-fix-0026-XUhUnY",
+      "env": {
+        "BUN_OPTIONS": "--install=fallback"
+      },
+      "status": 0,
+      "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n| selected.txt | 1 | legalese | banned term \"shall\" |\n\nFinding count: 1. Files read: 1. Skipped entries: 0.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+      "stderr": "",
+      "lexicon_preserved": true,
+      "selected_prose_preserved": true,
+      "findings": {
+        "schemaVersion": "plain-language-findings/v2",
+        "configHash": "ca6f9562",
+        "files": {
+          "selected.txt": {
+            "violations": [
+              {
+                "rule": "legalese",
+                "line": 1,
+                "detail": "banned term \"shall\""
+              }
+            ]
+          }
+        },
+        "totals": {
+          "legalese": 1
+        },
+        "skipped": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "command": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --phase-context /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/phase-context.json --input /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/outcome.json --delivery-context /var/home/zenobius/.local/state/result-delivery/runs/aea941bf-9b89-4523-895b-4e07a90e0d21/context.json",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "text": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"reference\",\"runId\":\"aea941bf-9b89-4523-895b-4e07a90e0d21\",\"operationId\":\"aea941bf-9b89-4523-895b-4e07a90e0d21\",\"sha256\":\"9f4e87ad044d2885a3c90ef665d18fd1cc284d7dedb6dac2231840e693237aa4\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/aea941bf-9b89-4523-895b-4e07a90e0d21/result.json\",\"resultSchema\":\"worktree-receipt/v3\"}\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 874.3714920000057,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 873217522,
+      "script": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --phase-context /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/phase-context.json --input /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/outcome.json --delivery-context /var/home/zenobius/.local/state/result-delivery/runs/aea941bf-9b89-4523-895b-4e07a90e0d21/context.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 608,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 608,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 608,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 608,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 873151529,
+              "at": 51456,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+                "--repository",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+                "--phase-context",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/phase-context.json",
+                "--input",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/outcome.json",
+                "--delivery-context",
+                "/var/home/zenobius/.local/state/result-delivery/runs/aea941bf-9b89-4523-895b-4e07a90e0d21/context.json"
+              ],
+              "res": "external",
+              "pid": 4013716,
+              "end_ns": 873202985,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 87,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 88,
+              "hi": 100,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 101,
+              "hi": 156,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 157,
+              "hi": 172,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 173,
+              "hi": 328,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 329,
+              "hi": 336,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 337,
+              "hi": 486,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 487,
+              "hi": 505,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 506,
+              "hi": 608,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAOAEAQDgBAAAAQIA4AQAAAkDAFcBAFcvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvZGV2ZWxvcGVyL3NraWxscy9naXQvd29ya3RyZWUvc2NyaXB0cy93cml0ZS1yZXN1bHQudHMEWGQBAAwtLXJlcG9zaXRvcnkFZZwBAQA3L3J1bi9tZWRpYS96ZW5vYml1cy9TdG9yZS9Qcm9qZWN0cy9NaW5lL0dpdGh1Yi9Eb3RmaWxlcwadAawBAQAPLS1waGFzZS1jb250ZXh0B60ByAIBAJsBL3J1bi9tZWRpYS96ZW5vYml1cy9TdG9yZS9Qcm9qZWN0cy9NaW5lL0dpdGh1Yi9Eb3RmaWxlcy93b3JrZmxvd3Mvc2tpbGwtY29udHJhY3QtbWFuaWZlc3RzLTE1LXBsYWluLWxhbmd1YWdlL2FydGlmYWN0cy9ldmlkZW5jZS9maXgtMDAyNi9waGFzZS1jb250ZXh0Lmpzb24IyQLQAgEABy0taW5wdXQJ0QLmAwEAlQEvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzL3dvcmtmbG93cy9za2lsbC1jb250cmFjdC1tYW5pZmVzdHMtMTUtcGxhaW4tbGFuZ3VhZ2UvYXJ0aWZhY3RzL2V2aWRlbmNlL2ZpeC0wMDI2L291dGNvbWUuanNvbgrnA/kDAQASLS1kZWxpdmVyeS1jb250ZXh0C/oD4AQBAGYvdmFyL2hvbWUvemVub2JpdXMvLmxvY2FsL3N0YXRlL3Jlc3VsdC1kZWxpdmVyeS9ydW5zL2FlYTk0MWJmLTliODktNDUyMy04OTViLTRlMDdhOTBlMGQyMS9jb250ZXh0Lmpzb24AAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 197,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 51456,
+          "event_seq": 199,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 28,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 51456,
+          "event_seq": 200,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 28,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+            "--repository",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "--phase-context",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/phase-context.json",
+            "--input",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/outcome.json",
+            "--delivery-context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/aea941bf-9b89-4523-895b-4e07a90e0d21/context.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 531034,
+          "event_seq": 201,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 28,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 4013716,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+            "--repository",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "--phase-context",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/phase-context.json",
+            "--input",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/outcome.json",
+            "--delivery-context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/aea941bf-9b89-4523-895b-4e07a90e0d21/context.json"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 868769965,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 28,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"reference\",\"runId\":\"aea941bf-9b89-4523-895b-4e07a90e0d21\",\"operationId\":\"aea941bf-9b89-4523-895b-4e07a90e0d21\",\"sha256\":\"9f4e87ad044d2885a3c90ef665d18fd1cc284d7dedb6dac2231840e693237aa4\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/aea941bf-9b89-4523-895b-4e07a90e0d21/result.json\",\"resultSchema\":\"worktree-receipt/v3\"}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 873202985,
+          "event_seq": 202,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 28,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 873151529,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 873217522,
+          "event_seq": 203,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "text": "{\"schemaVersion\":\"worktree-view-result/v1\",\"artifact\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/manifest.yaml\",\"changed\":true,\"from\":\"worktree-workflow/v3\",\"to\":\"worktree-workflow/v3\",\"status\":\"completed\"}\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 464.7340059999842,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 463142415,
+      "script": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --id skill-contract-manifests-15-plain-language --kind manifest --input /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/manifest-update.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 384,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 384,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 384,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 384,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 463084206,
+              "at": 42630,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts",
+                "--repository",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+                "--id",
+                "skill-contract-manifests-15-plain-language",
+                "--kind",
+                "manifest",
+                "--input",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/manifest-update.json"
+              ],
+              "res": "external",
+              "pid": 4013386,
+              "end_ns": 463126836,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 98,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 99,
+              "hi": 154,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 155,
+              "hi": 159,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 160,
+              "hi": 202,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 203,
+              "hi": 209,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 210,
+              "hi": 218,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 219,
+              "hi": 226,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 227,
+              "hi": 384,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAIADAQCAAwAAAQIAgAMAAAkDAFUBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvZGV2ZWxvcGVyL3NraWxscy9naXQvd29ya3RyZWUvc2NyaXB0cy93cml0ZS12aWV3LnRzBFZiAQAMLS1yZXBvc2l0b3J5BWOaAQEANy9ydW4vbWVkaWEvemVub2JpdXMvU3RvcmUvUHJvamVjdHMvTWluZS9HaXRodWIvRG90ZmlsZXMGmwGfAQEABC0taWQHoAHKAQEAKnNraWxsLWNvbnRyYWN0LW1hbmlmZXN0cy0xNS1wbGFpbi1sYW5ndWFnZQjLAdEBAQAGLS1raW5kCdIB2gEBAAhtYW5pZmVzdArbAeIBAQAHLS1pbnB1dAvjAYADAQCdAS9ydW4vbWVkaWEvemVub2JpdXMvU3RvcmUvUHJvamVjdHMvTWluZS9HaXRodWIvRG90ZmlsZXMvd29ya2Zsb3dzL3NraWxsLWNvbnRyYWN0LW1hbmlmZXN0cy0xNS1wbGFpbi1sYW5ndWFnZS9hcnRpZmFjdHMvZXZpZGVuY2UvZml4LTAwMjYvbWFuaWZlc3QtdXBkYXRlLmpzb24AAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 183,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 42630,
+          "event_seq": 185,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 26,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 42630,
+          "event_seq": 186,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 26,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts",
+            "--repository",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "--id",
+            "skill-contract-manifests-15-plain-language",
+            "--kind",
+            "manifest",
+            "--input",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/manifest-update.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 531676,
+          "event_seq": 187,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 26,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 4013386,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts",
+            "--repository",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "--id",
+            "skill-contract-manifests-15-plain-language",
+            "--kind",
+            "manifest",
+            "--input",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/fix-0026/manifest-update.json"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 459095237,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 26,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"schemaVersion\":\"worktree-view-result/v1\",\"artifact\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/manifest.yaml\",\"changed\":true,\"from\":\"worktree-workflow/v3\",\"to\":\"worktree-workflow/v3\",\"status\":\"completed\"}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 463126836,
+          "event_seq": 188,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 26,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 463084206,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 463142415,
+          "event_seq": 189,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

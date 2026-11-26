@@ -1,0 +1,550 @@
+{
+  "command": "env BUN_OPTIONS=--install=fallback mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts --test-name-pattern \"preserves consumed acronym\"",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "text": "bun test v1.4.4 (38afee6c8)\n\n 2 pass\n 18 filtered out\n 0 fail\n 32 expect() calls\nRan 2 tests across 1 file. [205.00ms]\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 556.7685000000056,
+    "trace": {
+      "v": 1,
+      "seq": 21,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 555176510,
+      "script": "env BUN_OPTIONS=--install=fallback mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts --test-name-pattern \"preserves consumed acronym\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 188,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 188,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 188,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 188,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 555114904,
+              "at": 50956,
+              "argv": [
+                "env",
+                "BUN_OPTIONS=--install=fallback",
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+                "--test-name-pattern",
+                "preserves consumed acronym"
+              ],
+              "res": "tool",
+              "end_ns": 555165860,
+              "end_seq": 20
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 34,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 35,
+              "hi": 39,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 40,
+              "hi": 44,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 45,
+              "hi": 47,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 48,
+              "hi": 51,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 52,
+              "hi": 56,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 57,
+              "hi": 139,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 140,
+              "hi": 159,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 160,
+              "hi": 188,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAALwBAQC8AQAAAQIAvAEAAAoDAAMBAANlbnYEBCIBAB5CVU5fT1BUSU9OUz0tLWluc3RhbGw9ZmFsbGJhY2sFIycBAARtaXNlBigsAQAEZXhlYwctLwEAAi0tCDAzAQADYnVuCTQ4AQAEdGVzdAo5iwEBAFJtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2FnZW50LWNvcmUvc2tpbGxzL2lzby0yNDQ5NS00L3Rlc3RzL2NsaS50ZXN0LnRzC4wBnwEBABMtLXRlc3QtbmFtZS1wYXR0ZXJuDKABvAEBAwEAGnByZXNlcnZlcyBjb25zdW1lZCBhY3JvbnltAAAAAAI="
+        },
+        {
+          "line": 1,
+          "bytes": 63,
+          "source": "export BUN_OPTIONS='--install=fallback'; exec -a 'mise' -- \"$@\"",
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 39,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 39,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 39,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 26861,
+              "at": 1574408,
+              "argv": [
+                "export",
+                "BUN_OPTIONS=--install=fallback"
+              ],
+              "res": "intrinsic",
+              "end_ns": 1601269,
+              "end_seq": 11
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 6,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 7,
+              "hi": 39,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "and_or",
+              "lo": 41,
+              "hi": 63,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 41,
+              "hi": 63,
+              "p": 5,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 41,
+              "hi": 63,
+              "p": 6,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 553419018,
+              "at": 1601269,
+              "argv": [
+                "/home/zenobius/.local/bin/mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+                "--test-name-pattern",
+                "preserves consumed acronym"
+              ],
+              "res": "external",
+              "pid": 4008146,
+              "end_ns": 555020287,
+              "end_seq": 18
+            },
+            {
+              "k": "word",
+              "lo": 41,
+              "hi": 45,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 46,
+              "hi": 48,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 49,
+              "hi": 55,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 56,
+              "hi": 58,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 59,
+              "hi": 63,
+              "p": 7,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAIAACcBACcAAAECACcAAAIDAAYBAAZleHBvcnQEBycCAAxCVU5fT1BUSU9OUz0CEi0taW5zdGFsbD1mYWxsYmFjawAAAAAABSk/Bik/AAABByk/AAAFCCktAQAEZXhlYwkuMAEAAi1hCjE3AQIEbWlzZQs4OgEAAi0tDDs/AQMBBgIAAAAAAAAAAAAC",
+          "callout": true
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 42,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 50956,
+          "event_seq": 44,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 8,
+            "vpid": 1073741824,
+            "seq": 8
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 50956,
+          "event_seq": 45,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 8,
+            "vpid": 1073741824,
+            "seq": 8
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "env",
+            "BUN_OPTIONS=--install=fallback",
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+            "--test-name-pattern",
+            "preserves consumed acronym"
+          ],
+          "assigns": [],
+          "resolved": "tool",
+          "redirs": []
+        },
+        {
+          "seq": 6,
+          "t_ns": 1557316,
+          "event_seq": 47,
+          "vpid": 1073741825,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 8,
+          "t_ns": 1574408,
+          "event_seq": 49,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 9
+          },
+          "vpid": 1073741825,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 9,
+          "t_ns": 1574408,
+          "event_seq": 50,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 9
+          },
+          "vpid": 1073741825,
+          "kind": "CmdExpanded",
+          "argv": [
+            "export",
+            "BUN_OPTIONS=--install=fallback"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 10,
+          "t_ns": 1598133,
+          "event_seq": 51,
+          "u": 1,
+          "n": 2,
+          "vpid": 1073741825,
+          "kind": "Assign",
+          "name": "BUN_OPTIONS",
+          "value": "--install=fallback",
+          "full_len": 18,
+          "scope": "subshell"
+        },
+        {
+          "seq": 11,
+          "t_ns": 1601269,
+          "event_seq": 52,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 9
+          },
+          "vpid": 1073741825,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 26861,
+          "pipestatus": []
+        },
+        {
+          "seq": 12,
+          "t_ns": 1601269,
+          "event_seq": 53,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 10
+          },
+          "vpid": 1073741825,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 13,
+          "t_ns": 1601269,
+          "event_seq": 54,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 10
+          },
+          "vpid": 1073741825,
+          "kind": "CmdExpanded",
+          "argv": [
+            "exec",
+            "-a",
+            "mise",
+            "--",
+            "/home/zenobius/.local/bin/mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+            "--test-name-pattern",
+            "preserves consumed acronym"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 14,
+          "t_ns": 1613702,
+          "event_seq": 55,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 10
+          },
+          "vpid": 1073741825,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.local/bin/mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+            "--test-name-pattern",
+            "preserves consumed acronym"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 15,
+          "t_ns": 1990588,
+          "event_seq": 56,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 10
+          },
+          "vpid": 1073741825,
+          "kind": "Spawn",
+          "pid": 4008146,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+            "--test-name-pattern",
+            "preserves consumed acronym"
+          ]
+        },
+        {
+          "seq": 17,
+          "t_ns": 346317323,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 10
+          },
+          "vpid": 1073741825,
+          "kind": "Output",
+          "text": "bun test v1.4.4 (38afee6c8)\n\n 2 pass\n 18 filtered out\n 0 fail\n 32 expect() calls\nRan 2 tests across 1 file. [205.00ms]\n",
+          "fd": 1
+        },
+        {
+          "seq": 18,
+          "t_ns": 555020287,
+          "event_seq": 57,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 9,
+            "vpid": 1073741825,
+            "seq": 10
+          },
+          "vpid": 1073741825,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 553419018,
+          "pipestatus": []
+        },
+        {
+          "seq": 19,
+          "t_ns": 555027922,
+          "event_seq": 58,
+          "vpid": 1073741825,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 20,
+          "t_ns": 555165860,
+          "event_seq": 59,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 8,
+            "vpid": 1073741824,
+            "seq": 8
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 555114904,
+          "pipestatus": []
+        },
+        {
+          "seq": 21,
+          "t_ns": 555176510,
+          "event_seq": 60,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

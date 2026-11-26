@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0053",
+  "parent_event": "dispatch-observed-0052",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "fix",
+  "attempt": 1,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0051.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/fix-complete-0027.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/fix-0026.yaml",
+  "status": "completed",
+  "source_commit": "5456c4a5dfda4e5634a383a2236e4ad0630e6c06",
+  "source_tree": "6d818ee3eb08d7ae44c233b53dfac6b308096cae",
+  "resolved_finding_ids": [
+    "SPEC-001"
+  ],
+  "unresolved_finding_ids": [],
+  "validation": {
+    "suite_passed": 150,
+    "suite_failed": 0,
+    "assertions": 2175,
+    "targeted_regressions_passed": 2,
+    "actual_lexicon_cli_cases": 6,
+    "workflow_cli_commands": 54,
+    "tested_blobs_match_committed_source": true,
+    "parent_hash_check_exit_code": 0
+  },
+  "resource_shutdown": {
+    "run_id": "aea941bf-9b89-4523-895b-4e07a90e0d21",
+    "shutdown": "pending",
+    "desktop": {
+      "owned_terminal_absent": true,
+      "owned_source_space_absent": true
+    },
+    "live_processes": [
+      {
+        "pid": 4005694,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36606136",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      },
+      {
+        "pid": 4005975,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36606751",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      },
+      {
+        "pid": 4007856,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36613009",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      },
+      {
+        "pid": 4007883,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36613014",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      },
+      {
+        "pid": 4007906,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36613020",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      },
+      {
+        "pid": 4007918,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36613027",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      },
+      {
+        "pid": 4007919,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36613027",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      },
+      {
+        "pid": 4007932,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "36613046",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "running"
+      }
+    ]
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 9,
+    "ticket_attempts_remaining": 91,
+    "dispatches_consumed": 12,
+    "dispatches_remaining": 2488,
+    "omp_token_budget": null
+  },
+  "next_action": "Exact owned-process cleanup approval blocks fresh review. Code fix accepted; old source FAILURE is stale, not SUCCESS. No integration.",
+  "created_at": "2026-11-26T02:52:51.636Z"
+}

@@ -1,0 +1,524 @@
+{
+  "command": "env BUN_OPTIONS=--install=fallback mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "text": "bun test v1.4.4 (38afee6c8)\n\n 150 pass\n 0 fail\n 2175 expect() calls\nRan 150 tests across 9 files. [4.64s]\n\n\nWall time: 5.02 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 5023.038118000026,
+    "trace": {
+      "v": 1,
+      "seq": 21,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 5021395312,
+      "script": "env BUN_OPTIONS=--install=fallback mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 127,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 127,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 127,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 127,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 5021344507,
+              "at": 41287,
+              "argv": [
+                "env",
+                "BUN_OPTIONS=--install=fallback",
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+              ],
+              "res": "tool",
+              "end_ns": 5021385794,
+              "end_seq": 20
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 34,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 35,
+              "hi": 39,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 40,
+              "hi": 44,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 45,
+              "hi": 47,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 48,
+              "hi": 51,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 52,
+              "hi": 56,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 57,
+              "hi": 127,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAH8BAH8AAAECAH8AAAgDAAMBAANlbnYEBCIBAB5CVU5fT1BUSU9OUz0tLWluc3RhbGw9ZmFsbGJhY2sFIycBAARtaXNlBigsAQAEZXhlYwctLwEAAi0tCDAzAQADYnVuCTQ4AQAEdGVzdAo5fwEARm1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvaXNvLTI0NDk1LTQvdGVzdHMAAAAAAg=="
+        },
+        {
+          "line": 1,
+          "bytes": 63,
+          "source": "export BUN_OPTIONS='--install=fallback'; exec -a 'mise' -- \"$@\"",
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 39,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 39,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 39,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 18876,
+              "at": 1785142,
+              "argv": [
+                "export",
+                "BUN_OPTIONS=--install=fallback"
+              ],
+              "res": "intrinsic",
+              "end_ns": 1804018,
+              "end_seq": 11
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 6,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 7,
+              "hi": 39,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "and_or",
+              "lo": 41,
+              "hi": 63,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 41,
+              "hi": 63,
+              "p": 5,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 41,
+              "hi": 63,
+              "p": 6,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 5019440542,
+              "at": 1804018,
+              "argv": [
+                "/home/zenobius/.local/bin/mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+              ],
+              "res": "external",
+              "pid": 4008720,
+              "end_ns": 5021244560,
+              "end_seq": 18
+            },
+            {
+              "k": "word",
+              "lo": 41,
+              "hi": 45,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 46,
+              "hi": 48,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 49,
+              "hi": 55,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 56,
+              "hi": 58,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 59,
+              "hi": 63,
+              "p": 7,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAIAACcBACcAAAECACcAAAIDAAYBAAZleHBvcnQEBycCAAxCVU5fT1BUSU9OUz0CEi0taW5zdGFsbD1mYWxsYmFjawAAAAAABSk/Bik/AAABByk/AAAFCCktAQAEZXhlYwkuMAEAAi1hCjE3AQIEbWlzZQs4OgEAAi0tDDs/AQMBBgIAAAAAAAAAAAAC",
+          "callout": true
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 61,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 41287,
+          "event_seq": 63,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 11
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 41287,
+          "event_seq": 64,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 11
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "env",
+            "BUN_OPTIONS=--install=fallback",
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+          ],
+          "assigns": [],
+          "resolved": "tool",
+          "redirs": []
+        },
+        {
+          "seq": 6,
+          "t_ns": 1761969,
+          "event_seq": 66,
+          "vpid": 1073741826,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 8,
+          "t_ns": 1785142,
+          "event_seq": 68,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 12
+          },
+          "vpid": 1073741826,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 9,
+          "t_ns": 1785142,
+          "event_seq": 69,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 12
+          },
+          "vpid": 1073741826,
+          "kind": "CmdExpanded",
+          "argv": [
+            "export",
+            "BUN_OPTIONS=--install=fallback"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 10,
+          "t_ns": 1801192,
+          "event_seq": 70,
+          "u": 1,
+          "n": 2,
+          "vpid": 1073741826,
+          "kind": "Assign",
+          "name": "BUN_OPTIONS",
+          "value": "--install=fallback",
+          "full_len": 18,
+          "scope": "subshell"
+        },
+        {
+          "seq": 11,
+          "t_ns": 1804018,
+          "event_seq": 71,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 12
+          },
+          "vpid": 1073741826,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 18876,
+          "pipestatus": []
+        },
+        {
+          "seq": 12,
+          "t_ns": 1804018,
+          "event_seq": 72,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 13
+          },
+          "vpid": 1073741826,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 13,
+          "t_ns": 1804018,
+          "event_seq": 73,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 13
+          },
+          "vpid": 1073741826,
+          "kind": "CmdExpanded",
+          "argv": [
+            "exec",
+            "-a",
+            "mise",
+            "--",
+            "/home/zenobius/.local/bin/mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 14,
+          "t_ns": 1816351,
+          "event_seq": 74,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 13
+          },
+          "vpid": 1073741826,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.local/bin/mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 15,
+          "t_ns": 2148863,
+          "event_seq": 75,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 13
+          },
+          "vpid": 1073741826,
+          "kind": "Spawn",
+          "pid": 4008720,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests"
+          ]
+        },
+        {
+          "seq": 17,
+          "t_ns": 352527330,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 13
+          },
+          "vpid": 1073741826,
+          "kind": "Output",
+          "text": "bun test v1.4.4 (38afee6c8)\n\n 150 pass\n 0 fail\n 2175 expect() calls\nRan 150 tests across 9 files. [4.64s]\n",
+          "fd": 1
+        },
+        {
+          "seq": 18,
+          "t_ns": 5021244560,
+          "event_seq": 76,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 11,
+            "vpid": 1073741826,
+            "seq": 13
+          },
+          "vpid": 1073741826,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 5019440542,
+          "pipestatus": []
+        },
+        {
+          "seq": 19,
+          "t_ns": 5021252966,
+          "event_seq": 77,
+          "vpid": 1073741826,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 20,
+          "t_ns": 5021385794,
+          "event_seq": 78,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 11
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 5021344507,
+          "pipestatus": []
+        },
+        {
+          "seq": 21,
+          "t_ns": 5021395312,
+          "event_seq": 79,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

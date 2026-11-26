@@ -1,0 +1,16 @@
+{
+  "baseline_commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+  "precommit_checks": true,
+  "hashes": {
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md": "8442b7c334767107bcf37761d6bb8f7679a506a86c2a576bd56f8cdaa3062b49",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus.ts": "5f8a1aa17b247cf4240ce5f5fd2c56729b541650c5055797136cae95a1666eb3",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts": "1ba60c749471e730c792d922da92fdfe5dbfee0771d3e20648fe1811f4521e85",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text.ts": "99566c5d40d5e8fe29f91070703729556a203d7d57ee43146734924357e67c84"
+  },
+  "notes": [
+    "Producer and test hashes bind all executed checks. Guidance changed after checks; it documents the exercised behavior.",
+    "Regression written before production edit; not run red because captured destructive failure is ground truth.",
+    "No exported symbol signatures changed; existing destination helper reused.",
+    "External lexicon remains a string array. No metadata stamped into lexicon or selected prose."
+  ]
+}

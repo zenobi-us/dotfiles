@@ -1,0 +1,11 @@
+{
+  "observation": "5456c4a5dfda4e5634a383a2236e4ad0630e6c06 6d818ee3eb08d7ae44c233b53dfac6b308096cae HEAD -> feature/skill-contract-manifests-15-plain-language\n",
+  "hook_generated_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json"
+  ],
+  "checks_executed_before_commit": true,
+  "hashes_unchanged": true,
+  "owned_alias_removed": true,
+  "owned_services": []
+}

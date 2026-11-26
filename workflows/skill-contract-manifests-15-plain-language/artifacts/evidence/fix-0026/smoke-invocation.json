@@ -1,0 +1,511 @@
+{
+  "command": "env BUN_OPTIONS=--install=fallback mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+  "text": "{\"status\":\"passed\",\"commands\":54,\"fixture_only\":true,\"retained\":\"/tmp/scm15-verification-evidence-G7spuT/commands-and-observations.json\"}\n\n\nWall time: 4.88 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 4881.573380999995,
+    "trace": {
+      "v": 1,
+      "seq": 20,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 4879997781,
+      "script": "env BUN_OPTIONS=--install=fallback mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 227,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 227,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 227,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 227,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 4879958167,
+              "at": 29906,
+              "argv": [
+                "env",
+                "BUN_OPTIONS=--install=fallback",
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+              ],
+              "res": "tool",
+              "end_ns": 4879988073,
+              "end_seq": 19
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 34,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 35,
+              "hi": 39,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 40,
+              "hi": 44,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 45,
+              "hi": 47,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 48,
+              "hi": 51,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 52,
+              "hi": 227,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAOMBAQDjAQAAAQIA4wEAAAcDAAMBAANlbnYEBCIBAB5CVU5fT1BUSU9OUz0tLWluc3RhbGw9ZmFsbGJhY2sFIycBAARtaXNlBigsAQAEZXhlYwctLwEAAi0tCDAzAQADYnVuCTTjAQEArwEvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzL3dvcmtmbG93cy9za2lsbC1jb250cmFjdC1tYW5pZmVzdHMtMTUtcGxhaW4tbGFuZ3VhZ2UvYXJ0aWZhY3RzL2V2aWRlbmNlL3BhcmVudC1zb3VyY2UtdmVyaWZpY2F0aW9uLTAwMDEvc21va2Utc291cmNlLnRzAAAAAAI="
+        },
+        {
+          "line": 1,
+          "bytes": 63,
+          "source": "export BUN_OPTIONS='--install=fallback'; exec -a 'mise' -- \"$@\"",
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 39,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 39,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 39,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 17102,
+              "at": 1259749,
+              "argv": [
+                "export",
+                "BUN_OPTIONS=--install=fallback"
+              ],
+              "res": "intrinsic",
+              "end_ns": 1276851,
+              "end_seq": 11
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 6,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 7,
+              "hi": 39,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "and_or",
+              "lo": 41,
+              "hi": 63,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 41,
+              "hi": 63,
+              "p": 5,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 41,
+              "hi": 63,
+              "p": 6,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 4878575547,
+              "at": 1276851,
+              "argv": [
+                "/home/zenobius/.local/bin/mise",
+                "exec",
+                "--",
+                "bun",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+              ],
+              "res": "external",
+              "pid": 4008965,
+              "end_ns": 4879852398,
+              "end_seq": 17
+            },
+            {
+              "k": "word",
+              "lo": 41,
+              "hi": 45,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 46,
+              "hi": 48,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 49,
+              "hi": 55,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 56,
+              "hi": 58,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 59,
+              "hi": 63,
+              "p": 7,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAIAACcBACcAAAECACcAAAIDAAYBAAZleHBvcnQEBycCAAxCVU5fT1BUSU9OUz0CEi0taW5zdGFsbD1mYWxsYmFjawAAAAAABSk/Bik/AAABByk/AAAFCCktAQAEZXhlYwkuMAEAAi1hCjE3AQIEbWlzZQs4OgEAAi0tDDs/AQMBBgIAAAAAAAAAAAAC",
+          "callout": true
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 80,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 29906,
+          "event_seq": 82,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 29906,
+          "event_seq": 83,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "env",
+            "BUN_OPTIONS=--install=fallback",
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+          ],
+          "assigns": [],
+          "resolved": "tool",
+          "redirs": []
+        },
+        {
+          "seq": 6,
+          "t_ns": 1239912,
+          "event_seq": 85,
+          "vpid": 1073741827,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 8,
+          "t_ns": 1259749,
+          "event_seq": 87,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 15
+          },
+          "vpid": 1073741827,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 9,
+          "t_ns": 1259749,
+          "event_seq": 88,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 15
+          },
+          "vpid": 1073741827,
+          "kind": "CmdExpanded",
+          "argv": [
+            "export",
+            "BUN_OPTIONS=--install=fallback"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 10,
+          "t_ns": 1274567,
+          "event_seq": 89,
+          "u": 1,
+          "n": 2,
+          "vpid": 1073741827,
+          "kind": "Assign",
+          "name": "BUN_OPTIONS",
+          "value": "--install=fallback",
+          "full_len": 18,
+          "scope": "subshell"
+        },
+        {
+          "seq": 11,
+          "t_ns": 1276851,
+          "event_seq": 90,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 15
+          },
+          "vpid": 1073741827,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 17102,
+          "pipestatus": []
+        },
+        {
+          "seq": 12,
+          "t_ns": 1276851,
+          "event_seq": 91,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 16
+          },
+          "vpid": 1073741827,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 13,
+          "t_ns": 1276851,
+          "event_seq": 92,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 16
+          },
+          "vpid": 1073741827,
+          "kind": "CmdExpanded",
+          "argv": [
+            "exec",
+            "-a",
+            "mise",
+            "--",
+            "/home/zenobius/.local/bin/mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 14,
+          "t_ns": 1287782,
+          "event_seq": 93,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 16
+          },
+          "vpid": 1073741827,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.local/bin/mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 15,
+          "t_ns": 1628870,
+          "event_seq": 94,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 16
+          },
+          "vpid": 1073741827,
+          "kind": "Spawn",
+          "pid": 4008965,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+          ]
+        },
+        {
+          "seq": 16,
+          "t_ns": 4877377394,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 16
+          },
+          "vpid": 1073741827,
+          "kind": "Output",
+          "text": "{\"status\":\"passed\",\"commands\":54,\"fixture_only\":true,\"retained\":\"/tmp/scm15-verification-evidence-G7spuT/commands-and-observations.json\"}\n",
+          "fd": 1
+        },
+        {
+          "seq": 17,
+          "t_ns": 4879852398,
+          "event_seq": 95,
+          "u": 1,
+          "n": 7,
+          "command": {
+            "run": 13,
+            "vpid": 1073741827,
+            "seq": 16
+          },
+          "vpid": 1073741827,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 4878575547,
+          "pipestatus": []
+        },
+        {
+          "seq": 18,
+          "t_ns": 4879860965,
+          "event_seq": 96,
+          "vpid": 1073741827,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 19,
+          "t_ns": 4879988073,
+          "event_seq": 97,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 4879958167,
+          "pipestatus": []
+        },
+        {
+          "seq": 20,
+          "t_ns": 4879997781,
+          "event_seq": 98,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}
