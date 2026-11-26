@@ -1,0 +1,97 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+    "tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7"
+  },
+  "review_base_commit": "9fc43bd67db47d8fb807d20579a1ecdba5015c1b",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ],
+  "commit_list": [
+    "96891691 feat: adopt skill-contract-manifests-16-web-design-metadata"
+  ],
+  "coordination": {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/coordination.ts",
+      "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "--json",
+      "--scope",
+      "mise/conf.d/devtools-agent/bundles/creator/skills/web-design",
+      "--scope",
+      "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "--scope",
+      "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "timeout_seconds": 60,
+    "outcome": "Command timed out after 60 seconds",
+    "stdout": "",
+    "exit_code": null
+  },
+  "axis_launches": [
+    {
+      "axis": "standards",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nCould not spawn child agent: Child launch failed; retained run 259451ea-5bc6-440e-9a07-d4004a259d27: herdr-app requires HC_TERMINAL_ID to locate the parent space.\n"
+    },
+    {
+      "axis": "spec",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nCould not spawn child agent: Child launch failed; retained run e4d80588-6fd3-4f79-a881-56cfecfad534: herdr-app requires HC_TERMINAL_ID to locate the parent space.\n"
+    }
+  ],
+  "resources": {
+    "standards": {
+      "run_id": "259451ea-5bc6-440e-9a07-d4004a259d27",
+      "target": "",
+      "processes": [],
+      "shutdown": "unconfirmed",
+      "exit_code": 1
+    },
+    "spec": {
+      "run_id": "e4d80588-6fd3-4f79-a881-56cfecfad534",
+      "target": "",
+      "processes": [],
+      "shutdown": "unconfirmed",
+      "exit_code": 1
+    }
+  },
+  "desktop_observation": {
+    "source_space_present": true,
+    "only_source_terminal": "t2jd",
+    "only_source_tab": "skill-contract-manifests-16-web-design-metadata \u00b7 review",
+    "axis_tabs_absent": true
+  },
+  "native_smoke": {
+    "executed": false,
+    "reason": "Required coordination check timeout triggers approval68 stop boundary."
+  },
+  "known_failure": {
+    "source_commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+    "source_tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7",
+    "ledger_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/native-probes.json",
+    "fixture_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/invalid-utf8-catalog.bin",
+    "fixture_inputs_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/fixture-inputs.json",
+    "expected_exit": 1,
+    "observed_exit": 0,
+    "input_bytes_preserved": true,
+    "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "line": 27,
+    "rule": "User approval68 explicitly requires rejecting invalid UTF-8 before parsing while preserving valid inputs. Ground-truth failure must be consumed, not rerun on unchanged source."
+  }
+}

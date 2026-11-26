@@ -1,0 +1,15 @@
+{
+  "transport_equal_authoritative_receipt": true,
+  "delivery_reader_success": true,
+  "status": "blocked",
+  "verdict_present": false,
+  "source_commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+  "source_tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7",
+  "scope_paths_exact": true,
+  "scope_path_count": 11,
+  "comparison_correction": "Initial throwaway parent comparison incorrectly required ordering of changed_scope. Actual and expected have exactly the same11 unique paths, different order. Corrected set comparison only; no receipt/guard/source change or actual check retry.",
+  "native_smoke_executed": false,
+  "independent_axes_completed": false,
+  "known_utf8_failure_consumed_not_replayed": true,
+  "acceptance": false
+}

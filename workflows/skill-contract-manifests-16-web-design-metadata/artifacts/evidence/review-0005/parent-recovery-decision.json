@@ -1,0 +1,38 @@
+{
+  "command": "worktree/scripts/inspect.ts tracker/tickets/skill-contract-manifests-16-web-design-metadata.md --json",
+  "exit_code": 0,
+  "ticket_status": "claimed",
+  "decision": {
+    "action": "review",
+    "mode": "retry",
+    "label": "Retry interrupted review",
+    "reason": "Inspect prior review output, then use a fresh reviewer. An interrupted review is not a verdict.",
+    "requiredApproval": true,
+    "parentReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml",
+    "inputs": [
+      "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-validation.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-resources-after.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0005.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0005.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/blocked-checks.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/failure-provenance.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0004.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/start-complete-0003.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/parent-validation.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/native-smoke.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/commit-binding.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/resources-before-parent-closure.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/publication-input-corrections.json",
+      "workflows/skill-contract-manifests-16-web-design-metadata/manifest.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/latest-status.yaml",
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md",
+      "workflows/skill-contract-manifests-16-web-design-metadata/events/start-0001.yaml"
+    ]
+  },
+  "limits": "Only the native decision and ticket status were selected successfully; other guessed projection keys in the temporary jq filter were null and are not evidence of actual history/source fields."
+}

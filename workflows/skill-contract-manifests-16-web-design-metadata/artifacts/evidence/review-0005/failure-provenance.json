@@ -1,0 +1,68 @@
+{
+  "launch_environment": {
+    "executor": "Python Eval subprocess.run",
+    "HC_TERMINAL_ID_present": false,
+    "HC_TERMINAL_ID": null,
+    "MUXER_SUBAGENT_DEPTH": null,
+    "RESULT_DELIVERY_CONTEXT": null
+  },
+  "bash_environment_observed": {
+    "HC_TERMINAL_ID": "t2jd",
+    "RESULT_DELIVERY_CONTEXT": "/var/home/zenobius/.local/state/result-delivery/runs/e8a241ee-9916-4cb3-bc7c-b55d9517f2a5/context.json",
+    "MUXER_SUBAGENT_RUN_ID": "e8a241ee-9916-4cb3-bc7c-b55d9517f2a5"
+  },
+  "launches": [
+    {
+      "axis": "standards",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+        "spawn",
+        "--muxer",
+        "herdr-app",
+        "--agent",
+        "omp",
+        "--cwd",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "--result-schema",
+        "review-axis/v1",
+        "--prompt-file",
+        "/tmp/scm16-standards-prompt.txt",
+        "--title",
+        "skill-contract-manifests-16-web-design-metadata \u00b7 Standards"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nCould not spawn child agent: Child launch failed; retained run 259451ea-5bc6-440e-9a07-d4004a259d27: herdr-app requires HC_TERMINAL_ID to locate the parent space.\n"
+    },
+    {
+      "axis": "spec",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+        "spawn",
+        "--muxer",
+        "herdr-app",
+        "--agent",
+        "omp",
+        "--cwd",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "--result-schema",
+        "review-axis/v1",
+        "--prompt-file",
+        "/tmp/scm16-spec-prompt.txt",
+        "--title",
+        "skill-contract-manifests-16-web-design-metadata \u00b7 Spec"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nCould not spawn child agent: Child launch failed; retained run e4d80588-6fd3-4f79-a881-56cfecfad534: herdr-app requires HC_TERMINAL_ID to locate the parent space.\n"
+    }
+  ],
+  "publication_initial_error": {
+    "exit_code": 1,
+    "stderr": "failed to create a temporary file for atomic write: artifacts/reviews: No such file or directory (os error 2)",
+    "resolution": "Created authorized review artifact directory; exclusive MQ publication succeeded."
+  },
+  "parent_instruction": "Do not retry required checks, axes, change env or repair tooling. Deliver blocked review without verdict."
+}

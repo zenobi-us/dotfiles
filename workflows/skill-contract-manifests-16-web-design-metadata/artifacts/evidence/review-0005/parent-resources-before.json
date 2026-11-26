@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "e8a241ee-9916-4cb3-bc7c-b55d9517f2a5",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2jd",
+    "createdAt": "2026-11-26T06:49:38.845Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "operationId": "e8a241ee-9916-4cb3-bc7c-b55d9517f2a5"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "e8a241ee-9916-4cb3-bc7c-b55d9517f2a5",
+    "observedAt": "2026-11-26T06:55:19.224Z",
+    "processes": [
+      {
+        "pid": 155829,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "38108092",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 156600,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "38110088",
+        "command": "mise",
+        "parentPid": 155829,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      },
+      {
+        "pid": 156601,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "38110088",
+        "command": "mise",
+        "parentPid": 155829,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "stopped"
+      },
+      {
+        "pid": 158497,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "38113839",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}
