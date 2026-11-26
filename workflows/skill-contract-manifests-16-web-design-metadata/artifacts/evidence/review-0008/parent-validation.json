@@ -1,0 +1,28 @@
+{
+  "transport_equal_authoritative_receipt": true,
+  "delivery_reader_success": true,
+  "source_commit": "9689169146996ad84d19430cd19aa2a386c733b2",
+  "source_tree": "67e2145f36f92662554a7bc7c9d2a0032c5a3bb7",
+  "review_base_commit": "24aca20f74cfec089b69d6e0db8dbca68e1971d6",
+  "status": "completed",
+  "verdict": "FAILURE",
+  "scope_paths_exact": true,
+  "independent_axes": 2,
+  "findings": [
+    {
+      "axis": "standards",
+      "id": "standards-001",
+      "severity": "high"
+    },
+    {
+      "axis": "spec",
+      "id": "spec-001",
+      "severity": "high"
+    }
+  ],
+  "fresh_native_outcomes": 52,
+  "all_native_expected_outcomes_match": true,
+  "known_utf8_failure_consumed_not_replayed": true,
+  "axes_shutdown_confirmed": true,
+  "source_accepted": false
+}

@@ -30,3 +30,6 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 ## Comments
 
+
+
+- Review 2026-11-26T09:15:25.403Z: **FAILURE**. Commit `9689169146996ad84d19430cd19aa2a386c733b2`; tree `67e2145f36f92662554a7bc7c9d2a0032c5a3bb7`. [Review artifact](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md).

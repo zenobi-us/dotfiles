@@ -3,9 +3,55 @@
   workflow_id: skill-contract-manifests-16-web-design-metadata,
   ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
   state: BLOCKED,
-  latest_receipt: review-complete-0006,
+  latest_receipt: review-complete-0009,
   latest_source_commit: 9689169146996ad84d19430cd19aa2a386c733b2,
   latest_source_tree: 67e2145f36f92662554a7bc7c9d2a0032c5a3bb7,
-  latest_review_verdict: null,
-  open_findings: []
+  latest_review_verdict: FAILURE,
+  open_findings:
+    [
+      {
+          adr: NO ADR,
+          axis: standards,
+          description: 'Hard violation of checkpoint-0068.yaml approval.scope: Reject
+            invalid UTF-8 before parsing; add native regression. readCatalog
+            uses readFile(path, "utf8"), which replaces invalid byte sequences
+            before validateCatalog receives the text. The retained
+            native-probes.json records expected exit 1 but observed exit 0 for
+            the invalid UTF-8 catalog at the frozen commit. The native smoke
+            suite creates string fixtures only and has no malformed-byte
+            regression.',
+          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts,
+          id: standards-001,
+          line: 27,
+          required_change: "Read catalog bytes and reject invalid UTF-8 before JSON
+            parsing. Preserve valid inputs and original bytes. Add a native
+            malformed-byte regression that asserts command rejection and byte
+            preservation, alongside valid current and historical input
+            coverage.",
+          severity: high,
+          validation_command: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts
+        },
+      {
+          adr: NO ADR,
+          axis: spec,
+          description: 'Approval68 requires: "Reject invalid UTF-8 before parsing; add
+            native regression." readCatalog decodes with readFile(path, "utf8"),
+            which replaces invalid bytes before validateCatalog parses the text.
+            The pinned native-probes.json records expected exit 1 but observed
+            exit 0 for an invalid UTF-8 historical catalog. The native smoke
+            suite has no invalid-byte fixture, so its existing passing run does
+            not satisfy this boundary.',
+          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts,
+          id: spec-001,
+          line: 27,
+          required_change: "Read catalog bytes and reject invalid UTF-8 before JSON
+            parsing. Preserve valid inputs and input bytes. Add a native
+            malformed-byte regression through the owning validate and select
+            commands, with byte-level preservation assertions and valid
+            historical/current controls. Keep persistence in the shared upgrade
+            operations.",
+          severity: high,
+          validation_command: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts
+        }
+    ]
 }

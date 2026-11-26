@@ -1,0 +1,24 @@
+{
+  "spec": {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+      "resources",
+      "5199e9f7-76b9-4d7c-8581-75eb598a34a2"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "exit_code": 0,
+    "stdout": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"5199e9f7-76b9-4d7c-8581-75eb598a34a2\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2jw\",\"createdAt\":\"2026-11-26T09:11:45.752Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"5199e9f7-76b9-4d7c-8581-75eb598a34a2\",\"parentRunId\":\"ced104bb-0bef-49ce-8f8a-a086df638a93\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"5199e9f7-76b9-4d7c-8581-75eb598a34a2\",\"observedAt\":\"2026-11-26T09:14:21.040Z\",\"processes\":[{\"pid\":282188,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"38960838\",\"command\":\"omp\",\"parentPid\":281393,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"stopped\"}],\"shutdown\":\"confirmed\"}}\n",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  },
+  "standards": {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+      "resources",
+      "557ebc3a-d333-4921-9463-013fa8e41298"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "exit_code": 0,
+    "stdout": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"557ebc3a-d333-4921-9463-013fa8e41298\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2jv\",\"createdAt\":\"2026-11-26T09:11:45.743Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"557ebc3a-d333-4921-9463-013fa8e41298\",\"parentRunId\":\"ced104bb-0bef-49ce-8f8a-a086df638a93\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"557ebc3a-d333-4921-9463-013fa8e41298\",\"observedAt\":\"2026-11-26T09:14:21.595Z\",\"processes\":[{\"pid\":282108,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"38960831\",\"command\":\"omp\",\"parentPid\":281359,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"stopped\"}],\"shutdown\":\"confirmed\"}}\n",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  }
+}

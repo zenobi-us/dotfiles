@@ -1,0 +1,26 @@
+{
+  "kind": "result",
+  "operationId": "5199e9f7-76b9-4d7c-8581-75eb598a34a2",
+  "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/5199e9f7-76b9-4d7c-8581-75eb598a34a2/result.json",
+  "result": {
+    "axis": "spec",
+    "findings": [
+      {
+        "adr": "workflows/goal-skill-contract-manifests/events/checkpoint-0068.yaml:53",
+        "description": "Approval68 requires: \"Reject invalid UTF-8 before parsing; add native regression.\" readCatalog decodes with readFile(path, \"utf8\"), which replaces invalid bytes before validateCatalog parses the text. The pinned native-probes.json records expected exit 1 but observed exit 0 for an invalid UTF-8 historical catalog. The native smoke suite has no invalid-byte fixture, so its existing passing run does not satisfy this boundary.",
+        "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+        "id": "spec-001",
+        "line": 27,
+        "required_change": "Read catalog bytes and reject invalid UTF-8 before JSON parsing. Preserve valid inputs and input bytes. Add a native malformed-byte regression through the owning validate and select commands, with byte-level preservation assertions and valid historical/current controls. Keep persistence in the shared upgrade operations.",
+        "severity": "high",
+        "validation_command": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      }
+    ],
+    "report": "FAILURE: one blocking specification finding. Reviewed all 11 changed files for commit 9689169146996ad84d19430cd19aa2a386c733b2 against base 24aca20f74cfec089b69d6e0db8dbca68e1971d6. Read the full canonical ticket and initiative through MQ with okf in the publication checkout. Checked approval68 and the recorded native failure against the reader and native regression cases. The implementation does not meet the explicit pre-parse UTF-8 rejection and native regression requirement. No additional specification finding identified. The established failure was not replayed. No source edits, builds, lint, tests, formatters, tracker writes, commits, integration, relocation repair, or serverfiles access occurred. The review is complete; domain acceptance fails.",
+    "schemaVersion": "review-axis/v1"
+  },
+  "resultSchema": "review-axis/v1",
+  "runId": "5199e9f7-76b9-4d7c-8581-75eb598a34a2",
+  "schemaVersion": "result-delivery/v2",
+  "sha256": "fa64a719ae6e792ea79f1a2fd2f3916996c83e0adebb8fbbcb9bee0bf6b9ed50"
+}

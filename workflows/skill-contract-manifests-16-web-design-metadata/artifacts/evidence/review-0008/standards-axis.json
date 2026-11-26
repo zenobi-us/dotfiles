@@ -1,0 +1,26 @@
+{
+  "kind": "result",
+  "operationId": "557ebc3a-d333-4921-9463-013fa8e41298",
+  "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/557ebc3a-d333-4921-9463-013fa8e41298/result.json",
+  "result": {
+    "axis": "standards",
+    "findings": [
+      {
+        "adr": null,
+        "description": "Hard violation of checkpoint-0068.yaml approval.scope: Reject invalid UTF-8 before parsing; add native regression. readCatalog uses readFile(path, \"utf8\"), which replaces invalid byte sequences before validateCatalog receives the text. The retained native-probes.json records expected exit 1 but observed exit 0 for the invalid UTF-8 catalog at the frozen commit. The native smoke suite creates string fixtures only and has no malformed-byte regression.",
+        "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+        "id": "standards-001",
+        "line": 27,
+        "required_change": "Read catalog bytes and reject invalid UTF-8 before JSON parsing. Preserve valid inputs and original bytes. Add a native malformed-byte regression that asserts command rejection and byte preservation, alongside valid current and historical input coverage.",
+        "severity": "high",
+        "validation_command": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      }
+    ],
+    "report": "FAILURE: one hard violation. Reviewed all 11 files in 24aca20f74cfec089b69d6e0db8dbca68e1971d6...9689169146996ad84d19430cd19aa2a386c733b2, the canonical ticket and full initiative through MQ/OKF, repository standards, approval68, and retained native evidence. The catalog reader silently replaces invalid UTF-8 before parsing. This conflicts with checkpoint-0068.yaml approval.scope. The required native malformed-byte regression is also absent. The retained probe establishes rejection failure; I did not replay it. No additional documented-standard violations or actionable smell findings were identified. The only indexed ADR concerns Pi Ink and does not apply. This read-only review ran no builds, lint, tests, formatters, repairs, or tracker mutations. It did not access serverfiles or change repository-relocation.ts. Base-only metadata was not treated as source deletion.",
+    "schemaVersion": "review-axis/v1"
+  },
+  "resultSchema": "review-axis/v1",
+  "runId": "557ebc3a-d333-4921-9463-013fa8e41298",
+  "schemaVersion": "result-delivery/v2",
+  "sha256": "41de1a13b7a8387fe06c59b89f292cb44949e8a2f82463b1f590c0f18d6b8a0e"
+}
