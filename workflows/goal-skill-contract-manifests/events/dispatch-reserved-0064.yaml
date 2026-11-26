@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0064",
+  "parent_event": "dispatch-reconciled-0063",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "start",
+  "attempt": 1,
+  "ticket_attempt": 1,
+  "consumed_receipt_refs": [],
+  "previous_ticket_terminal_receipt": "workflows/skill-contract-manifests-15-plain-language/events/finish-complete-0038.yaml",
+  "direct_prerequisite_refs": [
+    "tracker/tickets/skill-contract-manifests-03-safe-upgrades.md"
+  ],
+  "direct_prerequisites_completed": true,
+  "planned_source_branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "base_branch": "master",
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design"
+  ],
+  "remaining_allowances": {
+    "ticket_attempts": 99,
+    "dispatches": 2485
+  },
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [],
+    "reservations": [],
+    "overlaps": [],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "missing",
+          "candidates": 0
+        },
+        "errors": []
+      }
+    ],
+    "decision": "Canonical16 unclaimed/ready, direct03 completed. No source, owner, receipt or reservation for16. Scope exact web-design owner plus mandatory Creator/marketplace generated metadata; current scoped Git paths clean. Unrelated incomplete linked inventory remains unknown and untouched. Prior15 fully published/completed/no next action before selection. No web application or historical source repository changes."
+  },
+  "created_at": "2026-11-26T04:25:59.123Z"
+}
