@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts",
+    "remove",
+    "feature/skill-contract-manifests-15-plain-language",
+    "integration/2e409fce-a87a-4ce7-900b-d47bba6a4006",
+    "--min-age=0s"
+  ],
+  "exit_code": 0,
+  "removed": [
+    "feature/skill-contract-manifests-15-plain-language",
+    "integration/2e409fce-a87a-4ce7-900b-d47bba6a4006"
+  ],
+  "refused": [],
+  "worktrunk_reason": "ancestor",
+  "workspaces_absent": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006"
+  ],
+  "app_observation": "Actual herdr-app ls has no active space for either recorded folder. All unrelated spaces preserved.",
+  "temporary_owned_paths_removed": [
+    "/tmp/scm15-test-deps-rDy0rx",
+    "/tmp/scm15-parent-baseline-odJX6W"
+  ],
+  "retained_evidence": "All baseline, dependency preparation, native CLI observations and candidate results are committed canonical copies; no remaining consumer alias."
+}
