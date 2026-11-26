@@ -1,0 +1,33 @@
+{
+  "approval_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0086.yaml",
+  "phase_start_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0013.yaml",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "source_changed": false,
+  "new_snapshot": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md",
+  "validated_frontmatter": {
+    "schemaVersion": "worktree-pr-draft/v1",
+    "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+    "receipt_id": "review-start-0013",
+    "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+    "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403"
+  },
+  "snapshot_and_current_draft_frontmatter_match": true,
+  "current_implementation_log_restored_from": "ecffa105:workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md",
+  "earlier_valid_log_history_preserved": true,
+  "current_fix_and_recovery_entry_appended": true,
+  "failed_snapshot_preserved": {
+    "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md",
+    "working_blob": "c61a75a8c87a04f02d4b2a83f086b37d3448562c",
+    "committed_blob": "c61a75a8c87a04f02d4b2a83f086b37d3448562c",
+    "unchanged": true
+  },
+  "mq_pipeline": "Explicit null/raw input and raw output; literal scalar Markdown query, no JSON object string selection. Current draft copied through raw MQ; retained log read through Git+MQ and appended using MQ.",
+  "usage_correction": "Initial --args value began with --- and clap rejected it with exit2 before query evaluation. Switched to a literal scalar string query; no source or guard changes, no clobbering.",
+  "parent_native_verification_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0002/encoding-native-probes.json",
+  "parent_native_outcomes": 6,
+  "parent_all_expected": true,
+  "source_accepted": false,
+  "independent_review_pending": true,
+  "relocation_defect": "ESCALATION ONLY; untouched"
+}

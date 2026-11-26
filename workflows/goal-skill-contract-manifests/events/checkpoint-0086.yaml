@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0086",
+  "parent_event": "checkpoint-0085",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "state": "approved",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "reason": "User selected Recover and review after new MQ draft validation failure. Scope: preserve bad immutable snapshot and receipts, create new correct immutable source-bound draft, restore mutable current projections, keep committed source unchanged, then independent encoding verification and fresh canonical review/retry. No relocation repair or source/receipt guard changes.",
+  "approval": {
+    "decision": "Recover and review",
+    "source_changes_allowed": false,
+    "new_immutable_snapshot_allowed": true,
+    "repair_mutable_draft_and_log_allowed": true,
+    "retain_failed_artifacts_and_history": true,
+    "parent_encoding_verification_allowed": true,
+    "fresh_independent_review_allowed": true,
+    "stop_on_new_required_failure": true,
+    "relocation_defect": "ESCALATION ONLY"
+  },
+  "canonical_next_action": {
+    "action": "review",
+    "mode": "retry",
+    "parent_receipt": "fix-complete-0012"
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 4,
+    "ticket_attempts_remaining": 96,
+    "dispatches_consumed": 18,
+    "dispatches_remaining": 2482
+  },
+  "created_at": "2026-11-26T09:52:33.573Z"
+}
