@@ -1,0 +1,19 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0039.yaml",
+  "run_id": "e3b0960d-3442-410c-a2eb-5e7b51c505ac",
+  "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+  "processes": [
+    {
+      "pid": 3809108,
+      "start_ticks": "35641609",
+      "signals": [],
+      "state": "already_absent"
+    },
+    {
+      "pid": 3809134,
+      "start_ticks": "35641614",
+      "signals": [],
+      "state": "already_absent"
+    }
+  ]
+}
