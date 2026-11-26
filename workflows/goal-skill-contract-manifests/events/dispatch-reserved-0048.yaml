@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0048",
+  "parent_event": "dispatch-reconciled-0047",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "review",
+  "attempt": 1,
+  "ticket_attempt": 8,
+  "consumed_receipt_refs": [
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0020.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0021.yaml"
+  ],
+  "planned_source_branch": "feature/skill-contract-manifests-15-plain-language",
+  "base_branch": "master",
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts"
+  ],
+  "remaining_allowances": {
+    "ticket_attempts": 92,
+    "dispatches": 2489
+  },
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0021.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "sourceBranch": "feature/skill-contract-manifests-15-plain-language",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "overlaps": [],
+    "snapshot_reservation": "Inventory started before reconciliation47; its sole observed reservation45 is now closed by published valid start-complete0021 and dispatch-reconciled0047. All seven starts reconciled. No other scoped owner or reservation observed.",
+    "decision": "Read-only review of exact clean source and already published prerequisite88. Source implementation run fully stopped. Current coordinator remains sole recorded owner; bounded same-owner approval applies. Incomplete stale linked inventory is unrelated/unknown. Generated plugin/marketplace entries are compatible integration metadata; retain target-base developer version with source agent-core version through normal merge/check hooks."
+  },
+  "review_base_commit": "6beaf578a762e1b47cb9947227cbfc7910a5487b",
+  "source_commit": "a33155b7b6f74e8b2437a1c631578fb500d84eb1",
+  "source_tree": "2a365abea33be13b00bcd8cfb92737dfc49a38a6",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-evidence.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/lib/types.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/behaviour-contract.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/cli.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/generate-report.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/assets/answers.example.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/assessment-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/contracts.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/assessment-contracts.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/lib/contracts.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/lib/destinations.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests/contracts.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/references/interview-guide.md",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json"
+  ],
+  "affected_contracts": [
+    "plain-language-answers/v1",
+    "plain-language-answers/v2",
+    "plain-language-findings/v1",
+    "plain-language-findings/v2",
+    "plain-language-evidence/v1",
+    "plain-language-evidence/v2",
+    "plain-language-maturity/v1",
+    "plain-language-maturity/v2",
+    "plain-language-audit-state/v1",
+    "plain-language-audit-state/v2",
+    "skill-contract-manifest/v1",
+    "worktree-receipt/v3",
+    "selected prose read-only boundary",
+    "agent-core plugin/marketplace version synchronization"
+  ],
+  "integration_checks": [
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+      ]
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+      ]
+    }
+  ],
+  "additional_prerequisite_review": {
+    "commit": "88bdcdf101a487b1cb0daa10bbebbf50d86a0128",
+    "already_on_base": true,
+    "source_branch_does_not_contain_it": true,
+    "requirement": "Both independent axes must explicitly inspect and decide the exact prerequisite diff. Normal merge retains it; do not mistake base-only changes for proposed source deletions."
+  },
+  "cleanup_observation": {
+    "run_id": "e43cf149-861e-419c-98dc-8427882bedcc",
+    "shutdown": "confirmed",
+    "live_processes": []
+  },
+  "operator_authorization": "Active goal authorizes independent review; same-owner bounded recovery checkpoint29 applies. No new source mutation or global configuration authorized.",
+  "created_at": "2026-11-26T02:16:08.472Z"
+}

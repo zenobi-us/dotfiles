@@ -6,6 +6,6 @@
   event_root: events,
   artifact_root: artifacts,
   projection_root: projections,
-  latest_receipt: start-complete-0021,
-  state: IMPLEMENTED
+  latest_receipt: review-start-0022,
+  state: REVIEWING
 }
