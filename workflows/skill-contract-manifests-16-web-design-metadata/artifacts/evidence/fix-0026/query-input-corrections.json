@@ -1,0 +1,7 @@
+{
+  "read_only_usage_corrections": [
+    "Unsupported MQ dotted receipt selector produced syntax error; bracket selector produced unusable projection and was not used as evidence. Full original non-Markdown receipts read instead.",
+    "Guessed string reference absent; enumerated installed reference directory and read functions reference plus mq help replace/write_file."
+  ],
+  "transformation_correction": "MQ text output adds a newline; final transformations used write_file on original frozen bytes to preserve surrounding bytes. No runtime command was repeated."
+}

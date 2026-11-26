@@ -1,0 +1,15 @@
+{
+  "actual_rows": 56,
+  "expected_rows": 56,
+  "all_expected_exits": true,
+  "expected_exit_frequencies": {
+    "0": 21,
+    "1": 35
+  },
+  "actual_exit_frequencies": {
+    "0": 21,
+    "1": 35
+  },
+  "outer_exit": 0,
+  "stderr_bytes": 0
+}

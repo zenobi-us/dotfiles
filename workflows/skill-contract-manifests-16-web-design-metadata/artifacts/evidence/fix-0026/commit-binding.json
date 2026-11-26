@@ -1,0 +1,132 @@
+{
+  "source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+  "source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "git_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "working_equals_committed": true,
+      "precommit_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "git_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "working_equals_committed": true,
+      "precommit_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "git_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "working_equals_committed": true,
+      "precommit_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "git_blob": "606b19275b7199aa9681c6e9e2e25d7169675912",
+      "sha256": "8d440016ecbf988620b12ddad3ace0171775f3745bc68565e85030391451b510",
+      "working_equals_committed": true,
+      "precommit_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "git_blob": "4313780965d87c644c29364fbc10663bb6f566fa",
+      "sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "working_equals_committed": true,
+      "precommit_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "git_blob": "94b2c1d041d22e95633d087719e45dbb02fafda1",
+      "sha256": "90c146f0241fb51973a386d6dccb6a96e8a20b6392d6240870c4ee3aa6204861",
+      "working_equals_committed": true,
+      "precommit_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "git_blob": "bd64dbeaddcbb77758867325aa1c77deae0d0329",
+      "sha256": "34631d36adee97116c5a2878134f4e3a1a18a11e0e90af31b9fcd874d582bea1",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "git_blob": "c761d19dcd8e5fabf992467635e0ec99567f9044",
+      "sha256": "8d0a1abacde17e8e08af8181e1af04e44f8fcb3d07b3c37ad0df15495753fcc0",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "git_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "git_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "git_blob": "bed5a54e4599ffcfc73ffd616f1e43f25103d734",
+      "sha256": "2eaef86e4214a52a78a87a1f99243ed24067fe4c3b4a359e902f8636f6af7425",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md",
+      "git_blob": "f6a33e7fcb5ecbf918674b9394ad6321e2da9d75",
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md",
+      "git_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "git_blob": "6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f",
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md",
+      "git_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md",
+      "git_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "working_equals_committed": true,
+      "precommit_equals_committed": null
+    }
+  ],
+  "runtime_executed_before_commit": true,
+  "postcommit_execution": false,
+  "generated_metadata_bound_after_hooks": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "scope_exact": true
+}

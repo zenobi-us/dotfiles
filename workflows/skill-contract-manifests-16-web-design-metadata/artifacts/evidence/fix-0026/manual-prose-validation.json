@@ -1,0 +1,19 @@
+{
+  "method": "Full final authored documents read through MQ; manual sentence, paragraph, series and meaning audit",
+  "finding_ids": [
+    "standards-006",
+    "standards-007",
+    "standards-008"
+  ],
+  "standards-006": "Three selection actions use bold two-word lead-ins. Three printed values use a nested labelled list. Three reference topics use a labelled list. Explicit companion selection, checksum refusal and no implicit repair remain.",
+  "standards-007": "Three definition topics use bold two-word lead-ins. Authoritative link, v2, numeric-1 historical reader, conversion boundaries, contracts declaration and read-only boundary remain.",
+  "standards-008": "Bulk selection and independent outcomes remain together in three sentences. Conversion and consumption integrity remain together in four sentences. Separate authority and byte-preservation prose remains unchanged.",
+  "all_added_prose_audited": true,
+  "descriptive_sentence_max_words": 25,
+  "procedural_sentence_max_words": 20,
+  "paragraph_max_sentences": 5,
+  "all_three_or_more_series_vertical": true,
+  "all_added_list_labels_bold": true,
+  "unchanged_baseline_excluded": true,
+  "permanent_wording_tests_added": false
+}

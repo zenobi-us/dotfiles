@@ -1,0 +1,33 @@
+{
+  "receipt_id": "fix-0026",
+  "transport_sha256": "80d4b6b9fe872af456a638f783180deba92ce22bbfff86f8e65af0991e754321",
+  "authoritative_event_equal": true,
+  "source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+  "source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f",
+  "actual_native_rows": 56,
+  "positive_outcomes": 21,
+  "expected_negative_outcomes": 35,
+  "all_expected": true,
+  "native_timing": "After final prose edits before commit. Six executed runtime/document hashes equal final commit. No postcommit run claimed.",
+  "actual_changed_paths": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "protected_bytes_and_all5_assets_preserved": true,
+  "prior_immutable_files_preserved": 156,
+  "snapshot_and_current_draft_frontmatter_valid": true,
+  "selected_finding_ids_resolved": [
+    "standards-006",
+    "standards-007",
+    "standards-008"
+  ],
+  "source_accepted": false,
+  "review_pending": true,
+  "primary_registered_processes_stopped": 3,
+  "resource_shutdown": "confirmed",
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0
+}

@@ -50,3 +50,40 @@ Latest review is pending for this new source. Review17's verdict is not reused. 
 - **Valid historical draft:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md` remains unchanged.
 
 No unresolved implementation question remains. Independent review and source acceptance remain the parent's decisions.
+
+
+## fix-0026: labelled lists and paragraph limits
+
+Review23 returned FAILURE for `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`. It reported three low hard prose findings. Native56 passed and Spec reported no findings. [Review23 body](workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md) remains immutable.
+
+New source commit: `dab2338e6be69e208c39c6c05164c0a1a066dbf7`. Tree: `85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f`. Fix26 resolves standards-006 through standards-008. Only the three authorised prose sections changed. Normal hooks updated only the two declared metadata paths.
+
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md`.
+
+Full final MQ inspection covered all added prose. Labelled lists and shorter paragraphs preserve every authority and integrity boundary. No permanent wording tests were added.
+
+The owning executable ran once from `/tmp` after final prose edits, before commit. Outer exit was 0. Stderr was empty. All 56 actual rows matched expected exits: 21 successful commands and 35 expected refusals.
+
+Execution started at `2026-11-26T21:59:07.098816+00:00` and took 13.031610 seconds. This is precommit evidence, not postcommit execution. The three executed runtime blobs and final documents equal their committed objects. Generated metadata binds separately after hooks.
+
+Protected bytes equal `d50d3bb1`. All five asset checksums match both frozen source and parent baselines. Catalog nonidentity bytes and ordered associations match the parent numeric baseline. Capture time remains unchanged.
+
+Fresh independent review is pending for the new source. No stale verdict applies. No assigned finding or implementation question remains unresolved. Source is not accepted, merged or pushed.
+
+- **New receipt:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0026.yaml` is the assigned result publication.
+- **Phase authorization:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0025.yaml`.
+- **Consumed review:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-0023.yaml`.
+- **Consumed completion:** `workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0024.yaml`.
+- **Goal reservation:** `workflows/goal-skill-contract-manifests/events/dispatch-reserved-0103.yaml`.
+- **New snapshot:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0026.md`.
+- **Native evidence:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-smoke.json`.
+- **Actual outcomes:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-validation.json`.
+- **Prose inspection:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/manual-prose-validation.json`.
+- **Preserved bytes:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/preservation.json`.
+- **Committed objects:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/commit-binding.json`.
+
+All earlier reviews and failed captures remain unchanged. Parent owns publication-checkout commits and YAML views. Parent also owns tracker changes, independent review, integration and normal primary closure. Relocation remains escalation-only.

@@ -1,0 +1,23 @@
+{
+  "frontmatter": {
+    "schemaVersion": "worktree-pr-draft/v1",
+    "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+    "receipt_id": "fix-0026",
+    "source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+    "source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f"
+  },
+  "frontmatter_exact": true,
+  "required_sections": {
+    "## Problem and implementation": true,
+    "## Changed files": true,
+    "## Validation and preservation": true,
+    "## Resolved findings": true,
+    "## Review and receipt history": true,
+    "## Consumed and produced references": true,
+    "## Open questions and merge status": true
+  },
+  "all_historical_reviews": true,
+  "producer": "fix-0026",
+  "review_pending": true,
+  "prepared_before_exclusive_publication": true
+}

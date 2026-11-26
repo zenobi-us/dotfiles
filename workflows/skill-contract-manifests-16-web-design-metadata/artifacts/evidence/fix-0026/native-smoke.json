@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 0,
+  "started_at": "2026-11-26T21:59:07.098816+00:00",
+  "duration_seconds": 13.031610372010618,
+  "timing": "After all final prose edits, before commit; not postcommit execution",
+  "precommit_sha256": {
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md": "8d440016ecbf988620b12ddad3ace0171775f3745bc68565e85030391451b510",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md": "90c146f0241fb51973a386d6dccb6a96e8a20b6392d6240870c4ee3aa6204861"
+  },
+  "stdout_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-stdout.txt",
+  "stderr_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-stderr.txt"
+}
