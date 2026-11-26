@@ -1,0 +1,14 @@
+{
+  "occurred_at": "2026-11-26T21:08:22.045Z",
+  "operation": "Parse abbreviated tool display as resource JSON",
+  "error": "SyntaxError: JSON Parse error: Unterminated string",
+  "full_raw_artifacts": [
+    "artifact://35",
+    "artifact://37"
+  ],
+  "native_failure": false,
+  "source_failure": false,
+  "body_published": false,
+  "parent_notified": true,
+  "requested_action": "Recover raw transport output only, without repeating checks or changing source; continue same attempt after authorization"
+}

@@ -1,0 +1,22 @@
+{
+  "receipt_id": "review-0017",
+  "transport_sha256": "9f6f4f0c55412a10afc3a0a999855f6e1c87738d5951152414c490458dcffd0e",
+  "authoritative_receipt_equal": true,
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "immutable_body_sha256": "16660038c8cb5146603ae401e33cf39f7e350c4d4680285615217c3a3f2665f8",
+  "native_rows_observed": 56,
+  "native_rows_all_expected": true,
+  "all11_bindings_match": true,
+  "all5_assets_preserved": true,
+  "exact_axis_findings_match": true,
+  "review_usable": true,
+  "verdict": "FAILURE",
+  "source_accepted": false,
+  "transport_acknowledged": true,
+  "parent_resources_shutdown": "confirmed",
+  "parent_owned_processes": 5,
+  "source_desktop_absent": true,
+  "signals_sent": 0,
+  "capture_correction_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0095.yaml"
+}

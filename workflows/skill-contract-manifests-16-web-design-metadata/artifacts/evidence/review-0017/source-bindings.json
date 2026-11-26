@@ -1,0 +1,227 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+    "tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403"
+  },
+  "review_base_commit": "8591d69b747ff0af6f6b8af2eab86ddd8f1dcc9f",
+  "scope": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ],
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "committed_blob": "654c3c8566efe8d83bc4b43030d8c462c2461399",
+      "working_blob": "654c3c8566efe8d83bc4b43030d8c462c2461399"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "committed_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+      "working_blob": "16d989843ab202569632d7af4372e14804a1cc60"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "committed_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+      "working_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "committed_blob": "fc0495cb93375a6042a74ca7dc63d9d2e03a726b",
+      "working_blob": "fc0495cb93375a6042a74ca7dc63d9d2e03a726b"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "committed_blob": "8de38baf7f4c6010a77f38d124904bdcf6aae2cd",
+      "working_blob": "8de38baf7f4c6010a77f38d124904bdcf6aae2cd"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "committed_blob": "a11b0e35503ace85e168299bc53a6fca1dec582f",
+      "working_blob": "a11b0e35503ace85e168299bc53a6fca1dec582f"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "committed_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "working_blob": "89f2cf8d962545533d622d989ebca0556f0d411f"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "committed_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "working_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "committed_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "working_blob": "cce148b205250203af99fff3c98d4312f5f4b000"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "committed_blob": "a70daac0cc08189c10805898570506fad135f25a",
+      "working_blob": "a70daac0cc08189c10805898570506fad135f25a"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "committed_blob": "8b3d027e609a78d674f97c06189c4bf9c6c91f66",
+      "working_blob": "8b3d027e609a78d674f97c06189c4bf9c6c91f66"
+    }
+  ],
+  "catalog_nonidentity_bytes_unchanged": true,
+  "capturedAt": "2026-10-22T10:12:43.516Z",
+  "assets": [
+    {
+      "style": "report-dashboard",
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/llm-benchmarking-margin",
+        "path": "dashboard/DESIGN.md",
+        "localPath": "../llm-benchmarking-margin/dashboard/DESIGN.md"
+      },
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "expected": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "unchanged_from_base": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/DESIGN.md",
+        "localPath": "../finance/pkgs/ledger-app/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "expected": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "unchanged_from_base": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/UI-FOUNDATION.md",
+        "localPath": "../finance/pkgs/ledger-app/UI-FOUNDATION.md"
+      },
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "expected": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "unchanged_from_base": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/dotfiles",
+        "path": "DESIGN.md",
+        "localPath": "DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "expected": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "unchanged_from_base": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/lazyvim.profile",
+        "path": "DESIGN.md",
+        "localPath": "/home/zenobius/.config/nvim/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "expected": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "unchanged_from_base": true
+    }
+  ],
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0015.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+          "commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "reservations": [],
+    "reservation87": {
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0087.yaml",
+      "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0015.yaml",
+      "ambiguous": false,
+      "reconciliationVerified": true
+    },
+    "generated_file_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "Fresh all-three-scope coordination107.15s confirms sole parent t2dv and exact unique sourcefb4104c7. No hard blockers/record diagnostics; no proposed reservation;87 verified reconciled. Both leaves and all3 primary processes stopped/confirmed, source desktop absent. Incomplete other inventory remains unknown. Same observed generated-file overlaps in distinct worktrees remain risks for future integration, not this read-only frozen-source review. No generator/source edits or merge. User92 approves fresh attempt, absolute common-directory verifier and one body after checks. Relocation escalation-only."
+  }
+}

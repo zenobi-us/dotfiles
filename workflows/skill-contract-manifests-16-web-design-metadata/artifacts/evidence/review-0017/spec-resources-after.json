@@ -1,0 +1,4 @@
+{"schemaVersion":"muxer-resource-report/v2","manifest":{"schemaVersion":"muxer-run/v2","runId":"85223667-bf56-427e-ad59-bb5ec5e2cf0a","muxer":"herdr-app","agent":"omp","target":"t2kg","createdAt":"2026-11-26T21:05:47.645Z","cwd":"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata","operationId":"85223667-bf56-427e-ad59-bb5ec5e2cf0a","parentRunId":"bcef98ba-3f1d-48b9-a119-b7b0cffffc70"},"resources":{"schemaVersion":"muxer-resources/v2","runId":"85223667-bf56-427e-ad59-bb5ec5e2cf0a","observedAt":"2026-11-26T21:07:43.581Z","processes":[{"pid":565164,"bootId":"1093b557-9bca-45b2-a143-4217cd820f51","startTicks":"43244993","command":"omp","parentPid":564579,"cwd":"/run/media/zenobius/Store/P…
+
+
+[Some lines truncated to 768 bytes. Use artifact://37:raw:1-1 to read line 1 whole]

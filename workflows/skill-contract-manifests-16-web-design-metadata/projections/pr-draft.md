@@ -58,3 +58,16 @@ Source is not pushed or merged. Parent owns independent review, integration, tra
 - Parent reconciliation: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml`.
 - Publication failure evidence: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/publication-failure.json`.
 - Snapshot: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md`.
+
+
+## Latest review: review-0017
+
+- **Verdict:** FAILURE for `fb4104c7ea2e27f215fab95ec69682b71b101c1b`, tree `c7ecc92e759b7720f1ffadc4d2377473ff481403`.
+- **Standards:** Four low-severity hard prose-rule findings remain: `standards-002` through `standards-005`.
+- **Spec:** No findings.
+- **Validation:** All 56 native command outcomes match. All eleven source blobs and all five assets remain preserved.
+- **Next action:** A fresh fixer must address the prose findings. Source acceptance and integration remain blocked.
+- **Review:** [Immutable report](../artifacts/reviews/review-review-0017.md).
+- **Result:** [Completed review receipt](../events/review-0017.yaml).
+- **Reconciliation:** [Validated parent completion](../events/review-complete-0018.yaml).
+

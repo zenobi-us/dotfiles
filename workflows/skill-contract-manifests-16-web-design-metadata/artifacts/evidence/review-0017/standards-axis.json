@@ -1,0 +1,51 @@
+{
+  "axis": "standards",
+  "findings": [
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard prose-rule breach. code-review/SKILL.md, Language, requires ASD-STE100. ASD-STE100 rule 6.3 limits descriptive sentences to 25 words. The sentence beginning 'It exercises public manifest resolution' exceeds this limit. Rule 8.1 prohibits semicolons. The new inventory cells on lines 9-10 and the identify/detectLegacy sentence on line 20 contain semicolons. No applicable repository override was found.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "id": "standards-002",
+      "line": 53,
+      "required_change": "Split the coverage sentence into short sentences or a vertical list. Replace the semicolons with periods or separate table entries. Preserve identifiers and coverage claims.",
+      "severity": "low",
+      "validation_command": "Read references/source-metadata.md through MQ. Apply ASD-STE100 rules 6.3, 8.1, and 8.5-8.7 manually."
+    },
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard prose-rule breach. code-review/SKILL.md, Language, requires ASD-STE100. Rule 8.1 prohibits semicolons. Line 11 states 'Conversion requires separate user authority; reading and installation never run it.' Line 17 states 'Conversion validates metadata; actual consumption separately verifies bundled integrity.' No applicable repository override was found.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "id": "standards-003",
+      "line": 11,
+      "required_change": "Replace both semicolons with periods. Preserve the separate authority and integrity boundaries.",
+      "severity": "low",
+      "validation_command": "Read references/source-metadata-upgrade.md through MQ. Apply ASD-STE100 rule 8.1 manually."
+    },
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard prose-rule breach. code-review/SKILL.md, Language, requires ASD-STE100. Rule 8.1 prohibits semicolons. The added metadata-consumption paragraph states 'A checksum mismatch stops consumption; do not repair or refresh content implicitly.' This is new prose, not an unchanged example or command. No applicable repository override was found.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "id": "standards-004",
+      "line": 54,
+      "required_change": "Write 'A checksum mismatch stops consumption. Do not repair or refresh content implicitly.'",
+      "severity": "low",
+      "validation_command": "Read references/style-selection.md through MQ. Apply ASD-STE100 rule 8.1 to the added metadata-consumption paragraph."
+    },
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard house-format breach. iso-24495-1/SKILL.md, Scannability & Layout, requires bold bullet lead-ins and vertical lists for series of three or more items. The four new field bullets on lines 26-29 have no bold lead-ins. New prose also contains inline series, including the owner responsibilities on line 3 and regression coverage on line 53. The upgrade definition on lines 5 and 7 contains further inline series. No applicable repository override was found.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "id": "standards-005",
+      "line": 26,
+      "required_change": "Add bold lead-ins to the four field bullets without changing identifiers. Convert the new prose series into vertical lists across the metadata and upgrade definitions.",
+      "severity": "low",
+      "validation_command": "Read the added metadata guidance through MQ. Apply iso-24495-1 Scannability & Layout manually. Preserve code and commands."
+    }
+  ],
+  "report": "Four low-severity hard prose-standard findings remain in the frozen source. These are not runtime blockers.\n\n**standards-002:** `references/source-metadata.md:53` exceeds the ASD-STE100 rule 6.3 descriptive sentence limit. Its inventory cells at lines 9-10 and identity explanation at line 20 also violate rule 8.1. Split the coverage sentence and remove semicolons.\n\n**standards-003:** `references/source-metadata-upgrade.md:11,17` violates rule 8.1. Replace the semicolons in the authority and integrity statements with periods.\n\n**standards-004:** `references/style-selection.md:54` adds another rule 8.1 breach: 'A checksum mismatch stops consumption; do not repair or refresh content implicitly.' Use two sentences.\n\n**standards-005:** `references/source-metadata.md:26-29` lacks the bold bullet lead-ins required by iso-24495-1, Scannability & Layout. New inline prose series also need vertical lists. Examples occur at metadata lines 3 and 53 and upgrade lines 5 and 7. Preserve identifiers and command syntax.\n\nThe governing code-review Language section requires ASD-STE100 and iso-24495-1. No applicable repository override was found. The only indexed architecture decision concerns Pi Ink cleanup and does not govern this change.\n\nI independently inspected all eleven committed paths through the supplied three-dot diff. The raw-byte check precedes catalog parsing and retains valid Unicode support. I found no additional substantiated code-standard breach or Fowler smell. Tests and runtime verification belong to the primary reviewer and were not run by this leaf.",
+  "schemaVersion": "review-axis/v1"
+}

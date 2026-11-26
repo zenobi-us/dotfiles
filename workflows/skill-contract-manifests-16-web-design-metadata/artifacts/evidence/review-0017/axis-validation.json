@@ -1,0 +1,19 @@
+{
+  "standards": {
+    "axis": "standards",
+    "sha256": "8b86c2a23a471d7cf3559b5e5c66662026251b667837442aaa8d433fff6d2424",
+    "words": 205,
+    "findings": 4,
+    "runId": "3b1c74be-7bff-4414-8e12-6a208d065833"
+  },
+  "spec": {
+    "axis": "spec",
+    "sha256": "90ddfdc6e689d6fdac9da4c7612f6bc5a4a46d7338ba98f5b7345cff684525d9",
+    "words": 234,
+    "findings": 0,
+    "runId": "85223667-bf56-427e-ad59-bb5ec5e2cf0a"
+  },
+  "separate_reports": true,
+  "exact_keys": true,
+  "primary_native56": true
+}

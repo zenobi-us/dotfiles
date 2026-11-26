@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0096",
+  "parent_event": "checkpoint-0095",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 4,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0093.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0017.yaml",
+  "status": "completed",
+  "acceptance_status": "usable_failure_four_hard_prose_findings",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "validation": {
+    "fresh_native_outcomes": 56,
+    "actual_rows_checked": 56,
+    "all_expected": true,
+    "all11_blobs_match": true,
+    "all5_assets_preserved": true,
+    "standards_low_hard_findings": 4,
+    "spec_findings": 0,
+    "capture_only_correction": "checkpoint-0095",
+    "captured_checks_rerun": false,
+    "sole_immutable_body_validated": true
+  },
+  "resource_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 5,
+  "leaf_shutdown": {
+    "spec": {
+      "run_id": "85223667-bf56-427e-ad59-bb5ec5e2cf0a",
+      "shutdown": "confirmed",
+      "terminal": "t2kg"
+    },
+    "standards": {
+      "run_id": "3b1c74be-7bff-4414-8e12-6a208d065833",
+      "shutdown": "confirmed",
+      "terminal": "t2kh"
+    }
+  },
+  "extra_signals_sent": false,
+  "accounting": {
+    "ticket_attempts_consumed": 6,
+    "ticket_attempts_remaining": 94,
+    "dispatches_consumed": 20,
+    "dispatches_remaining": 2480,
+    "omp_token_budget": null
+  },
+  "next_action": "Fresh inspector selects fix/begin against usable FAILURE; normal matching-failure fix loop is covered by active goal operations. Reassess coordination/ownership/direct blockers, reserve next attempt, fresh independent fixer. Limit edits to three reference documents and normal hook-generated metadata. No relocation repair.",
+  "created_at": "2026-11-26T21:19:19.022Z"
+}

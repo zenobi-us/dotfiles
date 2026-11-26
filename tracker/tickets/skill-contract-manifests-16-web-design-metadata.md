@@ -33,3 +33,6 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 - Review 2026-11-26T09:15:25.403Z: **FAILURE**. Commit `9689169146996ad84d19430cd19aa2a386c733b2`; tree `67e2145f36f92662554a7bc7c9d2a0032c5a3bb7`. [Review artifact](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md).
+
+
+- Review 2026-11-26T21:14:17.955Z: FAILURE. Source `fb4104c7ea2e27f215fab95ec69682b71b101c1b`, tree `c7ecc92e759b7720f1ffadc4d2377473ff481403`. Four low hard prose-rule findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md).

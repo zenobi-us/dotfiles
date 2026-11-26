@@ -1,0 +1,13 @@
+{
+  "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md",
+  "sha256": "16660038c8cb5146603ae401e33cf39f7e350c4d4680285615217c3a3f2665f8",
+  "source_commit": "fb4104c7ea2e27f215fab95ec69682b71b101c1b",
+  "source_tree": "c7ecc92e759b7720f1ffadc4d2377473ff481403",
+  "verdict": "FAILURE",
+  "ordinary_markdown": true,
+  "scalar_raw_mq": true,
+  "no_clobber": true,
+  "exact_body_validated": true,
+  "standards_findings": 4,
+  "spec_findings": 0
+}

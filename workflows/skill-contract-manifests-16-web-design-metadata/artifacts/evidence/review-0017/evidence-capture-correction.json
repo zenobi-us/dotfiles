@@ -1,0 +1,26 @@
+{
+  "authorized_by": "parent t2dv tool-input capture correction within approval checkpoint-0092",
+  "source_checks_repeated": false,
+  "original_invalid_files_preserved": [
+    "spec-resources-before.json",
+    "spec-resources-after.json"
+  ],
+  "corrections": [
+    {
+      "original": "spec-resources-before.json",
+      "raw_source": "artifact://35:raw",
+      "corrected": "spec-resources-before-full.json"
+    },
+    {
+      "original": "spec-resources-after.json",
+      "raw_source": "artifact://37:raw",
+      "corrected": "spec-resources-after-full.json"
+    }
+  ],
+  "run_id": "85223667-bf56-427e-ad59-bb5ec5e2cf0a",
+  "terminal": "t2kg",
+  "shutdown": "confirmed",
+  "native_verification": "unchanged passing56",
+  "time": "2026-11-26T21:11:00.183Z",
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0095.yaml"
+}
