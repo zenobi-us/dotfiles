@@ -1,0 +1,127 @@
+{
+  "view_ref": "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+  "immutable_snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0026.md",
+  "source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+  "source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f",
+  "reason": "Generated projection lives one directory higher than immutable snapshot. Rebase only snapshot-relative Markdown URL destinations for projection location.",
+  "parent_authority": "Normal parent-owned mutable projection regeneration. No source/contract/receipt guard or immutable history repair.",
+  "only_exact_url_replacements": true,
+  "unchanged_prose_and_frontmatter": true,
+  "immutable_snapshot_sha256_before": "4751adddf37534596fd6ef4ef175578da8489dd99f59c219f989348b3887a153",
+  "immutable_snapshot_sha256_after": "4751adddf37534596fd6ef4ef175578da8489dd99f59c219f989348b3887a153",
+  "link_targets_checked": 22,
+  "all_targets_exist": true,
+  "links": [
+    {
+      "url": "../artifacts/evidence/fix-0026/native-smoke.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-smoke.json",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/evidence/fix-0026/native-stdout.txt",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-stdout.txt",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/evidence/fix-0026/native-stderr.txt",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-stderr.txt",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/evidence/fix-0026/native-validation.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/evidence/fix-0026/manual-prose-validation.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/manual-prose-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/evidence/fix-0026/preservation.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/preservation.json",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/evidence/fix-0026/commit-binding.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/commit-binding.json",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/reviews/review-review-0005.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0005.md",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/reviews/review-review-0008.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/reviews/review-review-0014.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0014.md",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/reviews/review-review-0017.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/reviews/review-review-0023.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md",
+      "exists": true
+    },
+    {
+      "url": "../events/fix-0011.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml",
+      "exists": true
+    },
+    {
+      "url": "../events/fix-complete-0012.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml",
+      "exists": true
+    },
+    {
+      "url": "../events/fix-start-0010.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0010.yaml",
+      "exists": true
+    },
+    {
+      "url": "../events/fix-0020.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0020.yaml",
+      "exists": true
+    },
+    {
+      "url": "../events/fix-start-0019.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml",
+      "exists": true
+    },
+    {
+      "url": "../events/fix-complete-0021.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0021.yaml",
+      "exists": true
+    },
+    {
+      "url": "../events/implementation-0002.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/snapshots/pr-draft-fix-0011.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/snapshots/pr-draft-review-start-0013.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md",
+      "exists": true
+    },
+    {
+      "url": "../artifacts/snapshots/pr-draft-fix-0020.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0020.md",
+      "exists": true
+    }
+  ],
+  "usage_correction": "Read-only AST preview first passed Markdown nodes rather than text to set_attr. Typed preview worked but introduced unrelated whitespace. Final supported raw replace/write_file transformation changed only URL literals. No source or runtime checks rerun."
+}

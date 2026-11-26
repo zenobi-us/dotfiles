@@ -47,13 +47,13 @@ Manual MQ inspection covered every added prose section in the three documents. A
 
 Protected runtime, runner, manifest, catalog and metadata-definition bytes equal `d50d3bb1`. All five assets match frozen source and parent baseline checksums. Ordered style and provenance associations remain exact. Catalog nonidentity bytes and capture time match the parent numeric baseline.
 
-- **Native execution:** [Full execution record](../evidence/fix-0026/native-smoke.json).
-- **Complete stdout:** [Native stdout](../evidence/fix-0026/native-stdout.txt).
-- **Complete stderr:** [Native stderr](../evidence/fix-0026/native-stderr.txt).
-- **Actual outcomes:** [Row and exit comparisons](../evidence/fix-0026/native-validation.json).
-- **Prose audit:** [Full manual MQ audit](../evidence/fix-0026/manual-prose-validation.json).
-- **Protected bytes:** [Baseline preservation](../evidence/fix-0026/preservation.json).
-- **Committed objects:** [Execution and document bindings](../evidence/fix-0026/commit-binding.json).
+- **Native execution:** [Full execution record](../artifacts/evidence/fix-0026/native-smoke.json).
+- **Complete stdout:** [Native stdout](../artifacts/evidence/fix-0026/native-stdout.txt).
+- **Complete stderr:** [Native stderr](../artifacts/evidence/fix-0026/native-stderr.txt).
+- **Actual outcomes:** [Row and exit comparisons](../artifacts/evidence/fix-0026/native-validation.json).
+- **Prose audit:** [Full manual MQ audit](../artifacts/evidence/fix-0026/manual-prose-validation.json).
+- **Protected bytes:** [Baseline preservation](../artifacts/evidence/fix-0026/preservation.json).
+- **Committed objects:** [Execution and document bindings](../artifacts/evidence/fix-0026/commit-binding.json).
 
 ## Resolved findings
 
@@ -73,22 +73,22 @@ Review23 returned FAILURE for `d50d3bb1` with three low hard prose findings. Its
 
 The latest review for `dab2338e6be69e208c39c6c05164c0a1a066dbf7` is pending. Neither stale SUCCESS nor stale FAILURE applies to the new source. No source acceptance follows from this repair.
 
-- **Historical review:** [review-0005](../reviews/review-review-0005.md).
-- **Historical review:** [review-0008](../reviews/review-review-0008.md).
-- **Historical review:** [review-0014](../reviews/review-review-0014.md).
-- **Historical review:** [review-0017](../reviews/review-review-0017.md).
-- **Historical review:** [review-0023](../reviews/review-review-0023.md).
+- **Historical review:** [review-0005](../artifacts/reviews/review-review-0005.md).
+- **Historical review:** [review-0008](../artifacts/reviews/review-review-0008.md).
+- **Historical review:** [review-0014](../artifacts/reviews/review-review-0014.md).
+- **Historical review:** [review-0017](../artifacts/reviews/review-review-0017.md).
+- **Historical review:** [review-0023](../artifacts/reviews/review-review-0023.md).
 
-- **Blocked fix:** [fix-0011](../../events/fix-0011.yaml).
-- **Retained completion:** [fix-complete-0012](../../events/fix-complete-0012.yaml).
-- **Retained authorization:** [fix-start-0010](../../events/fix-start-0010.yaml).
-- **Prior prose repair:** [fix-0020](../../events/fix-0020.yaml).
-- **Prior phase start:** [fix-start-0019](../../events/fix-start-0019.yaml).
-- **Prior completion:** [fix-complete-0021](../../events/fix-complete-0021.yaml).
-- **Initial implementation:** [implementation-0002](../../events/implementation-0002.yaml).
-- **Invalid historical snapshot:** [draft11](pr-draft-fix-0011.md) remains unchanged.
-- **Valid recovery snapshot:** [draft13](pr-draft-review-start-0013.md) remains unchanged.
-- **Valid previous snapshot:** [draft20](pr-draft-fix-0020.md) remains unchanged.
+- **Blocked fix:** [fix-0011](../events/fix-0011.yaml).
+- **Retained completion:** [fix-complete-0012](../events/fix-complete-0012.yaml).
+- **Retained authorization:** [fix-start-0010](../events/fix-start-0010.yaml).
+- **Prior prose repair:** [fix-0020](../events/fix-0020.yaml).
+- **Prior phase start:** [fix-start-0019](../events/fix-start-0019.yaml).
+- **Prior completion:** [fix-complete-0021](../events/fix-complete-0021.yaml).
+- **Initial implementation:** [implementation-0002](../events/implementation-0002.yaml).
+- **Invalid historical snapshot:** [draft11](../artifacts/snapshots/pr-draft-fix-0011.md) remains unchanged.
+- **Valid recovery snapshot:** [draft13](../artifacts/snapshots/pr-draft-review-start-0013.md) remains unchanged.
+- **Valid previous snapshot:** [draft20](../artifacts/snapshots/pr-draft-fix-0020.md) remains unchanged.
 
 ## Consumed and produced references
 
