@@ -1,0 +1,11 @@
+{
+  "source_commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+  "source_tree": "bb15b43f805dbc4946d846862e16caddd485621a",
+  "expected_checksum_evidence_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/preservation.json",
+  "method": "printf retained immutable_history checksums | sha256sum --check",
+  "checked_artifacts": 26,
+  "exit_code": 0,
+  "all_observed_checks": "OK",
+  "native_or_axis_checks_rerun": false,
+  "history_or_source_mutated": false
+}

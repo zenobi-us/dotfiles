@@ -1,0 +1,36 @@
+{
+  "artifact": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md",
+  "sha256": "0e37bb0ade40d0893eb11c5ae935cf865c6a70f2c2249d5421e8d32804a35125",
+  "frozen_commit_present": true,
+  "frozen_tree_present": true,
+  "review_base_present": true,
+  "verdict": "FAILURE",
+  "verdict_matches": true,
+  "all_findings_present": true,
+  "source_and_publication_distinct": true,
+  "axes_validated": [
+    {
+      "axis": "standards",
+      "run_id": "7a42c908-7ec3-4dd2-a662-edc1c5921f82",
+      "sha256": "3040ba56b202d434a0be39257dd14ed9a43bcfc97558c816120218d0b897e25b",
+      "word_count": 92,
+      "exact_keys": true,
+      "verified_by": "result-delivery read --context",
+      "finding_count": 3
+    },
+    {
+      "axis": "spec",
+      "run_id": "eaa5fdba-9556-4a4e-9cee-06da4a1fdbc7",
+      "sha256": "9117cecb91f2543f501f36cc8e926c7ef456a35855f55811af3e64d7a5cf36d6",
+      "word_count": 151,
+      "exact_keys": true,
+      "verified_by": "result-delivery read --context",
+      "finding_count": 0
+    }
+  ],
+  "resource_shutdown": {
+    "standards": "confirmed",
+    "spec": "confirmed"
+  },
+  "leaf_terminals_absent": true
+}

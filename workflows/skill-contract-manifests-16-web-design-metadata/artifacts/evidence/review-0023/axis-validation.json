@@ -1,0 +1,63 @@
+{
+  "axes": [
+    {
+      "axis": "standards",
+      "run_id": "7a42c908-7ec3-4dd2-a662-edc1c5921f82",
+      "sha256": "3040ba56b202d434a0be39257dd14ed9a43bcfc97558c816120218d0b897e25b",
+      "word_count": 92,
+      "exact_keys": true,
+      "verified_by": "result-delivery read --context",
+      "finding_count": 3
+    },
+    {
+      "axis": "spec",
+      "run_id": "eaa5fdba-9556-4a4e-9cee-06da4a1fdbc7",
+      "sha256": "9117cecb91f2543f501f36cc8e926c7ef456a35855f55811af3e64d7a5cf36d6",
+      "word_count": 151,
+      "exact_keys": true,
+      "verified_by": "result-delivery read --context",
+      "finding_count": 0
+    }
+  ],
+  "findings": [
+    {
+      "id": "standards-006",
+      "axis": "standards",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "line": 55,
+      "severity": "low",
+      "hard": true,
+      "adr": null,
+      "verified": true
+    },
+    {
+      "id": "standards-007",
+      "axis": "standards",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "line": 38,
+      "severity": "low",
+      "hard": true,
+      "adr": null,
+      "verified": true
+    },
+    {
+      "id": "standards-008",
+      "axis": "standards",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "line": 52,
+      "severity": "low",
+      "hard": true,
+      "adr": null,
+      "verified": true
+    }
+  ],
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+    "tree": "bb15b43f805dbc4946d846862e16caddd485621a"
+  },
+  "review_base_commit": "9d105f926b6885401732e62d187e0444260e6b61",
+  "original_order_preserved": true
+}

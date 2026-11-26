@@ -1,0 +1,186 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+    "tree": "bb15b43f805dbc4946d846862e16caddd485621a"
+  },
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "sha256": "d17c8c7cc80f6174804cee8204ad88414adf16fe32fd9656b8123593bff592ea",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "sha256": "7163b60bb546f37870fbc22724b789ff98dd97de4f3568c06580478b1d553234",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "sha256": "2eaef86e4214a52a78a87a1f99243ed24067fe4c3b4a359e902f8636f6af7425",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "sha256": "1bd5dc1214cb3c70afeb5962e8745d2c6bab760d9d0a77e476bf85e1b11bdfed",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "sha256": "e9a9e586c30f340223459ccb05e5326c35d6dc68fb14fe4d499918bf3dec44ce",
+      "equals_frozen": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "sha256": "a959001288071e5fdf2f842b13d991945e39f46f47954bfd3d836af8ae7b34df",
+      "equals_frozen": true
+    }
+  ],
+  "protectedChecks": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "equals_previous": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "equals_previous": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "equals_previous": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "equals_previous": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "equals_previous": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "equals_previous": true
+    }
+  ],
+  "catalog": {
+    "capture": "2026-10-22T10:12:43.516Z",
+    "entries": 5,
+    "nonidentity_equals_parent_baseline": true,
+    "nonidentity_equals_review_base": true
+  },
+  "assets": [
+    {
+      "entry": {
+        "style": "report-dashboard",
+        "asset": "styles/report-dashboard/DESIGN.md",
+        "source": {
+          "repository": "https://github.com/zenobi-us/llm-benchmarking-margin",
+          "path": "dashboard/DESIGN.md",
+          "localPath": "../llm-benchmarking-margin/dashboard/DESIGN.md"
+        },
+        "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc"
+      },
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md",
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "checksum_matches": true,
+      "equals_review_base": true,
+      "equals_previous": true
+    },
+    {
+      "entry": {
+        "style": "widget-grid-dashboard",
+        "asset": "styles/widget-grid-dashboard/DESIGN.md",
+        "source": {
+          "repository": "https://github.com/airtonix/finance",
+          "path": "pkgs/ledger-app/DESIGN.md",
+          "localPath": "../finance/pkgs/ledger-app/DESIGN.md"
+        },
+        "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+      },
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "checksum_matches": true,
+      "equals_review_base": true,
+      "equals_previous": true
+    },
+    {
+      "entry": {
+        "style": "widget-grid-dashboard",
+        "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+        "source": {
+          "repository": "https://github.com/airtonix/finance",
+          "path": "pkgs/ledger-app/UI-FOUNDATION.md",
+          "localPath": "../finance/pkgs/ledger-app/UI-FOUNDATION.md"
+        },
+        "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3"
+      },
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "checksum_matches": true,
+      "equals_review_base": true,
+      "equals_previous": true
+    },
+    {
+      "entry": {
+        "style": "project-info",
+        "asset": "styles/project-info/DESIGN.md",
+        "source": {
+          "repository": "https://github.com/zenobi-us/dotfiles",
+          "path": "DESIGN.md",
+          "localPath": "DESIGN.md"
+        },
+        "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+      },
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "checksum_matches": true,
+      "equals_review_base": true,
+      "equals_previous": true
+    },
+    {
+      "entry": {
+        "style": "project-info",
+        "asset": "styles/project-info/EDITOR-DESIGN.md",
+        "source": {
+          "repository": "https://github.com/zenobi-us/lazyvim.profile",
+          "path": "DESIGN.md",
+          "localPath": "/home/zenobius/.config/nvim/DESIGN.md"
+        },
+        "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+      },
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "checksum_matches": true,
+      "equals_review_base": true,
+      "equals_previous": true
+    }
+  ],
+  "parent_asset_checksums": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc  mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md\nc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9  mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md\n2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3  mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md\nc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9  mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md\nc10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9  mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md\n"
+}

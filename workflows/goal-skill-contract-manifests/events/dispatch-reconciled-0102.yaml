@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0102",
+  "parent_event": "dispatch-observed-0101",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 5,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0100.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0024.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0023.yaml",
+  "status": "completed",
+  "acceptance_status": "usable_failure_three_hard_layout_paragraph_findings",
+  "source_commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+  "source_tree": "bb15b43f805dbc4946d846862e16caddd485621a",
+  "validation": {
+    "fresh_native_outcomes": 56,
+    "actual_rows_checked": 56,
+    "all_expected": true,
+    "all11_frozen_blobs": true,
+    "all5_assets_preserved": true,
+    "standards_low_hard_findings": 3,
+    "spec_findings": 0,
+    "prior_targeted_ids_002_through_005_present": true,
+    "source_accepted": false
+  },
+  "resource_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 2,
+  "leaf_shutdown": {
+    "standards": {
+      "run_id": "7a42c908-7ec3-4dd2-a662-edc1c5921f82",
+      "shutdown": "confirmed"
+    },
+    "spec": {
+      "run_id": "eaa5fdba-9556-4a4e-9cee-06da4a1fdbc7",
+      "shutdown": "confirmed"
+    }
+  },
+  "extra_signals_sent": false,
+  "accounting": {
+    "ticket_attempts_consumed": 8,
+    "ticket_attempts_remaining": 92,
+    "dispatches_consumed": 22,
+    "dispatches_remaining": 2478,
+    "omp_token_budget": null
+  },
+  "next_action": "Fresh inspector fix/begin for exact review23 findings006–008. Active goal covers normal findings-driven fix loop. Scope only added SKILL metadata section, added style-selection metadata section and upgrade final paragraphs plus normal2 generated metadata paths. No semantic/code/catalog/asset changes or relocation work.",
+  "created_at": "2026-11-26T21:51:05.944Z"
+}

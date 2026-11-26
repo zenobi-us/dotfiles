@@ -1,0 +1,40 @@
+{
+  "axis": "standards",
+  "findings": [
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard documented house-format breach, not an ISO conformance claim. iso-24495-1/SKILL.md, Scannability & Layout, requires bullets for every series of three or more items. The new sentence lists three selection actions and three outputs inline: 'selected provenance, bundled path, and text'. The same paragraph contains six sentences, exceeding its Sentence & Paragraph Limits maximum of five. Line 57 also lists three reference topics inline.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "id": "standards-006",
+      "line": 55,
+      "required_change": "Convert the selection actions, outputs, and reference topics into vertical lists with bold lead-ins. Separate the remaining instructions into paragraphs of at most five sentences. Preserve the checksum refusal and explicit companion selection.",
+      "severity": "low",
+      "validation_command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F json 'import \"github.com/harehare/okf.mq\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md; manually inspect added prose against iso-24495-1 sections 2 and 4."
+    },
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard documented house-format breach. iso-24495-1/SKILL.md, Scannability & Layout, requires bullets for series of three or more items. The added metadata paragraph lists the current contract, historical reader, and conversion boundaries inline. Technical identifiers remain exempt from rewriting, but the surrounding prose does not receive a layout exemption.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "id": "standards-007",
+      "line": 38,
+      "required_change": "Present the three definition topics as a vertical list with bold lead-ins. Preserve the linked authoritative definition and the read-only boundary.",
+      "severity": "low",
+      "validation_command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F json 'import \"github.com/harehare/okf.mq\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md; manually inspect the added section against iso-24495-1 section 4."
+    },
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard documented paragraph-limit breach. The final paragraph contains seven sentences, from 'The bulk selection' through 'A checksum failure'. iso-24495-1/SKILL.md, Sentence & Paragraph Limits, treats paragraphs beyond five sentences as violations. ASD-STE100 rule 6.6 also limits descriptive paragraphs to six sentences.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "id": "standards-008",
+      "line": 52,
+      "required_change": "Separate bulk outcomes from conversion and consumption integrity. Keep each paragraph within five sentences without changing the authority or byte-preservation boundaries.",
+      "severity": "low",
+      "validation_command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F json 'import \"github.com/harehare/okf.mq\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md; manually count sentences in the final paragraphs."
+    }
+  ],
+  "report": "Reviewed the complete committed diff and all eleven paths for d50d3bb1719c03c53f9dc911a34017ca09cddfd6 against 9d105f926b6885401732e62d187e0444260e6b61. Three low-severity documented prose breaches remain. These are explicit house rules, not claims that ISO itself mandates these layouts. The metadata-consumption paragraph still contains inline three-item series. No additional material Fowler-smell heuristic finding was identified. Excluded unchanged baseline and tooling-enforced noise. The supplied ADR concerns Pi Ink and does not govern this change. Used MQ for local Markdown inspection. No source edits, builds, lint, tests, formatters, native checks, or probes were performed. Runtime outcomes remain for the primary reviewer.",
+  "schemaVersion": "review-axis/v1"
+}

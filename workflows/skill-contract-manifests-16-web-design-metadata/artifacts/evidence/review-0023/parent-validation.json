@@ -1,0 +1,22 @@
+{
+  "receipt_id": "review-0023",
+  "transport_sha256": "13be9a8a82a79e96aae5d3b8806fa90700d90480c8dae1ff332e4956e1386401",
+  "authoritative_event_equal": true,
+  "source_commit": "d50d3bb1719c03c53f9dc911a34017ca09cddfd6",
+  "source_tree": "bb15b43f805dbc4946d846862e16caddd485621a",
+  "immutable_body_sha256": "0e37bb0ade40d0893eb11c5ae935cf865c6a70f2c2249d5421e8d32804a35125",
+  "actual_native_rows": 56,
+  "all_expected": true,
+  "all11_frozen_bindings": true,
+  "protected_fb_set_preserved": true,
+  "all5_assets_preserved": true,
+  "standards_findings": 3,
+  "spec_findings": 0,
+  "review_usable": true,
+  "verdict": "FAILURE",
+  "source_accepted": false,
+  "primary_owned_processes_stopped": 2,
+  "resource_shutdown": "confirmed",
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0
+}

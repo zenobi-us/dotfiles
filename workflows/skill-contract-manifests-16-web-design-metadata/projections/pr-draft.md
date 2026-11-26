@@ -140,3 +140,14 @@ No implementation question remains for this prose repair. Fresh independent revi
 Relocation remains escalation-only. No relocation, infrastructure or serverfiles work occurred. No extra agents, services, dependency installation or configuration changes occurred.
 
 Source remains clean and local. Parent owns publication-checkout commits, tracker changes, integration and normal primary-session closure.
+
+
+## Latest review: review-0023
+
+- **Verdict:** FAILURE for `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`, tree `bb15b43f805dbc4946d846862e16caddd485621a`.
+- **Standards:** Three low hard layout and paragraph findings remain: `standards-006` through `standards-008`.
+- **Spec:** No findings.
+- **Validation:** All56 fresh primary native command rows match. All eleven frozen blobs and all five assets remain preserved.
+- **Next action:** A fresh prose-only fix is required. Source acceptance and integration remain blocked.
+- **Review:** [Immutable report](../artifacts/reviews/review-review-0023.md).
+- **Reconciliation:** [Validated parent completion](../events/review-complete-0024.yaml).
