@@ -1,0 +1,92 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "merge",
+  "reviewed_source_commit": "5456c4a5dfda4e5634a383a2236e4ad0630e6c06",
+  "reviewed_source_tree": "6d818ee3eb08d7ae44c233b53dfac6b308096cae",
+  "base_branch": "master",
+  "base_before": "c1233c146cc73e6908f93b9cbfa769d2da0d421d",
+  "expected_merge_tree": "9ceb21deeb7fc2427e206878e70d558356ad434f",
+  "merged_commit": "d2a5b202affa177afbe6403e161145ca0fcd6ce8",
+  "merged_tree": "9ceb21deeb7fc2427e206878e70d558356ad434f",
+  "merged_parents": [
+    "c1233c146cc73e6908f93b9cbfa769d2da0d421d",
+    "5456c4a5dfda4e5634a383a2236e4ad0630e6c06"
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006",
+      "exit_code": 0,
+      "output": "",
+      "source_commit": "d2a5b202affa177afbe6403e161145ca0fcd6ce8",
+      "source_tree": "9ceb21deeb7fc2427e206878e70d558356ad434f"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "-e",
+        "import { existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, symlinkSync } from 'node:fs';\nimport { join, resolve } from 'node:path';\nconst target = '/tmp/scm15-test-deps-rDy0rx/node_modules/ajv';\nconst pkg = JSON.parse(readFileSync(join(target, 'package.json'), 'utf8'));\nif (pkg.name !== 'ajv' || pkg.version !== '8.20.0') throw new Error('Unexpected real validator dependency');\nconst modules = resolve('node_modules');\nif (existsSync(modules) && !lstatSync(modules).isDirectory()) throw new Error('Refuse non-directory dependency root');\nmkdirSync(modules, { recursive: true });\nconst alias = join(modules, 'ajv@^8.17.1');\nif (existsSync(alias)) {\n  if (!lstatSync(alias).isSymbolicLink() || realpathSync(alias) !== realpathSync(target)) throw new Error('Preserve conflicting dependency path');\n} else {\n  symlinkSync(target, alias);\n}\nconsole.log(JSON.stringify({ status: 'prepared', cwd: process.cwd(), alias, target }));"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006",
+      "exit_code": 0,
+      "output": "{\"status\":\"prepared\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006\",\"alias\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006/node_modules/ajv@^8.17.1\",\"target\":\"/tmp/scm15-test-deps-rDy0rx/node_modules/ajv\"}\n",
+      "source_commit": "d2a5b202affa177afbe6403e161145ca0fcd6ce8",
+      "source_tree": "9ceb21deeb7fc2427e206878e70d558356ad434f"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/tests",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006",
+      "exit_code": 0,
+      "output": "bun test v1.4.4 (38afee6c8)\n",
+      "source_commit": "d2a5b202affa177afbe6403e161145ca0fcd6ce8",
+      "source_tree": "9ceb21deeb7fc2427e206878e70d558356ad434f"
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/parent-source-verification-0001/smoke-source.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006",
+      "exit_code": 0,
+      "output": "{\"status\":\"passed\",\"commands\":54,\"fixture_only\":true,\"retained\":\"/tmp/scm15-verification-evidence-RofRx1/commands-and-observations.json\"}\n",
+      "source_commit": "d2a5b202affa177afbe6403e161145ca0fcd6ce8",
+      "source_tree": "9ceb21deeb7fc2427e206878e70d558356ad434f"
+    }
+  ],
+  "candidate_branch": "integration/2e409fce-a87a-4ce7-900b-d47bba6a4006",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-2e409fce-a87a-4ce7-900b-d47bba6a4006",
+  "pushed": true,
+  "already_published": false,
+  "remote_observed_commit": "d2a5b202affa177afbe6403e161145ca0fcd6ce8",
+  "integration_reachable": true
+}
