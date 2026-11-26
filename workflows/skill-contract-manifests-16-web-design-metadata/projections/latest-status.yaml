@@ -2,10 +2,53 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-16-web-design-metadata,
   ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
-  state: REVIEWING,
-  latest_receipt: review-start-0028,
+  state: REVIEW_FAILED,
+  latest_receipt: review-complete-0030,
   latest_source_commit: dab2338e6be69e208c39c6c05164c0a1a066dbf7,
   latest_source_tree: 85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f,
-  latest_review_verdict: null,
-  open_findings: []
+  latest_review_verdict: FAILURE,
+  open_findings:
+    [
+      {
+          adr: null,
+          axis: standards,
+          description: "Hard documented house-rule breach. iso-24495-5/SKILL.md, rule 7,
+            requires an opening block with purpose, intended reader, and version
+            or date. This entirely new reference opens with ownership and
+            implementation details. It does not name its intended reader or give
+            a document version or date. Contract identifiers later in the
+            document describe catalog formats, not this document.",
+          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md,
+          id: standards-009,
+          line: 1,
+          required_change: "Add a concise opening block that states the reference purpose,
+            names its intended reader, and supplies a document date. Do not add
+            a contract identifier to ordinary prose.",
+          severity: low,
+          validation_command: mise exec -- mq --allow-http-import --no-lockfile -I raw -F
+            raw 'import "github.com/harehare/okf.mq" | .'
+            mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md;
+            manually inspect the opening against iso-24495-5 rule 7.
+        },
+      {
+          adr: null,
+          axis: standards,
+          description: "Hard documented house-rule breach. iso-24495-5/SKILL.md, rule 7,
+            requires an opening block that names the intended reader and gives a
+            document version or date. This entirely new procedure supplies
+            neither. Its conversion endpoint identifiers do not identify the
+            document revision.",
+          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md,
+          id: standards-010,
+          line: 1,
+          required_change: Name the procedure's intended reader and add a document date
+            near its purpose statement. Preserve separate conversion authority
+            and the existing refusal boundaries.,
+          severity: low,
+          validation_command: mise exec -- mq --allow-http-import --no-lockfile -I raw -F
+            raw 'import "github.com/harehare/okf.mq" | .'
+            mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md;
+            manually inspect the opening against iso-24495-5 rule 7.
+        }
+    ]
 }

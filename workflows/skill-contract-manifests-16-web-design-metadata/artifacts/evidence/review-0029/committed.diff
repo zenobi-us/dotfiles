@@ -1,0 +1,651 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json b/mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+index 67aa8516..c761d19d 100644
+--- a/mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
++++ b/mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+@@ -14,7 +14,7 @@
+       "name": "creator",
+       "source": "./creator",
+       "description": "Design commands, UI/API building, and user-facing product experts",
+-      "version": "0.1.3"
++      "version": "0.1.7"
+     },
+     {
+       "name": "developer",
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json b/mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json
+index 5d247157..bd64dbea 100644
+--- a/mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json
++++ b/mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "creator",
+   "description": "Design commands, UI/API building, and user-facing product experts",
+-  "version": "0.1.3",
++  "version": "0.1.7",
+   "skills": [
+     "./skills/imagegen/comfyui",
+     "./skills/imagegen/generate-images-with-takumi",
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md
+index 6c9c3fcf..43137809 100644
+--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md
+@@ -31,3 +31,16 @@ For alternative comparisons, use ux-preview before production changes. For a req
+ ## Completion
+ 
+ The deliverable uses the selected style without unrelated source features. Requested interactions and content are complete. The changed surface has been exercised, or the missing runtime prerequisite is stated. Source selection, overrides, verification, and the output path or URL are included in the handoff.
++
++## Source metadata contract
++
++Use the [metadata consumer](references/style-selection.md#metadata-consumption) to verify bundled source integrity before selection.
++
++The [authoritative metadata definition](references/source-metadata.md) specifies these topics:
++
++- **Current contract:** `design-source-metadata/v2`.
++- **Historical reader:** The explicit numeric-1 historical reader.
++- **Conversion boundaries:** The limits on supported conversion.
++
++`contracts.json` declares accepted inputs and current conversion output. Read-only commands and installation never upgrade catalogs.
++
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json
+index 8edd6e78..16d98984 100644
+--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json
+@@ -1,5 +1,5 @@
+ {
+-  "schemaVersion": 1,
++  "schemaVersion": "design-source-metadata/v2",
+   "capturedAt": "2026-10-22T10:12:43.516Z",
+   "sources": [
+     {
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json
+new file mode 100644
+index 00000000..d836fee3
+--- /dev/null
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json
+@@ -0,0 +1,16 @@
++{
++  "schemaVersion": "skill-contract-manifest/v1",
++  "produces": ["design-source-metadata/v2"],
++  "accepts": ["design-source-metadata/v1", "design-source-metadata/v2"],
++  "contracts": {
++    "design-source-metadata/v1": "file:references/source-metadata.md",
++    "design-source-metadata/v2": "file:references/source-metadata.md"
++  },
++  "upgrades": [
++    {
++      "from": "design-source-metadata/v1",
++      "to": "design-source-metadata/v2",
++      "procedure": "file:references/source-metadata-upgrade.md"
++    }
++  ]
++}
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md
+new file mode 100644
+index 00000000..94b2c1d0
+--- /dev/null
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md
+@@ -0,0 +1,55 @@
++# Upgrade design source metadata
++
++The only declared edge is `design-source-metadata/v1` to `design-source-metadata/v2`, with procedure `file:references/source-metadata-upgrade.md` and trusted adapter `file:scripts/source-metadata.ts`.
++
++The adapter validates the explicit numeric source. It replaces only the top-level numeric identity token with the current string identity. All other UTF-8 bytes remain unchanged. This wire cutover preserves these items:
++
++- **Source locations:** Every source location.
++- **Asset associations:** Every association.
++- **Capture time:** The recorded capture time.
++- **Asset checksums:** Every checksum.
++- **Array order:** Every array position.
++- **Authored properties:** Every unknown property.
++- **Bundled assets:** Every bundled asset.
++
++The conversion never performs these actions:
++
++- **Source refresh:** It never refreshes sources.
++- **Provenance replacement:** It never computes replacement provenance.
++- **Time replacement:** It never restamps time.
++- **Asset writes:** It never writes assets.
++
++The shared operation performs these steps:
++
++1. **Resolve declarations:** Resolve the declared contracts and procedure.
++2. **Validate content:** Validate source and destination.
++3. **Compare bytes:** Compare the complete identity-normalized authored bytes.
++4. **Acquire locks:** Acquire the required locks.
++5. **Persist result:** Persist the validated result.
++
++Owner hooks are pure. Content with `immutable: true` requires read-only historical access. Paths inside these directories also require read-only historical access:
++
++- **Event records:** `events`.
++- **Receipt records:** `receipts`.
++- **Historical snapshots:** `snapshots`.
++- **Historical artifacts:** `artifacts`.
++
++These refusals preserve source bytes:
++
++- **Unsupported operations:** Operations the owner does not support.
++- **Unknown identities:** Identities the owner does not recognize.
++- **Invalid content:** Content that fails validation.
++- **Unsupported paths:** Paths the owner does not permit.
++
++Resolve `SKILL_CONTRACTS_ROOT` and `WEB_DESIGN_ROOT` to their installed skill directories. Invoke absolute entrypoints from any cwd. Artifact and selection-list paths below are explicit absolute paths. Conversion requires separate user authority. Reading and installation never run it.
++
++```sh
++"$SKILL_CONTRACTS_ROOT/scripts/router.ts" safe-upgrade --skill "$WEB_DESIGN_ROOT" --owner file:scripts/source-metadata.ts --artifact /absolute/sources.json --operation upgrade
++"$SKILL_CONTRACTS_ROOT/scripts/router.ts" bulk-upgrade --skill "$WEB_DESIGN_ROOT" --owner file:scripts/source-metadata.ts --artifacts /absolute/selected-catalogs.json
++"$WEB_DESIGN_ROOT/scripts/sources.ts" validate /absolute/sources.json
++```
++
++The bulk selection is a JSON array of distinct paths. Each item commits independently. Report failed and partial outcomes honestly.
++
++Current valid input is a byte-preserving no-op. Conversion validates metadata. Actual consumption separately verifies bundled integrity. A checksum failure never authorizes catalog or asset repair.
++
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md
+new file mode 100644
+index 00000000..bed5a54e
+--- /dev/null
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md
+@@ -0,0 +1,119 @@
++# Design source metadata
++
++The web-design skill owns this catalog family. `assets/sources.json` is the bundled catalog. `scripts/source-metadata.ts` owns these operations:
++
++- **Identity detection:** Detect the exact identity.
++- **Content validation:** Validate catalog content.
++- **Historical reading:** Read the supported historical format.
++- **Source selection:** Select a source.
++- **Pure conversion:** Convert metadata without writes.
++
++## Inventory
++
++| Boundary | Direction | Definition and validator | Reading and conversion |
++| --- | --- | --- | --- |
++| Source catalog | Input and current conversion output | This definition. `validateCatalog` and `readCatalog` | Numeric v1 and string v2. Explicit shared upgrade only |
++| `contracts.json` | Declaration | Shared built-in `skill-contract-manifest/v1`. Shared validator | Shared manifest reader |
++| Design Markdown | Human guidance or opaque asset bytes | Not independent structured records | No injected identity or conversion |
++| Task guidance | Human guidance | Not independent structured records | No injected identity or conversion |
++| CLI display text | Human guidance | Not independent structured records | No injected identity or conversion |
++
++## Exact identities
++
++| Declared contract | Wire identity | Support |
++| --- | --- | --- |
++| `design-source-metadata/v1` | JSON number `schemaVersion: 1` | Known historical input only |
++| `design-source-metadata/v2` | String `schemaVersion: "design-source-metadata/v2"` | Current input and explicit conversion output |
++
++The historical identifier names the existing numeric format. The historical wire format does not accept the string `design-source-metadata/v1`. There is no supported unversioned format. Reject these inputs:
++
++- **Unknown numbers:** Unknown numeric identifier values.
++- **Unknown strings:** Unknown string identifiers.
++- **Null identifiers:** Null identifier values.
++- **Malformed identifiers:** Invalid identifier syntax.
++- **Duplicate keys:** Duplicate object keys.
++- **Forbidden field:** Any top-level `schema` field, including mixed identities.
++
++Rejection precedes interpretation or conversion. `identify` returns null only when the identifier is absent. `detectLegacy` returns no matches.
++
++## Content and meaning
++
++Both formats contain a JSON object with `capturedAt` and a nonempty ordered `sources` array. `capturedAt` is a valid UTC ISO timestamp with milliseconds. Each source contains:
++
++- **Style identity:** `style` is one of these values:
++  - **Report dashboard:** `report-dashboard`.
++  - **Widget dashboard:** `widget-grid-dashboard`.
++  - **Project information:** `project-info`.
++- **Asset path:** `asset` is an installed `styles/<style>/<UPPERCASE-OR-HYPHEN-NAME>.md` path relative to the skill's `assets` directory.
++- **Source provenance:** `source` is an object with these nonempty strings:
++  - **Repository location:** `repository`.
++  - **Repository path:** `path`.
++  - **Local path:** `localPath`.
++- **Asset checksum:** `sha256` contains 64 lowercase hexadecimal digits for the bundled asset bytes.
++
++Each `(style, asset)` pair is unique. Array order is meaningful and stays unchanged. Unknown authored properties remain allowed at every object level. Preserve their bytes during conversion, including number lexemes that JSON cannot round-trip exactly.
++
++These fields are provenance and refresh metadata only:
++
++- **Repository location:** `source.repository`.
++- **Repository path:** `source.path`.
++- **Local path:** `source.localPath`.
++
++Runtime reads always use the installed bundled copy. A caller-selected catalog changes metadata input, not the bundled asset root. Resolve that root from the owning module, independently of cwd. Reject asset symlinks that resolve outside that root.
++
++`readCatalog` rejects malformed UTF-8 bytes before JSON parsing, without normalization or implicit BOM removal. Valid Unicode, including an intentionally encoded U+FFFD, remains supported. It validates structure and verifies every referenced asset's SHA-256. `selectSource` selects exactly one `(style, asset)` pair. It returns these values:
++
++- **Selected entry:** The entry for that pair.
++- **Bundled path:** The path for that entry.
++- **Verified text:** The verified asset text.
++
++Equal hashes or text never merge these items:
++
++- **Style identities:** Styles remain distinct.
++- **Companion identities:** Companions remain distinct.
++- **Source provenance:** Provenance remains distinct.
++
++Integrity failures stop consumption without repair or writes.
++
++## Commands
++
++Resolve `WEB_DESIGN_ROOT` to the installed directory containing `SKILL.md`. All entrypoint paths below are skill-relative. Invoke absolute entrypoints from any cwd. The mise shebang selects Bun.
++
++```sh
++"$WEB_DESIGN_ROOT/scripts/sources.ts" validate
++"$WEB_DESIGN_ROOT/scripts/sources.ts" validate /absolute/historical-sources.json
++"$WEB_DESIGN_ROOT/scripts/sources.ts" select project-info styles/project-info/DESIGN.md
++"$WEB_DESIGN_ROOT/scripts/sources.ts" select widget-grid-dashboard styles/widget-grid-dashboard/UI-FOUNDATION.md
++```
++
++Validation prints these values:
++
++- **Catalog identity:** The declared identity.
++- **Capture time:** The recorded capture time.
++- **Ordered associations:** The catalog associations in order.
++
++Selection prints these values:
++
++- **Source provenance:** The selected provenance.
++- **Bundled path:** The verified bundled path.
++- **Selected text:** The selected asset text.
++
++These are human-facing displays, not persistent result records. Neither command writes or upgrades. For deliberate conversion, use [the declared upgrade procedure](source-metadata-upgrade.md).
++
++
++## Native regression check
++
++Run `"$WEB_DESIGN_ROOT/tests/source-metadata-smoke.ts"` from any cwd. It exercises these boundaries with isolated fixtures:
++
++- **Manifest resolution:** Public manifest resolution.
++- **Catalog readers:** Both readers.
++- **Malformed bytes:** Malformed catalog bytes at validate/select boundaries.
++- **Valid Unicode:** Valid Unicode provenance.
++- **Source selection:** Style/provenance selection.
++- **Single conversion:** Shared single conversion.
++- **Bulk conversion:** Shared bulk conversion.
++- **Rejected conversions:** Byte-preserving refusals.
++- **Checksum failure:** Checksum failure.
++
++It removes only its temporary directory. It needs the adjacent installed skill-contracts owner and the mise/Bun runtime. It does not use `bun test` or change dependencies.
++
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md
+index 02cf9761..606b1927 100644
+--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md
+@@ -10,7 +10,7 @@ Read this file before choosing an asset. Styles describe visual intent; tasks de
+ | widget-grid-dashboard | Widget dashboards, grid composition, dashboard editing, application shells | assets/styles/widget-grid-dashboard/DESIGN.md | assets/styles/widget-grid-dashboard/UI-FOUNDATION.md |
+ | project-info | Project landing pages, documentation, setup guides, repository links | assets/styles/project-info/DESIGN.md | EDITOR-DESIGN.md only when selected or needed for comparison |
+ 
+-Use the user's named style. Otherwise select the row that matches the surface. Ask only when materially different purposes remain unresolved. Read assets/sources.json for provenance before opening the selected asset.
++Use the user's named style. Otherwise select the row that matches the surface. Ask only when materially different purposes remain unresolved. Use the owning metadata consumer below to validate provenance and bundled integrity before opening the selected asset.
+ 
+ For project-info, assets/styles/project-info/DESIGN.md is the Dotfiles reference and the default for general project pages. assets/styles/project-info/EDITOR-DESIGN.md is the Neovim reference. Use EDITOR-DESIGN.md when the user selects Neovim or requests editor-profile documentation. A request naming Dotfiles always selects DESIGN.md, not EDITOR-DESIGN.md. Read one primary document. Read both only for an explicit comparison or combination; assign authority for each conflicting decision before building.
+ 
+@@ -42,3 +42,36 @@ Request: “Create a borderless HTML project landing page with my avatar and thr
+ - Overrides: no decorative borders; ghost links instead of filled actions.
+ - Scope: avatar and three links only. No widget grid, chart, finance foundation, or extra feature sections.
+ - Check: desktop and narrow layouts, keyboard focus, link destinations, and asset loading.
++
++## Metadata consumption
++
++Resolve `WEB_DESIGN_ROOT` to the installed directory containing `SKILL.md`. Invoke its absolute entrypoint from any cwd. The catalog and asset root do not depend on the target project or caller directory.
++
++```sh
++"$WEB_DESIGN_ROOT/scripts/sources.ts" validate
++"$WEB_DESIGN_ROOT/scripts/sources.ts" select project-info styles/project-info/DESIGN.md
++```
++
++For another style or companion, pass its exact style and asset from the table. Consume each required companion explicitly.
++
++Selection performs these actions:
++
++- **Catalog validation:** Selection validates the catalog.
++- **Checksum verification:** Selection verifies bundled checksums.
++- **Selected output:** Selection prints these values:
++  - **Selected provenance:** The selected source provenance.
++  - **Bundled path:** The selected bundled asset path.
++  - **Asset text:** The selected asset text.
++
++A checksum mismatch stops consumption. Do not repair or refresh content implicitly.
++
++If further inspection is needed, read selected Markdown through mq.
++
++Read these references for the metadata rules:
++
++- **Contract identities:** [Source metadata](source-metadata.md) defines exact current and historical identities.
++- **Validation rules:** [Source metadata](source-metadata.md) defines metadata validation.
++- **Explicit conversion:** [Explicit conversion](source-metadata-upgrade.md) defines the conversion procedure.
++
++Ordinary design prose and bundled Markdown bytes have no new contract fields.
++
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts
+new file mode 100644
+index 00000000..89f2cf8d
+--- /dev/null
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts
+@@ -0,0 +1,149 @@
++// Owns catalog interpretation and pure conversion. Shared upgrades own persistence.
++import { createHash } from "node:crypto";
++import { readFile, realpath } from "node:fs/promises";
++import { dirname, resolve, sep } from "node:path";
++import { fileURLToPath } from "node:url";
++import type { UpgradeOwner } from "../../../../agent-core/skills/skill-contracts/scripts/upgrades.ts";
++
++export const historical = "design-source-metadata/v1";
++export const current = "design-source-metadata/v2";
++export const skillRoot = fileURLToPath(new URL("../", import.meta.url));
++export const catalogPath = resolve(skillRoot, "assets/sources.json");
++
++interface SourceEntry extends Record<string, unknown> {
++  style: string;
++  asset: string;
++  source: { repository: string; path: string; localPath: string; [key: string]: unknown };
++  sha256: string;
++}
++interface Catalog extends Record<string, unknown> {
++  schemaVersion: number | string;
++  capturedAt: string;
++  sources: SourceEntry[];
++}
++
++/** Reads either explicit format and verifies bundled bytes, never provenance locations. */
++export async function readCatalog(path = catalogPath): Promise<Catalog> {
++  const bytes = await readFile(path);
++  const content = bytes.toString("utf8");
++  if (!Buffer.from(content).equals(bytes)) throw new Error("Source catalog must contain valid UTF-8 text.");
++  const catalog = validateCatalog(content);
++  await Promise.all(catalog.sources.map((entry) => readAsset(entry)));
++  return catalog;
++}
++
++/** Selects one association; equal checksums do not merge styles or source locations. */
++export async function selectSource(style: string, asset: string, path = catalogPath): Promise<{ entry: SourceEntry; path: string; text: string }> {
++  const catalog = await readCatalog(path);
++  const entry = catalog.sources.find((source) => source.style === style && source.asset === asset);
++  if (!entry) throw new Error("Select an existing style and asset association from the catalog.");
++  return { entry, ...await readAsset(entry) };
++}
++
++export function validateCatalog(content: string, contract?: string): Catalog {
++  const { value } = parseCatalog(content);
++  const identity = identify(content);
++  if (!identity || (contract !== undefined && identity !== contract)) throw new Error("Catalog identity does not match its declared contract.");
++  if (!nonempty(value.capturedAt) || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value.capturedAt)
++    || !Number.isFinite(Date.parse(value.capturedAt)) || new Date(value.capturedAt).toISOString() !== value.capturedAt) throw new Error("capturedAt must be an ISO UTC timestamp with milliseconds.");
++  if (!Array.isArray(value.sources) || value.sources.length === 0) throw new Error("sources must be a nonempty ordered array.");
++  const associations = new Set<string>();
++  for (const entry of value.sources) {
++    if (!object(entry) || !nonempty(entry.style) || !nonempty(entry.asset)
++      || !/^styles\/(report-dashboard|widget-grid-dashboard|project-info)\/[A-Z-]+\.md$/.test(entry.asset)
++      || entry.asset.split("/")[1] !== entry.style || !object(entry.source)
++      || ![entry.source.repository, entry.source.path, entry.source.localPath].every(nonempty)
++      || typeof entry.sha256 !== "string" || !/^[a-f0-9]{64}$/.test(entry.sha256)) {
++      throw new Error("Each source requires a style, matching bundled asset, provenance locations, and SHA-256.");
++    }
++    const key = `${entry.style}/${entry.asset}`;
++    if (associations.has(key)) throw new Error("Duplicate style and asset association.");
++    associations.add(key);
++  }
++  return value as Catalog;
++}
++
++const owner: UpgradeOwner = {
++  identify,
++  detectLegacy() { return []; },
++  validate(contract, content) { validateCatalog(content, contract); return true; },
++  preservation(_contract, content) { return replaceIdentity(content, '"catalog-identity"'); },
++  mutable(path, content) {
++    return parseCatalog(content).value.immutable !== true
++      && !path.split(/[\\/]/).some((part) => ["events", "receipts", "snapshots", "artifacts"].includes(part));
++  },
++  destinations(operation) {
++    if (operation !== "upgrade") throw new Error("Only explicit metadata upgrade is supported.");
++    return [current];
++  },
++  convert(procedure, from, to, content) {
++    if (procedure !== "file:references/source-metadata-upgrade.md" || from !== historical || to !== current) {
++      throw new Error("Unsupported metadata conversion endpoints or procedure.");
++    }
++    validateCatalog(content, historical);
++    return { content: replaceIdentity(content, JSON.stringify(current)), lossless: true, requiresDecision: false };
++  },
++  mutate() { throw new Error("Metadata mutation is not supported; use explicit upgrade."); },
++};
++export default owner;
++
++function identify(content: string): string | null {
++  const { value } = parseCatalog(content);
++  if (Object.hasOwn(value, "schema")) throw new Error("Catalog schema is unsupported; use exactly one schemaVersion field.");
++  if (!Object.hasOwn(value, "schemaVersion")) return null;
++  if (value.schemaVersion === 1) return historical;
++  if (value.schemaVersion === current) return current;
++  throw new Error("Unsupported explicit catalog schemaVersion; expected numeric 1 or design-source-metadata/v2.");
++}
++
++async function readAsset(entry: SourceEntry): Promise<{ path: string; text: string }> {
++  const root = await realpath(resolve(skillRoot, "assets"));
++  const path = await realpath(resolve(root, entry.asset));
++  if (!path.startsWith(`${root}${sep}`)) throw new Error("Bundled asset must remain inside the installed assets directory.");
++  const bytes = await readFile(path);
++  if (createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error("Bundled asset checksum mismatch; catalog and asset remain unchanged.");
++  const text = bytes.toString("utf8");
++  if (!Buffer.from(text).equals(bytes)) throw new Error("Bundled design asset must contain UTF-8 text.");
++  return { path, text };
++}
++
++// Keep all authored bytes, including unknown numeric lexemes, rather than JSON round-tripping.
++function replaceIdentity(content: string, replacement: string): string {
++  const { start, end } = parseCatalog(content);
++  if (start === undefined || end === undefined) throw new Error("Catalog schemaVersion is required; no unversioned format is supported.");
++  return content.slice(0, start) + replacement + content.slice(end);
++}
++
++function parseCatalog(content: string): { value: Record<string, unknown>; start?: number; end?: number } {
++  const value: unknown = JSON.parse(content);
++  if (!object(value)) throw new Error("Catalog must be a JSON object.");
++  const tokens = [...content.matchAll(/"(?:\\[\s\S]|[^"\\])*"|-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?|true|false|null|[{}\[\],:]/g)];
++  const stack: (Set<string> | null)[] = [];
++  let start: number | undefined;
++  let end: number | undefined;
++  for (let index = 0; index < tokens.length; index++) {
++    const token = tokens[index][0];
++    if (token === "{") stack.push(new Set());
++    else if (token === "[") stack.push(null);
++    else if (token === "}" || token === "]") stack.pop();
++    else if (token.startsWith('"') && tokens[index + 1]?.[0] === ":") {
++      const key = JSON.parse(token) as string;
++      const keys = stack[stack.length - 1];
++      if (!keys || keys.has(key)) throw new Error("Duplicate JSON object keys are not supported.");
++      keys.add(key);
++      if (stack.length === 1 && key === "schemaVersion") {
++        const identity = tokens[index + 2];
++        start = identity.index;
++        end = start! + identity[0].length;
++      }
++    }
++  }
++  return { value, start, end };
++}
++
++function object(value: unknown): value is Record<string, unknown> {
++  return value !== null && typeof value === "object" && !Array.isArray(value);
++}
++function nonempty(value: unknown): value is string {
++  return typeof value === "string" && value.trim().length > 0;
++}
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts
+new file mode 100755
+index 00000000..1a2a5323
+--- /dev/null
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts
+@@ -0,0 +1,30 @@
++#!/usr/bin/env -S mise x -- bun --install=fallback
++// Human-facing catalog validation and selected bundled-source consumption.
++import { catalogPath, readCatalog, selectSource } from "./source-metadata.ts";
++
++const usage = `Usage:
++  sources.ts validate [absolute-catalog.json]
++  sources.ts select <style> <asset-relative-to-assets> [absolute-catalog.json]
++
++The default catalog and all assets resolve from the installed skill, not cwd.
++Selection prints provenance and verified bundled text. Read-only commands never upgrade.
++For explicit conversion, use the shared skill-contracts safe-upgrade or bulk-upgrade
++with --owner file:scripts/source-metadata.ts and this installed skill's --skill path.`;
++
++try {
++  const [command, ...args] = process.argv.slice(2);
++  if (command === "--help") console.log(usage);
++  else if (command === "validate" && args.length <= 1) {
++    const catalog = await readCatalog(args[0] ?? catalogPath);
++    console.log(`Validated catalog identity: ${catalog.schemaVersion}\nCaptured at: ${catalog.capturedAt}`);
++    for (const entry of catalog.sources) console.log(`${entry.style}\t${entry.asset}\t${entry.sha256}`);
++  } else if (command === "select" && (args.length === 2 || args.length === 3)) {
++    const selected = await selectSource(args[0], args[1], args[2] ?? catalogPath);
++    console.log(`Style: ${selected.entry.style}\nAsset: ${selected.entry.asset}\nBundled path: ${selected.path}`);
++    console.log(`Repository: ${selected.entry.source.repository}\nSource path: ${selected.entry.source.path}\nRefresh local path: ${selected.entry.source.localPath}\nSHA-256: ${selected.entry.sha256}\n`);
++    process.stdout.write(selected.text);
++  } else throw new Error(usage);
++} catch (error) {
++  console.error(error instanceof Error ? error.message : "Metadata operation failed.");
++  process.exitCode = 1;
++}
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts
+new file mode 100755
+index 00000000..cce148b2
+--- /dev/null
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts
+@@ -0,0 +1,138 @@
++#!/usr/bin/env -S mise x -- bun --install=fallback
++// Native command regression coverage; isolated catalogs and assets never touch user sources.
++import assert from "node:assert/strict";
++import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
++import { tmpdir } from "node:os";
++import { resolve } from "node:path";
++import { fileURLToPath } from "node:url";
++import { spawnSync } from "node:child_process";
++
++const skill = fileURLToPath(new URL("../", import.meta.url));
++const router = fileURLToPath(new URL("../../../../agent-core/skills/skill-contracts/scripts/router.ts", import.meta.url));
++const temp = mkdtempSync(resolve(tmpdir(), "web-design-metadata-"));
++const current = "design-source-metadata/v2";
++const sourceBytes = readFileSync(resolve(skill, "assets/sources.json"), "utf8");
++const baseline = JSON.parse(sourceBytes);
++const historical = sourceBytes.replace(JSON.stringify(current), "1");
++const cli = resolve(skill, "scripts/sources.ts");
++let commands = 0;
++
++function run(argv: string[], expected = 0): string {
++  const result = spawnSync(argv[0], argv.slice(1), { cwd: temp, encoding: "utf8", env: { ...process.env, BUN_OPTIONS: "--install=fallback" } });
++  console.log(JSON.stringify({ argv, cwd: temp, exit_code: result.status, expected_exit_code: expected, stdout: result.stdout, stderr: result.stderr }));
++  assert.equal(result.error, undefined);
++  assert.equal(result.status, expected, result.stderr);
++  commands++;
++  return result.stdout + result.stderr;
++}
++function fixture(name: string, content: string | Buffer): string {
++  const path = resolve(temp, name);
++  writeFileSync(path, content);
++  return path;
++}
++function upgrade(path: string, expected = 0, operation = "upgrade"): string {
++  return run([router, "safe-upgrade", "--skill", skill, "--owner", "file:scripts/source-metadata.ts", "--artifact", path, "--operation", operation], expected);
++}
++function unchanged(path: string, content: string): void {
++  assert.equal(readFileSync(path, "utf8"), content);
++}
++
++try {
++  assert.equal(baseline.schemaVersion, current);
++  run([router, "validate", "--skill", skill]);
++  for (const contract of ["design-source-metadata/v1", current]) run([router, "resolve", "--skill", skill, "--contract", contract]);
++  const old = fixture("historical.json", historical);
++  run([cli, "validate"]);
++  run([cli, "validate", old]);
++  unchanged(old, historical);
++  for (const path of [resolve(skill, "assets/sources.json"), old]) {
++    for (const entry of baseline.sources) {
++      const output = run([cli, "select", entry.style, entry.asset, path]);
++      assert.ok(output.includes(`Style: ${entry.style}\nAsset: ${entry.asset}\n`));
++      assert.ok(output.includes(`Repository: ${entry.source.repository}\nSource path: ${entry.source.path}\n`));
++      assert.ok(output.endsWith(readFileSync(resolve(skill, "assets", entry.asset), "utf8")));
++    }
++  }
++  run([cli, "select", "project-info", "styles/widget-grid-dashboard/DESIGN.md"], 1);
++  const entry = baseline.sources[0];
++  const unicodeRepository = "référence-日本-\uFFFD";
++  const unicode = sourceBytes.replace(JSON.stringify(entry.source.repository), JSON.stringify(unicodeRepository));
++  const unicodePath = fixture("unicode-current.json", Buffer.from(unicode));
++  run([cli, "validate", unicodePath]);
++  const selectedUnicode = run([cli, "select", entry.style, entry.asset, unicodePath]);
++  assert.ok(selectedUnicode.includes(`Repository: ${unicodeRepository}\nSource path: ${entry.source.path}\n`));
++  assert.ok(selectedUnicode.endsWith(readFileSync(resolve(skill, "assets", entry.asset), "utf8")));
++  assert.deepEqual(readFileSync(unicodePath), Buffer.from(unicode));
++  const malformedBytes = Buffer.concat([
++    Buffer.from(historical.slice(0, historical.indexOf(entry.source.repository))),
++    Buffer.from([0xff]),
++    Buffer.from(historical.slice(historical.indexOf(entry.source.repository))),
++  ]);
++  const malformedPath = fixture("invalid-utf8.json", malformedBytes);
++  run([cli, "validate", malformedPath], 1);
++  assert.deepEqual(readFileSync(malformedPath), malformedBytes);
++  run([cli, "select", entry.style, entry.asset, malformedPath], 1);
++  assert.deepEqual(readFileSync(malformedPath), malformedBytes);
++  const authored = historical.replace('"capturedAt":', '"unknown": {"precise": 9007199254740993, "nested": [3, 1, 2]},\n  "capturedAt":');
++  const authoredPath = fixture("authored.json", authored);
++  assert.equal(JSON.parse(upgrade(authoredPath)).changed, true);
++  unchanged(authoredPath, authored.replace('"schemaVersion": 1', `"schemaVersion": ${JSON.stringify(current)}`));
++  const converted = readFileSync(authoredPath, "utf8");
++  assert.equal(JSON.parse(upgrade(authoredPath)).changed, false);
++  unchanged(authoredPath, converted);
++  run([cli, "validate", authoredPath]);
++
++  const invalid = [2, 0, -1, "1", "design-source-metadata/v1", "design-source-metadata/v99", null, {}, []];
++  for (const [index, identity] of invalid.entries()) {
++    const content = JSON.stringify({ ...baseline, schemaVersion: identity });
++    const path = fixture(`unknown-${index}.json`, content);
++    run([cli, "validate", path], 1);
++    upgrade(path, 1);
++    unchanged(path, content);
++  }
++  const absent = { ...baseline };
++  delete absent.schemaVersion;
++  for (const [name, content] of [
++    ["absent", JSON.stringify(absent)],
++    ["mixed", JSON.stringify({ ...baseline, schema: "design-source-metadata/v1" })],
++    ["duplicate", historical.replace('"schemaVersion": 1', '"schemaVersion": 1, "schemaVersion": 1')],
++    ["malformed", "{broken"],
++    ["immutable", JSON.stringify({ ...baseline, schemaVersion: 1, immutable: true })],
++    ["bad-association", JSON.stringify({ ...baseline, schemaVersion: 1, sources: [{ ...baseline.sources[0], style: "project-info" }] })],
++  ]) {
++    const path = fixture(`${name}.json`, content);
++    run([cli, "validate", path], name === "immutable" ? 0 : 1);
++    upgrade(path, 1);
++    unchanged(path, content);
++  }
++  const unsupported = fixture("unsupported.json", historical);
++  upgrade(unsupported, 1, "refresh");
++  unchanged(unsupported, historical);
++  const bulkOld = fixture("bulk-old.json", historical);
++  const bulkImmutableBytes = JSON.stringify({ ...baseline, schemaVersion: 1, immutable: true });
++  const bulkImmutable = fixture("bulk-immutable.json", bulkImmutableBytes);
++  const list = fixture("selected.json", JSON.stringify([bulkOld, bulkImmutable]));
++  const bulk = JSON.parse(run([router, "bulk-upgrade", "--skill", skill, "--owner", "file:scripts/source-metadata.ts", "--artifacts", list], 1));
++  assert.equal(bulk.status, "partial");
++  assert.equal(bulk.results[0].changed, true);
++  unchanged(bulkOld, sourceBytes);
++  unchanged(bulkImmutable, bulkImmutableBytes);
++
++  const isolated = resolve(temp, "isolated-owner");
++  cpSync(skill, isolated, { recursive: true });
++  const asset = resolve(isolated, "assets", baseline.sources[0].asset);
++  const damaged = readFileSync(asset, "utf8") + "\nchanged fixture\n";
++  writeFileSync(asset, damaged);
++  const isolatedCatalog = resolve(isolated, "assets/sources.json");
++  run([resolve(isolated, "scripts/sources.ts"), "select", baseline.sources[0].style, baseline.sources[0].asset], 1);
++  unchanged(asset, damaged);
++  unchanged(isolatedCatalog, sourceBytes);
++  unchanged(resolve(skill, "assets/sources.json"), sourceBytes);
++  for (const entry of baseline.sources) {
++    const bytes = readFileSync(resolve(skill, "assets", entry.asset));
++    assert.equal(new Bun.CryptoHasher("sha256").update(bytes).digest("hex"), entry.sha256);
++  }
++  console.log(`PASS: ${commands} native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries.`);
++} finally {
++  rmSync(temp, { recursive: true, force: true });
++}

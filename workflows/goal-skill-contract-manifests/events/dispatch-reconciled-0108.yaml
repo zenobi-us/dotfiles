@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0108",
+  "parent_event": "dispatch-observed-0107",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 6,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0106.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0030.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0029.yaml",
+  "status": "completed",
+  "acceptance_status": "usable_failure_two_hard_document_opening_findings",
+  "source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+  "source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f",
+  "validation": {
+    "fresh_native_outcomes": 56,
+    "all_expected": true,
+    "positive": 21,
+    "expected_negative": 35,
+    "all11_frozen_blobs": true,
+    "protected6_and_all5_assets_preserved": true,
+    "standards_low_hard_findings": 2,
+    "spec_findings": 0,
+    "prior006_through008_resolved": true,
+    "parent_only_projection_link_targets_exist": 22,
+    "source_accepted": false
+  },
+  "resource_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 4,
+  "leaf_shutdown": {
+    "standards": {
+      "run_id": "075ccc09-8d72-49fb-9b4f-ef90b9a7755f",
+      "shutdown": "confirmed"
+    },
+    "spec": {
+      "run_id": "5d262736-2ad1-43ed-84c7-336efc11a6d5",
+      "shutdown": "confirmed"
+    }
+  },
+  "extra_signals_sent": false,
+  "accounting": {
+    "ticket_attempts_consumed": 10,
+    "ticket_attempts_remaining": 90,
+    "dispatches_consumed": 24,
+    "dispatches_remaining": 2476,
+    "omp_token_budget": null
+  },
+  "next_action": "Fresh inspector fix/begin for current standards009–010. Active goal covers normal findings-driven fix loop. Scope only concise purpose/reader/document-date opening blocks in the two new metadata references, plus normal hook metadata. No schema identity or runtime changes. Preserve corrected mutable-view link bases when regenerating next draft. No relocation work.",
+  "created_at": "2026-11-26T22:20:13.475Z"
+}

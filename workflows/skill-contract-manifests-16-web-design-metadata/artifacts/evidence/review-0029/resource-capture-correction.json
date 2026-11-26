@@ -1,0 +1,5 @@
+{
+  "kind": "capture-only-correction",
+  "error": "Capture validator expected resources at top level; actual muxer-resource-report/v2 nests them under resources. Standards closure and original after report succeeded. No native check or closure rerun.",
+  "standards_actual_shutdown": "confirmed"
+}

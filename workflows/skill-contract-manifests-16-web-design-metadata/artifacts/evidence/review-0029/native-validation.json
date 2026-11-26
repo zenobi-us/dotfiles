@@ -1,0 +1,8 @@
+{
+  "rows": 56,
+  "successes": 21,
+  "expected_negative_exits": 35,
+  "all_match": true,
+  "outer_exit": 0,
+  "duration_ms": 8460.242155000002
+}

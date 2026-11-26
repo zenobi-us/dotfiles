@@ -39,3 +39,6 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 - Review 2026-11-26T21:47:39.841Z: FAILURE. Source `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`, tree `bb15b43f805dbc4946d846862e16caddd485621a`. Three low hard prose-rule findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md).
+
+
+- Review 2026-11-26T22:16:26.879Z: FAILURE. Source `dab2338e6be69e208c39c6c05164c0a1a066dbf7`, tree `85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f`. Two low hard opening-block findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0029.md).

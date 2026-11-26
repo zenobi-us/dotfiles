@@ -1,0 +1,29 @@
+{
+  "axis": "standards",
+  "findings": [
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard documented house-rule breach. iso-24495-5/SKILL.md, rule 7, requires an opening block with purpose, intended reader, and version or date. This entirely new reference opens with ownership and implementation details. It does not name its intended reader or give a document version or date. Contract identifiers later in the document describe catalog formats, not this document.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "id": "standards-009",
+      "line": 1,
+      "required_change": "Add a concise opening block that states the reference purpose, names its intended reader, and supplies a document date. Do not add a contract identifier to ordinary prose.",
+      "severity": "low",
+      "validation_command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md; manually inspect the opening against iso-24495-5 rule 7."
+    },
+    {
+      "adr": null,
+      "axis": "standards",
+      "description": "Hard documented house-rule breach. iso-24495-5/SKILL.md, rule 7, requires an opening block that names the intended reader and gives a document version or date. This entirely new procedure supplies neither. Its conversion endpoint identifiers do not identify the document revision.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "id": "standards-010",
+      "line": 1,
+      "required_change": "Name the procedure's intended reader and add a document date near its purpose statement. Preserve separate conversion authority and the existing refusal boundaries.",
+      "severity": "low",
+      "validation_command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md; manually inspect the opening against iso-24495-5 rule 7."
+    }
+  ],
+  "report": "Reviewed the full eleven-path feature diff from ad499c679ba1c414430bc674750ce1ae541316e6 to dab2338e6be69e208c39c6c05164c0a1a066dbf7. The targeted fixes resolve standards-006 through standards-008: selection actions and outputs use vertical lists, the skill links three definition topics through labelled bullets, and the upgrade conclusion uses separate short paragraphs. Explicit companions, authoritative links, and checksum refusal remain intact.\n\nTwo low-severity documented house-rule findings remain in the newly added references. These concern required document opening fields, not ISO conformance or catalog schema versions. No additional baseline smell warrants a finding. ADR 0001 concerns Pi Ink cleanup and does not govern this feature. Unchanged baseline prose and tooling-enforced concerns are excluded.\n\nRead-only review only. No source edits, builds, lint, tests, formatters, or runtime probes ran. Runtime verification and frozen-blob checks remain the primary reviewer's responsibility.",
+  "schemaVersion": "review-axis/v1"
+}

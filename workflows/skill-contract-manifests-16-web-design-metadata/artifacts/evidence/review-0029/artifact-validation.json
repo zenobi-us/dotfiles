@@ -1,0 +1,15 @@
+{
+  "source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+  "source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f",
+  "review_base_commit": "ad499c679ba1c414430bc674750ce1ae541316e6",
+  "verdict": "FAILURE",
+  "blocking_findings": [
+    "standards-009",
+    "standards-010"
+  ],
+  "sole_body_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0029.md",
+  "body_matches_prepared": true,
+  "body_sha256": "756640b47ee057871ef378df2c1b8cd76f788f6aec4ada63b33a3b2ba2005d1b",
+  "axis_reports_ready": true,
+  "native_checks_ready": true
+}

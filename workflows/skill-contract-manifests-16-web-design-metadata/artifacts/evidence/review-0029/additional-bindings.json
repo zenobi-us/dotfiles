@@ -1,0 +1,143 @@
+{
+  "parent_asset_checksum_rows": 5,
+  "all_match": true,
+  "creator_version": "0.1.7",
+  "marketplace_version_equal": true,
+  "coordination": {
+    "inventory_complete": false,
+    "ownership_reported": "unknown",
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0027.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+          "commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "reservations": [],
+    "reservation103": {
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0103.yaml",
+      "runId": "skill-contract-manifests-20261125-t2dv",
+      "ticketRef": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "phase": "fix",
+      "coordinator": {
+        "session_id": "herdr-app:t2dv",
+        "muxer": "herdr-app",
+        "pane_id": "t2dv",
+        "agent": "omp"
+      },
+      "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0027.yaml",
+      "locations": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reserved-0103.yaml"
+      ],
+      "ambiguous": false,
+      "reconciliationVerified": true
+    },
+    "generated_file_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "Fresh102.30-second three-scope coordination. No hard blockers or record diagnostics. Sole recorded/live parent t2dv, exact unique clean dab2338e source, no proposed reservation.103 verified reconciled to parent27. All owned fixer processes stopped/confirmed and source desktop absent after normal closure. Generic unknown ownership is assessed by sole matching parent and existing goal authority, not takeover. Incomplete other inventory remains unknown. Same4 generated metadata overlaps in distinct worktrees remain future integration risks. This phase is read-only exact-source review, with no mutable source index sharing, generator change or merge. Normal active goal review-after-fix authority applies. Relocation escalation-only."
+  },
+  "primary_session": {
+    "terminal": "t2ky",
+    "depth": 1,
+    "run_id": "5080e3b2-bdd6-4a0d-ae9f-1c15445ef8bd"
+  },
+  "leaf_resources": {
+    "standards": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "075ccc09-8d72-49fb-9b4f-ef90b9a7755f",
+      "observedAt": "2026-11-26T22:13:37.520Z",
+      "processes": [
+        {
+          "pid": 817390,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "43634716",
+          "command": "omp",
+          "parentPid": 816823,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    },
+    "spec": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "5d262736-2ad1-43ed-84c7-336efc11a6d5",
+      "observedAt": "2026-11-26T22:14:02.095Z",
+      "processes": [
+        {
+          "pid": 817550,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "43634780",
+          "command": "omp",
+          "parentPid": 816991,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  }
+}
