@@ -1205,7 +1205,10 @@ export function runCli(
    stderr(`warning: skipped unreadable entry: ${path}`);
   }
   if (jsonPath !== undefined) {
-   checkDestinations([jsonPath], Object.keys(findings.files).map((path) => join(dir, path)));
+   checkDestinations([jsonPath], [
+    join(dir, ".iso-24495-4", "acronyms.json"),
+    ...Object.keys(findings.files).map((path) => join(dir, path)),
+   ]);
    writeFileSync(jsonPath, JSON.stringify(findings, null, 2));
   }
   stdout("| Rule | Violations |");

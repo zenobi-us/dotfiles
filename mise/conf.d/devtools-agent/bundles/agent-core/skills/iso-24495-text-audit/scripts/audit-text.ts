@@ -147,7 +147,11 @@ export function runCli(
       stderr(`warning: skipped unreadable entry: ${path}`);
     }
     if (jsonPath !== undefined) {
-      checkDestinations([jsonPath], [target, ...Object.keys(findings.files).map((path) => resolve(projectDir, path))]);
+      checkDestinations([jsonPath], [
+        target,
+        resolve(projectDir, ".iso-24495-4", "acronyms.json"),
+        ...Object.keys(findings.files).map((path) => resolve(projectDir, path)),
+      ]);
       writeFileSync(jsonPath, JSON.stringify(findings, null, 2));
     }
     stdout(formatFindings(findings));

@@ -28,7 +28,7 @@ Snapshots have timestamp (a parseable date string), totals (nonnegative safe int
 
 ## Operations and scope
 
-All report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.
+All report inputs are validated before writing state or reports. Destinations must be distinct from consumed sources and each other. Consumed project configuration includes the acronym lexicon at <project-dir>/.iso-24495-4/acronyms.json for both audit-corpus and audit-text. Destination checks protect this lexicon through direct paths and filesystem aliases, including symlinked ancestors. Symlinks, hard links, non-files, and immutable history destinations are rejected before writes. Existing state is appended through shared safeUpgrade with the owning adapter. A concurrent state change rejects the append. A new state starts with v2. Rejected input or unsafe destination leaves input, state, and report bytes unchanged.
 
 Ordinary Markdown reports, selected prose, external frontmatter, acronyms.json (an external string-array lexicon), tables, and prose references keep their existing formats. They are not assessment records. The selected text and its frontmatter stay read-only; --no-front-matter retains its existing reading behavior. English heuristics, scoring policy, provisional committee-draft limits, and human decisions are unchanged.
 

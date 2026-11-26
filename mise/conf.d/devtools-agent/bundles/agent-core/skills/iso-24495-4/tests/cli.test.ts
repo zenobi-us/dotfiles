@@ -341,6 +341,58 @@ describe("command line entry files", () => {
     expect(stdout).toContain("The user decides whether the text suits its readers and purpose.");
   }, ENTRY_TIMEOUT_MS);
 
+  for (const producer of ["corpus", "text"] as const) {
+    test(`${producer} CLI preserves consumed acronym configuration through destination aliases`, async () => {
+      const root = mkdtempSync(join(tmpdir(), "iso-lexicon-destination-"));
+      try {
+        const project = join(root, "project");
+        const config = join(project, ".iso-24495-4");
+        mkdirSync(config, { recursive: true });
+        const lexicon = join(config, "acronyms.json");
+        const selected = join(project, "selected.txt");
+        writeFileSync(lexicon, '["XYZ"]\n');
+        writeFileSync(selected, "XYZ shall act.\n");
+        const lexiconBytes = readFileSync(lexicon);
+        const selectedBytes = readFileSync(selected);
+        const alias = join(root, "project-alias");
+        symlinkSync(project, alias, "dir");
+        const script = producer === "corpus" ? join(SCRIPTS, "audit-corpus-cli.ts") : TEXT_AUDIT_SCRIPT;
+        const inputs = producer === "corpus" ? [project] : [selected, "--project-dir", project];
+        for (const destination of [lexicon, join(alias, ".iso-24495-4", "acronyms.json")]) {
+          const proc = Bun.spawn(["bun", script, ...inputs, "--json", destination], {
+            stdout: "pipe",
+            stderr: "pipe",
+          });
+          const [stdout, stderr, status] = await Promise.all([
+            new Response(proc.stdout).text(),
+            new Response(proc.stderr).text(),
+            proc.exited,
+          ]);
+          expect(status).toBe(1);
+          expect(stderr).toContain("Output destinations must be distinct from consumed inputs");
+          expect(stdout).toBe("");
+          expect(readFileSync(lexicon)).toEqual(lexiconBytes);
+          expect(readFileSync(selected)).toEqual(selectedBytes);
+        }
+        const output = join(root, "acronyms.json");
+        const result = await runScript(script, [...inputs, "--json", output]);
+        expect(result.exitCode).toBe(0);
+        const findings = JSON.parse(readFileSync(output, "utf8"));
+        expect(findings.schemaVersion).toBe("plain-language-findings/v2");
+        expect(findings.files).toEqual({
+          "selected.txt": {
+            violations: [{ rule: "legalese", line: 1, detail: 'banned term "shall"' }],
+          },
+        });
+        expect(findings.totals).toEqual({ legalese: 1 });
+        expect(readFileSync(lexicon)).toEqual(lexiconBytes);
+        expect(readFileSync(selected)).toEqual(selectedBytes);
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
+    }, ENTRY_TIMEOUT_MS);
+  }
+
   test("audit-evidence-cli reports the fixture repository", async () => {
     const { stdout, exitCode } = await run("audit-evidence-cli.ts", [REPOSITORY]);
     expect(exitCode).toBe(0);
