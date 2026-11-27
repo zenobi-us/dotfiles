@@ -1,0 +1,11 @@
+{
+  "corrects": "manual-prose-validation.json sentence_word_counts_excluding_labels",
+  "reason": "Manual evidence transcription counts were incorrect; source wording and audit conclusions unchanged. No source check rerun.",
+  "ordinary_whitespace_word_counts_without_labels": {
+    "reference_purpose": 11,
+    "procedure_purpose": 13,
+    "reference_referral": 8,
+    "procedure_referral": 10
+  },
+  "all_below_procedural_20_word_limit": true
+}

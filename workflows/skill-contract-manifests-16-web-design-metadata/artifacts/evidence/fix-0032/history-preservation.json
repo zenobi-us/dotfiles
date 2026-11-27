@@ -1,0 +1,1082 @@
+{
+  "prior_immutable_files": 215,
+  "all_unchanged": true,
+  "files": [
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md",
+      "sha256": "f40118376a16e24d338799f9744b1a54657f82542713deaf4d3ce1d782df8e9c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0026.md",
+      "sha256": "4751adddf37534596fd6ef4ef175578da8489dd99f59c219f989348b3887a153",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "sha256": "9f12aec4dbe259e6e0a09c543a7619a529d199e94188f93189f695f6a81eb333",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md",
+      "sha256": "ba14200676485217c6562929683398d1e143a6d897cd1d82e98ed842da82915e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0020.md",
+      "sha256": "5a02fd24c1af378e09c4286fac71dc19a041eff4aaa65915d1b8c263c41fbda1",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md",
+      "sha256": "9b173d428b9612c0a48b4c4e76743c9a68d0d37ffae0bb5da0ffbd68f5ce7e69",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0005.md",
+      "sha256": "06964c90488213910ad0dc2e388fea399f4a201b6cf9ca4fca601b92d8962079",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0029.md",
+      "sha256": "756640b47ee057871ef378df2c1b8cd76f788f6aec4ada63b33a3b2ba2005d1b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md",
+      "sha256": "0e37bb0ade40d0893eb11c5ae935cf865c6a70f2c2249d5421e8d32804a35125",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md",
+      "sha256": "16660038c8cb5146603ae401e33cf39f7e350c4d4680285615217c3a3f2665f8",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0014.md",
+      "sha256": "688d823ee90fabec5625b1be3eda700f806a119cf0bfbe36178cabaa0dd816fb",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-resources-before.json",
+      "sha256": "612d1195c9df3981a20146b51fe0b5bca24a9dee5df1f260238e9e3a790b9e5a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-resources-after.json",
+      "sha256": "0568f3d0fcff397aafb65973d2813fef1507a22a272971f4551bf16ed93017b9",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-validation.json",
+      "sha256": "41622de240082aa04330466b65bc6f2ae17c0508f6d4995068c168564cd59a0a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/failure-provenance.json",
+      "sha256": "1b74f41d2e74bcf4477d813bab78195adafcf824539a71ebc24c44fbabba6292",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/blocked-checks.json",
+      "sha256": "30ed24953f1f490d0f9169898c24569f2e2cb2a7a478ba95d940b5b1373969b0",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0005/parent-recovery-decision.json",
+      "sha256": "dfe2cc1be73a1bf5cef62341895c78a2dde84b7ca59a729634dfa239eb178e1b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/parent-resources-before.json",
+      "sha256": "1cfc6b0d2c41c6d043f3ee5b80053c848f12b19855ec5b48fab9f74428db6523",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/preservation.json",
+      "sha256": "df587bc72f0dca297f42e4ab127607d44b6097e87188603546ff6b15a6f88d35",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/native-smoke.json",
+      "sha256": "af1cfda0c1944dc24997b443591754db104a9e882f9c03e2d54acf16c7f6a18e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/parent-resources-after.json",
+      "sha256": "13e81104dc09cfdd7f69cc825ab731730e620e3def2f570f830eab34f680fc16",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/standards-axis.json",
+      "sha256": "2e6b5c9160644bf4ddbcbce2191a30a1cee22e8579b8ae10160b8d0f04750b33",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/parent-validation.json",
+      "sha256": "532d05cee9eebe41cf6cdec33c9fb98dea80e6bc443ac02b4c14869e729d9d3c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/scope.json",
+      "sha256": "1764293de09d794b633830f1e14f5914f7a39989a96cd05eae1cc424b7c88881",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/axis-resources-after.json",
+      "sha256": "c2a3cb993a69a8793441a88c2fce3d5a680cab0963fbbc062fede410359bfb1f",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/desktop-after.json",
+      "sha256": "eb0600b337b702c27e9cd60ebc56af771a38fdb71a28c2cb83741432d2693d2e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/axis-resources-before.json",
+      "sha256": "55f30e2216b8a1fe53ea0db790f649efb279b4adf8a79c54b6191a288ea6effb",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0008/spec-axis.json",
+      "sha256": "e7329933e6f24186a3e73f7cd30a7f10ab6eef34c58d00fb26c6679c2451dc40",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-baseline-0001/asset-checksums.txt",
+      "sha256": "3f3b12d1ca5904ef792fff05737bd6fa53c4822b342c78ebd9bcd316281ca60d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-baseline-0001/sources.numeric-v1.json",
+      "sha256": "ffa6c6029e84a160a0032c4168a043ec7e5f482411db149804bac9152e142411",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/parent-resources-before.json",
+      "sha256": "e25504876ea84d92e024fcec70acee82b2dd5eaee9f378fc5ad2cfd431d61dda",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/preservation.json",
+      "sha256": "2e7173079b88800b4a4850130629fb24166b240ecca2b0646970194a26c3af45",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/native-smoke.json",
+      "sha256": "5448df5ce37564a8e306afd90f6c1973a54394b629b6e411f4de0ada390c5129",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/parent-resources-after.json",
+      "sha256": "7f654ce3001438ad934b17cd9a16cca6af658ada791061e5ca638b9b2ae114f2",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/publication-failure.json",
+      "sha256": "471355278cab13172b6a6345939e0443546bb4e7380d6bbeddad9d4fbd044a00",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/parent-context-input-correction.json",
+      "sha256": "64bd0c771c9cefee61a2bcc308aa5c43a4c2c3648056c627c98982104ef5ab89",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/parent-validation.json",
+      "sha256": "0c7714e86dadc1c2648e4c1ccbf51a18b09e9045b5421c14308326ba97c88633",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/resources-before-parent-closure.json",
+      "sha256": "88d049890a516d35c9e2f77bbae02207aaaca8e076107fc901c09791da0db25c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/final-authored-hashes.json",
+      "sha256": "ed996f93efe0b7ed2703573d42516aa572bb0a097e2438d59c5fd8959b4e1b87",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/commit-binding.json",
+      "sha256": "e8aedfc9734337e61c94a9690344dce72bad34732eccaaed0016ffa6351b07ba",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0011/parent-resources-final.json",
+      "sha256": "5ffb78b80adf762713fd28e7d0b64970784d1a92b0f585b06222f6126256f897",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-input-recovery-0013/metadata-recovery.json",
+      "sha256": "fa3e828d76e34026c523991185f6609e35dc68cfe27e13415df593649ae95cb1",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/resources-before-parent-closure.stdout.json",
+      "sha256": "bed479ee9c4f18a049f5cc109bd6639e7ddfeb2dd6882d23fb71487e8d7ab11d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/parent-resources-before.json",
+      "sha256": "77cfb75e356f7c0c95b2803cdeffb4c959ce1342ec60a04efdad302a12325e3b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/query-input-corrections.json",
+      "sha256": "d6fa0924632e9eb9ec8efc7a8d7a7e95082afc9fe766067092fe6c4cab0a3239",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/preservation.json",
+      "sha256": "a37266550b3d12d8379f465f5bd0b33da1ed18883bbe11fae854c7bde0d86afa",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/native-smoke.json",
+      "sha256": "98727e0cee7fb1ed48ae8c163a346bd307abdb2632ffc980993ed55d98c0007a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/parent-resources-after.json",
+      "sha256": "39c19ef4e894bacd7f7bb5cec246d433ddbc9969c5902b84d66ea171ff9ba1f2",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/native-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/manual-prose-validation.json",
+      "sha256": "df14f3a863a5b6c29a565eb55a07780933285854eee747ce66b46178137779ff",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/parent-validation.json",
+      "sha256": "5999a07b8efbfc3f223cb50fc1efba4663d531f6182f53a3874954895f697f3c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/resources-before-parent-closure.json",
+      "sha256": "cc323d80ede594c7c2ff55d868a81c38216accacc8850f1efbe8a3fcb40e8363",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/native-stdout.txt",
+      "sha256": "51ce425cc758cf813931505e0f17276f16e3d4cacd29d34b3da460547eafd6ac",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/commit-binding.json",
+      "sha256": "a09c981e76a5c22773bd44f2dd6eefe692885296523d8801892b5e14e5fd5eaa",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/resources-before-parent-closure.stderr.txt",
+      "sha256": "c799de6dd60756bcc3c642fcaec4ad2b78af51a444a1eb3339ceada38bfb9e5c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/snapshot-prepublication-validation.json",
+      "sha256": "504277348de0be7756de32eab84ad8f5d94c815e23a767db0abefab478a3098b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/retained-failure-evidence.json",
+      "sha256": "651b9dfb8a56ba1999b6692f6a01f37c08526857952b4b400f1faf164fb0c828",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0020/parent-desktop-after.json",
+      "sha256": "7e2ddaa918ab0c000e4315b4a08d0efc006794a5c405ec1ac51f6ee93de55ecd",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/native-probes.json",
+      "sha256": "fcc9fa89f492a2d2436e5bf83bd48ad713ee41014c4402203beebdea9a03de30",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/fixture-inputs.json",
+      "sha256": "7246b8e19f28a219c89e766d01f7dac1b8b217526f28837b0534244fc770e2bc",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/invalid-utf8-catalog.bin",
+      "sha256": "9e8d6c008023e1051094affd48b330dea718dade660a032ab050a2cdf4990a37",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/parent-resources-before.json",
+      "sha256": "6521c92640cb88d1c81d57b731e23002fec6183bfeee2c6f66dcdf6494a57267",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/native-smoke.json",
+      "sha256": "9bbd71a80c63cb66667405112a95a52494a44d1d8db1e0bedc8006e69639d536",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/parent-resources-after.json",
+      "sha256": "02bc1f820d8a5354aa7e4f6d3bc2b8567327c1b5babd07274a5587c5c7bac1ef",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/standards-close-and-resources-full.txt",
+      "sha256": "09ee6d652f330f463e22a63324f3438aad492d95694cdf3ccf5677dfe37b3d90",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/standards-axis.json",
+      "sha256": "92f68d603dd14bcb66a2c3e5553a4f93083100b35ecf75e902e37dc1085b8acb",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/source-bindings.json",
+      "sha256": "9af54e645f72035c28573ee798c76cafa147fb90b02d22d8450fddcd330ae93b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/spec-resources-before-full.json",
+      "sha256": "9e6cfd49d301a51c116c311e2cdc90bab829d8555a4c3ed399e2b0ef2ba37332",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/parent-validation.json",
+      "sha256": "d133fc08e0be4731bbc06daa63c411e2196d31ae17d8fb1cb29994d69bf4cac6",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/standards-resources-before-full.json",
+      "sha256": "a7feb8b1f4a087cb2565aa24cf2bdc03df28e38d02265de5270bbc216c9e6fc1",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/spec-resources-before.json",
+      "sha256": "40aad4a31470c3b15911db518f73a1946df36d2354829bc2397866886a2f1783",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/desktop-after.json",
+      "sha256": "20c4a1f6d33d9caf10e42b7932bad77031ae830bba99b604b6fc316454bed52d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/spec-resources-after-full.json",
+      "sha256": "939b0f9e3cc791c4edd5b29271855622b14973bfa3678cc99c0e74e8eb0db314",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/standards-resources-after-full.json",
+      "sha256": "a33f00f25337a1cdf1baaf5cc9f66fac8925024c07d8211b5f7443b4b25075c6",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/artifact-validation.json",
+      "sha256": "c4fe75e56028790d8672472b71314f22e509325f2066ef3f93d28c63f725a85a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/evidence-capture-correction.json",
+      "sha256": "657a4ba0dcaf6e2fd071882a940c242f457958df1dce51048a7e51b6ec235481",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/spec-axis.json",
+      "sha256": "524037994f0d69fd4e77ee30761b3b5a43dd1987bd223ffc6e51d70eeed807c1",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/parent-resources-final.json",
+      "sha256": "938446be5374a7d0014a1b72b3f66c1a355bcb80b1b45b523ed7c8fbb18d5889",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/capture-error.json",
+      "sha256": "a4b6826410dc8184c1d0e1adfbe87a8133a15773e42d5e84d3af12dccce62e5d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/axis-validation.json",
+      "sha256": "4ad9500ae5d3327d083b18cf5f5c1583116647c0ec3570d22aa9df43411ce01b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/spec-resources-after.json",
+      "sha256": "1ca5aed9e57026404ac190564d8061a54f605d6c739cf86c95fa563ef781d27d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/parent-signal-free-observation.json",
+      "sha256": "c8f23a5f30f61462f4a77eec551f77beece818a6b3c04feceb131100d99b036e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0017/parent-desktop-after.json",
+      "sha256": "4665024dab94b050c22aa4ef6daa34c360cf3b86f2f6444eab1b84ccc435ee76",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/resources-before-parent-closure.stdout.json",
+      "sha256": "66ecc80507d854803fc9d66b73aa6a1529b578b15b46e703d90d9f45785adf15",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/parent-resources-before.json",
+      "sha256": "8e570a6c48baf44ae955fdc8d0e3cb3653b8c3446ad69e0b0184e30a4c996c39",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/query-input-corrections.json",
+      "sha256": "353d52cbcc3b67fbd1d467da8a5d856b32a1dc18e62d4b8597ae1e6fabbccc0a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/preservation.json",
+      "sha256": "4a03ad5e97ffef56b35b740820106f026ee33d8448c67e7655466a81e4c4061b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-smoke.json",
+      "sha256": "d616a3f90f8ceec7c51cbca1123153657c46f25d667041dec49e8df94ac9ee9b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/parent-resources-after.json",
+      "sha256": "5bc1d9c6a8d9a058a7914e17c4be14920bab2e7d68a1ecc7f651a89dd45ec71d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/manual-prose-validation.json",
+      "sha256": "8950aae0f0851519d2874a30d76df43528897dc74283b0523e1803ad8e991052",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-validation.json",
+      "sha256": "1fbbd181aa788510e9edf33a1e04801d96a4645063739e08f8cf37225f28792f",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/parent-validation.json",
+      "sha256": "b79eade4acd87106416865774196c5e4ecb15df9eb608c737a1ed907e3571114",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/resources-before-parent-closure.json",
+      "sha256": "9c472c307419c3b250a2daaa33c16dc4afaa972909ec5f32a48bd29dbd78f581",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/native-stdout.txt",
+      "sha256": "ac2d62a7f72ecf076878556c4eac0dba25fb493b72ffea67e212163d0c1a31ac",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/history-before.json",
+      "sha256": "8d596c749fd1540190303a262c187d2c422bf5530986283d2e638f7b5e9a4a02",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/commit-binding.json",
+      "sha256": "6cfde6b48da5a53520c85c40ea182c8034e7f953da3b5c12001332913df4ac35",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/resources-before-parent-closure.stderr.txt",
+      "sha256": "d17b509d7994729505e47addae93cb8bc91306c991d73e081993bf22cd6693a4",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/snapshot-prepublication-validation.json",
+      "sha256": "4f82f0bf6abda8d78676cecf358867087b5bb26104c215fcd5a2a59be4a841a7",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/history-preservation.json",
+      "sha256": "ad44b8e31e177e957fc05d8eccdbb50f0e4f1ee9510a2dcfd1eddc87d5e2f0b9",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/parent-desktop-after.json",
+      "sha256": "12b313604e1782800895cb532dd01ec25ac419b5272fdee933c01fedbf3989e9",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/parent-resources-before.json",
+      "sha256": "5fc5ffeb9d70334f0074c0f979ab9bdf57dd65867b95a774bf9d930b0ab5e873",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/standards-resources-before.json",
+      "sha256": "d0993b9947f035f6091b0bcaec70f57f2f4072973925aec2b633328ab10ed02c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/native-smoke.json",
+      "sha256": "955dc397e4282f347b1bf0b04b61b69ced9f895ac23993f2718ae09e5235a07d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/parent-resources-after.json",
+      "sha256": "d2ba02eb51252de5aa898814049002b47ef906c8e57a22117409b056e54f36c4",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/native-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/axis-runs.json",
+      "sha256": "2233e29e1aed46b40da08b2a2d5d7250cc1fa1af537ebcf4c1ac597848ee0441",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/standards-axis.json",
+      "sha256": "5c244e59a49c151c1020703dc89797e62779aeef155338dd57052f0f1ac9379c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/source-bindings.json",
+      "sha256": "1ca7f136552333817753b379670b40ba6e51a80e0f8ac1e6fe7822516b11bb39",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/native-validation.json",
+      "sha256": "cd47f369cbb9b98ac7a3cd6fc0ed1222e8d655590624f4dd011f8707659e6299",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/parent-validation.json",
+      "sha256": "cf3e7c1e4cb4995bbf9d93cc23cb2ee886b19d6517254fbbe4740496112d51af",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/commits.txt",
+      "sha256": "fc442feb7e5268c7c36e8c9c9e2e2fa90d1c63398453e994339a4381cb421fd6",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/native-stdout.txt",
+      "sha256": "8eedc093d0a62c7f2c7a2855cd2d778242b8934bd312e8e9186c4ace07259f8a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/spec-resources-before.json",
+      "sha256": "004e10ac565e20d0fcc3d0d9551f4b5473da3891dacc3f7cf1a65c2af2250d90",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/standards-ack.json",
+      "sha256": "c0c257d3439feb24135ceba8e23df701aaafdf1913d79fc6ce2ba903a62a60af",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/desktop-after.json",
+      "sha256": "6bb2c0f01216f459d75845a6910d756524babccfe392e482e2c8bb224d6ecfba",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/standards-resources-after.json",
+      "sha256": "a8ded1f52e61361add1f585c8b61dbb2730900788c47c9863ddae748ae4bc870",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/artifact-validation.json",
+      "sha256": "788921dbfe54fd16de5744b5015ccaa0f6aa9cd4464f79da9a519f2c93460ee4",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/parent-historical-byte-check.json",
+      "sha256": "b5111d3aa56b06ce5eca2aeb022b416ac28dd2fffa10facc6ad70d0eb3adcf75",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/spec-axis.json",
+      "sha256": "61bb23205a4a15e515d8c682301754fba8c5f13ffc342346ea000b71b051e52a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/committed.diff",
+      "sha256": "ea0df13e1e4340e88ad82b925fd70d1cef6e0f50edd37906c2c99859cbcad88a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/axis-validation.json",
+      "sha256": "7a9a8d02dbf430fb9bc839f6c21b3decea2630cabaff60f0b54d754a514128fd",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/spec-ack.json",
+      "sha256": "746e4f76aeec88cb111df75fcec08d6e426c6c3a72d0c75d4d621b780d6344c1",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/spec-resources-after.json",
+      "sha256": "f128570b1a922f490b431aa1213565d36837fee514ad4c55b7e0c8b5f9b5b4f7",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/parent-desktop-after.json",
+      "sha256": "12b313604e1782800895cb532dd01ec25ac419b5272fdee933c01fedbf3989e9",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0023/git-common-directories.json",
+      "sha256": "647a08b2ef762b715853c79465f4dcf17776c68e205016396c7be24de5e07f6e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0002/encoding-native-probes.json",
+      "sha256": "dbe7d92288e28f7cc57217d41258ce74a7be05160c62deeaab8bbfc81ce9869e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/parent-resources-before.json",
+      "sha256": "8644e72876cc68208df5991d1322e0b494d564a899591c67873ef3888b715f20",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/additional-bindings.json",
+      "sha256": "96daaf9dd78e2f2b731b56319013c97fdb63d291b15198c8346e0f3f4fb65b06",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/standards-resources-after-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/native-smoke.json",
+      "sha256": "18ebb1e7bd542db384a9d873efa2a403c48abbb7e4d505b36df5287694afc49d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/parent-resources-after.json",
+      "sha256": "ac8c3f51166f9329b8ac4749cea5f641847a19dfa9bf9257bf0f13e4b1b199a9",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/native-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/parent-projection-link-normalization.json",
+      "sha256": "4ed54ca861cb8317c31f027ebb78c9c44d3f41eac0f0739cd60a04dc16e9e352",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/spec-kill.json",
+      "sha256": "9909faf73bc09211dc338c0d8ea14bb91f8440ca944df115887b969c71cb0708",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/standards-axis.json",
+      "sha256": "837f006d704975a2ce5836f23190dcc817b3942063cfdac2c1547680e14d80d0",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/source-bindings.json",
+      "sha256": "f4b9d2ee2d0271d1856a4ddbd116409cd876fa855f8007fbfa3af4e10e176e10",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/spec-resources-before-full.json",
+      "sha256": "685350df9801caa79d071c5c292deb88ae70a5ee2afc856ecab3b0f7cc8c203e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/standards-resources-before-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/native-validation.json",
+      "sha256": "89674421eddf1ef55824291e449b5a6fa26c2f01197fa8f00a24abc60a36cc59",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/spec-rm.json",
+      "sha256": "22303702e2cfa39582a03898d65657e2b2b4bb9435986c1b45a42409f6b6aa42",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/spec-resources-before-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/parent-validation.json",
+      "sha256": "ca53f192b247d6d25fa683b50c57f2efdf97c5c3caf63fc9904de75e41ff7c04",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/commits.txt",
+      "sha256": "3af18e446eedc8694ac127340294c9bf64ab0681951e5cbdc7561aa84a0576cd",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/native-stdout.txt",
+      "sha256": "c907f008debffc76d51e04fd2772c393138c71e2990b0ce1514c8daa0df6c932",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/standards-resources-before-full.json",
+      "sha256": "408ab271811006fc5a9b80b063fa887f95241b96b3ed3fbd1fa327d456754058",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/desktop-after.json",
+      "sha256": "03b0e7fec7d3a2ea76943ed64ba0a51d8e154f8dfd57d0fce4adee13963ce8a5",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/standards-kill.json",
+      "sha256": "ae7cdcd4ec8eaa73cd43861c9661e0953019c146e0b2f7fe5b37c93bf56d3562",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/standards-rm.json",
+      "sha256": "8061cae6c376f6df07ecbb2594872b34b40f80a0eda5d58fe78f889526e180aa",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/spec-resources-after-full.json",
+      "sha256": "099c886a127be632c9f8ed39ff8f7cc6a44bcf5782790f84b0eff3ed6a272766",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/standards-resources-after-full.json",
+      "sha256": "98ac363d4b34957cbcea20e71a720ed05a66b3b527f917d007cdc957ea77c30c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/artifact-validation.json",
+      "sha256": "95df45e715142579fd1c278e8c673a831734f25ceb8e22c3b894f7d7bca07f45",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/spec-resources-after-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/spec-axis.json",
+      "sha256": "8fbdbc670b25653108c29d88093df09688a9b9ba44a5d9506c00070fe3df2940",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/parent-resources-final.json",
+      "sha256": "e1709939152d7699327a43ba9e3aa78ba829d0241e4d1c87b293f62a19a14abd",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/committed.diff",
+      "sha256": "90db359f51eb66cc90999eedd02c4ac0bcf25dadcca7c810008027431fde4641",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/resource-capture-correction.json",
+      "sha256": "69a3635702b567ca5ba9b444d78e12b911e0996c705debbb3a34e459d22093ee",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/axis-validation.json",
+      "sha256": "ebd2583e5fc658d25e39296794ec2fd6bf293c0ef83f19f204df49fa122a9104",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/parent-signal-free-observation.json",
+      "sha256": "ce37291f9c61fd895c357bc01a5e22feeff22d9d887201fbea878070910d1d1e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0029/parent-desktop-after.json",
+      "sha256": "fc22cca1a29de6b6f0c37656da2847f9533059c895a6785725c7a3926082431b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/parent-resources-before.json",
+      "sha256": "bc235fd644ee39237ab1df32d354939944dc2f04d0279cea38586d0fae346d8e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/native-smoke.json",
+      "sha256": "a7d2bb3ea6e49685e0f92f018316dc7b25ecf44e70ccfbbca0b91394cb5c234c",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/parent-resources-after.json",
+      "sha256": "f363e3f401da74f7b00c7e4a9473742c31dc2f01e6944c15c2d13262c557a2ed",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/verifier-input-correction.json",
+      "sha256": "1127ebc95b7a876abb65a55d1ce2e277c791bee9ad03cb9f5507e7ad0dfce178",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-runs.json",
+      "sha256": "224e2fe7c41490807ee8828af6e027aa48ffd10b49b03d8a19894a7615563109",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/standards-axis.json",
+      "sha256": "11f86deafa599d7f670d100f2296c8a8a56fe5943bbb43fac54ed00c927d99e7",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/preservation-before-failure.json",
+      "sha256": "eb84f3273ee92a576ff8109901ea4f1d05bab8fc0b19715f77856350cee0c256",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/parent-validation.json",
+      "sha256": "121e9cdbf2967e6d86aa8f5a4a469e8c1f4e6284f546ed696640c6bf178c362e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/scope.json",
+      "sha256": "96bb094d76ef62e1b19a56bdeacfe457fd6a92745b3a3f83b95f939188bbd776",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-resources-after.json",
+      "sha256": "cc6fa55d549c9f72cd6f549afe3828040d397109d63f6aa56a74568eac99095b",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/desktop-after.json",
+      "sha256": "6379a91cf360bde8791459e65afad8d79ce0f22c3784c16c0b1a3ecd788a9c31",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/artifact-validation.json",
+      "sha256": "f4ab3d6b5e1de18d9975ad83fa733808d3036de5246a908b75160fdbc36180cd",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-resources-before.json",
+      "sha256": "4475073d7d557822dfedadd20c7afd4528ceb12b145a2c3d5df96ac9dff2f7bb",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/spec-axis.json",
+      "sha256": "760e29d85ffa5491e2c46ff8f013b82eeee641eb7c432588c74e499fe873550a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/axis-validation.json",
+      "sha256": "a94793b86caba970680ba392f863bde486c23e06fa46d7dfb83600f1caae9727",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0014/verification-failure.json",
+      "sha256": "a35a4644ea831eee4b42d5180e614c6421febb22016962fb96a25d36458156a2",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/parent-resources-before.json",
+      "sha256": "2b1061f36ac65bfb642854e55167c428fe44f5672df5f0b2d2cad0e69886232e",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/native-smoke.json",
+      "sha256": "5100b49ad87a6a86ffcec6293531e05aa027050f3cbf0cb3a88607decc865927",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/parent-resources-after.json",
+      "sha256": "6137610227e612fc7523cc488b0a1ec8a4a2af0cb71c81a691c6caeced2278eb",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/publication-input-corrections.json",
+      "sha256": "1fdcc470b6ce44e906ff7c866c10e9d7e4ab17f90566aa86ec4decc1473594c7",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/parent-validation.json",
+      "sha256": "3aeb2185720e2e2c2c7a07aad3816e60b6a40cfc9e551c1b4e17f456a6970089",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/resources-before-parent-closure.json",
+      "sha256": "ecc6551ed5549eea70da47afd03dcf4605a430885580ab8710fcae9df6256709",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/commit-binding.json",
+      "sha256": "a2bb31752fb9a022b30d6368697c088c7daf7035d5d79eb40b725a1e67dfe7fa",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/implementation-0002/parent-completion-input-correction.json",
+      "sha256": "ef8dc874d44ad1e3aafe09425a956a47a0231e0cea400e904b6e5104dd853c12",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0017.yaml",
+      "sha256": "c8a098effadbf8dcec9a781a3e21703adeb6d18e81368c12809f8d6b8b70d0fd",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0020.yaml",
+      "sha256": "b278c8014263ad44d04697d43b4c6273c7d15b533a0905f2d6e5cfec74f6e914",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0009.yaml",
+      "sha256": "614583005f96a87450ecb22c3da1d23b9aebff2d4e8c33309b33c7964f3a6560",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0030.yaml",
+      "sha256": "13415873d188316e43bcc8e911a1e29aca02e3a92edc890073a771b012a959f8",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0016.yaml",
+      "sha256": "6a50d0950b046b76623db81082af415f276ee9a1a9a84c592c3f578de73553bc",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml",
+      "sha256": "06ab6c029e1cfcda668149a5d507eee4b766c9a2a7702ed5a508c141a23b3fbb",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0031.yaml",
+      "sha256": "53770639127b3e41dcdd04ae4f3b1c9978cde8f769ea9470e0dd142e87bcb549",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0023.yaml",
+      "sha256": "8c621364d5ba3fa7797b91a5e0e991e95f291f475140aaf9646f6b3978ef2c42",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0028.yaml",
+      "sha256": "7b7d26a114926e822f97ce4de80ead18a02be4fe3c08c014297c3ebbcdad1ee6",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/start-0001.yaml",
+      "sha256": "89e605ae883128ce60d030addbd769a2191e14f7bfe6cdce6fd6ca73fc015312",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0004.yaml",
+      "sha256": "dd682fcd0645c11ff1716e1da532cc04c3d68e282d116f1f32cd0ae02394e6f8",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0008.yaml",
+      "sha256": "6b30c732e767686b34d7bc2f2f67642a592966f7a29f3a0fefed80c5221e34b7",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml",
+      "sha256": "de27b23930e3b3901605e078921a8a3250867079c6f34f0f87b17c10814b4693",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0005.yaml",
+      "sha256": "5b1ed71dddd69697a593b3feb872ec4d48e242fe4017620a205a726b1ed307f7",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml",
+      "sha256": "5f1827b26142365145a0a76e945f32c39ad186f2b3342423b4c72be562c03fa2",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0021.yaml",
+      "sha256": "7cf4d78d56cf04cf983a34d2b955681396a3a5f62d8ffc885f2ea26955f0d63f",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0007.yaml",
+      "sha256": "ace4be9079f686f79245e814ad043a19d0c2b9e3b2a019daf9e3ccf607654d99",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/start-complete-0003.yaml",
+      "sha256": "a203331bbcadd7566b1fc4525ad291a88e986ff98c5dd5e41b5a4348741cdfbf",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0013.yaml",
+      "sha256": "3b4db899e8f855464136c6c1e851b4da94c449c158756e1d032e9f586df71163",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0029.yaml",
+      "sha256": "04465b729ebf296233d6501450d9c8e3bace87c7bdcd48435f20540cb26ef333",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml",
+      "sha256": "967951f0592fdb611cc264a9476e979e56247047bd08c658edc19f070d5e5fdf",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0027.yaml",
+      "sha256": "a8a3cc1738c051e3a318c5a96c283d8b796b01eff446007c3eae0156a18c444d",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0010.yaml",
+      "sha256": "40d49ae6f86df8b89a51785e3e15b5a6cf2f22664a4ce4fb5a83b1d4462901bc",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0015.yaml",
+      "sha256": "e8ef7ab094d076bf08348bce38bdf3087842108665050c4b70870734076307b5",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0022.yaml",
+      "sha256": "d486c4d807fb8a64ec90d927dddbc6001d832e2d298d7a1ccec6acad19904ff2",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml",
+      "sha256": "7a3733762deaeb63abb7965994cea2f808f3e091e6890f24d6fe9a13d709334a",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0024.yaml",
+      "sha256": "a71b7c691a98a8e0f6de9bab5be41f4cba038ee37e583146cdb569594c8091ab",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0025.yaml",
+      "sha256": "2434c9a02ce98b98d742c373b7040b24c9082a09b30da07da6d98d0c7ca0e3d9",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0014.yaml",
+      "sha256": "e2b02d4856fa5de45e6fd2db62fde5cc7a0df56041e152832188be9f57643ec3",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0026.yaml",
+      "sha256": "e8f1dcbf8e278308d620bd21575abbcd8c9b590b8bc3d278f7c68d02c58c35cd",
+      "unchanged": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml",
+      "sha256": "b7cc23ed4388f70551a83c733f30eb598278badef9283a098e33ea2b9ec94d88",
+      "unchanged": true
+    }
+  ],
+  "includes_malformed_snapshots_and_failed_captures": true
+}

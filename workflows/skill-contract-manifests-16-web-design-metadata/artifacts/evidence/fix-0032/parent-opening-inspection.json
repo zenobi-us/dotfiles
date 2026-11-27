@@ -1,0 +1,23 @@
+{
+  "observation": "Manual parent inspection of the two current source opening blocks through owning MQ, before formal child result. Bind these exact hashes to final source before acceptance.",
+  "mq_output_ref": "artifact://1361",
+  "findings": [
+    "standards-009",
+    "standards-010"
+  ],
+  "blocks_match_supplied_parent_wording": true,
+  "purpose_names_reader_task": true,
+  "intended_reader_named": true,
+  "human_document_date": "2026-11-27",
+  "referrals_are_local_and_task_specific": true,
+  "three_fields_are_vertical_with_two_word_labels": true,
+  "new_schema_identity_in_ordinary_prose": false,
+  "hashes": {
+    "references/source-metadata.md": "f8c0b57b0e13bd6fdb11ee5d507ac029395522a327b878a74724076aacaf15ae",
+    "references/source-metadata-upgrade.md": "a2434a11d020aed3bd11325fa981b74d03541954acf192eef17213227da1542a"
+  },
+  "source_accepted": false,
+  "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+  "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+  "hashes_equal_final_committed_document_bindings": true
+}

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "resources",
+    "3f63a9e1-5635-492e-b746-8e729b9354d3"
+  ],
+  "exit_code": 1,
+  "stdout": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"3f63a9e1-5635-492e-b746-8e729b9354d3\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2m1\",\"createdAt\":\"2026-11-26T22:23:48.235Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"3f63a9e1-5635-492e-b746-8e729b9354d3\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"3f63a9e1-5635-492e-b746-8e729b9354d3\",\"observedAt\":\"2026-11-27T00:13:03.321Z\",\"processes\":[{\"pid\":846781,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"43713036\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":847358,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"43716206\",\"command\":\"python\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":952085,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"44368303\",\"command\":\"bun\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "extra_agents": 0,
+  "services_started": 0,
+  "extra_signals_sent": 0,
+  "primary_closure": "parent-owned; current session remains live"
+}

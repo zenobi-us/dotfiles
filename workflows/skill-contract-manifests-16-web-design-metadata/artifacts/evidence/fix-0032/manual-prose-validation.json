@@ -1,0 +1,30 @@
+{
+  "method": "Full final documents read through MQ; manual opening-block audit",
+  "resolved_findings": [
+    "standards-009",
+    "standards-010"
+  ],
+  "unresolved_findings": [],
+  "checks": {
+    "exact_parent_wording": true,
+    "purpose_task_and_scope": true,
+    "primary_reader_named": true,
+    "human_revision_date_not_capture": true,
+    "three_field_vertical_lists": true,
+    "two_word_bold_labels": true,
+    "short_active_sentences": true,
+    "paragraphs_at_most_five_sentences": true,
+    "referrals_name_alternative_and_condition": true,
+    "no_added_heading": true,
+    "no_prose_contract_identity": true,
+    "no_changed_authority_or_integrity_boundary": true
+  },
+  "sentence_word_counts_excluding_labels": {
+    "reference_purpose": 13,
+    "procedure_purpose": 15,
+    "reference_referral": 10,
+    "procedure_referral": 14
+  },
+  "mode": "pragmatic STE; parent-supplied spelling retained; no ISO conformance claim",
+  "scope": "Opening additions only; existing passages unchanged. No permanent wording/source-text tests."
+}

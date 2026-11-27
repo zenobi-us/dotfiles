@@ -1,0 +1,591 @@
+{
+  "frontmatter": {
+    "schemaVersion": "worktree-pr-draft/v1",
+    "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+    "receipt_id": "fix-0032",
+    "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "source_tree": "77df53d39098775775469a221d525467d1c3e35a"
+  },
+  "frontmatter_exact": true,
+  "required_body_sections": true,
+  "new_review": "PENDING",
+  "mq_ast_links": [
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "#committed-source",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "#changed-files",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "#validation-and-preservation",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "#resolved-findings",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "#review-and-receipt-history",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "#consumed-and-produced-references",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "#open-questions-and-merge-status",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/native-smoke.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/native-smoke.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/native-stdout.txt",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/native-stdout.txt",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/native-stderr.txt",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/native-stderr.txt",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/native-validation.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/native-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/manual-prose-validation.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/manual-prose-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/manual-count-correction.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/manual-count-correction.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/preservation.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/preservation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/commit-binding.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/commit-binding.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0032/resources-before-parent-closure.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0032/resources-before-parent-closure.json",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "../reviews/review-review-0005.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0005.md",
+      "exists": true
+    },
+    {
+      "url": "../reviews/review-review-0008.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md",
+      "exists": true
+    },
+    {
+      "url": "../reviews/review-review-0014.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0014.md",
+      "exists": true
+    },
+    {
+      "url": "../reviews/review-review-0017.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md",
+      "exists": true
+    },
+    {
+      "url": "../reviews/review-review-0023.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md",
+      "exists": true
+    },
+    {
+      "url": "../reviews/review-review-0029.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0029.md",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-0011.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-complete-0012.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-start-0010.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0010.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-0020.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0020.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-start-0019.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-complete-0021.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0021.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/implementation-0002.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-0026.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0026.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-complete-0027.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0027.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/review-0029.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/review-0029.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/review-complete-0030.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0030.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../events/fix-start-0031.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0031.yaml",
+      "exists": true
+    },
+    {
+      "url": "pr-draft-fix-0011.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md",
+      "exists": true
+    },
+    {
+      "url": "pr-draft-review-start-0013.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md",
+      "exists": true
+    },
+    {
+      "url": "pr-draft-fix-0020.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0020.md",
+      "exists": true
+    },
+    {
+      "url": "pr-draft-fix-0026.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0026.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    },
+    {
+      "url": "",
+      "target": "/tmp/scm16-fix32-snapshot.md",
+      "exists": true
+    }
+  ],
+  "candidate_sha256": "725e801de3f5ebb7f3346c340b65edd925731d15ec34dad02ac62f2e9518c4ef",
+  "exclusive_target_absent": true
+}

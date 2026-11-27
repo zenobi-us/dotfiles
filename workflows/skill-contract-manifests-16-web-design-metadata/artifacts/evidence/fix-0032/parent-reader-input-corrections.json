@@ -1,0 +1,17 @@
+{
+  "read_only": true,
+  "corrections": [
+    {
+      "error": "Initial display jq expected transport wrapper, but native result-delivery read correctly returns domain receipt directly.",
+      "retained_full_domain": "/tmp/scm16-fix32-delivered.json",
+      "resolution": "Read native domain directly and separately read assigned envelope; verify deep equality with authoritative YAML."
+    },
+    {
+      "error": "Initial JSON-per-line parser tried to parse the owning runner final PASS text line.",
+      "actual_final_summary": "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries.",
+      "resolution": "Parse all preceding56 JSON outcome rows, then consume the separate observed PASS summary."
+    }
+  ],
+  "source_checks_rerun": 0,
+  "source_or_record_guards_changed": false
+}

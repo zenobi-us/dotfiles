@@ -1,0 +1,22 @@
+{
+  "snapshot_frontmatter": {
+    "schemaVersion": "worktree-pr-draft/v1",
+    "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+    "receipt_id": "fix-0032",
+    "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "source_tree": "77df53d39098775775469a221d525467d1c3e35a"
+  },
+  "body_matches_prevalidated_candidate": true,
+  "snapshot_sha256": "2dc2a98bfb700ddb5e61a2de3b6ba698efe6c4e4ce1faafee9733f5912e45107",
+  "projection_links": 38,
+  "all_targets_exist": true,
+  "prior_immutable_files_preserved": 215,
+  "creator_plugin_and_marketplace_version": "0.1.8",
+  "pending_review": true,
+  "input_corrections": [
+    "manual-count-correction.json",
+    "projection-link-validation.json"
+  ],
+  "source_check_reruns": 0,
+  "eval_session_probe": "Eval subprocess did not inherit muxer session environment; actual Bash contracts resolved assigned child run and context. Final writer will use actual Bash session."
+}

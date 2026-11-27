@@ -87,3 +87,27 @@ Fresh independent review is pending for the new source. No stale verdict applies
 - **Committed objects:** `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0026/commit-binding.json`.
 
 All earlier reviews and failed captures remain unchanged. Parent owns publication-checkout commits and YAML views. Parent also owns tracker changes, independent review, integration and normal primary closure. Relocation remains escalation-only.
+
+
+## fix-0032: document opening blocks
+
+Review29 returned FAILURE for `dab2338e6be69e208c39c6c05164c0a1a066dbf7` with two low hard opening-block findings. Its native56 passed and Spec reported no findings. [Review29](../artifacts/reviews/review-review-0029.md) remains immutable.
+
+Fix32 resolves standards-009 and standards-010 with exact parent-authored purpose, reader, human date and referral blocks. All existing reference passages remain unchanged.
+
+Source commit: `14705f57e663196bc211fbf394a8829820dcf9fc`. Tree: `77df53d39098775775469a221d525467d1c3e35a`.
+
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md`.
+- **Changed file:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md`.
+
+Normal hooks changed only the two declared metadata files. The owning executable ran once from `/tmp` after final additions and before commit. All 56 outcomes matched expectations: 21 successful commands and 35 expected refusals. Outer exit was 0 and stderr was empty. Duration was 9.079340 seconds.
+
+Executed runtime and final documents equal committed objects. Protected source, all five assets, catalog nonidentity bytes and capture metadata remain unchanged. [Native evidence](../artifacts/evidence/fix-0032/native-smoke.json) retains full buffer hashes and timing. [Commit bindings](../artifacts/evidence/fix-0032/commit-binding.json) bind the execution to final source.
+
+The manual audit count transcription correction is retained separately; no source check was rerun. Checkpoint111 authorized resuming the same fixer after the parent coordination pause. Entry110 remains unchanged.
+
+[New snapshot32](../artifacts/snapshots/pr-draft-fix-0032.md) records the complete review history. No assigned finding or implementation question remains unresolved. Fresh independent review is PENDING for the new source. Source is not accepted, pushed or merged.
+
+Receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0032.yaml` is the assigned final publication. Parent owns journal reconciliation112, YAML views, tracker changes, independent review and normal primary closure. No extra agents, services or signals occurred. Relocation remains escalation-only.

@@ -1,0 +1,56 @@
+{
+  "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+  "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+  "execution_timing": "precommit once; no postcommit rerun",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+  ],
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "executed_or_final_authored_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "executed_or_final_authored_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "executed_or_final_authored_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "blob": "a8155299986f8403678b8fe0bcb09a3391ea8717",
+      "sha256": "f8c0b57b0e13bd6fdb11ee5d507ac029395522a327b878a74724076aacaf15ae",
+      "executed_or_final_authored_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "blob": "2d21655f3ac48058a4d3a602d83846ff0050a1c4",
+      "sha256": "a2434a11d020aed3bd11325fa981b74d03541954acf192eef17213227da1542a",
+      "executed_or_final_authored_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "blob": "a7d58f5106e33c9a803e0b7d9bbd447260c4c63b",
+      "sha256": "f10495946267034598d46a12e12b85f8e4cd1c36678988c1e468de6a479fb07f",
+      "hook_generated": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "blob": "c0d615dc6a6a1d5999c304fa3222eee29b68594d",
+      "sha256": "b2c77206e67c24152bbfce9b91e59c60a8a0d214ac36ca5d534eca1f5d15b5d6",
+      "hook_generated": true
+    }
+  ],
+  "source_clean": true
+}
