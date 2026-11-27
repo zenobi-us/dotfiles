@@ -1,0 +1,68 @@
+[
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "working_blob": "4313780965d87c644c29364fbc10663bb6f566fa",
+    "frozen_blob": "4313780965d87c644c29364fbc10663bb6f566fa",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "working_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+    "frozen_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "working_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+    "frozen_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "working_blob": "606b19275b7199aa9681c6e9e2e25d7169675912",
+    "frozen_blob": "606b19275b7199aa9681c6e9e2e25d7169675912",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "working_blob": "6bec3c91e77b56a0b2a859e345d0fc7a47f1948b",
+    "frozen_blob": "6bec3c91e77b56a0b2a859e345d0fc7a47f1948b",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "working_blob": "2d21655f3ac48058a4d3a602d83846ff0050a1c4",
+    "frozen_blob": "2d21655f3ac48058a4d3a602d83846ff0050a1c4",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "working_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+    "frozen_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "working_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+    "frozen_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "working_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+    "frozen_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "working_blob": "cf17853c97d02d7df2fff735bde7bbcaf3b11e3e",
+    "frozen_blob": "cf17853c97d02d7df2fff735bde7bbcaf3b11e3e",
+    "matches": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "working_blob": "74196f8cf5ba5b5175f932fb4d872c42b65b4872",
+    "frozen_blob": "74196f8cf5ba5b5175f932fb4d872c42b65b4872",
+    "matches": true
+  }
+]

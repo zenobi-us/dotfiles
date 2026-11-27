@@ -1,0 +1,6 @@
+HC_TERMINAL_ID=t2mq
+MUXER_SUBAGENT_RUN_ID=89d908dd-1ac0-4b5e-8efd-609dca52204c
+MUXER_SUBAGENT_PARENT_RUN_ID=
+RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/89d908dd-1ac0-4b5e-8efd-609dca52204c/context.json
+MUXER_SUBAGENT_DEPTH=1
+OMP_SESSION_ID=

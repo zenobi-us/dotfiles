@@ -1,0 +1,25 @@
+{
+  "axis": "spec",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "findings": [],
+  "operation_id": "6a99cd59-571b-4594-b54d-19d29209b9e2",
+  "parent_run_id": "89d908dd-1ac0-4b5e-8efd-609dca52204c",
+  "report": "No evidence-backed specification findings. Reviewed the complete eleven-path frozen diff and current source against the full canonical ticket and initiative. Read canonical context, domain configuration, ADR index, retained review35, fix38, parent39, snapshot38, and native UTF-8 failure/correction evidence. NOADR: the listed Pi Ink decision does not govern this feature.\n\nThe manifest separates current string-v2 production from historical numeric-1 acceptance and declares one conversion edge. Readers reject unsupported, absent, null, mixed, and duplicate identities without fallback. String-v1 and unversioned input remain unsupported. Validation and selection resolve installed bundled assets independently of cwd, retain distinct associations and provenance, verify checksums, and reject malformed UTF-8. Valid Unicode, including encoded U+FFFD, remains supported.\n\nPure owner hooks delegate persistence to shared safeUpgrade/bulkUpgrade. Conversion changes only the identity token, preserves other authored bytes, refuses immutable/history paths and unsupported operations, and retains partial bulk outcomes. No original provenance access, remote refresh, competing framework, or independent prose identity was added. Creator release versions both equal 0.1.9.\n\nDirect byte comparisons bind all eleven working files to frozen objects. Eight protected paths equal14705f57. All five assets equal baseline bytes and match catalog hashes. Catalog nonidentity bytes, capture time, provenance, and ordered associations remain unchanged. The revised reference preserves all boundary and identity meanings.\n\nActual Bash session contracts confirmed depth2, assigned child/parent/run/operation/context identities; cwd matches the assigned source. No source, workflow, dependency, service, or test changes occurred. No tests or runtime probes ran in this leaf; fresh native proof belongs to the primary. Historical116/120 are not source findings. Moving-base conflict remains an integration inference, not an observed source defect.",
+  "review_base_commit": "b53b4acc9a478c9794645b6ef627f418432135d7",
+  "run_id": "6a99cd59-571b-4594-b54d-19d29209b9e2",
+  "schemaVersion": "review-axis/v1",
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c"
+}

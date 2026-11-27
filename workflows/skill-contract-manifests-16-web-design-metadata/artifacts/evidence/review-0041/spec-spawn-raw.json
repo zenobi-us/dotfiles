@@ -1,0 +1,308 @@
+{
+  "text": "{\"schemaVersion\":\"muxer-spawn/v2\",\"runId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"target\":\"t2mr\",\"parentRunId\":\"89d908dd-1ac0-4b5e-8efd-609dca52204c\",\"operationId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"contextFile\":\"/var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/context.json\",\"deliveryContext\":{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"context\",\"audience\":\"agent\",\"mode\":\"artifact-reference\",\"runId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"operationId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"target\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e\u2026\n\n\nRan in a temporary shell while the session shell is busy with another command: session variables and functions were unavailable, and nothing set here persists.\n\n[Some lines truncated to 768 bytes. Use artifact://23:raw:1-1 to read line 1 whole]",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 683.9673119999934,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 682083307,
+      "script": "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts spawn --muxer herdr-app --agent omp --cwd /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata --result-schema review-axis/v1 --prompt-file /tmp/scm16-spec-prompt.txt --title 'skill-contract-manifests-16-web-design-metadata \u00b7 spec'",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 387,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 387,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 387,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 387,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 682044264,
+              "at": 25367,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+                "spawn",
+                "--muxer",
+                "herdr-app",
+                "--agent",
+                "omp",
+                "--cwd",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+                "--result-schema",
+                "review-axis/v1",
+                "--prompt-file",
+                "/tmp/scm16-spec-prompt.txt",
+                "--title",
+                "skill-contract-manifests-16-web-design-metadata \u00b7 spec"
+              ],
+              "res": "external",
+              "pid": 1595246,
+              "end_ns": 682069631,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 91,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 92,
+              "hi": 99,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 100,
+              "hi": 109,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 110,
+              "hi": 117,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 118,
+              "hi": 121,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 122,
+              "hi": 127,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 128,
+              "hi": 249,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 250,
+              "hi": 265,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 266,
+              "hi": 280,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 281,
+              "hi": 294,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 295,
+              "hi": 321,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 322,
+              "hi": 329,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 330,
+              "hi": 387,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAIMDAQCDAwAAAQIAgwMAAA4DAFUBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvbXV4ZXItc3ViYWdlbnRzL3NjcmlwdHMvcm91dGVyLnRzBFZbAQAFc3Bhd24FXGMBAActLW11eGVyBmRtAQAJaGVyZHItYXBwB251AQAHLS1hZ2VudAh2eQEAA29tcAl6fwEABS0tY3dkCoAB+QEBAHkvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzLndvcmt0cmVlcy9mZWF0dXJlLXNraWxsLWNvbnRyYWN0LW1hbmlmZXN0cy0xNi13ZWItZGVzaWduLW1ldGFkYXRhC/oBiQIBAA8tLXJlc3VsdC1zY2hlbWEMigKYAgEADnJldmlldy1heGlzL3YxDZkCpgIBAA0tLXByb21wdC1maWxlDqcCwQIBABovdG1wL3NjbTE2LXNwZWMtcHJvbXB0LnR4dA/CAskCAQAHLS10aXRsZRDKAoMDAQI3c2tpbGwtY29udHJhY3QtbWFuaWZlc3RzLTE2LXdlYi1kZXNpZ24tbWV0YWRhdGEgwrcgc3BlYwAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 0,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 25367,
+          "event_seq": 2,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 2,
+            "vpid": 1073741824,
+            "seq": 2
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 25367,
+          "event_seq": 3,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 2,
+            "vpid": 1073741824,
+            "seq": 2
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+            "spawn",
+            "--muxer",
+            "herdr-app",
+            "--agent",
+            "omp",
+            "--cwd",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "--result-schema",
+            "review-axis/v1",
+            "--prompt-file",
+            "/tmp/scm16-spec-prompt.txt",
+            "--title",
+            "skill-contract-manifests-16-web-design-metadata \u00b7 spec"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 358511,
+          "event_seq": 4,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 2,
+            "vpid": 1073741824,
+            "seq": 2
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1595246,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+            "spawn",
+            "--muxer",
+            "herdr-app",
+            "--agent",
+            "omp",
+            "--cwd",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "--result-schema",
+            "review-axis/v1",
+            "--prompt-file",
+            "/tmp/scm16-spec-prompt.txt",
+            "--title",
+            "skill-contract-manifests-16-web-design-metadata \u00b7 spec"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 675940072,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 2,
+            "vpid": 1073741824,
+            "seq": 2
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"schemaVersion\":\"muxer-spawn/v2\",\"runId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"target\":\"t2mr\",\"parentRunId\":\"89d908dd-1ac0-4b5e-8efd-609dca52204c\",\"operationId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"contextFile\":\"/var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/context.json\",\"deliveryContext\":{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"context\",\"audience\":\"agent\",\"mode\":\"artifact-reference\",\"runId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"operationId\":\"6a99cd59-571b-4594-b54d-19d29209b9e2\",\"target\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/result.json\",\"schema\":\"review-axis/v1\"}},\"resultTarget\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/result.json\",\"schema\":\"review-axis/v1\"},\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"depth\":2}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 682069631,
+          "event_seq": 5,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 2,
+            "vpid": 1073741824,
+            "seq": 2
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 682044264,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 682083307,
+          "event_seq": 6,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "limits": {
+        "columnTruncated": {
+          "maxColumn": 768,
+          "unit": "bytes",
+          "artifactId": "23",
+          "lines": {
+            "first": 1,
+            "last": 1
+          }
+        }
+      }
+    }
+  }
+}

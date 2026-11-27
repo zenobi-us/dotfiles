@@ -1,0 +1,308 @@
+{
+  "text": "{\"schemaVersion\":\"muxer-spawn/v2\",\"runId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"target\":\"t2ms\",\"parentRunId\":\"89d908dd-1ac0-4b5e-8efd-609dca52204c\",\"operationId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"contextFile\":\"/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json\",\"deliveryContext\":{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"context\",\"audience\":\"agent\",\"mode\":\"artifact-reference\",\"runId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"operationId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"target\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37e\u2026\n\n\n[Some lines truncated to 768 bytes. Use artifact://22:raw:1-1 to read line 1 whole]",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 697.7816410000087,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 696298115,
+      "script": "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts spawn --muxer herdr-app --agent omp --cwd /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata --result-schema review-axis/v1 --prompt-file /tmp/scm16-standards-prompt.txt --title 'skill-contract-manifests-16-web-design-metadata \u00b7 standards'",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 397,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 397,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 397,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 397,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 696240988,
+              "at": 48000,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+                "spawn",
+                "--muxer",
+                "herdr-app",
+                "--agent",
+                "omp",
+                "--cwd",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+                "--result-schema",
+                "review-axis/v1",
+                "--prompt-file",
+                "/tmp/scm16-standards-prompt.txt",
+                "--title",
+                "skill-contract-manifests-16-web-design-metadata \u00b7 standards"
+              ],
+              "res": "external",
+              "pid": 1595244,
+              "end_ns": 696288988,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 91,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 92,
+              "hi": 99,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 100,
+              "hi": 109,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 110,
+              "hi": 117,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 118,
+              "hi": 121,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 122,
+              "hi": 127,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 128,
+              "hi": 249,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 250,
+              "hi": 265,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 266,
+              "hi": 280,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 281,
+              "hi": 294,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 295,
+              "hi": 326,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 327,
+              "hi": 334,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 335,
+              "hi": 397,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAI0DAQCNAwAAAQIAjQMAAA4DAFUBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvbXV4ZXItc3ViYWdlbnRzL3NjcmlwdHMvcm91dGVyLnRzBFZbAQAFc3Bhd24FXGMBAActLW11eGVyBmRtAQAJaGVyZHItYXBwB251AQAHLS1hZ2VudAh2eQEAA29tcAl6fwEABS0tY3dkCoAB+QEBAHkvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzLndvcmt0cmVlcy9mZWF0dXJlLXNraWxsLWNvbnRyYWN0LW1hbmlmZXN0cy0xNi13ZWItZGVzaWduLW1ldGFkYXRhC/oBiQIBAA8tLXJlc3VsdC1zY2hlbWEMigKYAgEADnJldmlldy1heGlzL3YxDZkCpgIBAA0tLXByb21wdC1maWxlDqcCxgIBAB8vdG1wL3NjbTE2LXN0YW5kYXJkcy1wcm9tcHQudHh0D8cCzgIBAActLXRpdGxlEM8CjQMBAjxza2lsbC1jb250cmFjdC1tYW5pZmVzdHMtMTYtd2ViLWRlc2lnbi1tZXRhZGF0YSDCtyBzdGFuZGFyZHMAAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 136,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 48000,
+          "event_seq": 138,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 15,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 48000,
+          "event_seq": 139,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 15,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+            "spawn",
+            "--muxer",
+            "herdr-app",
+            "--agent",
+            "omp",
+            "--cwd",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "--result-schema",
+            "review-axis/v1",
+            "--prompt-file",
+            "/tmp/scm16-standards-prompt.txt",
+            "--title",
+            "skill-contract-manifests-16-web-design-metadata \u00b7 standards"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 481752,
+          "event_seq": 140,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 15,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1595244,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+            "spawn",
+            "--muxer",
+            "herdr-app",
+            "--agent",
+            "omp",
+            "--cwd",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "--result-schema",
+            "review-axis/v1",
+            "--prompt-file",
+            "/tmp/scm16-standards-prompt.txt",
+            "--title",
+            "skill-contract-manifests-16-web-design-metadata \u00b7 standards"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 691316774,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 15,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"schemaVersion\":\"muxer-spawn/v2\",\"runId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"target\":\"t2ms\",\"parentRunId\":\"89d908dd-1ac0-4b5e-8efd-609dca52204c\",\"operationId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"contextFile\":\"/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json\",\"deliveryContext\":{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"context\",\"audience\":\"agent\",\"mode\":\"artifact-reference\",\"runId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"operationId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"target\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/result.json\",\"schema\":\"review-axis/v1\"}},\"resultTarget\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/result.json\",\"schema\":\"review-axis/v1\"},\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"depth\":2}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 696288988,
+          "event_seq": 141,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 15,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 696240988,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 696298115,
+          "event_seq": 142,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "limits": {
+        "columnTruncated": {
+          "maxColumn": 768,
+          "unit": "bytes",
+          "artifactId": "22",
+          "lines": {
+            "first": 1,
+            "last": 1
+          }
+        }
+      }
+    }
+  }
+}

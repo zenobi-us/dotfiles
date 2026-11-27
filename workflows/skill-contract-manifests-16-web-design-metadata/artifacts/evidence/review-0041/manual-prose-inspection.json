@@ -1,0 +1,18 @@
+{
+  "prior_findings": [
+    "standards-011",
+    "standards-012"
+  ],
+  "inventory_records": 5,
+  "inventory_cells_preserved": 20,
+  "identity_records": 2,
+  "identity_cells_preserved": 6,
+  "sections": 5,
+  "max_list_levels": 2,
+  "no_per_record_headings": true,
+  "no_invented_presentation_width": true,
+  "referral": "authorized",
+  "referral_link": "source-metadata-upgrade.md",
+  "separate_conversion_authority_preserved": true,
+  "method": "Manual comparison of complete MQ current source and Git14705f57 piped through MQ; no wording test."
+}

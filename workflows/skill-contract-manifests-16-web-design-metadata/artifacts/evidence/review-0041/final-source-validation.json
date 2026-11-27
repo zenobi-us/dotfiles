@@ -1,0 +1,10 @@
+{
+  "commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "clean": true,
+  "all11_blobs_match_frozen": true,
+  "checked_immediately_before_body_publication": true,
+  "body_formatter_bytes": 16217,
+  "body_formatter_sha256": "b881b81686d29aa3f56e78384e6f36c569c16c4c576621de51559b53c1f692f1"
+}

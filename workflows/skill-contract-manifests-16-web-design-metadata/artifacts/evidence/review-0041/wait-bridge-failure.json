@@ -1,0 +1,21 @@
+{
+  "status": "blocked_pending_parent_direction",
+  "primary_run": "89d908dd-1ac0-4b5e-8efd-609dca52204c",
+  "operation": "Receive both native axis waits through actual tool.bash from Eval",
+  "error": "RuntimeError: No active Python tool bridge session: python:session:/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-skill-contract-manifests-16-web-design-metadata--/2026-11-27T09-06-23-426Z_01a21c41-7c42-76e8-91a0-94d097836dbb.jsonl:cwd:/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata:py-1c68475b-0614-494c-8f81-013e4f4038aa",
+  "mechanism": "Created asyncio.gather in one Eval cell and awaited it in a later cell. The delayed tool.bash call could not access the ended tool bridge. No native wait output or status was returned. Actual CLI execution is unconfirmed.",
+  "standards_run": "c4273e7e-f69e-42f1-a130-31c4600d37eb",
+  "standards_terminal": "t2ms",
+  "spec_run": "6a99cd59-571b-4594-b54d-19d29209b9e2",
+  "spec_terminal": "t2mr",
+  "native_smoke": {"executions": 1, "exit_code": 0, "json_rows": 56, "successful0": 21, "expected1": 35, "seconds": 8.224796019},
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "all11_working_blobs_match": true,
+  "source_changes": false,
+  "review_body_published": false,
+  "final_receipt_published": false,
+  "verdict": null,
+  "retries_or_repairs": false,
+  "resource_closure": "No leaves closed. Parent direction required before continued waits or closure. Primary remains live."
+}

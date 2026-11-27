@@ -1,0 +1,388 @@
+{
+  "text": "# Design source metadata\n\n- **Reference purpose:** Use this reference to interpret and validate supported web-design source metadata.\n- **Intended reader:** Skill maintainers and agents.\n- **Document date:** 2026-11-27.\n\nFor authorised conversion, read [Upgrade design source metadata](source-metadata-upgrade.md).\n\nThe web-design skill owns this catalog family. `assets/sources.json` is the bundled catalog. `scripts/source-metadata.ts` owns these operations:\n\n- **Identity detection:** Detect the exact identity.\n- **Content validation:** Validate catalog content.\n- **Historical reading:** Read the supported historical format.\n- **Source selection:** Select a source.\n- **Pure conversion:** Convert metadata without writes.\n\n## Inventory\n\n| Boundary | Direction | Definition and validator | Reading and conversion |\n| --- | --- | --- | --- |\n| Source catalog | Input and current conversion output | This definition. `validateCatalog` and `readCatalog` | Numeric v1 and string v2. Explicit shared upgrade only |\n| `contracts.json` | Declaration | Shared built-in `skill-contract-manifest/v1`. Shared validator | Shared manifest reader |\n| Design Markdown | Human guidance or opaque asset bytes | Not independent structured records | No injected identity or conversion |\n| Task guidance | Human guidance | Not independent structured records | No injected identity or conversion |\n| CLI display text | Human guidance | Not independent structured records | No injected identity or conversion |\n\n## Exact identities\n\n| Declared contract | Wire identity | Support |\n| --- | --- | --- |\n| `design-source-metadata/v1` | JSON number `schemaVersion: 1` | Known historical input only |\n| `design-source-metadata/v2` | String `schemaVersion: \"design-source-metadata/v2\"` | Current input and explicit conversion output |\n\nThe historical identifier names the existing numeric format. The historical wire format does not accept the string `design-source-metadata/v1`. There is no supported unversioned format. Reject these inputs:\n\n- **Unknown numbers:** Unknown numeric identifier values.\n- **Unknown strings:** Unknown string identifiers.\n- **Null identifiers:** Null identifier values.\n- **Malformed identifiers:** Invalid identifier syntax.\n- **Duplicate keys:** Duplicate object keys.\n- **Forbidden field:** Any top-level `schema` field, including mixed identities.\n\nRejection precedes interpretation or conversion. `identify` returns null only when the identifier is absent. `detectLegacy` returns no matches.\n\n## Content and meaning\n\nBoth formats contain a JSON object with `capturedAt` and a nonempty ordered `sources` array. `capturedAt` is a valid UTC ISO timestamp with milliseconds. Each source contains:\n\n- **Style identity:** `style` is one of these values:\n  - **Report dashboard:** `report-dashboard`.\n  - **Widget dashboard:** `widget-grid-dashboard`.\n  - **Project information:** `project-info`.\n- **Asset path:** `asset` is an installed `styles/<style>/<UPPERCASE-OR-HYPHEN-NAME>.md` path relative to the skill's `assets` directory.\n- **Source provenance:** `source` is an object with these nonempty strings:\n  - **Repository location:** `repository`.\n  - **Repository path:** `path`.\n  - **Local path:** `localPath`.\n- **Asset checksum:** `sha256` contains 64 lowercase hexadecimal digits for the bundled asset bytes.\n\nEach `(style, asset)` pair is unique. Array order is meaningful and stays unchanged. Unknown authored properties remain allowed at every object level. Preserve their bytes during conversion, including number lexemes that JSON cannot round-trip exactly.\n\nThese fields are provenance and refresh metadata only:\n\n- **Repository location:** `source.repository`.\n- **Repository path:** `source.path`.\n- **Local path:** `source.localPath`.\n\nRuntime reads always use the installed bundled copy. A caller-selected catalog changes metadata input, not the bundled asset root. Resolve that root from the owning module, independently of cwd. Reject asset symlinks that resolve outside that root.\n\n`readCatalog` rejects malformed UTF-8 bytes before JSON parsing, without normalization or implicit BOM removal. Valid Unicode, including an intentionally encoded U+FFFD, remains supported. It validates structure and verifies every referenced asset's SHA-256. `selectSource` selects exactly one `(style, asset)` pair. It returns these values:\n\n- **Selected entry:** The entry for that pair.\n- **Bundled path:** The path for that entry.\n- **Verified text:** The verified asset text.\n\nEqual hashes or text never merge these items:\n\n- **Style identities:** Styles remain distinct.\n- **Companion identities:** Companions remain distinct.\n- **Source provenance:** Provenance remains distinct.\n\nIntegrity failures stop consumption without repair or writes.\n\n## Commands\n\nResolve `WEB_DESIGN_ROOT` to the installed directory containing `SKILL.md`. All entrypoint paths below are skill-relative. Invoke absolute entrypoints from any cwd. The mise shebang selects Bun.\n\n```sh\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate /absolute/historical-sources.json\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select project-info styles/project-info/DESIGN.md\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select widget-grid-dashboard styles/widget-grid-dashboard/UI-FOUNDATION.md\n```\n\nValidation prints these values:\n\n- **Catalog identity:** The declared identity.\n- **Capture time:** The recorded capture time.\n- **Ordered associations:** The catalog associations in order.\n\nSelection prints these values:\n\n- **Source provenance:** The selected provenance.\n- **Bundled path:** The verified bundled path.\n- **Selected text:** The selected asset text.\n\nThese are human-facing displays, not persistent result records. Neither command writes or upgrades. For deliberate conversion, use [the declared upgrade procedure](source-metadata-upgrade.md).\n\n\n## Native regression check\n\nRun `\"$WEB_DESIGN_ROOT/tests/source-metadata-smoke.ts\"` from any cwd. It exercises these boundaries with isolated fixtures:\n\n- **Manifest resolution:** Public manifest resolution.\n- **Catalog readers:** Both readers.\n- **Malformed bytes:** Malformed catalog bytes at validate/select boundaries.\n- **Valid Unicode:** Valid Unicode provenance.\n- **Source selection:** Style/provenance selection.\n- **Single conversion:** Shared single conversion.\n- **Bulk conversion:** Shared bulk conversion.\n- **Rejected conversions:** Byte-preserving refusals.\n- **Checksum failure:** Checksum failure.\n\nIt removes only its temporary directory. It needs the adjacent installed skill-contracts owner and the mise/Bun runtime. It does not use `bun test` or change dependencies.\n\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 374.7688860000344,
+    "trace": {
+      "v": 1,
+      "seq": 15,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 373606972,
+      "script": "git show 14705f57e663196bc211fbf394a8829820dcf9fc:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md | mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .'",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 248,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 248,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 248,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 140,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2912649,
+              "at": 64892,
+              "argv": [
+                "git",
+                "show",
+                "14705f57e663196bc211fbf394a8829820dcf9fc:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+              ],
+              "res": "external",
+              "pid": 1603896,
+              "end_ns": 2977541,
+              "end_seq": 12
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 8,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 9,
+              "hi": 140,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "simple",
+              "lo": 143,
+              "hi": 248,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 373107628,
+              "at": 471693,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "mq",
+                "--allow-http-import",
+                "--no-lockfile",
+                "-I",
+                "raw",
+                "-F",
+                "raw",
+                "import \"github.com/harehare/okf.mq\" | ."
+              ],
+              "res": "external",
+              "pid": 1603898,
+              "end_ns": 373579321,
+              "end_seq": 14
+            },
+            {
+              "k": "word",
+              "lo": 143,
+              "hi": 147,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 148,
+              "hi": 152,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 153,
+              "hi": 155,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 156,
+              "hi": 158,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 159,
+              "hi": 178,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 179,
+              "hi": 192,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 193,
+              "hi": 195,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 196,
+              "hi": 199,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 200,
+              "hi": 202,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 203,
+              "hi": 206,
+              "p": 6,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 207,
+              "hi": 248,
+              "p": 6,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAPgBAQD4AQAAAgIAjAEAAAMDAAMBAANnaXQEBAgBAARzaG93BQmMAQEAgwExNDcwNWY1N2U2NjMxOTZiYzIxMWZiZjM5NGE4ODI5ODIwZGNmOWZjOm1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9yZWZlcmVuY2VzL3NvdXJjZS1tZXRhZGF0YS5tZAAAAAaPAfgBAAALB48BkwEBAARtaXNlCJQBmAEBAARleGVjCZkBmwEBAAItLQqcAZ4BAQACbXELnwGyAQEAEy0tYWxsb3ctaHR0cC1pbXBvcnQMswHAAQEADS0tbm8tbG9ja2ZpbGUNwQHDAQEAAi1JDsQBxwEBAANyYXcPyAHKAQEAAi1GEMsBzgEBAANyYXcRzwH4AQECJ2ltcG9ydCAiZ2l0aHViLmNvbS9oYXJlaGFyZS9va2YubXEiIHwgLgAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 260,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 57728,
+          "event_seq": 262,
+          "u": 0,
+          "n": 1,
+          "vpid": 1073741824,
+          "kind": "Pipeline"
+        },
+        {
+          "seq": 5,
+          "t_ns": 64892,
+          "event_seq": 264,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 0,
+            "vpid": 1073741825,
+            "seq": 42
+          },
+          "vpid": 1073741825,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 6,
+          "t_ns": 80140,
+          "event_seq": 265,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 0,
+            "vpid": 1073741825,
+            "seq": 42
+          },
+          "vpid": 1073741825,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "show",
+            "14705f57e663196bc211fbf394a8829820dcf9fc:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 7,
+          "t_ns": 453399,
+          "event_seq": 266,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 0,
+            "vpid": 1073741825,
+            "seq": 42
+          },
+          "vpid": 1073741825,
+          "kind": "Spawn",
+          "pid": 1603896,
+          "argv": [
+            "git",
+            "show",
+            "14705f57e663196bc211fbf394a8829820dcf9fc:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+          ]
+        },
+        {
+          "seq": 9,
+          "t_ns": 471693,
+          "event_seq": 268,
+          "u": 0,
+          "n": 6,
+          "command": {
+            "run": 0,
+            "vpid": 1073741826,
+            "seq": 43
+          },
+          "vpid": 1073741826,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 10,
+          "t_ns": 476913,
+          "event_seq": 269,
+          "u": 0,
+          "n": 6,
+          "command": {
+            "run": 0,
+            "vpid": 1073741826,
+            "seq": 43
+          },
+          "vpid": 1073741826,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "mq",
+            "--allow-http-import",
+            "--no-lockfile",
+            "-I",
+            "raw",
+            "-F",
+            "raw",
+            "import \"github.com/harehare/okf.mq\" | ."
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 11,
+          "t_ns": 737580,
+          "event_seq": 270,
+          "u": 0,
+          "n": 6,
+          "command": {
+            "run": 0,
+            "vpid": 1073741826,
+            "seq": 43
+          },
+          "vpid": 1073741826,
+          "kind": "Spawn",
+          "pid": 1603898,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "mq",
+            "--allow-http-import",
+            "--no-lockfile",
+            "-I",
+            "raw",
+            "-F",
+            "raw",
+            "import \"github.com/harehare/okf.mq\" | ."
+          ]
+        },
+        {
+          "seq": 12,
+          "t_ns": 2977541,
+          "event_seq": 271,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 0,
+            "vpid": 1073741825,
+            "seq": 42
+          },
+          "vpid": 1073741825,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2912649,
+          "pipestatus": []
+        },
+        {
+          "seq": 13,
+          "t_ns": 372692221,
+          "u": 0,
+          "n": 6,
+          "command": {
+            "run": 0,
+            "vpid": 1073741826,
+            "seq": 43
+          },
+          "vpid": 1073741826,
+          "kind": "Output",
+          "text": "# Design source metadata\n\n- **Reference purpose:** Use this reference to interpret and validate supported web-design source metadata.\n- **Intended reader:** Skill maintainers and agents.\n- **Document date:** 2026-11-27.\n\nFor authorised conversion, read [Upgrade design source metadata](source-metadata-upgrade.md).\n\nThe web-design skill owns this catalog family. `assets/sources.json` is the bundled catalog. `scripts/source-metadata.ts` owns these operations:\n\n- **Identity detection:** Detect the exact identity.\n- **Content validation:** Validate catalog content.\n- **Historical reading:** Read the supported historical format.\n- **Source selection:** Select a source.\n- **Pure conversion:** Convert metadata without writes.\n\n## Inventory\n\n| Boundary | Direction | Definition and validator | Reading and conversion |\n| --- | --- | --- | --- |\n| Source catalog | Input and current conversion output | This definition. `validateCatalog` and `readCatalog` | Numeric v1 and string v2. Explicit shared upgrade only |\n| `contracts.json` | Declaration | Shared built-in `skill-contract-manifest/v1`. Shared validator | Shared manifest reader |\n| Design Markdown | Human guidance or opaque asset bytes | Not independent structured records | No injected identity or conversion |\n| Task guidance | Human guidance | Not independent structured records | No injected identity or conversion |\n| CLI display text | Human guidance | Not independent structured records | No injected identity or conversion |\n\n## Exact identities\n\n| Declared contract | Wire identity | Support |\n| --- | --- | --- |\n| `design-source-metadata/v1` | JSON number `schemaVersion: 1` | Known historical input only |\n| `design-source-metadata/v2` | String `schemaVersion: \"design-source-metadata/v2\"` | Current input and explicit conversion output |\n\nThe historical identifier names the existing numeric format. The historical wire format does not accept the string `design-source-metadata/v1`. There is no supported unversioned format. Reject these inputs:\n\n- **Unknown numbers:** Unknown numeric identifier values.\n- **Unknown strings:** Unknown string identifiers.\n- **Null identifiers:** Null identifier values.\n- **Malformed identifiers:** Invalid identifier syntax.\n- **Duplicate keys:** Duplicate object keys.\n- **Forbidden field:** Any top-level `schema` field, including mixed identities.\n\nRejection precedes interpretation or conversion. `identify` returns null only when the identifier is absent. `detectLegacy` returns no matches.\n\n## Content and meaning\n\nBoth formats contain a JSON object with `capturedAt` and a nonempty ordered `sources` array. `capturedAt` is a valid UTC ISO timestamp with milliseconds. Each source contains:\n\n- **Style identity:** `style` is one of these values:\n  - **Report dashboard:** `report-dashboard`.\n  - **Widget dashboard:** `widget-grid-dashboard`.\n  - **Project information:** `project-info`.\n- **Asset path:** `asset` is an installed `styles/<style>/<UPPERCASE-OR-HYPHEN-NAME>.md` path relative to the skill's `assets` directory.\n- **Source provenance:** `source` is an object with these nonempty strings:\n  - **Repository location:** `repository`.\n  - **Repository path:** `path`.\n  - **Local path:** `localPath`.\n- **Asset checksum:** `sha256` contains 64 lowercase hexadecimal digits for the bundled asset bytes.\n\nEach `(style, asset)` pair is unique. Array order is meaningful and stays unchanged. Unknown authored properties remain allowed at every object level. Preserve their bytes during conversion, including number lexemes that JSON cannot round-trip exactly.\n\nThese fields are provenance and refresh metadata only:\n\n- **Repository location:** `source.repository`.\n- **Repository path:** `source.path`.\n- **Local path:** `source.localPath`.\n\nRuntime reads always use the installed bundled copy. A caller-selected catalog changes metadata input, not the bundled asset root. Resolve that root from the owning module, independently of cwd. Reject asset symlinks that resolve outside that root.\n\n`readCatalog` rejects malformed UTF-8 bytes before JSON parsing, without normalization or implicit BOM removal. Valid Unicode, including an intentionally encoded U+FFFD, remains supported. It validates structure and verifies every referenced asset's SHA-256. `selectSource` selects exactly one `(style, asset)` pair. It returns these values:\n\n- **Selected entry:** The entry for that pair.\n- **Bundled path:** The path for that entry.\n- **Verified text:** The verified asset text.\n\nEqual hashes or text never merge these items:\n\n- **Style identities:** Styles remain distinct.\n- **Companion identities:** Companions remain distinct.\n- **Source provenance:** Provenance remains distinct.\n\nIntegrity failures stop consumption without repair or writes.\n\n## Commands\n\nResolve `WEB_DESIGN_ROOT` to the installed directory containing `SKILL.md`. All entrypoint paths below are skill-relative. Invoke absolute entrypoints from any cwd. The mise shebang selects Bun.\n\n```sh\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate /absolute/historical-sources.json\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select project-info styles/project-info/DESIGN.md\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select widget-grid-dashboard styles/widget-grid-dashboard/UI-FOUNDATION.md\n```\n\nValidation prints these values:\n\n- **Catalog identity:** The declared identity.\n- **Capture time:** The recorded capture time.\n- **Ordered associations:** The catalog associations in order.\n\nSelection prints these values:\n\n- **Source provenance:** The selected provenance.\n- **Bundled path:** The verified bundled path.\n- **Selected text:** The selected asset text.\n\nThese are human-facing displays, not persistent result records. Neither command writes or upgrades. For deliberate conversion, use [the declared upgrade procedure](source-metadata-upgrade.md).\n\n\n## Native regression check\n\nRun `\"$WEB_DESIGN_ROOT/tests/source-metadata-smoke.ts\"` from any cwd. It exercises these boundaries with isolated fixtures:\n\n- **Manifest resolution:** Public manifest resolution.\n- **Catalog readers:** Both readers.\n- **Malformed bytes:** Malformed catalog bytes at validate/select boundaries.\n- **Valid Unicode:** Valid Unicode provenance.\n- **Source selection:** Style/provenance selection.\n- **Single conversion:** Shared single conversion.\n- **Bulk conversion:** Shared bulk conversion.\n- **Rejected conversions:** Byte-preserving refusals.\n- **Checksum failure:** Checksum failure.\n\nIt removes only its temporary directory. It needs the adjacent installed skill-contracts owner and the mise/Bun runtime. It does not use `bun test` or change dependencies.\n\n",
+          "fd": 1
+        },
+        {
+          "seq": 14,
+          "t_ns": 373579321,
+          "event_seq": 272,
+          "u": 0,
+          "n": 6,
+          "command": {
+            "run": 0,
+            "vpid": 1073741826,
+            "seq": 43
+          },
+          "vpid": 1073741826,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 373107628,
+          "pipestatus": []
+        },
+        {
+          "seq": 15,
+          "t_ns": 373606972,
+          "event_seq": 273,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

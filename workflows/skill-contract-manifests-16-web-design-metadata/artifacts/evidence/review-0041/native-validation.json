@@ -1,0 +1,10 @@
+{
+  "rows": 56,
+  "successful0": 21,
+  "expected1": 35,
+  "final_summary": [
+    "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+  ],
+  "seconds": 8.224796019,
+  "fresh_postcommit": true
+}

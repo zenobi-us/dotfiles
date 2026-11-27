@@ -1,0 +1,205 @@
+{
+  "authority_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0125.yaml",
+  "suffix_proof_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0041/parent-read-only-suffix-proof.json",
+  "original_failure_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0041/body-preflight-byte-mismatch.json",
+  "intended_bytes": 16216,
+  "expected_formatter_bytes": 16217,
+  "expected_formatter_sha256": "b881b81686d29aa3f56e78384e6f36c569c16c4c576621de51559b53c1f692f1",
+  "only_expected_byte_change": "one terminal LF from formatter",
+  "original_candidate_preserved": true,
+  "query_unchanged": true,
+  "content_unchanged": true,
+  "source_unchanged": true,
+  "native_or_axis_reruns": 0,
+  "verdict": "FAILURE",
+  "axis_reports_exact": true,
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "links": [
+    {
+      "text": "Scope",
+      "url": "#scope",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Contracts",
+      "url": "#contracts",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Standards",
+      "url": "#standards",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Spec",
+      "url": "#spec",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Validation",
+      "url": "#validation",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Provenance",
+      "url": "#provenance",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Integration risks",
+      "url": "#integration-risks",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Resources and delivery",
+      "url": "#resources-and-delivery",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "complete diff",
+      "url": "../evidence/review-0041/review-diff.stdout",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "initial identity and commit list",
+      "url": "../evidence/review-0041/primary-preflight.stdout",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md:35",
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md#L35",
+      "kind": "external",
+      "exists": true
+    },
+    {
+      "text": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md:13",
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md#L13",
+      "kind": "external",
+      "exists": true
+    },
+    {
+      "text": "Standards axis",
+      "url": "../evidence/review-0041/standards-axis.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Spec axis",
+      "url": "../evidence/review-0041/spec-axis.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Full native capture",
+      "url": "../evidence/review-0041/native-smoke.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "full standard output",
+      "url": "../evidence/review-0041/native-stdout.txt",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "full standard error",
+      "url": "../evidence/review-0041/native-stderr.txt",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "row validation",
+      "url": "../evidence/review-0041/native-validation.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Working bindings",
+      "url": "../evidence/review-0041/binding-validation.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "protected paths",
+      "url": "../evidence/review-0041/protected-eight.stdout",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "preservation",
+      "url": "../evidence/review-0041/preservation.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "manual prose inspection",
+      "url": "../evidence/review-0041/manual-prose-inspection.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "wait bridge failure",
+      "url": "../evidence/review-0041/wait-bridge-failure.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "checkpoint0124",
+      "url": "../../../goal-skill-contract-manifests/events/checkpoint-0124.yaml",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "parent interface assessment",
+      "url": "../evidence/integration-preflight-0001/base-interface-assessment.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Axis validation",
+      "url": "../evidence/review-0041/axis-validation.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Standards acknowledgement",
+      "url": "../evidence/review-0041/standards-ack-corrected.stdout",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "Spec acknowledgement",
+      "url": "../evidence/review-0041/spec-ack-corrected.stdout",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "text": "shutdown proof",
+      "url": "../evidence/review-0041/axis-shutdown-validation.json",
+      "kind": "relative",
+      "exists": true
+    }
+  ]
+}

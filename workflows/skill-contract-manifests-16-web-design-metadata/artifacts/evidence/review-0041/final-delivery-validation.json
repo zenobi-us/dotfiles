@@ -1,0 +1,10 @@
+{
+  "receipt_id": "review-0041",
+  "event_equals_delivered_domain": true,
+  "schemaVersion": "worktree-receipt/v3",
+  "verdict": "FAILURE",
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "receipt_parent": "review-start-0040",
+  "transport_sha256": "1ebb8581a78efd80e08691be68dae510f600a5d146e8ce9284def8a707190689"
+}

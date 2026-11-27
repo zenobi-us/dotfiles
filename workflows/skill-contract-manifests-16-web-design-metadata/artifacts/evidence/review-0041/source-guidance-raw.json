@@ -1,0 +1,328 @@
+{
+  "text": "---\nname: web-design\ndescription: Creates React and HTML pages, themes, and design systems from bundled style references. Use for report-dashboard, widget-grid-dashboard, and project-info surfaces that need a consistent visual system and a verified rendered result.\n---\n# Web design\nSelect the output task and visual style independently. Apply the selected source to the requested surface, not the source application's feature set.\n## Workflow\n1. Identify the deliverable, target directory, audience, and requested interactions. Inspect the existing stack, components, styles, and build commands before choosing tools.\n2. Read [style-selection](references/style-selection.md). Select one style and primary asset. State the source and any explicit overrides before implementation.\n3. Read the task reference below. For combined tasks, read each relevant reference. A theme-only request does not imply a new page; a specification does not imply component implementation.\n4. Reuse the target project's components and semantic tokens. Build only the requested content and behavior. If the request asks for a plan or explanation, return that instead of generating a page. Read the selected asset before implementing its appe\u2026[+115]\n5. Read [verification](references/verification.md). Exercise the actual changed surface and report the output location, checks, and limits.\nAll paths in this skill are relative to the installed directory containing this SKILL.md, not the target repository. Resolve this directory before opening references or assets. Bundled assets are sufficient; their original repositories need not exist\u2026[+1]\n## Route by task\n| Request | Read |\n| --- | --- |\n| A plain HTML page or static site | [html-pages](references/html-pages.md) |\n| A React page or component composition | [react-pages](references/react-pages.md) |\n| A new theme or styling-only change | [themes](references/themes.md) |\n| Tokens, component contracts, or a design-system specification | [design-systems](references/design-systems.md) |\nFor alternative comparisons, use ux-preview before production changes. For a requested standalone report, use html-artifact for packaging. Use ui-design for general accessibility and usability. Load react-patterns, tailwind, or shadcn only when the s\u2026[+115]\n## Completion\nThe deliverable uses the selected style without unrelated source features. Requested interactions and content are complete. The changed surface has been exercised, or the missing runtime prerequisite is stated. Source selection, overrides, verificati\u2026[+59]\n## Source metadata contract\nUse the [metadata consumer](references/style-selection.md#metadata-consumption) to verify bundled source integrity before selection.\nThe [authoritative metadata definition](references/source-metadata.md) specifies these topics:\n- **Current contract:** `design-source-metadata/v2`.\n- **Historical reader:** The explicit numeric-1 historical reader.\n- **Conversion boundaries:** The limits on supported conversion.\n`contracts.json` declares accepted inputs and current conversion output. Read-only commands and installation never upgrade catalogs.\n# Select a style\nRead this file before choosing an asset. Styles describe visual intent; tasks describe the output format.\n## Selection\n| Style | Use for | Primary asset | Companion |\n| --- | --- | --- | --- |\n| report-dashboard | Report archives, filters, result inspection, record drill-down | assets/styles/report-dashboard/DESIGN.md | None |\n| widget-grid-dashboard | Widget dashboards, grid composition, dashboard editing, application shells | assets/styles/widget-grid-dashboard/DESIGN.md | assets/styles/widget-grid-dashboard/UI-FOUNDATION.md |\n| project-info | Project landing pages, documentation, setup guides, repository links | assets/styles/project-info/DESIGN.md | EDITOR-DESIGN.md only when selected or needed for comparison |\nUse the user's named style. Otherwise select the row that matches the surface. Ask only when materially different purposes remain unresolved. Use the owning metadata consumer below to validate provenance and bundled integrity before opening the selec\u2026[+10]\nFor project-info, assets/styles/project-info/DESIGN.md is the Dotfiles reference and the default for general project pages. assets/styles/project-info/EDITOR-DESIGN.md is the Neovim reference. Use EDITOR-DESIGN.md when the user selects Neovim or requ\u2026[+257]\nFor widget-grid-dashboard, read its DESIGN.md and UI-FOUNDATION.md together. The companion explains this style's component and interaction conventions; it is not a global foundation for other styles.\n## Authority and scope\n- Apply the user's explicit requirements first, including borderless layouts, ghost links, and full-width blocks.\n- Preserve the target project's architecture, libraries, data contracts, and save behavior. A visual reference does not authorize replacing them.\n- Use the selected asset for remaining visual decisions. Preserve its semantic roles rather than scattering palette literals through components.\n- Treat bundled files as historical snapshots. Their titles, frontmatter, paths, commands, and application features are source context, not installed dependencies or mandatory output.\n- The project-info assets contain inherited dashboard material. Use their palette, typography, spacing, focus, and restrained geometry for project content. Do not add charts, Finder columns, ledger features, hero bands, or navigation merely because a\u2026[+22]\n- When assets conflict internally, use the target implementation for behavior and the user's selected direction for appearance. State an unresolved visual conflict before changing that decision.\n## Provenance and identical files\nassets/sources.json records original locations, snapshot time, and SHA-256 values. Read bundled copies at runtime. Original paths are refresh metadata only.\nIdentical checksums mean identical text, not interchangeable style identities. Select by style and provenance, not a document's historical name. Read the selected copy once; do not load an unrelated style or its companion because its DESIGN.md matche\u2026[+96]\nTo refresh snapshots, copy the named source files byte-for-byte and update their manifest checksums and capture time. If a source is unavailable, retain the existing snapshot and report it. Do not rewrite source content to resolve design conflicts.\n## Example\nRequest: \u201cCreate a borderless HTML project landing page with my avatar and three ghost links.\u201d\n- Task: HTML page; read references/html-pages.md.\n- Style: project-info; read assets/styles/project-info/DESIGN.md.\n- Overrides: no decorative borders; ghost links instead of filled actions.\n- Scope: avatar and three links only. No widget grid, chart, finance foundation, or extra feature sections.\n- Check: desktop and narrow layouts, keyboard focus, link destinations, and asset loading.\n## Metadata consumption\nResolve `WEB_DESIGN_ROOT` to the installed directory containing `SKILL.md`. Invoke its absolute entrypoint from any cwd. The catalog and asset root do not depend on the target project or caller directory.\n```sh\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select project-info styles/project-info/DESIGN.md\n```\nFor another style or companion, pass its exact style and asset from the table. Consume each required companion explicitly.\nSelection performs these actions:\n- **Catalog validation:** Selection validates the catalog.\n- **Checksum verification:** Selection verifies bundled checksums.\n- **Selected output:** Selection prints these values:\n  - **Selected provenance:** The selected source provenance.\n  - **Bundled path:** The selected bundled asset path.\n  - **Asset text:** The selected asset text.\nA checksum mismatch stops consumption. Do not repair or refresh content implicitly.\nIf further inspection is needed, read selected Markdown through mq.\nRead these references for the metadata rules:\n- **Contract identities:** [Source metadata](source-metadata.md) defines exact current and historical identities.\n- **Validation rules:** [Source metadata](source-metadata.md) defines metadata validation.\n- **Explicit conversion:** [Explicit conversion](source-metadata-upgrade.md) defines the conversion procedure.\nOrdinary design prose and bundled Markdown bytes have no new contract fields.\n[\u2026146ln elided\u2026]\n[raw output: artifact://34]\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 398.66471800001455,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 397179259,
+      "script": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 456,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 456,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 456,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 456,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 397133293,
+              "at": 30958,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "mq",
+                "--allow-http-import",
+                "--no-lockfile",
+                "-I",
+                "raw",
+                "-F",
+                "raw",
+                "import \"github.com/harehare/okf.mq\" | .",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+              ],
+              "res": "external",
+              "pid": 1598776,
+              "end_ns": 397164251,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 4,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 5,
+              "hi": 9,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 10,
+              "hi": 12,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 13,
+              "hi": 15,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 16,
+              "hi": 35,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 36,
+              "hi": 49,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 50,
+              "hi": 52,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 53,
+              "hi": 56,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 57,
+              "hi": 59,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 60,
+              "hi": 63,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 64,
+              "hi": 105,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 106,
+              "hi": 175,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 176,
+              "hi": 266,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 267,
+              "hi": 357,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 358,
+              "hi": 456,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAMgDAQDIAwAAAQIAyAMAAA8DAAQBAARtaXNlBAUJAQAEZXhlYwUKDAEAAi0tBg0PAQACbXEHECMBABMtLWFsbG93LWh0dHAtaW1wb3J0CCQxAQANLS1uby1sb2NrZmlsZQkyNAEAAi1JCjU4AQADcmF3Czk7AQACLUYMPD8BAANyYXcNQGkBAidpbXBvcnQgImdpdGh1Yi5jb20vaGFyZWhhcmUvb2tmLm1xIiB8IC4Oaq8BAQBFbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL1NLSUxMLm1kD7ABigIBAFptaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vcmVmZXJlbmNlcy9zdHlsZS1zZWxlY3Rpb24ubWQQiwLlAgEAWm1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9yZWZlcmVuY2VzL3NvdXJjZS1tZXRhZGF0YS5tZBHmAsgDAQBibWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3JlZmVyZW5jZXMvc291cmNlLW1ldGFkYXRhLXVwZ3JhZGUubWQAAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 157,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 30958,
+          "event_seq": 159,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 18,
+            "vpid": 1073741824,
+            "seq": 26
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 40806,
+          "event_seq": 160,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 18,
+            "vpid": 1073741824,
+            "seq": 26
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "mq",
+            "--allow-http-import",
+            "--no-lockfile",
+            "-I",
+            "raw",
+            "-F",
+            "raw",
+            "import \"github.com/harehare/okf.mq\" | .",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 328414,
+          "event_seq": 161,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 18,
+            "vpid": 1073741824,
+            "seq": 26
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1598776,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "mq",
+            "--allow-http-import",
+            "--no-lockfile",
+            "-I",
+            "raw",
+            "-F",
+            "raw",
+            "import \"github.com/harehare/okf.mq\" | .",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 396172655,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 18,
+            "vpid": 1073741824,
+            "seq": 26
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "---\nname: web-design\ndescription: Creates React and HTML pages, themes, and design systems from bundled style references. Use for report-dashboard, widget-grid-dashboard, and project-info surfaces that need a consistent visual system and a verified rendered result.\n---\n\n# Web design\n\nSelect the output task and visual style independently. Apply the selected source to the requested surface, not the source application's feature set.\n\n## Workflow\n\n1. Identify the deliverable, target directory, audience, and requested interactions. Inspect the existing stack, components, styles, and build commands before choosing tools.\n2. Read [style-selection](references/style-selection.md). Select one style and primary asset. State the source and any explicit overrides before implementation.\n3. Read the task reference below. For combined tasks, read each relevant reference. A theme-only request does not imply a new page; a specification does not imply component implementation.\n4. Reuse the target project's components and semantic tokens. Build only the requested content and behavior. If the request asks for a plan or explanation, return that instead of generating a page. Read the selected asset before implementing its appearance; if reading is unavailable, report the missing access instead of guessing its tokens or claiming inspection.\n5. Read [verification](references/verification.md). Exercise the actual changed surface and report the output location, checks, and limits.\n\nAll paths in this skill are relative to the installed directory containing this SKILL.md, not the target repository. Resolve this directory before opening references or assets. Bundled assets are sufficient; their original repositories need not exist.\n\n## Route by task\n\n| Request | Read |\n| --- | --- |\n| A plain HTML page or static site | [html-pages](references/html-pages.md) |\n| A React page or component composition | [react-pages](references/react-pages.md) |\n| A new theme or styling-only change | [themes](references/themes.md) |\n| Tokens, component contracts, or a design-system specification | [design-systems](references/design-systems.md) |\n\nFor alternative comparisons, use ux-preview before production changes. For a requested standalone report, use html-artifact for packaging. Use ui-design for general accessibility and usability. Load react-patterns, tailwind, or shadcn only when the selected stack needs them. Preserve this skill's selected source and explicit overrides when composing those skills.\n\n## Completion\n\nThe deliverable uses the selected style without unrelated source features. Requested interactions and content are complete. The changed surface has been exercised, or the missing runtime prerequisite is stated. Source selection, overrides, verification, and the output path or URL are included in the handoff.\n\n## Source metadata contract\n\nUse the [metadata consumer](references/style-selection.md#metadata-consumption) to verify bundled source integrity before selection.\n\nThe [authoritative metadata definition](references/source-metadata.md) specifies these topics:\n\n- **Current contract:** `design-source-metadata/v2`.\n- **Historical reader:** The explicit numeric-1 historical reader.\n- **Conversion boundaries:** The limits on supported conversion.\n\n`contracts.json` declares accepted inputs and current conversion output. Read-only commands and installation never upgrade catalogs.\n\n# Select a style\n\nRead this file before choosing an asset. Styles describe visual intent; tasks describe the output format.\n\n## Selection\n\n| Style | Use for | Primary asset | Companion |\n| --- | --- | --- | --- |\n| report-dashboard | Report archives, filters, result inspection, record drill-down | assets/styles/report-dashboard/DESIGN.md | None |\n| widget-grid-dashboard | Widget dashboards, grid composition, dashboard editing, application shells | assets/styles/widget-grid-dashboard/DESIGN.md | assets/styles/widget-grid-dashboard/UI-FOUNDATION.md |\n| project-info | Project landing pages, documentation, setup guides, repository links | assets/styles/project-info/DESIGN.md | EDITOR-DESIGN.md only when selected or needed for comparison |\n\nUse the user's named style. Otherwise select the row that matches the surface. Ask only when materially different purposes remain unresolved. Use the owning metadata consumer below to validate provenance and bundled integrity before opening the selected asset.\n\nFor project-info, assets/styles/project-info/DESIGN.md is the Dotfiles reference and the default for general project pages. assets/styles/project-info/EDITOR-DESIGN.md is the Neovim reference. Use EDITOR-DESIGN.md when the user selects Neovim or requests editor-profile documentation. A request naming Dotfiles always selects DESIGN.md, not EDITOR-DESIGN.md. Read one primary document. Read both only for an explicit comparison or combination; assign authority for each conflicting decision before building.\n\nFor widget-grid-dashboard, read its DESIGN.md and UI-FOUNDATION.md together. The companion explains this style's component and interaction conventions; it is not a global foundation for other styles.\n\n## Authority and scope\n\n- Apply the user's explicit requirements first, including borderless layouts, ghost links, and full-width blocks.\n- Preserve the target project's architecture, libraries, data contracts, and save behavior. A visual reference does not authorize replacing them.\n- Use the selected asset for remaining visual decisions. Preserve its semantic roles rather than scattering palette literals through components.\n- Treat bundled files as historical snapshots. Their titles, frontmatter, paths, commands, and application features are source context, not installed dependencies or mandatory output.\n- The project-info assets contain inherited dashboard material. Use their palette, typography, spacing, focus, and restrained geometry for project content. Do not add charts, Finder columns, ledger features, hero bands, or navigation merely because an asset mentions them.\n- When assets conflict internally, use the target implementation for behavior and the user's selected direction for appearance. State an unresolved visual conflict before changing that decision.\n\n## Provenance and identical files\n\nassets/sources.json records original locations, snapshot time, and SHA-256 values. Read bundled copies at runtime. Original paths are refresh metadata only.\n\nIdentical checksums mean identical text, not interchangeable style identities. Select by style and provenance, not a document's historical name. Read the selected copy once; do not load an unrelated style or its companion because its DESIGN.md matches. Honor an explicitly requested cross-style combination, but state which source owns each rule.\n\nTo refresh snapshots, copy the named source files byte-for-byte and update their manifest checksums and capture time. If a source is unavailable, retain the existing snapshot and report it. Do not rewrite source content to resolve design conflicts.\n\n## Example\n\nRequest: \u201cCreate a borderless HTML project landing page with my avatar and three ghost links.\u201d\n\n- Task: HTML page; read references/html-pages.md.\n- Style: project-info; read assets/styles/project-info/DESIGN.md.\n- Overrides: no decorative borders; ghost links instead of filled actions.\n- Scope: avatar and three links only. No widget grid, chart, finance foundation, or extra feature sections.\n- Check: desktop and narrow layouts, keyboard focus, link destinations, and asset loading.\n\n## Metadata consumption\n\nResolve `WEB_DESIGN_ROOT` to the installed directory containing `SKILL.md`. Invoke its absolute entrypoint from any cwd. The catalog and asset root do not depend on the target project or caller directory.\n\n```sh\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select project-info styles/project-info/DESIGN.md\n```\n\nFor another style or companion, pass its exact style and asset from the table. Consume each required companion explicitly.\n\nSelection performs these actions:\n\n- **Catalog validation:** Selection validates the catalog.\n- **Checksum verification:** Selection verifies bundled checksums.\n- **Selected output:** Selection prints these values:\n  - **Selected provenance:** The selected source provenance.\n  - **Bundled path:** The selected bundled asset path.\n  - **Asset text:** The selected asset text.\n\nA checksum mismatch stops consumption. Do not repair or refresh content implicitly.\n\nIf further inspection is needed, read selected Markdown through mq.\n\nRead these references for the metadata rules:\n\n- **Contract identities:** [Source metadata](source-metadata.md) defines exact current and historical identities.\n- **Validation rules:** [Source metadata](source-metadata.md) defines metadata validation.\n- **Explicit conversion:** [Explicit conversion](source-metadata-upgrade.md) defines the conversion procedure.\n\nOrdinary design prose and bundled Markdown bytes have no new contract fields.\n\n# Design source metadata\n\n- **Reference purpose:** Use this reference to interpret and validate supported web-design source metadata.\n- **Intended reader:** Skill maintainers and agents.\n- **Document date:** 2026-11-27.\n\nFor authorized conversion, read [Upgrade design source metadata](source-metadata-upgrade.md).\n\nThe web-design skill owns this catalog family. `assets/sources.json` is the bundled catalog. `scripts/source-metadata.ts` owns these operations:\n\n- **Identity detection:** Detect the exact identity.\n- **Content validation:** Validate catalog content.\n- **Historical reading:** Read the supported historical format.\n- **Source selection:** Select a source.\n- **Pure conversion:** Convert metadata without writes.\n\n## Inventory\n\n- **Boundary:** Source catalog\n  - **Direction:** Input and current conversion output\n  - **Definition and validator:** This definition. `validateCatalog` and `readCatalog`\n  - **Reading and conversion:** Numeric v1 and string v2. Explicit shared upgrade only\n- **Boundary:** `contracts.json`\n  - **Direction:** Declaration\n  - **Definition and validator:** Shared built-in `skill-contract-manifest/v1`. Shared validator\n  - **Reading and conversion:** Shared manifest reader\n- **Boundary:** Design Markdown\n  - **Direction:** Human guidance or opaque asset bytes\n  - **Definition and validator:** Not independent structured records\n  - **Reading and conversion:** No injected identity or conversion\n- **Boundary:** Task guidance\n  - **Direction:** Human guidance\n  - **Definition and validator:** Not independent structured records\n  - **Reading and conversion:** No injected identity or conversion\n- **Boundary:** CLI display text\n  - **Direction:** Human guidance\n  - **Definition and validator:** Not independent structured records\n  - **Reading and conversion:** No injected identity or conversion\n\n## Exact identities\n\n- **Declared contract:** `design-source-metadata/v1`\n  - **Wire identity:** JSON number `schemaVersion: 1`\n  - **Support:** Known historical input only\n- **Declared contract:** `design-source-metadata/v2`\n  - **Wire identity:** String `schemaVersion: \"design-source-metadata/v2\"`\n  - **Support:** Current input and explicit conversion output\n\nThe historical identifier names the existing numeric format. The historical wire format does not accept the string `design-source-metadata/v1`. There is no supported unversioned format. Reject these inputs:\n\n- **Unknown numbers:** Unknown numeric identifier values.\n- **Unknown strings:** Unknown string identifiers.\n- **Null identifiers:** Null identifier values.\n- **Malformed identifiers:** Invalid identifier syntax.\n- **Duplicate keys:** Duplicate object keys.\n- **Forbidden field:** Any top-level `schema` field, including mixed identities.\n\nRejection precedes interpretation or conversion. `identify` returns null only when the identifier is absent. `detectLegacy` returns no matches.\n\n## Content and meaning\n\nBoth formats contain a JSON object with `capturedAt` and a nonempty ordered `sources` array. `capturedAt` is a valid UTC ISO timestamp with milliseconds. Each source contains:\n\n- **Style identity:** `style` is one of these values:\n  - **Report dashboard:** `report-dashboard`.\n  - **Widget dashboard:** `widget-grid-dashboard`.\n  - **Project information:** `project-info`.\n- **Asset path:** `asset` is an installed `styles/<style>/<UPPERCASE-OR-HYPHEN-NAME>.md` path relative to the skill's `assets` directory.\n- **Source provenance:** `source` is an object with these nonempty strings:\n  - **Repository location:** `repository`.\n  - **Repository path:** `path`.\n  - **Local path:** `localPath`.\n- **Asset checksum:** `sha256` contains 64 lowercase hexadecimal digits for the bundled asset bytes.\n\nEach `(style, asset)` pair is unique. Array order is meaningful and stays unchanged. Unknown authored properties remain allowed at every object level. Preserve their bytes during conversion, including number lexemes that JSON cannot round-trip exactly.\n\nThese fields are provenance and refresh metadata only:\n\n- **Repository location:** `source.repository`.\n- **Repository path:** `source.path`.\n- **Local path:** `source.localPath`.\n\nRuntime reads always use the installed bundled copy. A caller-selected catalog changes metadata input, not the bundled asset root. Resolve that root from the owning module, independently of cwd. Reject asset symlinks that resolve outside that root.\n\n`readCatalog` rejects malformed UTF-8 bytes before JSON parsing, without normalization or implicit BOM removal. Valid Unicode, including an intentionally encoded U+FFFD, remains supported. It validates structure and verifies every referenced asset's SHA-256. `selectSource` selects exactly one `(style, asset)` pair. It returns these values:\n\n- **Selected entry:** The entry for that pair.\n- **Bundled path:** The path for that entry.\n- **Verified text:** The verified asset text.\n\nEqual hashes or text never merge these items:\n\n- **Style identities:** Styles remain distinct.\n- **Companion identities:** Companions remain distinct.\n- **Source provenance:** Provenance remains distinct.\n\nIntegrity failures stop consumption without repair or writes.\n\n## Commands\n\nResolve `WEB_DESIGN_ROOT` to the installed directory containing `SKILL.md`. All entrypoint paths below are skill-relative. Invoke absolute entrypoints from any cwd. The mise shebang selects Bun.\n\n```sh\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate /absolute/historical-sources.json\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select project-info styles/project-info/DESIGN.md\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" select widget-grid-dashboard styles/widget-grid-dashboard/UI-FOUNDATION.md\n```\n\nValidation prints these values:\n\n- **Catalog identity:** The declared identity.\n- **Capture time:** The recorded capture time.\n- **Ordered associations:** The catalog associations in order.\n\nSelection prints these values:\n\n- **Source provenance:** The selected provenance.\n- **Bundled path:** The verified bundled path.\n- **Selected text:** The selected asset text.\n\nThese are human-facing displays, not persistent result records. Neither command writes or upgrades. For deliberate conversion, use [the declared upgrade procedure](source-metadata-upgrade.md).\n\n\n## Native regression check\n\nRun `\"$WEB_DESIGN_ROOT/tests/source-metadata-smoke.ts\"` from any cwd. It exercises these boundaries with isolated fixtures:\n\n- **Manifest resolution:** Public manifest resolution.\n- **Catalog readers:** Both readers.\n- **Malformed bytes:** Malformed catalog bytes at validate/select boundaries.\n- **Valid Unicode:** Valid Unicode provenance.\n- **Source selection:** Style/provenance selection.\n- **Single conversion:** Shared single conversion.\n- **Bulk conversion:** Shared bulk conversion.\n- **Rejected conversions:** Byte-preserving refusals.\n- **Checksum failure:** Checksum failure.\n\nIt removes only its temporary directory. It needs the adjacent installed skill-contracts owner and the mise/Bun runtime. It does not use `bun test` or change dependencies.\n\n# Upgrade design source metadata\n\n- **Procedure purpose:** Use this procedure to convert supported web-design source metadata with separate user authority.\n- **Intended reader:** Skill maintainers and operators.\n- **Document date:** 2026-11-27.\n\nFor format definitions and read-only validation, read [Design source metadata](source-metadata.md).",
+          "fd": 1
+        },
+        {
+          "seq": 6,
+          "t_ns": 396172655,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 18,
+            "vpid": 1073741824,
+            "seq": 26
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "\n\nThe only declared edge is `design-source-metadata/v1` to `design-source-metadata/v2`, with procedure `file:references/source-metadata-upgrade.md` and trusted adapter `file:scripts/source-metadata.ts`.\n\nThe adapter validates the explicit numeric source. It replaces only the top-level numeric identity token with the current string identity. All other UTF-8 bytes remain unchanged. This wire cutover preserves these items:\n\n- **Source locations:** Every source location.\n- **Asset associations:** Every association.\n- **Capture time:** The recorded capture time.\n- **Asset checksums:** Every checksum.\n- **Array order:** Every array position.\n- **Authored properties:** Every unknown property.\n- **Bundled assets:** Every bundled asset.\n\nThe conversion never performs these actions:\n\n- **Source refresh:** It never refreshes sources.\n- **Provenance replacement:** It never computes replacement provenance.\n- **Time replacement:** It never restamps time.\n- **Asset writes:** It never writes assets.\n\nThe shared operation performs these steps:\n\n1. **Resolve declarations:** Resolve the declared contracts and procedure.\n2. **Validate content:** Validate source and destination.\n3. **Compare bytes:** Compare the complete identity-normalized authored bytes.\n4. **Acquire locks:** Acquire the required locks.\n5. **Persist result:** Persist the validated result.\n\nOwner hooks are pure. Content with `immutable: true` requires read-only historical access. Paths inside these directories also require read-only historical access:\n\n- **Event records:** `events`.\n- **Receipt records:** `receipts`.\n- **Historical snapshots:** `snapshots`.\n- **Historical artifacts:** `artifacts`.\n\nThese refusals preserve source bytes:\n\n- **Unsupported operations:** Operations the owner does not support.\n- **Unknown identities:** Identities the owner does not recognize.\n- **Invalid content:** Content that fails validation.\n- **Unsupported paths:** Paths the owner does not permit.\n\nResolve `SKILL_CONTRACTS_ROOT` and `WEB_DESIGN_ROOT` to their installed skill directories. Invoke absolute entrypoints from any cwd. Artifact and selection-list paths below are explicit absolute paths. Conversion requires separate user authority. Reading and installation never run it.\n\n```sh\n\"$SKILL_CONTRACTS_ROOT/scripts/router.ts\" safe-upgrade --skill \"$WEB_DESIGN_ROOT\" --owner file:scripts/source-metadata.ts --artifact /absolute/sources.json --operation upgrade\n\"$SKILL_CONTRACTS_ROOT/scripts/router.ts\" bulk-upgrade --skill \"$WEB_DESIGN_ROOT\" --owner file:scripts/source-metadata.ts --artifacts /absolute/selected-catalogs.json\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate /absolute/sources.json\n```\n\nThe bulk selection is a JSON array of distinct paths. Each item commits independently. Report failed and partial outcomes honestly.\n\nCurrent valid input is a byte-preserving no-op. Conversion validates metadata. Actual consumption separately verifies bundled integrity. A checksum failure never authorizes catalog or asset repair.\n\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 397164251,
+          "event_seq": 162,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 18,
+            "vpid": 1073741824,
+            "seq": 26
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 397133293,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 397179259,
+          "event_seq": 163,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "minimized": {
+        "filter": "pipeline",
+        "inputBytes": 19389,
+        "outputBytes": 8345,
+        "artifactId": "34"
+      }
+    }
+  }
+}

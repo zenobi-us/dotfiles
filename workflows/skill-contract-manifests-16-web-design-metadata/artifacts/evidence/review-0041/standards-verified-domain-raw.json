@@ -1,0 +1,208 @@
+{
+  "text": "{\n  \"axis\": \"standards\",\n  \"changed_scope\": [\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\",\n    \"mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\"\n  ],\n  \"findings\": [\n    {\n      \"adr\": null,\n      \"description\": \"Hard house-rule breach: iso-24495-3/SKILL.md rule 3 requires acronym definitions at first use. Added prose uses CLI (35), JSON (43), UTC/ISO (62), and UTF-8/BOM/SHA-256 (86) without definitions.\",\n      \"file\": \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n      \"id\": \"standards-013\",\n      \"line\": 35,\n      \"required_change\": \"Define these acronyms at first use, or replace them with clear full terms. Preserve technical literals, all record meanings, historical restrictions, and separate conversion authority.\",\n      \"severity\": \"low\",\n      \"validation_command\": \"mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \\\"github.com/harehare/okf.mq\\\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md; manually check first-use acronym definitions against iso-24495-3 rule 3.\"\n    },\n    {\n      \"adr\": null,\n      \"description\": \"Hard house-rule breach: iso-24495-3/SKILL.md rule 3 requires acronym definitions at first use. This entirely added reference uses UTF-8 (13) and JSON (59) without definitions.\",\n      \"file\": \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n      \"id\": \"standards-014\",\n      \"line\": 13,\n      \"required_change\": \"Define UTF-8 and JSON at first prose use. Preserve conversion guarantees, commands, and contract identifiers.\",\n      \"severity\": \"low\",\n      \"validation_command\": \"mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \\\"github.com/harehare/okf.mq\\\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md; manually check first-use acronym definitions against iso-24495-3 rule 3.\"\n    }\n  ],\n  \"operation_id\": \"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\n  \"parent_run_id\": \"89d908dd-1ac0-4b5e-8efd-609dca52204c\",\n  \"report\": \"FAILURE: two low-severity hard house-rule findings. Reviewed all eleven paths against the complete frozen three-dot diff, not only the final repair. Read canonical ticket, full initiative, context, domain configuration, ADR index, retained review35, fix38/parent39, snapshot38, and native failure/correction evidence. No applicable ADR exists.\\n\\nPrior standards-011/012 are resolved. Five Inventory records preserve all twenty cells. Two identity records preserve all six cells. Five sections remain, with no per-record headings, invented width, or third list level. The authorized referral retains its link and separate conversion authority.\\n\\nThe newly added references still omit first-use acronym definitions required by iso-24495-3 rule 3. These\u2026\n  \"review_base_commit\": \"b53b4acc9a478c9794645b6ef627f418432135d7\",\n  \"run_id\": \"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\n  \"schemaVersion\": \"review-axis/v1\",\n  \"source_commit\": \"b039c503841014575faf26c16d3dfa61e9c63db6\",\n  \"source_tree\": \"29ef53bfe84e272f0ea7e965bc554f33f21f194c\"\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://63:raw:40-40 to read line 40 whole]",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 455.15706300002057,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 453827334,
+      "script": "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts read --context /var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 203,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 203,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 203,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 203,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 453777481,
+              "at": 35496,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+                "read",
+                "--context",
+                "/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json"
+              ],
+              "res": "external",
+              "pid": 1606832,
+              "end_ns": 453812977,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 90,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 91,
+              "hi": 100,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 101,
+              "hi": 203,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAMsBAQDLAQAAAQIAywEAAAQDAFUBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvcmVzdWx0LWRlbGl2ZXJ5L3NjcmlwdHMvcm91dGVyLnRzBFZaAQAEcmVhZAVbZAEACS0tY29udGV4dAZlywEBAGYvdmFyL2hvbWUvemVub2JpdXMvLmxvY2FsL3N0YXRlL3Jlc3VsdC1kZWxpdmVyeS9ydW5zL2M0MjczZTdlLWY2OWUtNDJmMS1hMTMwLTMxYzQ2MDBkMzdlYi9jb250ZXh0Lmpzb24AAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 313,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 35496,
+          "event_seq": 315,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 35,
+            "vpid": 1073741824,
+            "seq": 50
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 35496,
+          "event_seq": 316,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 35,
+            "vpid": 1073741824,
+            "seq": 50
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+            "read",
+            "--context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 544499,
+          "event_seq": 317,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 35,
+            "vpid": 1073741824,
+            "seq": 50
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1606832,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+            "read",
+            "--context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 449689920,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 35,
+            "vpid": 1073741824,
+            "seq": 50
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\n  \"axis\": \"standards\",\n  \"changed_scope\": [\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\",\n    \"mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\"\n  ],\n  \"findings\": [\n    {\n      \"adr\": null,\n      \"description\": \"Hard house-rule breach: iso-24495-3/SKILL.md rule 3 requires acronym definitions at first use. Added prose uses CLI (35), JSON (43), UTC/ISO (62), and UTF-8/BOM/SHA-256 (86) without definitions.\",\n      \"file\": \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n      \"id\": \"standards-013\",\n      \"line\": 35,\n      \"required_change\": \"Define these acronyms at first use, or replace them with clear full terms. Preserve technical literals, all record meanings, historical restrictions, and separate conversion authority.\",\n      \"severity\": \"low\",\n      \"validation_command\": \"mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \\\"github.com/harehare/okf.mq\\\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md; manually check first-use acronym definitions against iso-24495-3 rule 3.\"\n    },\n    {\n      \"adr\": null,\n      \"description\": \"Hard house-rule breach: iso-24495-3/SKILL.md rule 3 requires acronym definitions at first use. This entirely added reference uses UTF-8 (13) and JSON (59) without definitions.\",\n      \"file\": \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n      \"id\": \"standards-014\",\n      \"line\": 13,\n      \"required_change\": \"Define UTF-8 and JSON at first prose use. Preserve conversion guarantees, commands, and contract identifiers.\",\n      \"severity\": \"low\",\n      \"validation_command\": \"mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \\\"github.com/harehare/okf.mq\\\" | .' mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md; manually check first-use acronym definitions against iso-24495-3 rule 3.\"\n    }\n  ],\n  \"operation_id\": \"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\n  \"parent_run_id\": \"89d908dd-1ac0-4b5e-8efd-609dca52204c\",\n  \"report\": \"FAILURE: two low-severity hard house-rule findings. Reviewed all eleven paths against the complete frozen three-dot diff, not only the final repair. Read canonical ticket, full initiative, context, domain configuration, ADR index, retained review35, fix38/parent39, snapshot38, and native failure/correction evidence. No applicable ADR exists.\\n\\nPrior standards-011/012 are resolved. Five Inventory records preserve all twenty cells. Two identity records preserve all six cells. Five sections remain, with no per-record headings, invented width, or third list level. The authorized referral retains its link and separate conversion authority.\\n\\nThe newly added references still omit first-use acronym definitions required by iso-24495-3 rule 3. These are documented-rule breaches, not Fowler-smell judgments. No additional smell finding is reported. Baseline prose and tooling-enforced concerns are excluded. No published ISO5 conformance claim appears.\\n\\nActual router output confirms depth2, assigned child run/operation/context, and exact primary parent. Bash confirms the source cwd. No source, configuration, tests, or workflow records changed. No tests, setup, services, or runtime probes ran. Primary owns behavioral verification. Historical116/120 are not new defects; moving-base conflict remains inference.\",\n  \"review_base_commit\": \"b53b4acc9a478c9794645b6ef627f418432135d7\",\n  \"run_id\": \"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\n  \"schemaVersion\": \"review-axis/v1\",\n  \"source_commit\": \"b039c503841014575faf26c16d3dfa61e9c63db6\",\n  \"source_tree\": \"29ef53bfe84e272f0ea7e965bc554f33f21f194c\"\n}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 453812977,
+          "event_seq": 318,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 35,
+            "vpid": 1073741824,
+            "seq": 50
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 453777481,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 453827334,
+          "event_seq": 319,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "limits": {
+        "columnTruncated": {
+          "maxColumn": 768,
+          "unit": "bytes",
+          "artifactId": "63",
+          "lines": {
+            "first": 40,
+            "last": 40
+          }
+        }
+      }
+    }
+  }
+}

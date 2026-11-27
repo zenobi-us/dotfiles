@@ -1,0 +1,564 @@
+{
+  "text": "4313780965d87c644c29364fbc10663bb6f566fa\n16d989843ab202569632d7af4372e14804a1cc60\nd836fee30815e3d1d6f494b19d6c5faa8f971216\n606b19275b7199aa9681c6e9e2e25d7169675912\n6bec3c91e77b56a0b2a859e345d0fc7a47f1948b\n2d21655f3ac48058a4d3a602d83846ff0050a1c4\n89f2cf8d962545533d622d989ebca0556f0d411f\n1a2a5323618fd87347d58af15f4ecafb2562c0fe\ncce148b205250203af99fff3c98d4312f5f4b000\ncf17853c97d02d7df2fff735bde7bbcaf3b11e3e\n74196f8cf5ba5b5175f932fb4d872c42b65b4872\n100644 blob cf17853c97d02d7df2fff735bde7bbcaf3b11e3e\tmise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\n100644 blob 74196f8cf5ba5b5175f932fb4d872c42b65b4872\tmise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n100644 blob 4313780965d87c644c29364fbc10663bb6f566fa\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\n100644 blob 16d989843ab202569632d7af4372e14804a1cc60\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\n100644 blob d836fee30815e3d1d6f494b19d6c5faa8f971216\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\n100644 blob 2d21655f3ac48058a4d3a602d83846ff0050a1c4\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\n100644 blob 6bec3c91e77b56a0b2a859e345d0fc7a47f1948b\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\n100644 blob 606b19275b7199aa9681c6e9e2e25d7169675912\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\n100644 blob 89f2cf8d962545533d622d989ebca0556f0d411f\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\n100755 blob 1a2a5323618fd87347d58af15f4ecafb2562c0fe\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\n100755 blob cce148b205250203af99fff3c98d4312f5f4b000\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 5.96516100000008,
+    "trace": {
+      "v": 1,
+      "seq": 21,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 4734789,
+      "script": "git hash-object mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json && git ls-tree -r b039c503841014575faf26c16d3dfa61e9c63db6 -- mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 1887,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 1887,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 920,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 920,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2189206,
+              "at": 62888,
+              "argv": [
+                "git",
+                "hash-object",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+                "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+                "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+              ],
+              "res": "external",
+              "pid": 1602689,
+              "end_ns": 2252094,
+              "end_seq": 14
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 15,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 16,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 166,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 167,
+              "hi": 242,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 243,
+              "hi": 333,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 334,
+              "hi": 424,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 425,
+              "hi": 523,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 524,
+              "hi": 611,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 612,
+              "hi": 691,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 692,
+              "hi": 783,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 784,
+              "hi": 850,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 851,
+              "hi": 920,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 924,
+              "hi": 1887,
+              "p": 0,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 924,
+              "hi": 1887,
+              "p": 16,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2476163,
+              "at": 2252094,
+              "argv": [
+                "git",
+                "ls-tree",
+                "-r",
+                "b039c503841014575faf26c16d3dfa61e9c63db6",
+                "--",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+                "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+                "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+              ],
+              "res": "external",
+              "pid": 1602691,
+              "end_ns": 4728257,
+              "end_seq": 20
+            },
+            {
+              "k": "word",
+              "lo": 924,
+              "hi": 927,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 928,
+              "hi": 935,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 936,
+              "hi": 938,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 939,
+              "hi": 979,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 980,
+              "hi": 982,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 983,
+              "hi": 1052,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1053,
+              "hi": 1133,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1134,
+              "hi": 1209,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1210,
+              "hi": 1300,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1301,
+              "hi": 1391,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1392,
+              "hi": 1490,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1491,
+              "hi": 1578,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1579,
+              "hi": 1658,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1659,
+              "hi": 1750,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1751,
+              "hi": 1817,
+              "p": 17,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 1818,
+              "hi": 1887,
+              "p": 17,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAN8OAQCYBwAAAQIAmAcAAA0DAAMBAANnaXQEBA8BAAtoYXNoLW9iamVjdAUQVQEARW1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9TS0lMTC5tZAZWpgEBAFBtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vYXNzZXRzL3NvdXJjZXMuanNvbgenAfIBAQBLbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL2NvbnRyYWN0cy5qc29uCPMBzQIBAFptaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vcmVmZXJlbmNlcy9zdHlsZS1zZWxlY3Rpb24ubWQJzgKoAwEAWm1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9yZWZlcmVuY2VzL3NvdXJjZS1tZXRhZGF0YS5tZAqpA4sEAQBibWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3JlZmVyZW5jZXMvc291cmNlLW1ldGFkYXRhLXVwZ3JhZGUubWQLjATjBAEAV21pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9zY3JpcHRzL3NvdXJjZS1tZXRhZGF0YS50cwzkBLMFAQBPbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3NjcmlwdHMvc291cmNlcy50cw20BY8GAQBbbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3Rlc3RzL3NvdXJjZS1tZXRhZGF0YS1zbW9rZS50cw6QBtIGAQBCbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy8uY2xhdWRlLXBsdWdpbi9tYXJrZXRwbGFjZS5qc29uD9MGmAcBAEVtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3IvLmNsYXVkZS1wbHVnaW4vcGx1Z2luLmpzb24AAAABABCcB98OAAABEZwH3w4AABASnAefBwEAA2dpdBOgB6cHAQAHbHMtdHJlZRSoB6oHAQACLXIVqwfTBwEAKGIwMzljNTAzODQxMDE0NTc1ZmFmMjZjMTZkM2RmYTYxZTljNjNkYjYW1AfWBwEAAi0tF9cHnAgBAEVtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vU0tJTEwubWQYnQjtCAEAUG1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9hc3NldHMvc291cmNlcy5qc29uGe4IuQkBAEttaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vY29udHJhY3RzLmpzb24augmUCgEAWm1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9yZWZlcmVuY2VzL3N0eWxlLXNlbGVjdGlvbi5tZBuVCu8KAQBabWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3JlZmVyZW5jZXMvc291cmNlLW1ldGFkYXRhLm1kHPAK0gsBAGJtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vcmVmZXJlbmNlcy9zb3VyY2UtbWV0YWRhdGEtdXBncmFkZS5tZB3TC6oMAQBXbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3NjcmlwdHMvc291cmNlLW1ldGFkYXRhLnRzHqsM+gwBAE9taXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vc2NyaXB0cy9zb3VyY2VzLnRzH/sM1g0BAFttaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vdGVzdHMvc291cmNlLW1ldGFkYXRhLXNtb2tlLnRzINcNmQ4BAEJtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzLy5jbGF1ZGUtcGx1Z2luL21hcmtldHBsYWNlLmpzb24hmg7fDgEARW1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci8uY2xhdWRlLXBsdWdpbi9wbHVnaW4uanNvbgAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 171,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 62888,
+          "event_seq": 173,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 28
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 82875,
+          "event_seq": 174,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 28
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "hash-object",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+            "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 444241,
+          "event_seq": 175,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 28
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1602689,
+          "argv": [
+            "git",
+            "hash-object",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+            "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          ]
+        },
+        {
+          "seq": 13,
+          "t_ns": 1891559,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 28
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "4313780965d87c644c29364fbc10663bb6f566fa\n16d989843ab202569632d7af4372e14804a1cc60\nd836fee30815e3d1d6f494b19d6c5faa8f971216\n606b19275b7199aa9681c6e9e2e25d7169675912\n6bec3c91e77b56a0b2a859e345d0fc7a47f1948b\n2d21655f3ac48058a4d3a602d83846ff0050a1c4\n89f2cf8d962545533d622d989ebca0556f0d411f\n1a2a5323618fd87347d58af15f4ecafb2562c0fe\ncce148b205250203af99fff3c98d4312f5f4b000\ncf17853c97d02d7df2fff735bde7bbcaf3b11e3e\n74196f8cf5ba5b5175f932fb4d872c42b65b4872\n",
+          "fd": 1
+        },
+        {
+          "seq": 14,
+          "t_ns": 2252094,
+          "event_seq": 176,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 28
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2189206,
+          "pipestatus": []
+        },
+        {
+          "seq": 15,
+          "t_ns": 2256572,
+          "event_seq": 177,
+          "u": 0,
+          "n": 16,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 16,
+          "t_ns": 2252094,
+          "event_seq": 178,
+          "u": 0,
+          "n": 17,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 17,
+          "t_ns": 2265589,
+          "event_seq": 179,
+          "u": 0,
+          "n": 17,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "ls-tree",
+            "-r",
+            "b039c503841014575faf26c16d3dfa61e9c63db6",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+            "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 18,
+          "t_ns": 2587581,
+          "event_seq": 180,
+          "u": 0,
+          "n": 17,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1602691,
+          "argv": [
+            "git",
+            "ls-tree",
+            "-r",
+            "b039c503841014575faf26c16d3dfa61e9c63db6",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+            "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          ]
+        },
+        {
+          "seq": 19,
+          "t_ns": 4538372,
+          "u": 0,
+          "n": 17,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "100644 blob cf17853c97d02d7df2fff735bde7bbcaf3b11e3e\tmise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\n100644 blob 74196f8cf5ba5b5175f932fb4d872c42b65b4872\tmise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n100644 blob 4313780965d87c644c29364fbc10663bb6f566fa\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\n100644 blob 16d989843ab202569632d7af4372e14804a1cc60\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\n100644 blob d836fee30815e3d1d6f494b19d6c5faa8f971216\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\n100644 blob 2d21655f3ac48058a4d3a602d83846ff0050a1c4\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\n100644 blob 6bec3c91e77b56a0b2a859e345d0fc7a47f1948b\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\n100644 blob 606b19275b7199aa9681c6e9e2e25d7169675912\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\n100644 blob 89f2cf8d962545533d622d989ebca0556f0d411f\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\n100755 blob 1a2a5323618fd87347d58af15f4ecafb2562c0fe\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\n100755 blob cce148b205250203af99fff3c98d4312f5f4b000\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\n",
+          "fd": 1
+        },
+        {
+          "seq": 20,
+          "t_ns": 4728257,
+          "event_seq": 181,
+          "u": 0,
+          "n": 17,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 29
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2476163,
+          "pipestatus": []
+        },
+        {
+          "seq": 21,
+          "t_ns": 4734789,
+          "event_seq": 182,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

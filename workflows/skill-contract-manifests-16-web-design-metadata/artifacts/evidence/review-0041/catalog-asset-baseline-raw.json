@@ -1,0 +1,1211 @@
+{
+  "text": "{\n  \"schemaVersion\": 1,\n  \"capturedAt\": \"2026-10-22T10:12:43.516Z\",\n  \"sources\": [\n    {\n      \"style\": \"report-dashboard\",\n      \"asset\": \"styles/report-dashboard/DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/zenobi-us/llm-benchmarking-margin\",\n        \"path\": \"dashboard/DESIGN.md\",\n        \"localPath\": \"../llm-benchmarking-margin/dashboard/DESIGN.md\"\n      },\n      \"sha256\": \"93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\"\n    },\n    {\n      \"style\": \"widget-grid-dashboard\",\n      \"asset\": \"styles/widget-grid-dashboard/DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/airtonix/finance\",\n        \"path\": \"pkgs/ledger-app/DESIGN.md\",\n        \"localPath\": \"../finance/pkgs/ledger-app/DESIGN.md\"\n      },\n      \"sha256\": \"c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\"\n    },\n    {\n      \"style\": \"widget-grid-dashboard\",\n      \"asset\": \"styles/widget-grid-dashboard/UI-FOUNDATION.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/airtonix/finance\",\n        \"path\": \"pkgs/ledger-app/UI-FOUNDATION.md\",\n        \"localPath\": \"../finance/pkgs/ledger-app/UI-FOUNDATION.md\"\n      },\n      \"sha256\": \"2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\"\n    },\n    {\n      \"style\": \"project-info\",\n      \"asset\": \"styles/project-info/DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/zenobi-us/dotfiles\",\n        \"path\": \"DESIGN.md\",\n        \"localPath\": \"DESIGN.md\"\n      },\n      \"sha256\": \"c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\"\n    },\n    {\n      \"style\": \"project-info\",\n      \"asset\": \"styles/project-info/EDITOR-DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/zenobi-us/lazyvim.profile\",\n        \"path\": \"DESIGN.md\",\n        \"localPath\": \"/home/zenobius/.config/nvim/DESIGN.md\"\n      },\n      \"sha256\": \"c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\"\n    }\n  ]\n}\ndiff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\nindex 8edd6e78..16d98984 100644\n--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\n+++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\n@@ -1,5 +1,5 @@\n {\n-  \"schemaVersion\": 1,\n+  \"schemaVersion\": \"design-source-metadata/v2\",\n   \"capturedAt\": \"2026-10-22T10:12:43.516Z\",\n   \"sources\": [\n     {\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md\n100644 blob f6a33e7fcb5ecbf918674b9394ad6321e2da9d75\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md\n100644 blob 6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md\n100644 blob f6a33e7fcb5ecbf918674b9394ad6321e2da9d75\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md\n100644 blob 6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 12.314141000038944,
+    "trace": {
+      "v": 1,
+      "seq": 51,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 10913340,
+      "script": "git show b53b4acc9a478c9794645b6ef627f418432135d7:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json && git diff b53b4acc9a478c9794645b6ef627f418432135d7 b039c503841014575faf26c16d3dfa61e9c63db6 -- mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json && git ls-tree -r b53b4acc9a478c9794645b6ef627f418432135d7 -- mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles && git ls-tree -r b039c503841014575faf26c16d3dfa61e9c63db6 -- mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 130,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 0,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "brace",
+              "lo": 0,
+              "hi": 0,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2915796,
+              "at": 38913,
+              "end_ns": 2954709,
+              "end_seq": 9
+            },
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 130,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 130,
+              "p": 3,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 130,
+              "p": 4,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2912490,
+              "at": 38913,
+              "argv": [
+                "git",
+                "show",
+                "b53b4acc9a478c9794645b6ef627f418432135d7:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+              ],
+              "res": "external",
+              "pid": 1602826,
+              "end_ns": 2951403,
+              "end_seq": 8
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 8,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 9,
+              "hi": 130,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 5,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 0,
+              "p": 9,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 8506,
+              "at": 2954709,
+              "argv": [
+                ":"
+              ],
+              "res": "intrinsic",
+              "end_ns": 2963215,
+              "end_seq": 13
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 0,
+              "p": 10,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAIsBAQCGAQAAAQIAhgEBAQMChAEEAoQBAAABBQKEAQAAAwYCBQEAA2dpdAcGCgEABHNob3cIC4QBAQB5YjUzYjRhY2M5YTQ3OGM5Nzk0NjQ1YjZlZjYyN2Y0MTg0MzIxMzVkNzptaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vYXNzZXRzL3NvdXJjZXMuanNvbgAAAAACAAABAAmKAYsBAAABCooBiwEAAAELigGLAQEAAToAAAAC",
+          "projection": 2
+        },
+        {
+          "at": 134,
+          "line": 1,
+          "bytes": 174,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 0,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "brace",
+              "lo": 0,
+              "hi": 0,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 3011996,
+              "at": 3139795,
+              "end_ns": 6151791,
+              "end_seq": 23
+            },
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 174,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 174,
+              "p": 3,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 174,
+              "p": 4,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 3009571,
+              "at": 3139795,
+              "argv": [
+                "git",
+                "diff",
+                "b53b4acc9a478c9794645b6ef627f418432135d7",
+                "b039c503841014575faf26c16d3dfa61e9c63db6",
+                "--",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+              ],
+              "res": "external",
+              "pid": 1602828,
+              "end_ns": 6149366,
+              "end_seq": 22
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 8,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 9,
+              "hi": 49,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 50,
+              "hi": 90,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 91,
+              "hi": 93,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 94,
+              "hi": 174,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 5,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 0,
+              "p": 12,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 7213,
+              "at": 6151791,
+              "argv": [
+                ":"
+              ],
+              "res": "intrinsic",
+              "end_ns": 6159004,
+              "end_seq": 27
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 0,
+              "p": 13,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAALcBAQCyAQAAAQIAsgEBAQMCsAEEArABAAABBQKwAQAABgYCBQEAA2dpdAcGCgEABGRpZmYICzMBAChiNTNiNGFjYzlhNDc4Yzk3OTQ2NDViNmVmNjI3ZjQxODQzMjEzNWQ3CTRcAQAoYjAzOWM1MDM4NDEwMTQ1NzVmYWYyNmMxNmQzZGZhNjFlOWM2M2RiNgpdXwEAAi0tC2CwAQEAUG1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9hc3NldHMvc291cmNlcy5qc29uAAAAAAIAAAEADLYBtwEAAAENtgG3AQAAAQ62AbcBAQABOgAAAAI=",
+          "projection": 2
+        },
+        {
+          "at": 312,
+          "line": 1,
+          "bytes": 133,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 0,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "brace",
+              "lo": 0,
+              "hi": 0,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2171764,
+              "at": 6282866,
+              "end_ns": 8454630,
+              "end_seq": 37
+            },
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 133,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 133,
+              "p": 3,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 133,
+              "p": 4,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2167336,
+              "at": 6282866,
+              "argv": [
+                "git",
+                "ls-tree",
+                "-r",
+                "b53b4acc9a478c9794645b6ef627f418432135d7",
+                "--",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles"
+              ],
+              "res": "external",
+              "pid": 1602829,
+              "end_ns": 8450202,
+              "end_seq": 36
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 11,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 12,
+              "hi": 14,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 15,
+              "hi": 55,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 56,
+              "hi": 58,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 59,
+              "hi": 133,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 5,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 0,
+              "p": 12,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 6622,
+              "at": 8454630,
+              "argv": [
+                ":"
+              ],
+              "res": "intrinsic",
+              "end_ns": 8461252,
+              "end_seq": 41
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 0,
+              "p": 13,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAI4BAQCJAQAAAQIAiQEBAQMChwEEAocBAAABBQKHAQAABgYCBQEAA2dpdAcGDQEAB2xzLXRyZWUIDhABAAItcgkROQEAKGI1M2I0YWNjOWE0NzhjOTc5NDY0NWI2ZWY2MjdmNDE4NDMyMTM1ZDcKOjwBAAItLQs9hwEBAEptaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vYXNzZXRzL3N0eWxlcwAAAAACAAABAAyNAY4BAAABDY0BjgEAAAEOjQGOAQEAAToAAAAC",
+          "projection": 2
+        },
+        {
+          "at": 449,
+          "line": 1,
+          "bytes": 133,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 133,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 133,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 133,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2332133,
+              "at": 8576408,
+              "argv": [
+                "git",
+                "ls-tree",
+                "-r",
+                "b039c503841014575faf26c16d3dfa61e9c63db6",
+                "--",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles"
+              ],
+              "res": "external",
+              "pid": 1602830,
+              "end_ns": 10908541,
+              "end_seq": 49
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 11,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 12,
+              "hi": 14,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 15,
+              "hi": 55,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 56,
+              "hi": 58,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 59,
+              "hi": 133,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAIUBAQCFAQAAAQIAhQEAAAYDAAMBAANnaXQEBAsBAAdscy10cmVlBQwOAQACLXIGDzcBAChiMDM5YzUwMzg0MTAxNDU3NWZhZjI2YzE2ZDNkZmE2MWU5YzYzZGI2Bzg6AQACLS0IO4UBAQBKbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL2Fzc2V0cy9zdHlsZXMAAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 190,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 38913,
+          "event_seq": 192,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 38913,
+          "event_seq": 193,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 5,
+          "t_ns": 63198,
+          "event_seq": 194,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "show",
+            "b53b4acc9a478c9794645b6ef627f418432135d7:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 6,
+          "t_ns": 423823,
+          "event_seq": 195,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1602826,
+          "argv": [
+            "git",
+            "show",
+            "b53b4acc9a478c9794645b6ef627f418432135d7:mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+          ]
+        },
+        {
+          "seq": 7,
+          "t_ns": 2746790,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\n  \"schemaVersion\": 1,\n  \"capturedAt\": \"2026-10-22T10:12:43.516Z\",\n  \"sources\": [\n    {\n      \"style\": \"report-dashboard\",\n      \"asset\": \"styles/report-dashboard/DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/zenobi-us/llm-benchmarking-margin\",\n        \"path\": \"dashboard/DESIGN.md\",\n        \"localPath\": \"../llm-benchmarking-margin/dashboard/DESIGN.md\"\n      },\n      \"sha256\": \"93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc\"\n    },\n    {\n      \"style\": \"widget-grid-dashboard\",\n      \"asset\": \"styles/widget-grid-dashboard/DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/airtonix/finance\",\n        \"path\": \"pkgs/ledger-app/DESIGN.md\",\n        \"localPath\": \"../finance/pkgs/ledger-app/DESIGN.md\"\n      },\n      \"sha256\": \"c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\"\n    },\n    {\n      \"style\": \"widget-grid-dashboard\",\n      \"asset\": \"styles/widget-grid-dashboard/UI-FOUNDATION.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/airtonix/finance\",\n        \"path\": \"pkgs/ledger-app/UI-FOUNDATION.md\",\n        \"localPath\": \"../finance/pkgs/ledger-app/UI-FOUNDATION.md\"\n      },\n      \"sha256\": \"2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3\"\n    },\n    {\n      \"style\": \"project-info\",\n      \"asset\": \"styles/project-info/DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/zenobi-us/dotfiles\",\n        \"path\": \"DESIGN.md\",\n        \"localPath\": \"DESIGN.md\"\n      },\n      \"sha256\": \"c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\"\n    },\n    {\n      \"style\": \"project-info\",\n      \"asset\": \"styles/project-info/EDITOR-DESIGN.md\",\n      \"source\": {\n        \"repository\": \"https://github.com/zenobi-us/lazyvim.profile\",\n        \"path\": \"DESIGN.md\",\n        \"localPath\": \"/home/zenobius/.config/nvim/DESIGN.md\"\n      },\n      \"sha256\": \"c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9\"\n    }\n  ]\n}\n",
+          "fd": 1
+        },
+        {
+          "seq": 8,
+          "t_ns": 2951403,
+          "event_seq": 196,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 31
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2912490,
+          "pipestatus": []
+        },
+        {
+          "seq": 9,
+          "t_ns": 2954709,
+          "event_seq": 197,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2915796,
+          "pipestatus": []
+        },
+        {
+          "seq": 10,
+          "t_ns": 2955450,
+          "event_seq": 198,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 11,
+          "t_ns": 2954709,
+          "event_seq": 199,
+          "segment": 0,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 12,
+          "t_ns": 2954709,
+          "event_seq": 200,
+          "segment": 0,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            ":"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 13,
+          "t_ns": 2963215,
+          "event_seq": 201,
+          "segment": 0,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 8506,
+          "pipestatus": []
+        },
+        {
+          "seq": 14,
+          "t_ns": 2967834,
+          "event_seq": 202,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 15,
+          "t_ns": 3111743,
+          "event_seq": 203,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 17,
+          "t_ns": 3139795,
+          "event_seq": 205,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 18,
+          "t_ns": 3139795,
+          "event_seq": 206,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 19,
+          "t_ns": 3146718,
+          "event_seq": 207,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "diff",
+            "b53b4acc9a478c9794645b6ef627f418432135d7",
+            "b039c503841014575faf26c16d3dfa61e9c63db6",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 20,
+          "t_ns": 3417936,
+          "event_seq": 208,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1602828,
+          "argv": [
+            "git",
+            "diff",
+            "b53b4acc9a478c9794645b6ef627f418432135d7",
+            "b039c503841014575faf26c16d3dfa61e9c63db6",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+          ]
+        },
+        {
+          "seq": 21,
+          "t_ns": 5928894,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\nindex 8edd6e78..16d98984 100644\n--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\n+++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\n@@ -1,5 +1,5 @@\n {\n-  \"schemaVersion\": 1,\n+  \"schemaVersion\": \"design-source-metadata/v2\",\n   \"capturedAt\": \"2026-10-22T10:12:43.516Z\",\n   \"sources\": [\n     {\n",
+          "fd": 1
+        },
+        {
+          "seq": 22,
+          "t_ns": 6149366,
+          "event_seq": 209,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 3009571,
+          "pipestatus": []
+        },
+        {
+          "seq": 23,
+          "t_ns": 6151791,
+          "event_seq": 210,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 3011996,
+          "pipestatus": []
+        },
+        {
+          "seq": 24,
+          "t_ns": 6152512,
+          "event_seq": 211,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 25,
+          "t_ns": 6151791,
+          "event_seq": 212,
+          "segment": 1,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 26,
+          "t_ns": 6151791,
+          "event_seq": 213,
+          "segment": 1,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            ":"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 27,
+          "t_ns": 6159004,
+          "event_seq": 214,
+          "segment": 1,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 7213,
+          "pipestatus": []
+        },
+        {
+          "seq": 28,
+          "t_ns": 6162621,
+          "event_seq": 215,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 29,
+          "t_ns": 6263079,
+          "event_seq": 216,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 31,
+          "t_ns": 6282866,
+          "event_seq": 218,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 32,
+          "t_ns": 6282866,
+          "event_seq": 219,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 33,
+          "t_ns": 6289468,
+          "event_seq": 220,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "ls-tree",
+            "-r",
+            "b53b4acc9a478c9794645b6ef627f418432135d7",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 34,
+          "t_ns": 6508498,
+          "event_seq": 221,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1602829,
+          "argv": [
+            "git",
+            "ls-tree",
+            "-r",
+            "b53b4acc9a478c9794645b6ef627f418432135d7",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles"
+          ]
+        },
+        {
+          "seq": 35,
+          "t_ns": 8257721,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md\n100644 blob f6a33e7fcb5ecbf918674b9394ad6321e2da9d75\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md\n100644 blob 6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md\n",
+          "fd": 1
+        },
+        {
+          "seq": 36,
+          "t_ns": 8450202,
+          "event_seq": 222,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2167336,
+          "pipestatus": []
+        },
+        {
+          "seq": 37,
+          "t_ns": 8454630,
+          "event_seq": 223,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2171764,
+          "pipestatus": []
+        },
+        {
+          "seq": 38,
+          "t_ns": 8455251,
+          "event_seq": 224,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 39,
+          "t_ns": 8454630,
+          "event_seq": 225,
+          "segment": 2,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 36
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 40,
+          "t_ns": 8454630,
+          "event_seq": 226,
+          "segment": 2,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 36
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            ":"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 41,
+          "t_ns": 8461252,
+          "event_seq": 227,
+          "segment": 2,
+          "command": {
+            "run": 24,
+            "vpid": 1073741824,
+            "seq": 36
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 6622,
+          "pipestatus": []
+        },
+        {
+          "seq": 42,
+          "t_ns": 8464448,
+          "event_seq": 228,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 43,
+          "t_ns": 8558324,
+          "event_seq": 229,
+          "segment": 3,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 45,
+          "t_ns": 8576408,
+          "event_seq": 231,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 37
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 46,
+          "t_ns": 8582479,
+          "event_seq": 232,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 37
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "ls-tree",
+            "-r",
+            "b039c503841014575faf26c16d3dfa61e9c63db6",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 47,
+          "t_ns": 8849208,
+          "event_seq": 233,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 37
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1602830,
+          "argv": [
+            "git",
+            "ls-tree",
+            "-r",
+            "b039c503841014575faf26c16d3dfa61e9c63db6",
+            "--",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles"
+          ]
+        },
+        {
+          "seq": 48,
+          "t_ns": 10738834,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 37
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md\n100644 blob f6a33e7fcb5ecbf918674b9394ad6321e2da9d75\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md\n100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md\n100644 blob 6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f\tmise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md\n",
+          "fd": 1
+        },
+        {
+          "seq": 49,
+          "t_ns": 10908541,
+          "event_seq": 234,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 37
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2332133,
+          "pipestatus": []
+        },
+        {
+          "seq": 50,
+          "t_ns": 10913340,
+          "event_seq": 235,
+          "segment": 3,
+          "logicalEnd": true,
+          "logicalStatus": 0,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

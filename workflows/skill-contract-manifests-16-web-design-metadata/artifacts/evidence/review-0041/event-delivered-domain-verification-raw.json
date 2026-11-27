@@ -1,0 +1,175 @@
+{
+  "text": "{\"receipt_id\":\"review-0041\",\"event_equals_delivered_domain\":true,\"schemaVersion\":\"worktree-receipt/v3\",\"verdict\":\"FAILURE\",\"source_commit\":\"b039c503841014575faf26c16d3dfa61e9c63db6\",\"source_tree\":\"29ef53bfe84e272f0ea7e965bc554f33f21f194c\",\"receipt_parent\":\"review-start-0040\",\"transport_sha256\":\"1ebb8581a78efd80e08691be68dae510f600a5d146e8ce9284def8a707190689\"}\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 9.936079999431968,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 9238204,
+      "script": "bun /tmp/scm16-review0041-verify-event.ts",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 41,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 41,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 41,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 41,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 9205743,
+              "at": 26380,
+              "argv": [
+                "bun",
+                "/tmp/scm16-review0041-verify-event.ts"
+              ],
+              "res": "external",
+              "pid": 1880996,
+              "end_ns": 9232123,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 41,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAACkBACkAAAECACkAAAIDAAMBAANidW4EBCkBACUvdG1wL3NjbTE2LXJldmlldzAwNDEtdmVyaWZ5LWV2ZW50LnRzAAAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 558,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 26380,
+          "event_seq": 560,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 62,
+            "vpid": 1073741824,
+            "seq": 88
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 40125,
+          "event_seq": 561,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 62,
+            "vpid": 1073741824,
+            "seq": 88
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "bun",
+            "/tmp/scm16-review0041-verify-event.ts"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 400630,
+          "event_seq": 562,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 62,
+            "vpid": 1073741824,
+            "seq": 88
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1880996,
+          "argv": [
+            "bun",
+            "/tmp/scm16-review0041-verify-event.ts"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 8922443,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 62,
+            "vpid": 1073741824,
+            "seq": 88
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"receipt_id\":\"review-0041\",\"event_equals_delivered_domain\":true,\"schemaVersion\":\"worktree-receipt/v3\",\"verdict\":\"FAILURE\",\"source_commit\":\"b039c503841014575faf26c16d3dfa61e9c63db6\",\"source_tree\":\"29ef53bfe84e272f0ea7e965bc554f33f21f194c\",\"receipt_parent\":\"review-start-0040\",\"transport_sha256\":\"1ebb8581a78efd80e08691be68dae510f600a5d146e8ce9284def8a707190689\"}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 9232123,
+          "event_seq": 563,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 62,
+            "vpid": 1073741824,
+            "seq": 88
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 9205743,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 9238204,
+          "event_seq": 564,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

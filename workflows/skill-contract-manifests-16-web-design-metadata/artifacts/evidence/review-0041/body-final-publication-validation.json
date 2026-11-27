@@ -1,0 +1,13 @@
+{
+  "artifact_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md",
+  "sha256": "b881b81686d29aa3f56e78384e6f36c569c16c4c576621de51559b53c1f692f1",
+  "bytes": 16217,
+  "exact_user_accepted_formatter_bytes": true,
+  "exclusive": true,
+  "query_unchanged": true,
+  "original_failed_candidate_retained": true,
+  "content_unchanged": true,
+  "standards_report_exact": true,
+  "spec_report_exact": true,
+  "verdict": "FAILURE"
+}

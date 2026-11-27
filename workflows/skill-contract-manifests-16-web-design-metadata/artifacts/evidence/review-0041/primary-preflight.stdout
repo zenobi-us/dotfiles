@@ -1,0 +1,21 @@
+/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git
+/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git
+b039c503841014575faf26c16d3dfa61e9c63db6
+29ef53bfe84e272f0ea7e965bc554f33f21f194c
+mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts
+mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts
+b039c503 docs: skill-contract-manifests-16-web-design-metadata layout
+14705f57 docs: fix skill-contract-manifests-16-web-design-metadata openings
+dab2338e docs: fix skill-contract-manifests-16-web-design-metadata lists
+d50d3bb1 docs: clarify skill-contract-manifests-16-web-design-metadata prose
+fb4104c7 fix: skill-contract-manifests-16-web-design-metadata utf-8
+96891691 feat: adopt skill-contract-manifests-16-web-design-metadata

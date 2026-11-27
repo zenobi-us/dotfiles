@@ -1,0 +1,23 @@
+{
+  "status": "stopped_before_final_body_and_receipt",
+  "operation": "Owned temporary body candidate byte preflight",
+  "command_exit_code": 0,
+  "mq_mode": "--no-lockfile -I null -F text -f /tmp/scm16-review0041-body.mq --no-clobber",
+  "candidate_path": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0041/owned-body-preflight-candidate.md",
+  "intended_bytes": 16216,
+  "intended_sha256": "508b9063fc1f8e89974f1548f599580a16b9323ec792c5633037d8cfa798de1a",
+  "observed_bytes": 16217,
+  "observed_sha256": "b881b81686d29aa3f56e78384e6f36c569c16c4c576621de51559b53c1f692f1",
+  "check_result": "AssertionError: intended body hash/length do not equal actual MQ text formatter output",
+  "inference": "MQ text formatter adds one terminal newline to the scalar body, which already ends in a newline. Exact suffix comparison has not yet run.",
+  "source_defect": false,
+  "review_body_published": false,
+  "final_receipt_published": false,
+  "native_smoke_executions": 1,
+  "axis_reruns": 0,
+  "axis_transport_validation": "Both original reports validated and acknowledged. Standards has two low hard first-use acronym findings013/014; Spec has none.",
+  "leaf_shutdown": "Both exact owned leaves closed normally. Both nested resources.shutdown confirmed.",
+  "source_changed": false,
+  "corrective_action_taken": false,
+  "requested_authority": "Inspect formatter suffix without repeating native/axis checks. If the sole difference is one terminal newline, preserve original candidate/capture and apply scoped publication-input correction to expected formatter bytes, then final exclusive body and native receipt once."
+}

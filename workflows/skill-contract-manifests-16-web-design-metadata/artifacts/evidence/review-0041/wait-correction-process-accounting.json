@@ -1,0 +1,7 @@
+{
+  "authority_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0124.yaml",
+  "tool_handles": "proc:// listed only omp.lsp.mux service; no wait jobs",
+  "native_wait_processes": [],
+  "original_failure_preserved": true,
+  "native_wait_not_previously_confirmed": true
+}

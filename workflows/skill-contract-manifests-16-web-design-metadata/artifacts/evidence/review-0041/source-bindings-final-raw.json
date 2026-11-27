@@ -1,0 +1,1235 @@
+{
+  "text": "b039c503841014575faf26c16d3dfa61e9c63db6\n29ef53bfe84e272f0ea7e965bc554f33f21f194c\nfeature/skill-contract-manifests-16-web-design-metadata\n4313780965d87c644c29364fbc10663bb6f566fa\n16d989843ab202569632d7af4372e14804a1cc60\nd836fee30815e3d1d6f494b19d6c5faa8f971216\n606b19275b7199aa9681c6e9e2e25d7169675912\n6bec3c91e77b56a0b2a859e345d0fc7a47f1948b\n2d21655f3ac48058a4d3a602d83846ff0050a1c4\n89f2cf8d962545533d622d989ebca0556f0d411f\n1a2a5323618fd87347d58af15f4ecafb2562c0fe\ncce148b205250203af99fff3c98d4312f5f4b000\ncf17853c97d02d7df2fff735bde7bbcaf3b11e3e\n74196f8cf5ba5b5175f932fb4d872c42b65b4872\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 116.67724199965596,
+    "trace": {
+      "v": 1,
+      "seq": 60,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 115229921,
+      "script": "git rev-parse HEAD HEAD^{tree} && git symbolic-ref --short HEAD && git status --porcelain=v1 --untracked-files=all && git hash-object mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 30,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 0,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "brace",
+              "lo": 0,
+              "hi": 0,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2968770,
+              "at": 1739447,
+              "end_ns": 4708217,
+              "end_seq": 9
+            },
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 30,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 30,
+              "p": 3,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 30,
+              "p": 4,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2966776,
+              "at": 1739447,
+              "argv": [
+                "git",
+                "rev-parse",
+                "HEAD",
+                "HEAD^{tree}"
+              ],
+              "res": "external",
+              "pid": 1880139,
+              "end_ns": 4706223,
+              "end_seq": 8
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 13,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 14,
+              "hi": 18,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 19,
+              "hi": 30,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 5,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 0,
+              "p": 10,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 6492,
+              "at": 4708217,
+              "argv": [
+                ":"
+              ],
+              "res": "intrinsic",
+              "end_ns": 4714709,
+              "end_seq": 13
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 0,
+              "p": 11,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAACcBACIAAAECACIBAQMCIAQCIAAAAQUCIAAABAYCBQEAA2dpdAcGDwEACXJldi1wYXJzZQgQFAEABEhFQUQJFSABAAtIRUFEXnt0cmVlfQAAAAACAAABAAomJwAAAQsmJwAAAQwmJwEAAToAAAAC",
+          "projection": 2
+        },
+        {
+          "at": 34,
+          "line": 1,
+          "bytes": 29,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 0,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "brace",
+              "lo": 0,
+              "hi": 0,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 1746901,
+              "at": 4872254,
+              "end_ns": 6619155,
+              "end_seq": 23
+            },
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 29,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 29,
+              "p": 3,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 29,
+              "p": 4,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 1744657,
+              "at": 4872254,
+              "argv": [
+                "git",
+                "symbolic-ref",
+                "--short",
+                "HEAD"
+              ],
+              "res": "external",
+              "pid": 1880141,
+              "end_ns": 6616911,
+              "end_seq": 22
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 16,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 17,
+              "hi": 24,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 25,
+              "hi": 29,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 5,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 0,
+              "p": 10,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 6132,
+              "at": 6619155,
+              "argv": [
+                ":"
+              ],
+              "res": "intrinsic",
+              "end_ns": 6625287,
+              "end_seq": 27
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 0,
+              "p": 11,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAACYBACEAAAECACEBAQMCHwQCHwAAAQUCHwAABAYCBQEAA2dpdAcGEgEADHN5bWJvbGljLXJlZggTGgEABy0tc2hvcnQJGx8BAARIRUFEAAAAAAIAAAEACiUmAAABCyUmAAABDCUmAQABOgAAAAI=",
+          "projection": 2
+        },
+        {
+          "at": 67,
+          "line": 1,
+          "bytes": 47,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 0,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "brace",
+              "lo": 0,
+              "hi": 0,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 102371161,
+              "at": 6741134,
+              "end_ns": 109112295,
+              "end_seq": 36
+            },
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 47,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 47,
+              "p": 3,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 47,
+              "p": 4,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 102362706,
+              "at": 6741134,
+              "argv": [
+                "git",
+                "status",
+                "--porcelain=v1",
+                "--untracked-files=all"
+              ],
+              "res": "external",
+              "pid": 1880142,
+              "end_ns": 109103840,
+              "end_seq": 35
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 10,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 11,
+              "hi": 25,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 26,
+              "hi": 47,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 5,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 0,
+              "p": 10,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 18746,
+              "at": 109112295,
+              "argv": [
+                ":"
+              ],
+              "res": "intrinsic",
+              "end_ns": 109131041,
+              "end_seq": 40
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 0,
+              "p": 11,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAADgBADMAAAECADMBAQMCMQQCMQAAAQUCMQAABAYCBQEAA2dpdAcGDAEABnN0YXR1cwgNGwEADi0tcG9yY2VsYWluPXYxCRwxAQAVLS11bnRyYWNrZWQtZmlsZXM9YWxsAAAAAAIAAAEACjc4AAABCzc4AAABDDc4AQABOgAAAAI=",
+          "projection": 2
+        },
+        {
+          "at": 118,
+          "line": 1,
+          "bytes": 920,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 920,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 920,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 920,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 5828174,
+              "at": 109398361,
+              "argv": [
+                "git",
+                "hash-object",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+                "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+                "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+                "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+              ],
+              "res": "external",
+              "pid": 1880163,
+              "end_ns": 115226535,
+              "end_seq": 58
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 3,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 4,
+              "hi": 15,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 16,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 166,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 167,
+              "hi": 242,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 243,
+              "hi": 333,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 334,
+              "hi": 424,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 425,
+              "hi": 523,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 524,
+              "hi": 611,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 612,
+              "hi": 691,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 692,
+              "hi": 783,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 784,
+              "hi": 850,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 851,
+              "hi": 920,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAJgHAQCYBwAAAQIAmAcAAA0DAAMBAANnaXQEBA8BAAtoYXNoLW9iamVjdAUQVQEARW1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9TS0lMTC5tZAZWpgEBAFBtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vYXNzZXRzL3NvdXJjZXMuanNvbgenAfIBAQBLbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL2NvbnRyYWN0cy5qc29uCPMBzQIBAFptaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3Ivc2tpbGxzL3dlYi1kZXNpZ24vcmVmZXJlbmNlcy9zdHlsZS1zZWxlY3Rpb24ubWQJzgKoAwEAWm1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9yZWZlcmVuY2VzL3NvdXJjZS1tZXRhZGF0YS5tZAqpA4sEAQBibWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3JlZmVyZW5jZXMvc291cmNlLW1ldGFkYXRhLXVwZ3JhZGUubWQLjATjBAEAV21pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvY3JlYXRvci9za2lsbHMvd2ViLWRlc2lnbi9zY3JpcHRzL3NvdXJjZS1tZXRhZGF0YS50cwzkBLMFAQBPbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3NjcmlwdHMvc291cmNlcy50cw20BY8GAQBbbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy9jcmVhdG9yL3NraWxscy93ZWItZGVzaWduL3Rlc3RzL3NvdXJjZS1tZXRhZGF0YS1zbW9rZS50cw6QBtIGAQBCbWlzZS9jb25mLmQvZGV2dG9vbHMtYWdlbnQvYnVuZGxlcy8uY2xhdWRlLXBsdWdpbi9tYXJrZXRwbGFjZS5qc29uD9MGmAcBAEVtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2NyZWF0b3IvLmNsYXVkZS1wbHVnaW4vcGx1Z2luLmpzb24AAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 473,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 1739447,
+          "event_seq": 475,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 1739447,
+          "event_seq": 476,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 75
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 5,
+          "t_ns": 1752221,
+          "event_seq": 477,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 75
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD",
+            "HEAD^{tree}"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 6,
+          "t_ns": 2222412,
+          "event_seq": 478,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 75
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1880139,
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD",
+            "HEAD^{tree}"
+          ]
+        },
+        {
+          "seq": 7,
+          "t_ns": 4551563,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 75
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "b039c503841014575faf26c16d3dfa61e9c63db6\n29ef53bfe84e272f0ea7e965bc554f33f21f194c\n",
+          "fd": 1
+        },
+        {
+          "seq": 8,
+          "t_ns": 4706223,
+          "event_seq": 479,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 75
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2966776,
+          "pipestatus": []
+        },
+        {
+          "seq": 9,
+          "t_ns": 4708217,
+          "event_seq": 480,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2968770,
+          "pipestatus": []
+        },
+        {
+          "seq": 10,
+          "t_ns": 4708848,
+          "event_seq": 481,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 11,
+          "t_ns": 4708217,
+          "event_seq": 482,
+          "segment": 0,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 76
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 12,
+          "t_ns": 4708217,
+          "event_seq": 483,
+          "segment": 0,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 76
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            ":"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 13,
+          "t_ns": 4714709,
+          "event_seq": 484,
+          "segment": 0,
+          "command": {
+            "run": 53,
+            "vpid": 1073741824,
+            "seq": 76
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 6492,
+          "pipestatus": []
+        },
+        {
+          "seq": 14,
+          "t_ns": 4717945,
+          "event_seq": 485,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 15,
+          "t_ns": 4853028,
+          "event_seq": 486,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 17,
+          "t_ns": 4872254,
+          "event_seq": 488,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 18,
+          "t_ns": 4872254,
+          "event_seq": 489,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 77
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 19,
+          "t_ns": 4878876,
+          "event_seq": 490,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 77
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "symbolic-ref",
+            "--short",
+            "HEAD"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 20,
+          "t_ns": 5161526,
+          "event_seq": 491,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 77
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1880141,
+          "argv": [
+            "git",
+            "symbolic-ref",
+            "--short",
+            "HEAD"
+          ]
+        },
+        {
+          "seq": 21,
+          "t_ns": 6488861,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 77
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "feature/skill-contract-manifests-16-web-design-metadata\n",
+          "fd": 1
+        },
+        {
+          "seq": 22,
+          "t_ns": 6616911,
+          "event_seq": 492,
+          "segment": 1,
+          "u": 1,
+          "n": 5,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 77
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 1744657,
+          "pipestatus": []
+        },
+        {
+          "seq": 23,
+          "t_ns": 6619155,
+          "event_seq": 493,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 1746901,
+          "pipestatus": []
+        },
+        {
+          "seq": 24,
+          "t_ns": 6619806,
+          "event_seq": 494,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 25,
+          "t_ns": 6619155,
+          "event_seq": 495,
+          "segment": 1,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 78
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 26,
+          "t_ns": 6619155,
+          "event_seq": 496,
+          "segment": 1,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 78
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            ":"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 27,
+          "t_ns": 6625287,
+          "event_seq": 497,
+          "segment": 1,
+          "command": {
+            "run": 54,
+            "vpid": 1073741824,
+            "seq": 78
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 6132,
+          "pipestatus": []
+        },
+        {
+          "seq": 28,
+          "t_ns": 6628623,
+          "event_seq": 498,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 29,
+          "t_ns": 6723551,
+          "event_seq": 499,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 31,
+          "t_ns": 6741134,
+          "event_seq": 501,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 32,
+          "t_ns": 6741134,
+          "event_seq": 502,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 55,
+            "vpid": 1073741824,
+            "seq": 79
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 33,
+          "t_ns": 6746273,
+          "event_seq": 503,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 55,
+            "vpid": 1073741824,
+            "seq": 79
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 34,
+          "t_ns": 7000870,
+          "event_seq": 504,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 55,
+            "vpid": 1073741824,
+            "seq": 79
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1880142,
+          "argv": [
+            "git",
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ]
+        },
+        {
+          "seq": 35,
+          "t_ns": 109103840,
+          "event_seq": 505,
+          "segment": 2,
+          "u": 2,
+          "n": 5,
+          "command": {
+            "run": 55,
+            "vpid": 1073741824,
+            "seq": 79
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 102362706,
+          "pipestatus": []
+        },
+        {
+          "seq": 36,
+          "t_ns": 109112295,
+          "event_seq": 506,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 102371161,
+          "pipestatus": []
+        },
+        {
+          "seq": 37,
+          "t_ns": 109115061,
+          "event_seq": 507,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 38,
+          "t_ns": 109112295,
+          "event_seq": 508,
+          "segment": 2,
+          "command": {
+            "run": 55,
+            "vpid": 1073741824,
+            "seq": 80
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 39,
+          "t_ns": 109112295,
+          "event_seq": 509,
+          "segment": 2,
+          "command": {
+            "run": 55,
+            "vpid": 1073741824,
+            "seq": 80
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            ":"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 40,
+          "t_ns": 109131041,
+          "event_seq": 510,
+          "segment": 2,
+          "command": {
+            "run": 55,
+            "vpid": 1073741824,
+            "seq": 80
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 18746,
+          "pipestatus": []
+        },
+        {
+          "seq": 41,
+          "t_ns": 109139526,
+          "event_seq": 511,
+          "segment": 2,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 42,
+          "t_ns": 109361853,
+          "event_seq": 512,
+          "segment": 3,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 44,
+          "t_ns": 109398361,
+          "event_seq": 514,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 56,
+            "vpid": 1073741824,
+            "seq": 81
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 45,
+          "t_ns": 109407588,
+          "event_seq": 515,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 56,
+            "vpid": 1073741824,
+            "seq": 81
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "git",
+            "hash-object",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+            "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 46,
+          "t_ns": 109775527,
+          "event_seq": 516,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 56,
+            "vpid": 1073741824,
+            "seq": 81
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1880163,
+          "argv": [
+            "git",
+            "hash-object",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+            "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+            "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          ]
+        },
+        {
+          "seq": 57,
+          "t_ns": 112933551,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 56,
+            "vpid": 1073741824,
+            "seq": 81
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "4313780965d87c644c29364fbc10663bb6f566fa\n16d989843ab202569632d7af4372e14804a1cc60\nd836fee30815e3d1d6f494b19d6c5faa8f971216\n606b19275b7199aa9681c6e9e2e25d7169675912\n6bec3c91e77b56a0b2a859e345d0fc7a47f1948b\n2d21655f3ac48058a4d3a602d83846ff0050a1c4\n89f2cf8d962545533d622d989ebca0556f0d411f\n1a2a5323618fd87347d58af15f4ecafb2562c0fe\ncce148b205250203af99fff3c98d4312f5f4b000\ncf17853c97d02d7df2fff735bde7bbcaf3b11e3e\n74196f8cf5ba5b5175f932fb4d872c42b65b4872\n",
+          "fd": 1
+        },
+        {
+          "seq": 58,
+          "t_ns": 115226535,
+          "event_seq": 517,
+          "segment": 3,
+          "u": 3,
+          "n": 2,
+          "command": {
+            "run": 56,
+            "vpid": 1073741824,
+            "seq": 81
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 5828174,
+          "pipestatus": []
+        },
+        {
+          "seq": 59,
+          "t_ns": 115229921,
+          "event_seq": 518,
+          "segment": 3,
+          "logicalEnd": true,
+          "logicalStatus": 0,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

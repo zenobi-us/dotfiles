@@ -1,0 +1,209 @@
+{
+  "text": "HC_TERMINAL_ID=t2mq\nMUXER_SUBAGENT_RUN_ID=89d908dd-1ac0-4b5e-8efd-609dca52204c\nMUXER_SUBAGENT_PARENT_RUN_ID=\nRESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/89d908dd-1ac0-4b5e-8efd-609dca52204c/context.json\nMUXER_SUBAGENT_DEPTH=1\nOMP_SESSION_ID=\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 1.3810939999530092,
+    "trace": {
+      "v": 1,
+      "seq": 7,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 104635,
+      "script": "printf '%s\\n' \"HC_TERMINAL_ID=$HC_TERMINAL_ID\" \"MUXER_SUBAGENT_RUN_ID=$MUXER_SUBAGENT_RUN_ID\" \"MUXER_SUBAGENT_PARENT_RUN_ID=$MUXER_SUBAGENT_PARENT_RUN_ID\" \"RESULT_DELIVERY_CONTEXT=$RESULT_DELIVERY_CONTEXT\" \"MUXER_SUBAGENT_DEPTH=$MUXER_SUBAGENT_DEPTH\" \"OMP_SESSION_ID=$OMP_SESSION_ID\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 283,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 283,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 283,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 283,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 54442,
+              "at": 41617,
+              "argv": [
+                "printf",
+                "%s\\n",
+                "HC_TERMINAL_ID=t2mq",
+                "MUXER_SUBAGENT_RUN_ID=89d908dd-1ac0-4b5e-8efd-609dca52204c",
+                "MUXER_SUBAGENT_PARENT_RUN_ID=",
+                "RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/89d908dd-1ac0-4b5e-8efd-609dca52204c/context.json",
+                "MUXER_SUBAGENT_DEPTH=1",
+                "OMP_SESSION_ID="
+              ],
+              "res": "intrinsic",
+              "end_ns": 96059,
+              "end_seq": 6
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 6,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 7,
+              "hi": 13,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 14,
+              "hi": 46,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 47,
+              "hi": 93,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 94,
+              "hi": 154,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 155,
+              "hi": 205,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 206,
+              "hi": 250,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 251,
+              "hi": 283,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAJsCAQCbAgAAAQIAmwIAAAgDAAYBAAZwcmludGYEBw0BAgQlc1xuBQ4uAQMCAA9IQ19URVJNSU5BTF9JRD0GAA5IQ19URVJNSU5BTF9JRAAAAAAGL10BAwIAFk1VWEVSX1NVQkFHRU5UX1JVTl9JRD0GABVNVVhFUl9TVUJBR0VOVF9SVU5fSUQAAAAAB16aAQEDAgAdTVVYRVJfU1VCQUdFTlRfUEFSRU5UX1JVTl9JRD0GABxNVVhFUl9TVUJBR0VOVF9QQVJFTlRfUlVOX0lEAAAAAAibAc0BAQMCABhSRVNVTFRfREVMSVZFUllfQ09OVEVYVD0GABdSRVNVTFRfREVMSVZFUllfQ09OVEVYVAAAAAAJzgH6AQEDAgAVTVVYRVJfU1VCQUdFTlRfREVQVEg9BgAUTVVYRVJfU1VCQUdFTlRfREVQVEgAAAAACvsBmwIBAwIAD09NUF9TRVNTSU9OX0lEPQYADk9NUF9TRVNTSU9OX0lEAAAAAAAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 247,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 41617,
+          "event_seq": 249,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 27,
+            "vpid": 1073741824,
+            "seq": 40
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 41617,
+          "event_seq": 250,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 27,
+            "vpid": 1073741824,
+            "seq": 40
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "printf",
+            "%s\\n",
+            "HC_TERMINAL_ID=t2mq",
+            "MUXER_SUBAGENT_RUN_ID=89d908dd-1ac0-4b5e-8efd-609dca52204c",
+            "MUXER_SUBAGENT_PARENT_RUN_ID=",
+            "RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/89d908dd-1ac0-4b5e-8efd-609dca52204c/context.json",
+            "MUXER_SUBAGENT_DEPTH=1",
+            "OMP_SESSION_ID="
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 93615,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 27,
+            "vpid": 1073741824,
+            "seq": 40
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "HC_TERMINAL_ID=t2mq\nMUXER_SUBAGENT_RUN_ID=89d908dd-1ac0-4b5e-8efd-609dca52204c\nMUXER_SUBAGENT_PARENT_RUN_ID=\nRESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/89d908dd-1ac0-4b5e-8efd-609dca52204c/context.json\nMUXER_SUBAGENT_DEPTH=1\nOMP_SESSION_ID=\n",
+          "fd": 1
+        },
+        {
+          "seq": 6,
+          "t_ns": 96059,
+          "event_seq": 251,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 27,
+            "vpid": 1073741824,
+            "seq": 40
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 54442,
+          "pipestatus": []
+        },
+        {
+          "seq": 7,
+          "t_ns": 104635,
+          "event_seq": 252,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

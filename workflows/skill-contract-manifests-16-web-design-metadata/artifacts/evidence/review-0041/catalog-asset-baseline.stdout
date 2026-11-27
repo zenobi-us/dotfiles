@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-22T10:12:43.516Z",
+  "sources": [
+    {
+      "style": "report-dashboard",
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/llm-benchmarking-margin",
+        "path": "dashboard/DESIGN.md",
+        "localPath": "../llm-benchmarking-margin/dashboard/DESIGN.md"
+      },
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc"
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/DESIGN.md",
+        "localPath": "../finance/pkgs/ledger-app/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/UI-FOUNDATION.md",
+        "localPath": "../finance/pkgs/ledger-app/UI-FOUNDATION.md"
+      },
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3"
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/dotfiles",
+        "path": "DESIGN.md",
+        "localPath": "DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/lazyvim.profile",
+        "path": "DESIGN.md",
+        "localPath": "/home/zenobius/.config/nvim/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    }
+  ]
+}
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json
+index 8edd6e78..16d98984 100644
+--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json
+@@ -1,5 +1,5 @@
+ {
+-  "schemaVersion": 1,
++  "schemaVersion": "design-source-metadata/v2",
+   "capturedAt": "2026-10-22T10:12:43.516Z",
+   "sources": [
+     {
+100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md
+100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md
+100644 blob f6a33e7fcb5ecbf918674b9394ad6321e2da9d75	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md
+100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md
+100644 blob 6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md
+100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md
+100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md
+100644 blob f6a33e7fcb5ecbf918674b9394ad6321e2da9d75	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md
+100644 blob 632e9ec057ed3accde822cb8943bf8a62b58134c	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md
+100644 blob 6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f	mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md

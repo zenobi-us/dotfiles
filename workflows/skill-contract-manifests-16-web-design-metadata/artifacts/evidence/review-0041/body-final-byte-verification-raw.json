@@ -1,0 +1,450 @@
+{
+  "text": "b881b81686d29aa3f56e78384e6f36c569c16c4c576621de51559b53c1f692f1  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md\n16217 /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 2.0173979997634888,
+    "trace": {
+      "v": 1,
+      "seq": 25,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 862746,
+      "script": "sha256sum /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md && wc -c /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 163,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 0,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "brace",
+              "lo": 0,
+              "hi": 0,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 406351,
+              "at": 48211,
+              "end_ns": 454562,
+              "end_seq": 12
+            },
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 163,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 163,
+              "p": 3,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 163,
+              "p": 4,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 402794,
+              "at": 48211,
+              "argv": [
+                "sha256sum",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md"
+              ],
+              "res": "native",
+              "end_ns": 451005,
+              "end_seq": 11
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 9,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 10,
+              "hi": 163,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 0,
+              "p": 5,
+              "state": "ok",
+              "taken": true
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 0,
+              "p": 8,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 10048,
+              "at": 454562,
+              "argv": [
+                ":"
+              ],
+              "res": "intrinsic",
+              "end_ns": 464610,
+              "end_seq": 16
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 0,
+              "p": 9,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAKwBAQCnAQAAAQIApwEBAQMCpQEEAqUBAAABBQKlAQAAAgYCCwEACXNoYTI1NnN1bQcMpQEBAJkBL3J1bi9tZWRpYS96ZW5vYml1cy9TdG9yZS9Qcm9qZWN0cy9NaW5lL0dpdGh1Yi9Eb3RmaWxlcy93b3JrZmxvd3Mvc2tpbGwtY29udHJhY3QtbWFuaWZlc3RzLTE2LXdlYi1kZXNpZ24tbWV0YWRhdGEvYXJ0aWZhY3RzL3Jldmlld3MvcmV2aWV3LXJldmlldy0wMDQxLm1kAAAAAAIAAAEACKsBrAEAAAEJqwGsAQAAAQqrAawBAQABOgAAAAI=",
+          "projection": 2
+        },
+        {
+          "at": 167,
+          "line": 1,
+          "bytes": 159,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 159,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 159,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 159,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 277650,
+              "at": 581139,
+              "argv": [
+                "wc",
+                "-c",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md"
+              ],
+              "res": "native",
+              "end_ns": 858789,
+              "end_seq": 23
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 2,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 3,
+              "hi": 5,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 6,
+              "hi": 159,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAJ8BAQCfAQAAAQIAnwEAAAMDAAIBAAJ3YwQDBQEAAi1jBQafAQEAmQEvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzL3dvcmtmbG93cy9za2lsbC1jb250cmFjdC1tYW5pZmVzdHMtMTYtd2ViLWRlc2lnbi1tZXRhZGF0YS9hcnRpZmFjdHMvcmV2aWV3cy9yZXZpZXctcmV2aWV3LTAwNDEubWQAAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 526,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 48211,
+          "event_seq": 528,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 48211,
+          "event_seq": 529,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 58,
+            "vpid": 1073741824,
+            "seq": 83
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 5,
+          "t_ns": 48211,
+          "event_seq": 530,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 58,
+            "vpid": 1073741824,
+            "seq": 83
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "sha256sum",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md"
+          ],
+          "assigns": [],
+          "resolved": "native",
+          "redirs": []
+        },
+        {
+          "seq": 10,
+          "t_ns": 403566,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 58,
+            "vpid": 1073741824,
+            "seq": 83
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "b881b81686d29aa3f56e78384e6f36c569c16c4c576621de51559b53c1f692f1  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md\n",
+          "fd": 1
+        },
+        {
+          "seq": 11,
+          "t_ns": 451005,
+          "event_seq": 531,
+          "segment": 0,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 58,
+            "vpid": 1073741824,
+            "seq": 83
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 402794,
+          "pipestatus": []
+        },
+        {
+          "seq": 12,
+          "t_ns": 454562,
+          "event_seq": 532,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 406351,
+          "pipestatus": []
+        },
+        {
+          "seq": 13,
+          "t_ns": 455323,
+          "event_seq": 533,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "Branch",
+          "construct": "and",
+          "taken": true,
+          "status": 0
+        },
+        {
+          "seq": 14,
+          "t_ns": 454562,
+          "event_seq": 534,
+          "segment": 0,
+          "command": {
+            "run": 58,
+            "vpid": 1073741824,
+            "seq": 84
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 15,
+          "t_ns": 454562,
+          "event_seq": 535,
+          "segment": 0,
+          "command": {
+            "run": 58,
+            "vpid": 1073741824,
+            "seq": 84
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            ":"
+          ],
+          "assigns": [],
+          "resolved": "intrinsic",
+          "redirs": []
+        },
+        {
+          "seq": 16,
+          "t_ns": 464610,
+          "event_seq": 536,
+          "segment": 0,
+          "command": {
+            "run": 58,
+            "vpid": 1073741824,
+            "seq": 84
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 10048,
+          "pipestatus": []
+        },
+        {
+          "seq": 17,
+          "t_ns": 469680,
+          "event_seq": 537,
+          "segment": 0,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        },
+        {
+          "seq": 18,
+          "t_ns": 566902,
+          "event_seq": 538,
+          "segment": 1,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 20,
+          "t_ns": 581139,
+          "event_seq": 540,
+          "segment": 1,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 59,
+            "vpid": 1073741824,
+            "seq": 85
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 21,
+          "t_ns": 581139,
+          "event_seq": 541,
+          "segment": 1,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 59,
+            "vpid": 1073741824,
+            "seq": 85
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "wc",
+            "-c",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md"
+          ],
+          "assigns": [],
+          "resolved": "native",
+          "redirs": []
+        },
+        {
+          "seq": 22,
+          "t_ns": 826218,
+          "segment": 1,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 59,
+            "vpid": 1073741824,
+            "seq": 85
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "16217 /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md\n",
+          "fd": 1
+        },
+        {
+          "seq": 23,
+          "t_ns": 858789,
+          "event_seq": 542,
+          "segment": 1,
+          "u": 1,
+          "n": 2,
+          "command": {
+            "run": 59,
+            "vpid": 1073741824,
+            "seq": 85
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 277650,
+          "pipestatus": []
+        },
+        {
+          "seq": 24,
+          "t_ns": 862746,
+          "event_seq": 543,
+          "segment": 1,
+          "logicalEnd": true,
+          "logicalStatus": 0,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

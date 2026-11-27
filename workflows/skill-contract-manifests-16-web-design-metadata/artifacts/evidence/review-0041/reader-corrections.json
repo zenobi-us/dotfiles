@@ -1,0 +1,7 @@
+{
+  "only_capture_input_corrections": true,
+  "launch_parse_first_used_abbreviated_text": "JSON reader rejected an abbreviated tool display; original wrappers retained; complete artifact22/23 recovered and parsed without launch repetition.",
+  "long_output": "Recovered exact explicit ranged raw artifacts for full guidance and diff after default300-line view truncation.",
+  "required_checks_repeated": false,
+  "source_or_transport_mutation": false
+}

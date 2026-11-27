@@ -1,0 +1,28 @@
+[
+  {
+    "axis": "standards",
+    "run_id": "c4273e7e-f69e-42f1-a130-31c4600d37eb",
+    "operation_id": "c4273e7e-f69e-42f1-a130-31c4600d37eb",
+    "parent_run_id": "89d908dd-1ac0-4b5e-8efd-609dca52204c",
+    "depth": 2,
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "report_words": 170,
+    "transport_sha256": "46c005cbc28aaadc0fe48184be5203d2aebba6a82f5e946d2637f4ab4fcb673b",
+    "schema_and_identity_valid": true,
+    "domain_equals_envelope": true
+  },
+  {
+    "axis": "spec",
+    "run_id": "6a99cd59-571b-4594-b54d-19d29209b9e2",
+    "operation_id": "6a99cd59-571b-4594-b54d-19d29209b9e2",
+    "parent_run_id": "89d908dd-1ac0-4b5e-8efd-609dca52204c",
+    "depth": 2,
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/6a99cd59-571b-4594-b54d-19d29209b9e2/context.json",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "report_words": 257,
+    "transport_sha256": "8f306f14f407fc57e09b718c45a6a429a272b5262c0377e601171e75e8f75c0c",
+    "schema_and_identity_valid": true,
+    "domain_equals_envelope": true
+  }
+]

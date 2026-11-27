@@ -1,0 +1,215 @@
+{
+  "text": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"acknowledgement\",\"runId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"operationId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"sha256\":\"46c005cbc28aaadc0fe48184be5203d2aebba6a82f5e946d2637f4ab4fcb673b\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/result.json\",\"resultSchema\":\"review-axis/v1\"}\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 486.37618200003635,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 485522635,
+      "script": "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts ack --context /var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json --sha256 46c005cbc28aaadc0fe48184be5203d2aebba6a82f5e946d2637f4ab4fcb673b",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 276,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 276,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 276,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 276,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 485471319,
+              "at": 35867,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+                "ack",
+                "--context",
+                "/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json",
+                "--sha256",
+                "46c005cbc28aaadc0fe48184be5203d2aebba6a82f5e946d2637f4ab4fcb673b"
+              ],
+              "res": "external",
+              "pid": 1607563,
+              "end_ns": 485507186,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 89,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 90,
+              "hi": 99,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 100,
+              "hi": 202,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 203,
+              "hi": 211,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 212,
+              "hi": 276,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAJQCAQCUAgAAAQIAlAIAAAYDAFUBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvcmVzdWx0LWRlbGl2ZXJ5L3NjcmlwdHMvcm91dGVyLnRzBFZZAQADYWNrBVpjAQAJLS1jb250ZXh0BmTKAQEAZi92YXIvaG9tZS96ZW5vYml1cy8ubG9jYWwvc3RhdGUvcmVzdWx0LWRlbGl2ZXJ5L3J1bnMvYzQyNzNlN2UtZjY5ZS00MmYxLWExMzAtMzFjNDYwMGQzN2ViL2NvbnRleHQuanNvbgfLAdMBAQAILS1zaGEyNTYI1AGUAgEAQDQ2YzAwNWNiYzI4YWFhZGMwZmU0ODE4NGJlNTIwM2QyYWViYmE2YTgyZjVlOTQ2ZDI2MzdmNGFiNGZjYjY3M2IAAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 341,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 35867,
+          "event_seq": 343,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 39,
+            "vpid": 1073741824,
+            "seq": 54
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 35867,
+          "event_seq": 344,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 39,
+            "vpid": 1073741824,
+            "seq": 54
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+            "ack",
+            "--context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json",
+            "--sha256",
+            "46c005cbc28aaadc0fe48184be5203d2aebba6a82f5e946d2637f4ab4fcb673b"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 420327,
+          "event_seq": 345,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 39,
+            "vpid": 1073741824,
+            "seq": 54
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1607563,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+            "ack",
+            "--context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/context.json",
+            "--sha256",
+            "46c005cbc28aaadc0fe48184be5203d2aebba6a82f5e946d2637f4ab4fcb673b"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 480735275,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 39,
+            "vpid": 1073741824,
+            "seq": 54
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"acknowledgement\",\"runId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"operationId\":\"c4273e7e-f69e-42f1-a130-31c4600d37eb\",\"sha256\":\"46c005cbc28aaadc0fe48184be5203d2aebba6a82f5e946d2637f4ab4fcb673b\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/c4273e7e-f69e-42f1-a130-31c4600d37eb/result.json\",\"resultSchema\":\"review-axis/v1\"}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 485507186,
+          "event_seq": 346,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 39,
+            "vpid": 1073741824,
+            "seq": 54
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 485471319,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 485522635,
+          "event_seq": 347,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

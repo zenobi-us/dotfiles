@@ -139,3 +139,14 @@ No extra agents or services were started. No code, tests, dependencies or config
 
 The primary remains live for normal parent closure. Parent owns publication-checkout commits and YAML views. Parent also owns tracker changes, fresh independent review and integration.
 
+
+
+## Latest review: review-0041
+
+- **Verdict:** FAILURE for `b039c503841014575faf26c16d3dfa61e9c63db6`, tree `29ef53bfe84e272f0ea7e965bc554f33f21f194c`.
+- **Standards:** Two low hard first-use acronym findings remain: `standards-013` and `standards-014`.
+- **Spec:** No findings.
+- **Validation:** All56 fresh primary outcomes match; all11 frozen blobs and protected8/all5assets remain preserved.
+- **Next action:** Define terms at first prose use in the two new references. Preserve technical literals and all conversion/integrity boundaries. No source acceptance.
+- **Review:** [Immutable report](../artifacts/reviews/review-review-0041.md).
+- **Reconciliation:** [Validated completion](../events/review-complete-0042.yaml).
