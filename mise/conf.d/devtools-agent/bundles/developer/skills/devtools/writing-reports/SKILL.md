@@ -5,6 +5,28 @@ description: Writes a self-contained HTML evidence report with screenshots, capt
 
 # writing-reports
 
+## Repository style
+
+Before generating a report, resolve the target repository root from the task context.
+Read its `AGENTS.md` and follow its artifact-style pointers. When present, read
+`DESIGN.md` for visual style and `UI_FOUNDATION.md` for implementation and verification.
+Resolve these files from the target repository, not this skill's installed directory
+or the report destination. If no repository style is defined, use the bundled theme defaults.
+
+Use the repository style for new reports unless the user explicitly requests another
+visual direction. Keep the generator, evidence rules, portable packaging, and validator
+requirements below. Style instructions do not permit editing immutable assets or
+adding page-local CSS. Do not copy repository style rules into this skill.
+
+If the bundled theme conflicts with the repository style, implement a new versioned
+theme in the skill source. Update the generator, asset paths, and validator together
+before generating the report. Preserve existing versioned assets and previously
+published reports. Do not claim style compliance while silently using a conflicting theme.
+For example, a square monospace style must not be implemented by patching `v1` files
+inside a generated report.
+
+Verify the rendered report using the repository's guidance as well as this skill's validator.
+
 ## Common evidence records
 
 Use `collect-evidence` for capture. This skill is a read-only consumer of `collect-evidence/v1` runs. Before presentation, run its absolute installed `scripts/collect-evidence.ts validate <run>` command. Use `report <run>` for a self-contained HTML export or consume the validated case and asset records with this skill's existing templates. Keep the same asset IDs, hashes, capture times, case order and assertion outcomes. Record capture status separately. Do not drive another capture workflow, infer passing assertions from images, create another authoritative result model, or write into a sealed run. Keep exports outside the run. Publication remains separate and explicit.
@@ -194,3 +216,4 @@ Run `scripts/report-cli.ts --help` for the Crust router. Use `new`, `validate`, 
 Resolve `REPORT_SKILL_ROOT` to the installed directory containing this `SKILL.md`. Invoke its absolute `scripts/report-cli.ts` entrypoint from any working directory. Use `evidence <explicit-sealed-run> --historical` for an earlier `collect-evidence/v1` run. Use `evidence <explicit-feedback-session> --feedback` for its preserved source and historical selection. Add `--json` for ordered cases, asset identities, recorded results, HTML and verified saved feedback. Without it, the command prints the collector's self-contained HTML. This export reuses `collect-evidence report`; it does not create a template report or a second result model.
 
 Save exports outside sealed evidence and feedback sessions. Repeated reads must not change records, media, capture dates or saved annotations. A session report validates both the original snapshot and its immutable feedback asset copies. It retains the session historical label; `--historical` cannot override a feedback session. Unknown dates remain unknown. Unsupported explicit versions fail. Follow the [explicit historical import procedure](../../browsers/collect-feedback/howto.md#reopen-a-session-or-review-earlier-evidence) before reporting earlier evidence.
+

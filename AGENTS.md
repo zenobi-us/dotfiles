@@ -24,6 +24,16 @@ This is a single-context repository. Read `CONTEXT-MAP.md`, `CONTEXT.md` when it
 
 Use `mq-query` for local Markdown search, reading, filtering, selection, listing, summaries, validation, transformation, and creation. Load its matching task reference and required upstream reference first. Use explicit input and output formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown parsers to inspect Markdown content. Use domain or tracker tools to identify authoritative records, and filesystem tools only to check whether paths exist.
 
+## HTML and UI artifacts
+
+Before creating or changing reports, websites, or UX previews in this repository,
+read [DESIGN.md](DESIGN.md) for visual style and
+[UI_FOUNDATION.md](UI_FOUNDATION.md) for implementation and verification guidance.
+Apply both to standalone HTML and framework-based UI artifacts. Use these visual
+defaults when a skill or template suggests another style, unless the user
+explicitly requests a different visual direction. Keep the matching skill's
+workflow and accessibility requirements.
+
 ## Container tools
 
 - Use Podman instead of Docker when Podman supports the required operation.

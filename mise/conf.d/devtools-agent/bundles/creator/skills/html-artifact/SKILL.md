@@ -16,6 +16,23 @@ metadata:
 
 Use when the user wants a human-readable artifact from a conversation, plan, approach, report, review, explainer, prototype, or custom editor instead of a long reply or Markdown file.
 
+## Repository style
+
+Before selecting a template, resolve the target repository root from the task context.
+Read its `AGENTS.md` and follow its artifact-style pointers. When present, read
+`DESIGN.md` for visual style and `UI_FOUNDATION.md` for implementation and verification.
+Resolve these files from the target repository, not this skill's installed directory
+or an artifact output directory. If no repository style is defined, use the template defaults.
+
+Apply the repository style to the template's colors, typography, spacing, and controls.
+Keep the template's useful structure and behavior. An explicit user-requested visual
+direction overrides style defaults, not accessibility or verification requirements.
+Do not copy the repository's style rules into this skill.
+
+For example, when a repository specifies square monospace reports, restyle the chosen
+report template accordingly instead of retaining its rounded cards and display font.
+Verify the rendered artifact using the repository's guidance before delivery.
+
 Rules:
 1. Always write one standalone `.html` file with inline CSS/JS and no build step.
 2. Start from the closest `templates/` file, then replace demo content with the user's content.
@@ -47,3 +64,4 @@ Templates:
 | `18-editor-triage-board.html` | Build a drag/drop editor for prioritizing, bucketing, or triaging items. |
 | `19-editor-feature-flags.html` | Build a constrained config/flag editor with dependency warnings and copy diff. |
 | `20-editor-prompt-tuner.html` | Build a prompt/template tuner with live preview, variables, and copy output. |
+
