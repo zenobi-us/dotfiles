@@ -1,0 +1,488 @@
+{
+  "native_inventory_complete": false,
+  "native_hard_blockers": [],
+  "native_record_diagnostics": [],
+  "native_ownership": "unknown",
+  "sole_owner": "herdr-app:t2dv viafix-complete45",
+  "exact_source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "source_available_candidates": 1,
+  "source_errors": [],
+  "prior_current_ticket_reservation_reconciled": true,
+  "prior_reservation_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0127.yaml",
+  "existing_generated_metadata_overlaps": [
+    {
+      "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+      "assessment": "cleanup-only",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        },
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+          "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    }
+  ],
+  "unrelated_ambiguous_reservations": [
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0004.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0007.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0014.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0015.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0016.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0024.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0028.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0029.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0030.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0038.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0045.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0046.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0047.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0055.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0059.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0064.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0067.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0068.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0069.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0076.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0084.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0085.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0086.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0093.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0097.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0102.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0106.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0110.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0115.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0116.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0117.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0127.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0133.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0138.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0139.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0140.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0151.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0152.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0153.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0165.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0166.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0172.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0173.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0182.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0188.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0192.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0195.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0198.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0201.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0204.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0207.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0211.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0215.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0216.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0221.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0222.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0227.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0233.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0234.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0239.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0244.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0245.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0250.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0255.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0256.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0261.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0266.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0270.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0274.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    },
+    {
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0279.yaml",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "ambiguous": true,
+      "assessment": "Unrelated existing ticket/reservation inventory ambiguity; not a current-ticket source owner or matching reservation. No operations authorized there."
+    }
+  ],
+  "assessment": "Fresh full feature review9 is read-only on exact cleanb0d/treec163 with sole matching current owner and verifiedfix127 reconciliation. Existing4 generatedmetadata overlap records are separate sourceindices; no source/sharedbasehook mutation or integration. Global incomplete inventory/unrelated ambiguity is preserved, not silently called complete. No current-ticket competing ownership/reservation."
+}
