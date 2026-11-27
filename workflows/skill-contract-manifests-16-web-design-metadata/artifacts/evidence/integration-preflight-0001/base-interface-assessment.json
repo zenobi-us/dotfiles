@@ -1,0 +1,25 @@
+{
+  "status": "observation_only_not_an_integration_result",
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "frozen_review_base": "b53b4acc9a478c9794645b6ef627f418432135d7",
+  "observed_source_marketplace_versions": {
+    "creator": "0.1.9",
+    "developer": "0.2.82"
+  },
+  "observed_review_base_marketplace_versions": {
+    "creator": "0.1.4",
+    "developer": "0.2.84"
+  },
+  "observed_prior_base_creator_version": "0.1.3",
+  "version_observation_method": "git show <exact-commit>:mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json, then jq selected creator/developer entries",
+  "observed_base_delta": "d72457183fadb7c48a0557c602947b4b467f031d to 61e33260 changes Creator plugin/marketplace release versions and the Developer marketplace release version. The scoped diff showed no web-design owner code changes.",
+  "merge_attributes": "git check-attr merge reported unspecified for Creator plugin.json and marketplace.json",
+  "inference": "Both sides change the same generated Creator release fields. A mechanical merge conflict is expected; no integration prepare or merge has been attempted, and no conflict result is claimed.",
+  "required_next_gate": "After exact-source independent review, inspect current base and use owning integration prepare. Preserve independent Developer0.2.84 updates. If a conflict actually occurs, preserve the source and obtain scoped resolved-source-candidate recovery with independent review. Do not select an arbitrary generated metadata copy.",
+  "source_review_acceptance": "Not established by this preflight",
+  "source_or_index_changes": false,
+  "integration_attempted": false,
+  "publication_or_cleanup_attempted": false,
+  "user_changes_preserved": true
+}
