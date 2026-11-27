@@ -147,14 +147,7 @@ function BundlePage() {
           </DocSection.Content>
         </DocSection>
 
-        <SiteFooter>
-          <SiteFooter.Label>{nav.footer.label}</SiteFooter.Label>
-          {nav.footer.links.map((link) => (
-            <SiteFooter.Link key={link.href} {...link} href={siteHref(link.href)}>
-              {link.label}
-            </SiteFooter.Link>
-          ))}
-        </SiteFooter>
+        <SiteFooter />
       </Page.Main>
     </>
   );

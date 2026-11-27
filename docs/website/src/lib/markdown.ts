@@ -5,19 +5,42 @@ import type { Root as MarkdownRoot, RootContent as MarkdownNode } from "mdast";
 import remarkGfm from "remark-gfm";
 import { headingLinkIcon, headingSlug } from "./headings";
 
+export type DocumentLinkTarget = { href: string; headingPrefix: string };
+
 export async function compileDocument(
   context: Parameters<typeof compileMarkdown>[0],
   document: Parameters<typeof compileMarkdown>[1],
   sourceDirectory?: string,
+  options?: { linkTargets?: ReadonlyMap<string, DocumentLinkTarget>; omitTitle?: boolean; omitInventory?: boolean },
 ): Promise<string> {
   const prefix = `doc-${headingSlug(document._meta.path)}-`;
   return compileMarkdown(context, document, {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [() => (tree: HtmlRoot) => decorateHtml(tree, prefix, sourceDirectory)],
+    remarkPlugins: [
+      remarkGfm,
+      () => (tree: MarkdownRoot) => {
+        if (options?.omitTitle && tree.children[0]?.type === "heading" && tree.children[0].depth === 1)
+          tree.children.shift();
+        if (options?.omitInventory) {
+          // The module page renders this repository navigation as ReferenceList rows.
+          let inventory = false;
+          tree.children = tree.children.filter((node) => {
+            if (node.type === "heading" && node.depth <= 2)
+              inventory = node.depth === 2 && markdownText(node) === "Notable items";
+            return !inventory;
+          });
+        }
+      },
+    ],
+    rehypePlugins: [() => (tree: HtmlRoot) => decorateHtml(tree, prefix, sourceDirectory, options?.linkTargets)],
   });
 }
 
-function decorateHtml(tree: HtmlRoot, prefix: string, sourceDirectory?: string): void {
+function decorateHtml(
+  tree: HtmlRoot,
+  prefix: string,
+  sourceDirectory?: string,
+  linkTargets?: ReadonlyMap<string, DocumentLinkTarget>,
+): void {
   const slugs = new Set<string>();
   const fragments = new Map<string, string>();
   walkHtml(tree, (node) => {
@@ -64,6 +87,15 @@ function decorateHtml(tree: HtmlRoot, prefix: string, sourceDirectory?: string):
         const id = fragments.get(decodeURIComponent(value.slice(1)));
         if (id) node.properties[attribute] = `#${id}`;
       } else if (sourceDirectory && !/^(?:[a-z][a-z\d+.-]*:|\/)/i.test(value)) {
+        const resolved = new URL(value, sourceDirectory);
+        const fragment = resolved.hash;
+        resolved.hash = "";
+        const target = attribute === "href" ? linkTargets?.get(resolved.href) : undefined;
+        if (target) {
+          node.properties[attribute] =
+            target.href + (fragment ? `#${target.headingPrefix}${decodeURIComponent(fragment.slice(1))}` : "");
+          continue;
+        }
         const directory =
           attribute === "src"
             ? sourceDirectory.replace("github.com/", "raw.githubusercontent.com/").replace("/blob/", "/")

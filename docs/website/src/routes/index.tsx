@@ -88,14 +88,7 @@ function HomePage() {
           </DocSection>
         ))}
 
-        <SiteFooter>
-          <SiteFooter.Label>{nav.footer.label}</SiteFooter.Label>
-          {nav.footer.links.map((link) => (
-            <SiteFooter.Link key={link.href} {...link}>
-              {link.label}
-            </SiteFooter.Link>
-          ))}
-        </SiteFooter>
+        <SiteFooter />
       </Page.Main>
     </>
   );

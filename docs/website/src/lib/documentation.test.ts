@@ -27,6 +27,34 @@ test("heading links distinguish duplicate headings and preserve document-local n
   expect(html).toContain('href="https://example.com/">External</a>');
 });
 
+test("module documents retain website navigation across relative Markdown links and keep image provenance", async () => {
+  const html = await compileDocument(
+    { cache },
+    {
+      _meta: meta,
+      content:
+        "# Tool\n\n![Example terminal result](assets/result.png)\n\n[Use it](HOWTO.md#verify)\n\n[Source](tool.toml)",
+    },
+    "https://github.com/example/dotfiles/blob/master/module/",
+    {
+      omitTitle: true,
+      linkTargets: new Map([
+        [
+          "https://github.com/example/dotfiles/blob/master/module/HOWTO.md",
+          {
+            href: "/dotfiles/modules/example/items/tool/how-to/",
+            headingPrefix: "doc-example-howto-",
+          },
+        ],
+      ]),
+    },
+  );
+  expect(html).not.toContain("<h1");
+  expect(html).toContain('href="/dotfiles/modules/example/items/tool/how-to/#doc-example-howto-verify"');
+  expect(html).toContain('src="https://raw.githubusercontent.com/example/dotfiles/master/module/assets/result.png"');
+  expect(html).toContain('href="https://github.com/example/dotfiles/blob/master/module/tool.toml"');
+});
+
 test("metadata follows local reference documents but excludes input files and external links", () => {
   const directory = mkdtempSync(join(tmpdir(), "skill-metadata-"));
   try {
@@ -69,4 +97,21 @@ test("static discovery includes nested skills and only adjacent how-to guides", 
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }
+});
+
+test("module pages omit duplicate repository inventories without dropping the following section", async () => {
+  const html = await compileDocument(
+    { cache },
+    {
+      _meta: meta,
+      content:
+        "# Module\n\nIntro.\n\n## Notable items\n\n[Tool](docs/tool/README.md)\n\n### More items\n\nChild navigation.\n\n## Configuration\n\nKeep the configuration explanation.",
+    },
+    undefined,
+    { omitTitle: true, omitInventory: true },
+  );
+  expect(html).not.toContain("Child navigation.");
+  expect(html).not.toContain("docs/tool/README.md");
+  expect(html).toContain("Intro.");
+  expect(html).toContain("Keep the configuration explanation.");
 });

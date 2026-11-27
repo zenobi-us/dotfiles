@@ -7,13 +7,10 @@ const headerLink =
 
 function Root(props: { className?: string; children: ReactNode }) {
   return (
-    <header
-      className={cx(
-        "sticky top-0 z-20 grid min-h-[49px] grid-cols-[auto_minmax(0,1fr)_auto] border-b border-border bg-background narrow:grid-cols-[1fr_auto]",
-        props.className,
-      )}
-    >
-      {props.children}
+    <header className={cx("sticky top-0 z-20 min-h-[49px] border-b border-border bg-background", props.className)}>
+      <div className="mx-auto grid w-[min(1280px,calc(100%-32px))] grid-cols-[auto_minmax(0,1fr)_auto] narrow:grid-cols-[1fr_auto] tiny:w-[calc(100%-24px)]">
+        {props.children}
+      </div>
     </header>
   );
 }

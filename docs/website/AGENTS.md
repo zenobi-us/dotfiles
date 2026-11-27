@@ -8,6 +8,17 @@ A static TanStack Start site, published to GitHub Pages. Content lives in `conte
 - Build related UI parts as compound components, such as `DocSection.Root`, `DocSection.Heading` and `DocSection.Content`. Export the root with its parts: `Object.assign(Root, { Root, ... })`.
 - Give each component its own folder under `src/components/`. Keep its hooks in that folder, named after the component, such as `useDocSection`.
 
+## Mise module pages
+
+Use the `website-documentation` skill for module, capability, and guide changes. Read repository-root `DESIGN.md` and `UI_FOUNDATION.md` before UI changes.
+
+- `/modules/` uses grouped linked rows. Module, item, and item how-to pages live below it.
+- Each `mise/conf.d/<module>/` owns `README.md` and `docs.json`. Each local item owns `README.md` and `HOWTO.md`. Standalone tools use `docs/<item-id>/`; dedicated feature directories keep documents beside their sources.
+- `src/lib/module-files.ts` owns the manifest schema and source-path validation. Keep item IDs stable when display titles change. Link existing bundle pages instead of copying skills.
+- `miseModules` stores summaries. `miseDocuments` compiles only manifest-listed Markdown into `.content-collections/module-documents/`; loaders import one document at a time. `vite.config.ts` uses the same discovery for static routes.
+- Encourage an opening visual through an authoring comment in the README. Use real screenshots, terminal captures, or diagrams. Missing visuals must not create broken images or reader-facing empty frames.
+- Restart the development server after inventory changes, so routes and explicit document inputs are rediscovered.
+
 ## Agent bundle pages
 
 - `/bundles` and `/bundles/<bundle>` read skills, agents, hooks and manifests from `mise/conf.d/devtools-agent/bundles/` at build time. Do not copy that data into `content/`.
@@ -24,6 +35,12 @@ A static TanStack Start site, published to GitHub Pages. Content lives in `conte
 
 - `404.html` runs the rules in `content/redirects.yaml` before React starts. Each `pattern` is a regular expression tested against the path without the `/dotfiles/` base. The first match wins.
 - When you move or remove a published page, add a rule. One rule can cover a whole subtree, such as `^/artifacts(/.*)?$`.
+
+## React Doctor exceptions
+
+The `vite-flare-starter` generated skill chunks contain static documentation examples, including a client-safe token prefix and credential placeholders. `doctor.config.json` excludes only those chunks from `artifact-env-leak`; application bundles remain checked. Reassess the exception if that skill begins embedding real values.
+
+Accessibility exceptions stay beside their exact JSX occurrences, with reasons. Before retaining them, verify native-link Enter activation in the isolated demo and fragment reveal after filtering the skill index. Do not add dummy keyboard handlers or duplicate fragment targets to satisfy static analysis.
 
 ## Commands
 

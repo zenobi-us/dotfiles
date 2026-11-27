@@ -5,6 +5,7 @@ import { defineCollection, defineConfig, defineSingleton } from "@content-collec
 import { compileDocument } from "./src/lib/markdown";
 import type { SkillDocumentContent } from "./src/lib/skill-document";
 import { skillMetadata, skillSource } from "./src/lib/skill-metadata";
+import { miseDocuments, miseModules } from "./src/lib/module-collections";
 import { z } from "zod";
 
 /** The agent bundles. The bundle pages read their skills, agents, hooks and manifests from here at build time. */
@@ -21,7 +22,6 @@ const link = z.object({
 const pageNavigation = z.object({
   label: z.string(),
   links: z.array(link),
-  footer: z.object({ label: z.string(), links: z.array(link) }),
 });
 
 const pageMeta = z.object({ title: z.string(), description: z.string() });
@@ -35,6 +35,11 @@ const navigation = defineSingleton({
     repository: link,
     home: pageNavigation,
     bundles: pageNavigation,
+    footer: z.object({
+      description: z.string(),
+      label: z.string(),
+      groups: z.array(z.object({ label: z.string(), links: z.array(link) })),
+    }),
   }),
 });
 
@@ -363,5 +368,7 @@ export default defineConfig({
     skillPages,
     skillSourceNotes,
     skillDiagrams,
+    miseModules,
+    miseDocuments,
   ],
 });

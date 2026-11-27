@@ -6,9 +6,11 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { skillFiles } from "./src/lib/skill-files.ts";
+import { moduleFiles } from "./src/lib/module-files.ts";
+import { siteBase } from "./src/lib/site-base.ts";
 
 // GitHub Pages serves the site from https://zenobi-us.github.io/dotfiles/.
-const base = "/dotfiles/";
+const base = siteBase;
 
 // GitHub Pages prefers a folder to a file with the same name: `bundles.html` next to
 // `bundles/` sends `/bundles` to `bundles/`. A page with pages below it must therefore
@@ -28,6 +30,17 @@ const skillPages = bundleNames.flatMap((bundle) =>
     return skill.hasHowTos ? [asFolder(path), asFolder(`${path}/how-to`)] : [asFolder(path)];
   }),
 );
+const modulePages = [asFolder("/modules")];
+for (const module of moduleFiles(join(import.meta.dirname, "../../mise/conf.d"))) {
+  modulePages.push(asFolder(`/modules/${module.id}`));
+  for (const item of module.items) {
+    if (item.href) continue;
+    modulePages.push(
+      asFolder(`/modules/${module.id}/items/${item.id}`),
+      asFolder(`/modules/${module.id}/items/${item.id}/how-to`),
+    );
+  }
+}
 
 export default defineConfig({
   base,
@@ -42,6 +55,10 @@ export default defineConfig({
         // `/404` becomes `404.html`, which GitHub Pages serves for any missing path.
         { path: "/404" },
         asFolder("/bundles"),
+        asFolder("/design-system"),
+        asFolder("/design-system/components"),
+        asFolder("/page-kinds"),
+        ...modulePages,
         ...bundleNames.map((bundle) => asFolder(`/bundles/${bundle}`)),
         ...skillPages,
       ],

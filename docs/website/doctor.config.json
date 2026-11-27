@@ -7,7 +7,11 @@
         "rules": ["react-doctor/dangerous-html-sink"]
       },
       {
-        "files": [".content-collections/skill-documents/**"],
+        "files": [
+          ".content-collections/skill-documents/**",
+          "dist/client/assets/vite-flare-starter-*.js",
+          "dist/server/assets/vite-flare-starter-*.js"
+        ],
         "rules": ["react-doctor/artifact-env-leak"]
       }
     ]

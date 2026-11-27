@@ -11,10 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
+import { Route as PageKindsRouteImport } from './routes/page-kinds'
 import { Route as BundlesIndexRouteImport } from './routes/bundles/index'
+import { Route as DesignSystemIndexRouteImport } from './routes/design-system/index'
+import { Route as DesignSystemComponentsRouteImport } from './routes/design-system/components'
+import { Route as ModulesIndexRouteImport } from './routes/modules/index'
 import { Route as BundlesBundleIndexRouteImport } from './routes/bundles/$bundle/index'
+import { Route as ModulesModuleIndexRouteImport } from './routes/modules/$module/index'
 import { Route as BundlesBundleSkillSkillIndexRouteImport } from './routes/bundles/$bundle/skill/$skill/index'
 import { Route as BundlesBundleSkillSkillHowToRouteImport } from './routes/bundles/$bundle/skill/$skill/how-to'
+import { Route as ModulesModuleItemsItemIndexRouteImport } from './routes/modules/$module/items/$item/index'
+import { Route as ModulesModuleItemsItemHowToRouteImport } from './routes/modules/$module/items/$item/how-to'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -26,14 +33,39 @@ const R404Route = R404RouteImport.update({
   path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PageKindsRoute = PageKindsRouteImport.update({
+  id: '/page-kinds',
+  path: '/page-kinds',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BundlesIndexRoute = BundlesIndexRouteImport.update({
   id: '/bundles/',
   path: '/bundles/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignSystemIndexRoute = DesignSystemIndexRouteImport.update({
+  id: '/design-system/',
+  path: '/design-system/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignSystemComponentsRoute = DesignSystemComponentsRouteImport.update({
+  id: '/design-system/components',
+  path: '/design-system/components',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModulesIndexRoute = ModulesIndexRouteImport.update({
+  id: '/modules/',
+  path: '/modules/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BundlesBundleIndexRoute = BundlesBundleIndexRouteImport.update({
   id: '/bundles/$bundle/',
   path: '/bundles/$bundle/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModulesModuleIndexRoute = ModulesModuleIndexRouteImport.update({
+  id: '/modules/$module/',
+  path: '/modules/$module/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BundlesBundleSkillSkillIndexRoute =
@@ -48,66 +80,127 @@ const BundlesBundleSkillSkillHowToRoute =
     path: '/bundles/$bundle/skill/$skill/how-to',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ModulesModuleItemsItemIndexRoute =
+  ModulesModuleItemsItemIndexRouteImport.update({
+    id: '/modules/$module/items/$item/',
+    path: '/modules/$module/items/$item/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModulesModuleItemsItemHowToRoute =
+  ModulesModuleItemsItemHowToRouteImport.update({
+    id: '/modules/$module/items/$item/how-to',
+    path: '/modules/$module/items/$item/how-to',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/page-kinds': typeof PageKindsRoute
+  '/design-system/components': typeof DesignSystemComponentsRoute
   '/bundles/': typeof BundlesIndexRoute
+  '/design-system/': typeof DesignSystemIndexRoute
+  '/modules/': typeof ModulesIndexRoute
   '/bundles/$bundle/': typeof BundlesBundleIndexRoute
+  '/modules/$module/': typeof ModulesModuleIndexRoute
   '/bundles/$bundle/skill/$skill/how-to': typeof BundlesBundleSkillSkillHowToRoute
+  '/modules/$module/items/$item/how-to': typeof ModulesModuleItemsItemHowToRoute
   '/bundles/$bundle/skill/$skill/': typeof BundlesBundleSkillSkillIndexRoute
+  '/modules/$module/items/$item/': typeof ModulesModuleItemsItemIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/page-kinds': typeof PageKindsRoute
+  '/design-system/components': typeof DesignSystemComponentsRoute
   '/bundles': typeof BundlesIndexRoute
+  '/design-system': typeof DesignSystemIndexRoute
+  '/modules': typeof ModulesIndexRoute
   '/bundles/$bundle': typeof BundlesBundleIndexRoute
+  '/modules/$module': typeof ModulesModuleIndexRoute
   '/bundles/$bundle/skill/$skill/how-to': typeof BundlesBundleSkillSkillHowToRoute
+  '/modules/$module/items/$item/how-to': typeof ModulesModuleItemsItemHowToRoute
   '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillIndexRoute
+  '/modules/$module/items/$item': typeof ModulesModuleItemsItemIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/page-kinds': typeof PageKindsRoute
+  '/design-system/components': typeof DesignSystemComponentsRoute
   '/bundles/': typeof BundlesIndexRoute
+  '/design-system/': typeof DesignSystemIndexRoute
+  '/modules/': typeof ModulesIndexRoute
   '/bundles/$bundle/': typeof BundlesBundleIndexRoute
+  '/modules/$module/': typeof ModulesModuleIndexRoute
   '/bundles/$bundle/skill/$skill/how-to': typeof BundlesBundleSkillSkillHowToRoute
+  '/modules/$module/items/$item/how-to': typeof ModulesModuleItemsItemHowToRoute
   '/bundles/$bundle/skill/$skill/': typeof BundlesBundleSkillSkillIndexRoute
+  '/modules/$module/items/$item/': typeof ModulesModuleItemsItemIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/404'
+    | '/page-kinds'
+    | '/design-system/components'
     | '/bundles/'
+    | '/design-system/'
+    | '/modules/'
     | '/bundles/$bundle/'
+    | '/modules/$module/'
     | '/bundles/$bundle/skill/$skill/how-to'
+    | '/modules/$module/items/$item/how-to'
     | '/bundles/$bundle/skill/$skill/'
+    | '/modules/$module/items/$item/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/404'
+    | '/page-kinds'
+    | '/design-system/components'
     | '/bundles'
+    | '/design-system'
+    | '/modules'
     | '/bundles/$bundle'
+    | '/modules/$module'
     | '/bundles/$bundle/skill/$skill/how-to'
+    | '/modules/$module/items/$item/how-to'
     | '/bundles/$bundle/skill/$skill'
+    | '/modules/$module/items/$item'
   id:
     | '__root__'
     | '/'
     | '/404'
+    | '/page-kinds'
+    | '/design-system/components'
     | '/bundles/'
+    | '/design-system/'
+    | '/modules/'
     | '/bundles/$bundle/'
+    | '/modules/$module/'
     | '/bundles/$bundle/skill/$skill/how-to'
+    | '/modules/$module/items/$item/how-to'
     | '/bundles/$bundle/skill/$skill/'
+    | '/modules/$module/items/$item/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
+  PageKindsRoute: typeof PageKindsRoute
+  DesignSystemComponentsRoute: typeof DesignSystemComponentsRoute
   BundlesIndexRoute: typeof BundlesIndexRoute
+  DesignSystemIndexRoute: typeof DesignSystemIndexRoute
+  ModulesIndexRoute: typeof ModulesIndexRoute
   BundlesBundleIndexRoute: typeof BundlesBundleIndexRoute
+  ModulesModuleIndexRoute: typeof ModulesModuleIndexRoute
   BundlesBundleSkillSkillHowToRoute: typeof BundlesBundleSkillSkillHowToRoute
+  ModulesModuleItemsItemHowToRoute: typeof ModulesModuleItemsItemHowToRoute
   BundlesBundleSkillSkillIndexRoute: typeof BundlesBundleSkillSkillIndexRoute
+  ModulesModuleItemsItemIndexRoute: typeof ModulesModuleItemsItemIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -126,6 +219,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/page-kinds': {
+      id: '/page-kinds'
+      path: '/page-kinds'
+      fullPath: '/page-kinds'
+      preLoaderRoute: typeof PageKindsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bundles/': {
       id: '/bundles/'
       path: '/bundles'
@@ -133,11 +233,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BundlesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/design-system/': {
+      id: '/design-system/'
+      path: '/design-system'
+      fullPath: '/design-system/'
+      preLoaderRoute: typeof DesignSystemIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design-system/components': {
+      id: '/design-system/components'
+      path: '/design-system/components'
+      fullPath: '/design-system/components'
+      preLoaderRoute: typeof DesignSystemComponentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modules/': {
+      id: '/modules/'
+      path: '/modules'
+      fullPath: '/modules/'
+      preLoaderRoute: typeof ModulesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bundles/$bundle/': {
       id: '/bundles/$bundle/'
       path: '/bundles/$bundle'
       fullPath: '/bundles/$bundle/'
       preLoaderRoute: typeof BundlesBundleIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modules/$module/': {
+      id: '/modules/$module/'
+      path: '/modules/$module'
+      fullPath: '/modules/$module/'
+      preLoaderRoute: typeof ModulesModuleIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bundles/$bundle/skill/$skill/': {
@@ -154,16 +282,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BundlesBundleSkillSkillHowToRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modules/$module/items/$item/': {
+      id: '/modules/$module/items/$item/'
+      path: '/modules/$module/items/$item'
+      fullPath: '/modules/$module/items/$item/'
+      preLoaderRoute: typeof ModulesModuleItemsItemIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modules/$module/items/$item/how-to': {
+      id: '/modules/$module/items/$item/how-to'
+      path: '/modules/$module/items/$item/how-to'
+      fullPath: '/modules/$module/items/$item/how-to'
+      preLoaderRoute: typeof ModulesModuleItemsItemHowToRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
+  PageKindsRoute: PageKindsRoute,
+  DesignSystemComponentsRoute: DesignSystemComponentsRoute,
   BundlesIndexRoute: BundlesIndexRoute,
+  DesignSystemIndexRoute: DesignSystemIndexRoute,
+  ModulesIndexRoute: ModulesIndexRoute,
   BundlesBundleIndexRoute: BundlesBundleIndexRoute,
+  ModulesModuleIndexRoute: ModulesModuleIndexRoute,
   BundlesBundleSkillSkillHowToRoute: BundlesBundleSkillSkillHowToRoute,
+  ModulesModuleItemsItemHowToRoute: ModulesModuleItemsItemHowToRoute,
   BundlesBundleSkillSkillIndexRoute: BundlesBundleSkillSkillIndexRoute,
+  ModulesModuleItemsItemIndexRoute: ModulesModuleItemsItemIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

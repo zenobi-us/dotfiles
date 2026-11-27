@@ -10,19 +10,32 @@ home:
     - { label: Get started, href: "#start" }
     - { label: Guides, href: "#guides" }
     - { label: Reference, href: "#reference" }
+    - { label: Mise modules, href: /modules/ }
     - { label: Agent bundles, href: /bundles/ }
-  footer:
-    label: zenobi-us / dotfiles
-    links:
-      - { label: Back to top, href: "#top", icon: "↑" }
-      - { label: Browse the source, href: "https://github.com/zenobi-us/dotfiles", icon: "↗" }
 bundles:
   label: Agent bundle navigation
   links:
     - { label: Workstation guide, href: /, iconBefore: "←" }
     - { label: Agent bundles, href: /bundles/ }
-  footer:
-    label: zenobi-us / dotfiles
-    links:
-      - { label: Workstation guide, href: /, iconBefore: "←" }
-      - { label: Back to top, href: "#top", icon: "↑" }
+    - { label: Mise modules, href: /modules/ }
+footer:
+  description: Repository-backed workstation setup, agent tooling, and documentation.
+  label: zenobi-us / dotfiles
+  groups:
+    - label: Workstation
+      links:
+        - { label: Get started, href: "/#start" }
+        - { label: Guides, href: "/#guides" }
+        - { label: Reference, href: "/#reference" }
+        - { label: Mise modules, href: /modules/ }
+        - { label: Agent bundles, href: /bundles/ }
+    - label: Design system
+      links:
+        - { label: Overview, href: /design-system/ }
+        - { label: Page kinds, href: /page-kinds/ }
+        - { label: Components, href: /design-system/components/ }
+    - label: Source
+      links:
+        - { label: GitHub repository, href: "https://github.com/zenobi-us/dotfiles" }
+        - { label: Website source, href: "https://github.com/zenobi-us/dotfiles/tree/master/docs/website" }
+        - { label: Repository guide, href: "https://github.com/zenobi-us/dotfiles/blob/master/README.md" }

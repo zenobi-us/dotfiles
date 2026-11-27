@@ -33,15 +33,7 @@ export function SkillDocument(props: { skill: BundleSkill; children: ReactNode }
           <a href={siteHref(`/bundles/${props.skill.bundle}/skill/${props.skill.name}/`)}>{props.skill.name}</a>
         </nav>
         {props.children}
-        <SiteFooter spacing="compact">
-          <SiteFooter.Label>{nav.footer.label}</SiteFooter.Label>
-          <SiteFooter.Link href={`${bundleHref}#${props.skill.anchor}`} iconBefore="←">
-            All bundle skills
-          </SiteFooter.Link>
-          <SiteFooter.Link href="#skill" icon="↑">
-            Back to top
-          </SiteFooter.Link>
-        </SiteFooter>
+        <SiteFooter />
       </Page.Main>
     </>
   );
