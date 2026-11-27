@@ -1,0 +1,48 @@
+{
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "method": "Read both full immutable committed references with git show piped through MQ raw/raw OKF. No working/index reads or source edits; not a substitute for fresh independent review.",
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+  ],
+  "metadata_first_use": {
+    "CLI": "Command-line interface (CLI) display text",
+    "JSON": "JavaScript Object Notation (JSON) number schemaVersion:1",
+    "UTC": "Coordinated Universal Time (UTC) timestamp",
+    "ISO": "International Organization for Standardization (ISO) timestamp format",
+    "UTF8": "Unicode Transformation Format with 8-bit code units (UTF-8)",
+    "BOM": "byte order mark (BOM)",
+    "SHA256": "256-bit Secure Hash Algorithm (SHA-256)"
+  },
+  "upgrade_first_use": {
+    "UTF8": "Unicode Transformation Format with 8-bit code units (UTF-8)",
+    "JSON": "JavaScript Object Notation (JSON)"
+  },
+  "cwd_prose": "current working directory in both references",
+  "preserved": {
+    "inventory_records": 5,
+    "identity_records": 2,
+    "all_field_meanings": true,
+    "historical_numeric1_only": true,
+    "current_string_v2": true,
+    "unversioned_and_string_v1_rejected": true,
+    "unknown_null_mixed_duplicate_refusals": true,
+    "malformed_utf8_before_json": true,
+    "no_normalization_or_implicit_bom_removal": true,
+    "intentionally_encoded_ufffd_supported": true,
+    "installed_module_root_independent_of_cwd": true,
+    "strict_symlink_containment": true,
+    "ordered_style_asset_provenance_distinctness": true,
+    "checksum_failure_no_repair": true,
+    "identity_only_byte_preserving_conversion": true,
+    "pure_hooks_and_shared_persistence": true,
+    "explicit_separate_authority": true,
+    "exact_commands_and_paths": true,
+    "purpose_readers_dates_and_referrals": true,
+    "all_existing_sections_and_max2_list_levels": true
+  },
+  "permanent_wording_tests_added": false,
+  "source_accepted": false,
+  "next_required": "Validate actual typed fixer44 receipt and final blob bindings/clean source, then fresh independent review. Any different final source invalidates this inspection binding."
+}

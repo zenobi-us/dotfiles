@@ -1,0 +1,14 @@
+{
+  "baseline": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "changed_paths": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+  ],
+  "only_authorized_paths": true,
+  "source_clean": true,
+  "creator_version": "0.1.10"
+}

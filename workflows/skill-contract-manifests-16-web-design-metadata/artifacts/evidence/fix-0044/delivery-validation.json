@@ -1,0 +1,29 @@
+{
+  "event_equals_delivered_domain": true,
+  "transport_sha256": "7ebe9d96d4a2cb0ad094f1f74116e4d8e8ea6e446513769baefa67241a9ee082",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "receipt_id": "fix-0044",
+  "status": "completed",
+  "published_actual_link_proof": [
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0044.md",
+      "actual_mq_ast_file_links": 47,
+      "all_exist": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+      "actual_mq_ast_file_links": 47,
+      "all_exist": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md",
+      "actual_mq_ast_file_links": 26,
+      "all_exist": true
+    }
+  ],
+  "all_prior_immutable_bytes_unchanged": true,
+  "native_executions": 1,
+  "writer_executions": 1,
+  "parent_closure_pending": true
+}

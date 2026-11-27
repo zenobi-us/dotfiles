@@ -1,0 +1,26 @@
+{
+  "run_id": "21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e",
+  "pane_id": "t2mv",
+  "shutdown": "pending",
+  "services_started": [],
+  "extra_agents_started": [],
+  "extra_signals_sent": 0,
+  "observation": "Primary OMP and its kernel/observer remain live for normal parent closure. Native resources CLI exit1 means expected pending shutdown, not command or source validation failure. Full original tool capture retained.",
+  "processes": [
+    {
+      "pid": 1903809,
+      "command": "omp",
+      "state": "running"
+    },
+    {
+      "pid": 1906371,
+      "command": "python",
+      "state": "running"
+    },
+    {
+      "pid": 1913494,
+      "command": "bun",
+      "state": "running"
+    }
+  ]
+}

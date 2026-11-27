@@ -1,0 +1,31 @@
+{
+  "full_final_references_read_via_mq_no_lockfile": true,
+  "first_use": {
+    "source-metadata.md": [
+      "command-line interface (CLI)",
+      "JavaScript Object Notation (JSON)",
+      "Coordinated Universal Time (UTC)",
+      "International Organization for Standardization (ISO)",
+      "Unicode Transformation Format with 8-bit code units (UTF-8)",
+      "byte order mark (BOM)",
+      "256-bit Secure Hash Algorithm (SHA-256)"
+    ],
+    "source-metadata-upgrade.md": [
+      "Unicode Transformation Format with 8-bit code units (UTF-8)",
+      "JavaScript Object Notation (JSON)"
+    ]
+  },
+  "cwd_prose": "current working directory in both whole references",
+  "manual_preservation": [
+    "five Inventory records and all labels/meanings retained",
+    "two identity records; numeric1 historical/stringv2 current",
+    "unknown/missing/mixed/duplicate refusals retained",
+    "strict malformed-byte rejection; no normalization/implicit BOM removal; valid encoded U+FFFD retained",
+    "checksums/no repair; provenance/capture/order retained",
+    "separate conversion authority and pure hooks retained",
+    "purpose/reader/date/referrals/sections unchanged; max two list levels; no added table/glossary/overview",
+    "longest expanded descriptive sentence has 18 ordinary space-delimited words; expanded procedural sentence has 15",
+    "four sentences maximum in expanded paragraphs; technical literals and code unchanged"
+  ],
+  "permanent_wording_tests_added": false
+}

@@ -1,0 +1,43 @@
+{
+  "head": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "paths": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "index_blob": "2c722299299bd4054f49bd7e29d5e164b8464103",
+      "head_blob": "2c722299299bd4054f49bd7e29d5e164b8464103",
+      "working_sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "working_equals_head": true,
+      "index_equals_head": true,
+      "index_equals_previous": false
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "index_blob": "f0f3b36b6d9f505ac8d78fbf5e6c2957064fbec1",
+      "head_blob": "f0f3b36b6d9f505ac8d78fbf5e6c2957064fbec1",
+      "working_sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "working_equals_head": true,
+      "index_equals_head": true,
+      "index_equals_previous": false
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "index_blob": "74196f8cf5ba5b5175f932fb4d872c42b65b4872",
+      "head_blob": "8ecd28576c393b9320201949692c479a644cbef3",
+      "working_sha256": "367c9341bf829eec0b4a369d1104bce1eb117939d135961c61666a542bb741f2",
+      "working_equals_head": true,
+      "index_equals_head": false,
+      "index_equals_previous": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "index_blob": "cf17853c97d02d7df2fff735bde7bbcaf3b11e3e",
+      "head_blob": "f3a91598affe2089d1e130d5f43922b13570983a",
+      "working_sha256": "d01970fb730313a18e419a394f27854f1bc0eba7ce9fd2c34641f470abbcbc6d",
+      "working_equals_head": true,
+      "index_equals_head": false,
+      "index_equals_previous": true
+    }
+  ],
+  "status": "MM mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\nMM mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n"
+}

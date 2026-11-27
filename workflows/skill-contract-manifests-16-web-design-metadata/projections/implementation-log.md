@@ -150,3 +150,36 @@ All prior immutable records and failed captures remain unchanged. Checkpoint116 
 
 The primary remains live for normal parent closure. Parent owns tracker and YAML views. Parent also owns publication-checkout commits, fresh review and integration.
 
+## fix-0044: first-use prose definitions
+
+Review41 returned FAILURE for `b039c503841014575faf26c16d3dfa61e9c63db6`. Its two low hard findings were standards-013 and standards-014. Its specification axis had no findings. [Review41](../artifacts/reviews/review-review-0041.md) remains unchanged.
+
+Fix44 resolves both assigned findings in the two source-metadata references. Technical literals and commands remain exact. All record meanings and conversion authority remain intact. Full final references were read through MQ with `--no-lockfile`.
+
+Source commit: `b0d12b0912d15b1c1add96caca33afa573f5144b`. Tree: `c163046bd7dd4e1a0874a34215b523a8c13af70a`.
+
+- **Authored reference:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md`.
+- **Authored reference:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md`.
+- **Normal hook:** `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json`.
+- **Normal hook:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`.
+
+Normal hooks set Creator metadata to `0.1.10`. Only the two known stale owned hook index entries required scoped staging reconciliation. Their working bytes already equaled committed HEAD. No source-byte change or new commit followed.
+
+The owning absolute executable ran once from `/tmp` after final prose edits and before commit. Outer exit was 0. Standard error was empty. All 56 JSON rows matched expected exits. There were 21 successful commands and 35 expected refusals. The separate final PASS line remains captured.
+
+Start: `2026-11-27T21:43:59.691617+00:00`. Duration: 7.997728261 seconds. This is precommit evidence, not postcommit execution. Seven bindings cover the runtime, final references, and normal hook metadata.
+
+All seven protected nonhook feature paths and all five assets remain baseline exact. Catalog bytes and capture metadata remain unchanged. No source refresh, original-provenance access, permanent wording tests, or extra agents occurred.
+
+- **New snapshot:** [draft44](../artifacts/snapshots/pr-draft-fix-0044.md).
+- **Assigned receipt:** [fix44](../events/fix-0044.yaml).
+- **Phase authorization:** [start43](../events/fix-start-0043.yaml).
+- **Consumed parent:** [parent42](../events/review-complete-0042.yaml).
+- **Actual run:** [Native capture](../artifacts/evidence/fix-0044/native-smoke.json).
+- **Actual outcomes:** [Row validation](../artifacts/evidence/fix-0044/native-validation.json).
+- **Committed objects:** [Seven bindings](../artifacts/evidence/fix-0044/commit-binding.json).
+- **Semantic audit:** [Manual inspection](../artifacts/evidence/fix-0044/manual-prose-validation.json).
+
+No assigned finding or implementation question remains unresolved. Fresh independent review is PENDING for the new source. No stale verdict applies. Source remains local, not merged or pushed.
+
+All prior immutable history and failed captures remain unchanged. The primary remains live for normal parent closure. Parent owns fresh review, acceptance, tracker and YAML views, publication commits, and integration.

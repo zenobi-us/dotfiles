@@ -1,0 +1,51 @@
+{
+  "commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "execution": "precommit native once; final committed byte binding, not postcommit execution",
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "git_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "git_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "git_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "git_blob": "2c722299299bd4054f49bd7e29d5e164b8464103",
+      "sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "git_blob": "f0f3b36b6d9f505ac8d78fbf5e6c2957064fbec1",
+      "sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "git_blob": "8ecd28576c393b9320201949692c479a644cbef3",
+      "sha256": "367c9341bf829eec0b4a369d1104bce1eb117939d135961c61666a542bb741f2",
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "git_blob": "f3a91598affe2089d1e130d5f43922b13570983a",
+      "sha256": "d01970fb730313a18e419a394f27854f1bc0eba7ce9fd2c34641f470abbcbc6d",
+      "working_equals_committed": true
+    }
+  ],
+  "source_clean": true,
+  "known_hook_index_reconciliation": "only two hook paths, unchanged working HEAD bytes; old index blobs retained in owned-index-observation.json"
+}

@@ -1,0 +1,18 @@
+{
+  "supersedes": "only the numeric longest-sentence transcription in manual-prose-validation.json",
+  "sentences": [
+    {
+      "text": "`readCatalog` rejects malformed Unicode Transformation Format with 8-bit code units (UTF-8) bytes before JSON parsing.",
+      "ordinary_space_delimited_count": 15
+    },
+    {
+      "text": "It validates structure and verifies every referenced asset's 256-bit Secure Hash Algorithm (SHA-256) checksum.",
+      "ordinary_space_delimited_count": 14
+    },
+    {
+      "text": "All other Unicode Transformation Format with 8-bit code units (UTF-8) bytes remain unchanged.",
+      "ordinary_space_delimited_count": 13
+    }
+  ],
+  "note": "Counts are conservative ordinary space-delimited counts; technical-name exemptions can reduce them. All are below25. Expanded procedural sentences remain below20. No source edit or native rerun."
+}

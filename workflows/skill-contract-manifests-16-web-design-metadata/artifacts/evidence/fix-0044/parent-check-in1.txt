@@ -1,0 +1,140 @@
+│ pres['assets']=[{'path':e['asset'],'checksum_matches':hashlib.sha256((src/skill/'assets'/e['asset']).read_bytes()).h │
+│ exdigest()==e['sha256'],'baseline_equal':(src/skill/'assets'/e['asset']).read_bytes()==blob(base,skill/'assets'/e['a │
+│ sset'])} for e in cat['sources']];                                                                                   │
+│ assert all(e['baseline_equal'] for e in pres['protected']);                                                          │
+│ assert all(e['baseline_equal'] and e['checksum_matches'] for e in pres['assets']);                                   │
+│ save('preservation.json',pres)                                                                                       │
+│ print(cmd(['git','diff','--stat']).stdout.decode())                                                                  │
+│ print(cmd(['git','ls-files','-u']).stdout.decode())                                                                  │
+│                                                                                                                      │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ └ • rows: 56                                                                                                         │
+│   • successful_exit0: 21                                                                                             │
+│   • expected_refusal_exit1: 35                                                                                       │
+│   • all_expected: true                                                                                               │
+│   • summaries [1]                                                                                                    │
+│     └─ 0: "PASS: 56 native commands; identity, historical conversion, …"                                             │
+│ …                                                                                                                    │
+│  .../web-design/references/source-metadata-upgrade.md     |  6 +++---                                                │
+│  .../skills/web-design/references/source-metadata.md      | 16 +++++++++-------                                      │
+│  2 files changed, 12 insertions(+), 10 deletions(-)                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 08:14:07  ⤵ 702  ⤴ 882  💾 116K  ⏱ 1.7s  ⚡ 45.8/s
+
+ Verifying claim counts
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   ✎ git add mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md               │
+│ mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md                   │
+│ mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json                                                │
+│ mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json  27ms                                             │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ (no output, exit code 0)                                                                                             │
+╰─── Wall: 0.03s · Timeout: 60s ───────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 08:14:27  ⤵ 316  ⤴ 302  💾 118K  ⏱ 1.4s  ⚡ 37.2/s
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   ✎ git commit --only mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md     │
+│ mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md                   │
+│ mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json                                                │
+│ mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json -m docs:                                          │
+│ skill-contract-manifests-16-web-design-metadata define acronyms  1.79s                                               │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ ok b0d12b09 (4 files +14 -12)                                                                                        │
+╰─── Wall: 1.79s · Timeout: 60s · Artifact: 17 · Minimized: git 1.1KB → 30B ───────────────────────────────────────────╯
+
+ 2026-11-28 08:14:35  ⤵ 125  ⤴ 151  💾 118K  ⏱ 1.9s  ⚡ 30.5/s
+
+ Inspecting index before guard
+
+╭─── 🐍 ✔ Observing owned post-hook index · (131ms) ───────────────────────────────────────────────────────────────────╮
+│ head=cmd(['git','rev-parse','HEAD']).stdout.decode().strip();                                                        │
+│ tree=cmd(['git','rev-parse','HEAD^{tree}']).stdout.decode().strip()                                                  │
+│ owned=refs+hooks                                                                                                     │
+│ idx=[]                                                                                                               │
+│ for p in owned:                                                                                                      │
+│     i=cmd(['git','show',':'+str(p)]);                                                                                │
+│     h=blob('HEAD',p);                                                                                                │
+│     w=(src/p).read_bytes();                                                                                          │
+│                                                                                                                      │
+│ idx.append({'path':str(p),'index_blob':cmd(['git','rev-parse',':'+str(p)]).stdout.decode().strip(),'head_blob':cmd([ │
+│ 'git','rev-parse','HEAD:'+str(p)]).stdout.decode().strip(),'working_sha256':hashlib.sha256(w).hexdigest(),'working_e │
+│ quals_head':w==h,'index_equals_head':i.stdout==h,'index_equals_previous':i.stdout==blob(base,p)})                    │
+│ status=cmd(['git','status','--porcelain']).stdout.decode();                                                          │
+│ save('owned-index-observation.json',{'head':head,'tree':tree,'paths':idx,'status':status});                          │
+│ print(json.dumps(idx,indent=2));                                                                                     │
+│ print(status)                                                                                                        │
+│ print('COMMIT',head,tree)                                                                                            │
+│                                                                                                                      │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│     ├─ path: "mise/conf.d/devtools-agent/bundles/creator/skills/web-desig…"                                          │
+│     ├─ index_blob: "2c722299299bd4054f49bd7e29d5e164b8464103"                                                        │
+│     ├─ head_blob: "2c722299299bd4054f49bd7e29d5e164b8464103"                                                         │
+│     ├─ working_sha256: "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac68…"                                │
+│     ├─ working_equals_head: true                                                                                     │
+│ …                                                                                                                    │
+│ MM mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json                                                │
+│ MM mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json                                             │
+│                                                                                                                      │
+│ COMMIT b0d12b0912d15b1c1add96caca33afa573f5144b c163046bd7dd4e1a0874a34215b523a8c13af70a                             │
+│ … 1 more lines (Ctrl+O to expand)                                                                                    │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 08:14:41  ⤵ 190  ⤴ 293  💾 118K  ⏱ 3.9s  ⚡ 30.1/s
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   ✎ git add mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json                                    │
+│ mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json  16ms                                             │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ (no output, exit code 0)                                                                                             │
+╰─── Wall: 0.02s · Timeout: 60s ───────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 08:14:51  ⤵ 832  ⤴ 87  💾 119K  ⏱ 2.2s  ⚡ 23.9/s
+
+ Preparing updated snapshot
+
+ Reading implementation log
+
+╭─── 🐍 ✔ Binding final source and reading history · (988ms) ──────────────────────────────────────────────────────────╮
+│ print('seven bindings; clean')                                                                                       │
+│ logbefore=mqread(wf/'projections/implementation-log.md');                                                            │
+│ print(logbefore)                                                                                                     │
+│ old=mqread(wf/'artifacts/snapshots/pr-draft-fix-0038.md')                                                            │
+│ # Actual MQ AST, not text-regex links.                                                                               │
+│ r=cmd(['mise','exec','--','mq','--allow-http-import','--no-lockfile','-I','markdown','-F','json','import             │
+│ "github.com/harehare/okf.mq" | .link',str(wf/'artifacts/snapshots/pr-draft-fix-0038.md')],root);                     │
+│ print(r.stdout.decode()[:4500]);                                                                                     │
+│ assert r.returncode==0                                                                                               │
+│ save('prior-snapshot-link-ast.json',json.loads(r.stdout))                                                            │
+│                                                                                                                      │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│       },                                                                                                             │
+│       null,                                                                                                          │
+│       {                                                                                                              │
+│         "type": "Link",                                                                                              │
+│         "url": "#consumed-and-produced-references",                                                                  │
+│         "title": null,                                                                                               │
+│         "values": [                                                                                                  │
+│           {                                                                                                          │
+│             "type": "Text",                                                                                          │
+│             "value": "Consumed and pr                                                                                │
+│ … 487 more lines (Ctrl+O to expand)                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 08:14:55  ⤵ 170  ⤴ 554  💾 119K  ⏱ 1.2s  ⚡ 44.7/s
+
+ TODO
+  ├─ II. Fix · 1/2
+  │  ├─ ☑ Clarify first-use acronyms in two references and audit preservation.
+  │  └─ ☐ Run owning smoke once and commit scoped paths.
+  ├─ III. Publish · 0/2
+  └─────
+
+  ⎋ Binding final source and reading history                                                               ⚡ 36.3 tok/s
+
+────────────────────────────────────── 📖 ACRO: Define metadata acronyms before use · 🪙 124K · S0.54 · ◫ 24.9%/500K ⟲ ─
+❯
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ◑ GPT-6.1 Sol · 📁 …ntract-manifests-16-web-design-metadata

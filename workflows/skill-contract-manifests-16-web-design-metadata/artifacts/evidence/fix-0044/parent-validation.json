@@ -1,0 +1,73 @@
+{
+  "receipt_id": "fix-0044",
+  "transport_sha256": "7ebe9d96d4a2cb0ad094f1f74116e4d8e8ea6e446513769baefa67241a9ee082",
+  "event_equals_delivered_domain": true,
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "resolved_finding_ids": [
+    "standards-013",
+    "standards-014"
+  ],
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+  ],
+  "hook_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "actual_native_rows": 56,
+  "positive": 21,
+  "expected_negative": 35,
+  "all_expected": true,
+  "outer_exit": 0,
+  "stderr_empty": true,
+  "started_at": "2026-11-27T21:43:59.691617+00:00",
+  "duration_seconds": 7.997728260990698,
+  "execution": "once after all final prose edits, before commit; seven final bindings, no postcommit rerun",
+  "final_committed_bindings": 7,
+  "protected7_independently_equal": true,
+  "all5_assets_preserved": true,
+  "source_clean": true,
+  "known_owned_hook_index_aligned_before_guard": true,
+  "old_index_identities_retained": true,
+  "source_bytes_or_commit_changed_by_alignment": false,
+  "snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0044.md",
+  "snapshot_schema": "worktree-pr-draft/v1",
+  "snapshot_producer": "fix-0044",
+  "snapshot_bytes": 8829,
+  "snapshot_sha256": "95181dd4f003e0a94d9a15494c25c8b327472b31b6271e36dc070996d2e2d77d",
+  "correct_formatter_lf_modeled_before_assertion": true,
+  "published_actual_link_proofs": [
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0044.md",
+      "actual_mq_ast_file_links": 47,
+      "all_exist": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+      "actual_mq_ast_file_links": 47,
+      "all_exist": true
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md",
+      "actual_mq_ast_file_links": 26,
+      "all_exist": true
+    }
+  ],
+  "all611_prior_immutable_files_unchanged": true,
+  "parent_full_snapshot_and_references_read_via_mq": true,
+  "manual_source_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0044/parent-manual-reference-inspection.json",
+  "read_only_trim_end_correction_retained": true,
+  "manual_count_transcription_clarification_retained": true,
+  "native_executions": 1,
+  "writer_executions": 1,
+  "primary_processes_stopped": 3,
+  "primary_shutdown": "confirmed",
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0,
+  "fresh_review_required": true,
+  "source_accepted": false,
+  "source_pushed": false,
+  "source_merged": false
+}

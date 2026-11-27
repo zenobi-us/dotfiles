@@ -1,0 +1,25 @@
+{
+  "text": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2mv\",\"createdAt\":\"2026-11-27T21:41:08.024Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e\",\"observedAt\":\"2026-11-27T21:47:05.143Z\",\"processes\":[{\"pid\":1903809,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"52097016\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":1906371,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"52104720\",\"command\":\"python\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":1913494,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"52132481\",\"command\":\"bun\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+  "details": {
+    "totalLines": 1,
+    "rowPrefixes": false,
+    "displayContent": {
+      "text": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2mv\",\"createdAt\":\"2026-11-27T21:41:08.024Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e\",\"observedAt\":\"2026-11-27T21:47:05.143Z\",\"processes\":[{\"pid\":1903809,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"52097016\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":1906371,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"52104720\",\"command\":\"python\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":1913494,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"52132481\",\"command\":\"bun\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+      "startLine": 1,
+      "lineNumbers": [
+        1,
+        2
+      ]
+    },
+    "fileSize": 1340,
+    "raw": true,
+    "meta": {
+      "source": {
+        "type": "internal",
+        "value": "artifact://24"
+      },
+      "pagedSource": true
+    },
+    "resolvedPath": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-skill-contract-manifests-16-web-design-metadata--/2026-11-27T21-41-10-103Z_01a21ef4-8157-71ec-a4bf-6c7c3dc33741/24.bash.log"
+  }
+}

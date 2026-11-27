@@ -1,0 +1,66 @@
+{
+  "protected": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "sha256": "8d440016ecbf988620b12ddad3ace0171775f3745bc68565e85030391451b510",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "baseline_equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "baseline_equal": true
+    }
+  ],
+  "assets": [
+    {
+      "path": "styles/report-dashboard/DESIGN.md",
+      "checksum_matches": true,
+      "baseline_equal": true
+    },
+    {
+      "path": "styles/widget-grid-dashboard/DESIGN.md",
+      "checksum_matches": true,
+      "baseline_equal": true
+    },
+    {
+      "path": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "checksum_matches": true,
+      "baseline_equal": true
+    },
+    {
+      "path": "styles/project-info/DESIGN.md",
+      "checksum_matches": true,
+      "baseline_equal": true
+    },
+    {
+      "path": "styles/project-info/EDITOR-DESIGN.md",
+      "checksum_matches": true,
+      "baseline_equal": true
+    }
+  ]
+}

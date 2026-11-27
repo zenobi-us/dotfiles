@@ -1,0 +1,11 @@
+{
+  "rows": 56,
+  "successful_exit0": 21,
+  "expected_refusal_exit1": 35,
+  "all_expected": true,
+  "summaries": [
+    "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+  ],
+  "outer_exit": 0,
+  "stderr_empty": true
+}

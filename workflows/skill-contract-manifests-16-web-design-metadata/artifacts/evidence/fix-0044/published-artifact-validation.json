@@ -1,0 +1,13 @@
+{
+  "snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0044.md",
+  "snapshot_sha256": "95181dd4f003e0a94d9a15494c25c8b327472b31b6271e36dc070996d2e2d77d",
+  "snapshot_exact_candidate": true,
+  "pr_draft_exact_candidate": true,
+  "implementation_log_exact_candidate": true,
+  "all_prior_immutable_files_unchanged": true,
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review": "PENDING",
+  "actual_mq_ast_link_validation": "*-candidate-links.json",
+  "planned_final_receipt_link": "events/fix-0044.yaml"
+}

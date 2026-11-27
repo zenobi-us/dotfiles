@@ -2,47 +2,10 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-16-web-design-metadata,
   ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
-  state: REVIEW_FAILED,
-  latest_receipt: review-complete-0042,
-  latest_source_commit: b039c503841014575faf26c16d3dfa61e9c63db6,
-  latest_source_tree: 29ef53bfe84e272f0ea7e965bc554f33f21f194c,
-  latest_review_verdict: FAILURE,
-  open_findings:
-    [
-      {
-          adr: null,
-          description: "Hard house-rule breach: iso-24495-3/SKILL.md rule 3 requires
-            acronym definitions at first use. Added prose uses CLI (35), JSON
-            (43), UTC/ISO (62), and UTF-8/BOM/SHA-256 (86) without definitions.",
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md,
-          id: standards-013,
-          line: 35,
-          required_change: "Define these acronyms at first use, or replace them with clear
-            full terms. Preserve technical literals, all record meanings,
-            historical restrictions, and separate conversion authority.",
-          severity: low,
-          validation_command: mise exec -- mq --allow-http-import --no-lockfile -I raw -F
-            raw 'import "github.com/harehare/okf.mq" | .'
-            mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md;
-            manually check first-use acronym definitions against iso-24495-3
-            rule 3.
-        },
-      {
-          adr: null,
-          description: "Hard house-rule breach: iso-24495-3/SKILL.md rule 3 requires
-            acronym definitions at first use. This entirely added reference uses
-            UTF-8 (13) and JSON (59) without definitions.",
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md,
-          id: standards-014,
-          line: 13,
-          required_change: "Define UTF-8 and JSON at first prose use. Preserve conversion
-            guarantees, commands, and contract identifiers.",
-          severity: low,
-          validation_command: mise exec -- mq --allow-http-import --no-lockfile -I raw -F
-            raw 'import "github.com/harehare/okf.mq" | .'
-            mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md;
-            manually check first-use acronym definitions against iso-24495-3
-            rule 3.
-        }
-    ]
+  state: IMPLEMENTED,
+  latest_receipt: fix-complete-0045,
+  latest_source_commit: b0d12b0912d15b1c1add96caca33afa573f5144b,
+  latest_source_tree: c163046bd7dd4e1a0874a34215b523a8c13af70a,
+  latest_review_verdict: null,
+  open_findings: []
 }

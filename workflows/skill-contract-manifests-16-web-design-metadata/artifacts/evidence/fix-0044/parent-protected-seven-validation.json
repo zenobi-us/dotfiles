@@ -1,0 +1,16 @@
+{
+  "baseline_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ],
+  "all7_blob_identities_equal": true,
+  "working_index_not_read": true,
+  "native_checks_not_rerun": true
+}
