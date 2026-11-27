@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/skill-contract-manifests"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 1,
+  "seconds": 0.5589462060000006,
+  "stdout": "",
+  "stderr": "Error:   × Is a directory (os error 21)\n\n"
+}

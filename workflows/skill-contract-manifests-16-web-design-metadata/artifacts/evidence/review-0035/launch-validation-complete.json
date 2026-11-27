@@ -1,0 +1,64 @@
+[
+  {
+    "axis": "standards",
+    "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+    "depth": 2,
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t2m5",
+      "createdAt": "2026-11-27T00:25:43.142Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "operationId": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "parentRunId": "0418c7c3-103c-4afe-bff8-384759f9ff8b"
+    },
+    "assigned_context": {
+      "schemaVersion": "result-delivery/v2",
+      "kind": "context",
+      "audience": "agent",
+      "mode": "artifact-reference",
+      "runId": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "operationId": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "target": {
+        "path": "/var/home/zenobius/.local/state/result-delivery/runs/4f0425d9-7fe1-4cef-8481-2491c5a3dcd1/result.json",
+        "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/4f0425d9-7fe1-4cef-8481-2491c5a3dcd1/result.json",
+        "schema": "review-axis/v1"
+      }
+    },
+    "valid": true
+  },
+  {
+    "axis": "spec",
+    "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+    "depth": 2,
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t2m6",
+      "createdAt": "2026-11-27T00:25:43.142Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "operationId": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "parentRunId": "0418c7c3-103c-4afe-bff8-384759f9ff8b"
+    },
+    "assigned_context": {
+      "schemaVersion": "result-delivery/v2",
+      "kind": "context",
+      "audience": "agent",
+      "mode": "artifact-reference",
+      "runId": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "operationId": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "target": {
+        "path": "/var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/result.json",
+        "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/result.json",
+        "schema": "review-axis/v1"
+      }
+    },
+    "valid": true
+  }
+]

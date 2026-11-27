@@ -1,0 +1,4 @@
+{
+  "initiative_input": "Resolved initiative path is a directory; initial MQ returned Is a directory. Corrected once to canonical index.md per ticket procedure; corrected read succeeded. Original initiative.json retained.",
+  "optional_prior_prompt": "Guessed prior prompt path absent; not required evidence. Used actual retained spec-axis.json shape instead. No source failure, native or axes rerun."
+}

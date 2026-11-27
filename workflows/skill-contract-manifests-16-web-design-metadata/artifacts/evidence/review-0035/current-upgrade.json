@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.42568428999999014,
+  "stdout": "# Upgrade design source metadata\n\n- **Procedure purpose:** Use this procedure to convert supported web-design source metadata with separate user authority.\n- **Intended reader:** Skill maintainers and operators.\n- **Document date:** 2026-11-27.\n\nFor format definitions and read-only validation, read [Design source metadata](source-metadata.md).\n\nThe only declared edge is `design-source-metadata/v1` to `design-source-metadata/v2`, with procedure `file:references/source-metadata-upgrade.md` and trusted adapter `file:scripts/source-metadata.ts`.\n\nThe adapter validates the explicit numeric source. It replaces only the top-level numeric identity token with the current string identity. All other UTF-8 bytes remain unchanged. This wire cutover preserves these items:\n\n- **Source locations:** Every source location.\n- **Asset associations:** Every association.\n- **Capture time:** The recorded capture time.\n- **Asset checksums:** Every checksum.\n- **Array order:** Every array position.\n- **Authored properties:** Every unknown property.\n- **Bundled assets:** Every bundled asset.\n\nThe conversion never performs these actions:\n\n- **Source refresh:** It never refreshes sources.\n- **Provenance replacement:** It never computes replacement provenance.\n- **Time replacement:** It never restamps time.\n- **Asset writes:** It never writes assets.\n\nThe shared operation performs these steps:\n\n1. **Resolve declarations:** Resolve the declared contracts and procedure.\n2. **Validate content:** Validate source and destination.\n3. **Compare bytes:** Compare the complete identity-normalized authored bytes.\n4. **Acquire locks:** Acquire the required locks.\n5. **Persist result:** Persist the validated result.\n\nOwner hooks are pure. Content with `immutable: true` requires read-only historical access. Paths inside these directories also require read-only historical access:\n\n- **Event records:** `events`.\n- **Receipt records:** `receipts`.\n- **Historical snapshots:** `snapshots`.\n- **Historical artifacts:** `artifacts`.\n\nThese refusals preserve source bytes:\n\n- **Unsupported operations:** Operations the owner does not support.\n- **Unknown identities:** Identities the owner does not recognize.\n- **Invalid content:** Content that fails validation.\n- **Unsupported paths:** Paths the owner does not permit.\n\nResolve `SKILL_CONTRACTS_ROOT` and `WEB_DESIGN_ROOT` to their installed skill directories. Invoke absolute entrypoints from any cwd. Artifact and selection-list paths below are explicit absolute paths. Conversion requires separate user authority. Reading and installation never run it.\n\n```sh\n\"$SKILL_CONTRACTS_ROOT/scripts/router.ts\" safe-upgrade --skill \"$WEB_DESIGN_ROOT\" --owner file:scripts/source-metadata.ts --artifact /absolute/sources.json --operation upgrade\n\"$SKILL_CONTRACTS_ROOT/scripts/router.ts\" bulk-upgrade --skill \"$WEB_DESIGN_ROOT\" --owner file:scripts/source-metadata.ts --artifacts /absolute/selected-catalogs.json\n\"$WEB_DESIGN_ROOT/scripts/sources.ts\" validate /absolute/sources.json\n```\n\nThe bulk selection is a JSON array of distinct paths. Each item commits independently. Report failed and partial outcomes honestly.\n\nCurrent valid input is a byte-preserving no-op. Conversion validates metadata. Actual consumption separately verifies bundled integrity. A checksum failure never authorizes catalog or asset repair.\n\n",
+  "stderr": ""
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "muxer-contracts/v2",
+  "session": {
+    "role": "child",
+    "runId": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+    "operationId": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+    "contextFile": "/var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/context.json"
+  },
+  "delivery": {
+    "context": {
+      "schemaVersion": "result-delivery/v2",
+      "kind": "context",
+      "audience": "agent",
+      "mode": "artifact-reference",
+      "runId": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+      "operationId": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+      "target": {
+        "path": "/var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/result.json",
+        "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/result.json",
+        "schema": "worktree-receipt/v3"
+      }
+    },
+    "contextEnvironment": "RESULT_DELIVERY_CONTEXT",
+    "artifactReference": true,
+    "nativeStructuredResult": false,
+    "completionImpliesResultSuccess": false
+  },
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "muxerContract": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/muxers/herdr-app.md",
+  "agentContract": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/agents/omp.md",
+  "limits": {
+    "maxSubagentsPerSession": 5,
+    "maxDepth": 2,
+    "currentDepth": 1
+  },
+  "needsOperatorInput": false
+}

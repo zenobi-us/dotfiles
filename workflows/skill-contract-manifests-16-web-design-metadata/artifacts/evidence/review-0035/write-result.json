@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+    "--repository",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "--phase-context",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0035/phase-context.json",
+    "--input",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0035/outcome.json",
+    "--delivery-context",
+    "/var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/context.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "signal": null,
+  "seconds": 1.163381751,
+  "stdout": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"reference\",\"runId\":\"0418c7c3-103c-4afe-bff8-384759f9ff8b\",\"operationId\":\"0418c7c3-103c-4afe-bff8-384759f9ff8b\",\"sha256\":\"a41d7f2cb77bd8f06baa1474ab3175a6e0ea3b218fd11bd4654d1cab382414dd\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/result.json\",\"resultSchema\":\"worktree-receipt/v3\"}\n",
+  "stderr": ""
+}

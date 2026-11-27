@@ -1,0 +1,15 @@
+{
+  "command": [
+    "git",
+    "rev-parse",
+    "HEAD",
+    "HEAD^{tree}",
+    "--abbrev-ref",
+    "HEAD"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "seconds": 0.0025370000000111757,
+  "stdout": "14705f57e663196bc211fbf394a8829820dcf9fc\n77df53d39098775775469a221d525467d1c3e35a\nfeature/skill-contract-manifests-16-web-design-metadata\n",
+  "stderr": ""
+}

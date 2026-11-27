@@ -1,0 +1,44 @@
+[
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "before": "4313780965d87c644c29364fbc10663bb6f566fa",
+    "now": "4313780965d87c644c29364fbc10663bb6f566fa",
+    "match": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "before": "16d989843ab202569632d7af4372e14804a1cc60",
+    "now": "16d989843ab202569632d7af4372e14804a1cc60",
+    "match": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "before": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+    "now": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+    "match": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "before": "606b19275b7199aa9681c6e9e2e25d7169675912",
+    "now": "606b19275b7199aa9681c6e9e2e25d7169675912",
+    "match": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "before": "89f2cf8d962545533d622d989ebca0556f0d411f",
+    "now": "89f2cf8d962545533d622d989ebca0556f0d411f",
+    "match": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "before": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+    "now": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+    "match": true
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "before": "cce148b205250203af99fff3c98d4312f5f4b000",
+    "now": "cce148b205250203af99fff3c98d4312f5f4b000",
+    "match": true
+  }
+]

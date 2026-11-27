@@ -1,0 +1,43 @@
+{
+  "native": {
+    "rows": 56,
+    "positive": 21,
+    "negative": 35,
+    "all_expected": true,
+    "summary": [
+      "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+    ],
+    "outer_status": 0,
+    "seconds": 9.182837190000006,
+    "source": {
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+      "base_branch": "master",
+      "commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+      "tree": "77df53d39098775775469a221d525467d1c3e35a"
+    }
+  },
+  "axes": [
+    {
+      "axis": "standards",
+      "run_id": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "operation_id": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "depth": 2,
+      "parent_run_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+      "sha256": "28b1782fe9af7b2df86a27f69941f9bbd2fd6a67693b1f99bcae84949a4a95ee",
+      "acknowledged": true,
+      "shutdown": "confirmed"
+    },
+    {
+      "axis": "spec",
+      "run_id": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "operation_id": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "depth": 2,
+      "parent_run_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+      "sha256": "95a2795c4e4f38b7fca38266b9b59fb2b12d9615747811b62510da1d7d85475e",
+      "acknowledged": true,
+      "shutdown": "confirmed"
+    }
+  ],
+  "source_bindings": true
+}

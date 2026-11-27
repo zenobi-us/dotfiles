@@ -1,0 +1,13 @@
+{
+  "command": [
+    "git",
+    "rev-parse",
+    "--path-format=absolute",
+    "--git-common-dir"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.0030523859999999985,
+  "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git\n",
+  "stderr": ""
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "contracts",
+    "--muxer",
+    "herdr-app",
+    "--agent",
+    "omp"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.618942978000001,
+  "stdout": "{\n  \"schemaVersion\": \"muxer-contracts/v2\",\n  \"session\": {\n    \"role\": \"child\",\n    \"runId\": \"0418c7c3-103c-4afe-bff8-384759f9ff8b\",\n    \"operationId\": \"0418c7c3-103c-4afe-bff8-384759f9ff8b\",\n    \"contextFile\": \"/var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/context.json\"\n  },\n  \"delivery\": {\n    \"context\": {\n      \"schemaVersion\": \"result-delivery/v2\",\n      \"kind\": \"context\",\n      \"audience\": \"agent\",\n      \"mode\": \"artifact-reference\",\n      \"runId\": \"0418c7c3-103c-4afe-bff8-384759f9ff8b\",\n      \"operationId\": \"0418c7c3-103c-4afe-bff8-384759f9ff8b\",\n      \"target\": {\n        \"path\": \"/var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/result.json\",\n        \"ref\": \"file:///var/home/zenobius/.local/state/result-delivery/runs/0418c7c3-103c-4afe-bff8-384759f9ff8b/result.json\",\n        \"schema\": \"worktree-receipt/v3\"\n      }\n    },\n    \"contextEnvironment\": \"RESULT_DELIVERY_CONTEXT\",\n    \"artifactReference\": true,\n    \"nativeStructuredResult\": false,\n    \"completionImpliesResultSuccess\": false\n  },\n  \"muxer\": \"herdr-app\",\n  \"agent\": \"omp\",\n  \"muxerContract\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/muxers/herdr-app.md\",\n  \"agentContract\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/agents/omp.md\",\n  \"limits\": {\n    \"maxSubagentsPerSession\": 5,\n    \"maxDepth\": 2,\n    \"currentDepth\": 1\n  },\n  \"needsOperatorInput\": false\n}\n",
+  "stderr": ""
+}

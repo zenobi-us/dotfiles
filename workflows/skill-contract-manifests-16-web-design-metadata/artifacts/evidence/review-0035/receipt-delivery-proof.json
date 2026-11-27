@@ -1,0 +1,16 @@
+{
+  "event_equals_delivered_domain": true,
+  "schema": "worktree-receipt/v3",
+  "receipt": "review-0035",
+  "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+  "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+  "verdict": "FAILURE",
+  "finding_ids": [
+    "standards-011",
+    "standards-012"
+  ],
+  "read_status": 0,
+  "event_read_status": 0,
+  "body_sha256": "074c6952c7da2efa734847077b079f7625d0b160664a9faa7341036fdc2ab640",
+  "native_runs": 1
+}

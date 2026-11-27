@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+    "ack",
+    "--context",
+    "/var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/context.json",
+    "--sha256",
+    "95a2795c4e4f38b7fca38266b9b59fb2b12d9615747811b62510da1d7d85475e"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.49531967699999224,
+  "stdout": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"acknowledgement\",\"runId\":\"eac7e16a-1ec6-4db2-9268-3d42e67d9472\",\"operationId\":\"eac7e16a-1ec6-4db2-9268-3d42e67d9472\",\"sha256\":\"95a2795c4e4f38b7fca38266b9b59fb2b12d9615747811b62510da1d7d85475e\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/result.json\",\"resultSchema\":\"review-axis/v1\"}\n",
+  "stderr": ""
+}

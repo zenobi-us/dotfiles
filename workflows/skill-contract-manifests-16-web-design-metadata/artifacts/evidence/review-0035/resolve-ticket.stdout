@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "shared-context-resolution/v1",
+  "kind": "ticket",
+  "adapter": "local-markdown",
+  "store": "repository",
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "publication": "repository"
+}

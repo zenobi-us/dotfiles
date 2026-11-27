@@ -1,0 +1,32 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md
+index 94b2c1d0..2d21655f 100644
+--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md
+@@ -1,5 +1,11 @@
+ # Upgrade design source metadata
+ 
++- **Procedure purpose:** Use this procedure to convert supported web-design source metadata with separate user authority.
++- **Intended reader:** Skill maintainers and operators.
++- **Document date:** 2026-11-27.
++
++For format definitions and read-only validation, read [Design source metadata](source-metadata.md).
++
+ The only declared edge is `design-source-metadata/v1` to `design-source-metadata/v2`, with procedure `file:references/source-metadata-upgrade.md` and trusted adapter `file:scripts/source-metadata.ts`.
+ 
+ The adapter validates the explicit numeric source. It replaces only the top-level numeric identity token with the current string identity. All other UTF-8 bytes remain unchanged. This wire cutover preserves these items:
+diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md
+index bed5a54e..a8155299 100644
+--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md
++++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md
+@@ -1,5 +1,11 @@
+ # Design source metadata
+ 
++- **Reference purpose:** Use this reference to interpret and validate supported web-design source metadata.
++- **Intended reader:** Skill maintainers and agents.
++- **Document date:** 2026-11-27.
++
++For authorised conversion, read [Upgrade design source metadata](source-metadata-upgrade.md).
++
+ The web-design skill owns this catalog family. `assets/sources.json` is the bundled catalog. `scripts/source-metadata.ts` owns these operations:
+ 
+ - **Identity detection:** Detect the exact identity.

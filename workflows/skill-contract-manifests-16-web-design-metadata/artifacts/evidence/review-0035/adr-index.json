@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/docs/adr/index.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5342560789999988,
+  "stdout": "# Architecture decisions\n\nUse this directory for ADRs that record resolved architecture decisions. Use the shared-context CLI to resolve an ADR path before writing it. Add a link here when an ADR is created.\n\nRead the [domain configuration](../agents/domain.md) for domain document rules.\n\n\n- [Pi Ink cleanup trust boundary](0001-pi-ink-cleanup-trust-boundary.md) — Accepted trusted, exclusive-operation model; device execution still requires separate approval.\n",
+  "stderr": ""
+}

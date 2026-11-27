@@ -1,0 +1,18 @@
+{
+  "rows": 56,
+  "positive": 21,
+  "negative": 35,
+  "all_expected": true,
+  "summary": [
+    "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+  ],
+  "outer_status": 0,
+  "seconds": 9.182837190000006,
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "tree": "77df53d39098775775469a221d525467d1c3e35a"
+  }
+}

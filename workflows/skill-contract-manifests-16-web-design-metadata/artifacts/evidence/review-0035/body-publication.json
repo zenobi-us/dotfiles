@@ -1,0 +1,24 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "json",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .body",
+    "/tmp/scm16-review0035-body-input.json",
+    "--no-clobber",
+    "-o",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0035.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 1,
+  "seconds": 0.3459157889999915,
+  "stdout": "",
+  "stderr": "Error: mq::syntax\n\n  × Unknown selector `.body`\n   ╭─[:1:76]\n 1 │ import \"json\" | json::json_parse() | import \"github.com/harehare/okf.mq\" | .body\n   ·                                                                            ──┬──\n   ·                                                                              ╰── unknown selector\n   ╰────\n  help: Unknown selector `.body`. A selector with a similar name exists:\n        `.code`.\n\n"
+}

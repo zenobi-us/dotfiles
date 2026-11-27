@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "spawn",
+    "--muxer",
+    "herdr-app",
+    "--agent",
+    "omp",
+    "--cwd",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "--result-schema",
+    "review-axis/v1",
+    "--prompt-file",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0035/spec-prompt.txt",
+    "--title",
+    "skill-contract-manifests-16-web-design-metadata · spec"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "seconds": 0.7674251510000031,
+  "stdout": "{\"schemaVersion\":\"muxer-spawn/v2\",\"runId\":\"eac7e16a-1ec6-4db2-9268-3d42e67d9472\",\"target\":\"t2m6\",\"parentRunId\":\"0418c7c3-103c-4afe-bff8-384759f9ff8b\",\"operationId\":\"eac7e16a-1ec6-4db2-9268-3d42e67d9472\",\"contextFile\":\"/var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/context.json\",\"deliveryContext\":{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"context\",\"audience\":\"agent\",\"mode\":\"artifact-reference\",\"runId\":\"eac7e16a-1ec6-4db2-9268-3d42e67d9472\",\"operationId\":\"eac7e16a-1ec6-4db2-9268-3d42e67d9472\",\"target\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/result.json\",\"schema\":\"review-axis/v1\"}},\"resultTarget\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/result.json\",\"schema\":\"review-axis/v1\"},\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"depth\":2}\n",
+  "stderr": ""
+}

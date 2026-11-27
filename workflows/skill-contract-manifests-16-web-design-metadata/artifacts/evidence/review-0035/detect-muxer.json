@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "detect-muxer"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.575342394,
+  "stdout": "herdr-app\n",
+  "stderr": ""
+}

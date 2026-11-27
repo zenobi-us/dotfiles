@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-16-web-design-metadata.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5128783220000005,
+  "stdout": "---\nschemaVersion: tracker-ticket/v2\nblocked_by: \n  - skill-contract-manifests-03-safe-upgrades\nid: skill-contract-manifests-16-web-design-metadata\nparent: skill-contract-manifests\nsequence: 16\ntitle: Adopt contracts in web-design source metadata\ntriage: ready-for-agent\ntype: enhancement\nwork_status: \"claimed\"\n---\n\n## What to build\n\nUse an authoritative record-family contract for web-design source metadata and its actual consumers.\n\nImplement this slice under the parent initiative. Preserve its contract ownership, safety boundaries, and scope limits.\n\n## Acceptance criteria\n\n- [ ] Declare source-metadata production or acceptance as applicable, authoritative ownership, validation, historical reading, and supported upgrades.\n- [ ] Replace the known numeric schemaVersion identifier through an explicit historical contract and declared conversion. Do not classify an unknown explicit version as unversioned.\n- [ ] Exercise actual metadata validation and consumption with the current format, the supported historical format, and rejected invalid identifiers.\n- [ ] Preserve source locations, asset associations, capture metadata, and checksums. Do not independently version ordinary design prose or opaque assets without a structural consumer need.\n\n## Verification\n\nExercise the changed behaviour through actual owning commands, not helper tests alone. Check persisted content and rejected operations. Update affected guidance and examples with the implementation.\n\n## Comments\n\n\n\n- Review 2026-11-26T09:15:25.403Z: **FAILURE**. Commit `9689169146996ad84d19430cd19aa2a386c733b2`; tree `67e2145f36f92662554a7bc7c9d2a0032c5a3bb7`. [Review artifact](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md).\n\n\n- Review 2026-11-26T21:14:17.955Z: FAILURE. Source `fb4104c7ea2e27f215fab95ec69682b71b101c1b`, tree `c7ecc92e759b7720f1ffadc4d2377473ff481403`. Four low hard prose-rule findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md).\n\n\n- Review 2026-11-26T21:47:39.841Z: FAILURE. Source `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`, tree `bb15b43f805dbc4946d846862e16caddd485621a`. Three low hard prose-rule findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md).\n\n\n- Review 2026-11-26T22:16:26.879Z: FAILURE. Source `dab2338e6be69e208c39c6c05164c0a1a066dbf7`, tree `85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f`. Two low hard opening-block findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0029.md).\n",
+  "stderr": ""
+}

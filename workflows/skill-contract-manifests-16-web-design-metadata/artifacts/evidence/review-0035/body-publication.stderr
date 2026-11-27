@@ -1,0 +1,11 @@
+Error: mq::syntax
+
+  × Unknown selector `.body`
+   ╭─[:1:76]
+ 1 │ import "json" | json::json_parse() | import "github.com/harehare/okf.mq" | .body
+   ·                                                                            ──┬──
+   ·                                                                              ╰── unknown selector
+   ╰────
+  help: Unknown selector `.body`. A selector with a similar name exists:
+        `.code`.
+

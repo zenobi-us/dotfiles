@@ -1,0 +1,25 @@
+{
+  "state": "blocked_before_body_and_receipt",
+  "actual_required_cli_capture": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0035/body-publication.json",
+  "cli_status": 1,
+  "error": "Error: mq::syntax\n\n  × Unknown selector `.body`\n   ╭─[:1:76]\n 1 │ import \"json\" | json::json_parse() | import \"github.com/harehare/okf.mq\" | .body\n   ·                                                                            ──┬──\n   ·                                                                              ╰── unknown selector\n   ╰────\n  help: Unknown selector `.body`. A selector with a similar name exists:\n        `.code`.\n\n",
+  "helper_exdev": {
+    "operation": "rename prepared JSON from evidence filesystem to /tmp",
+    "code": "EXDEV",
+    "effect": "No move occurred; later copyFile plus unlink moved preparation input without changing its body."
+  },
+  "preserved_input": "/tmp/scm16-review0035-body-input.json",
+  "input_sha256": "882b549d3de73b44ace083d3f6b9a9825e43fc5c8d0bb57a343518abf45adf45",
+  "body_exists": false,
+  "receipt_exists": false,
+  "source_unchanged": true,
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "tree": "77df53d39098775775469a221d525467d1c3e35a"
+  },
+  "axis_and_native_reruns": 0,
+  "authority": "Parent t2dv requires scoped user recovery decision before any corrected publication. No corrected query executed."
+}

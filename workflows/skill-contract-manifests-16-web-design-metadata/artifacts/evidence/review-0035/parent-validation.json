@@ -1,0 +1,48 @@
+{
+  "receipt_id": "review-0035",
+  "transport_sha256": "a41d7f2cb77bd8f06baa1474ab3175a6e0ea3b218fd11bd4654d1cab382414dd",
+  "authoritative_event_equals_delivered_domain": true,
+  "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+  "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+  "review_base_commit": "d72457183fadb7c48a0557c602947b4b467f031d",
+  "body_sha256": "074c6952c7da2efa734847077b079f7625d0b160664a9faa7341036fdc2ab640",
+  "sole_body_read_via_mq": true,
+  "verdict": "FAILURE",
+  "usable_review": true,
+  "findings": [
+    "standards-011",
+    "standards-012"
+  ],
+  "standards_hard_findings": 2,
+  "spec_findings": 0,
+  "actual_native_rows": 56,
+  "positive": 21,
+  "expected_negative": 35,
+  "all_expected": true,
+  "outer_exit": 0,
+  "stderr_empty": true,
+  "duration_seconds": 9.182837190000006,
+  "all11_source_bindings": true,
+  "protected7_paths_preserved": true,
+  "all5assets_preserved": true,
+  "prior006_through010_resolved": true,
+  "publication_input_recovery_authorization": "workflows/goal-skill-contract-manifests/events/checkpoint-0115.yaml",
+  "no_native_or_axis_reruns": true,
+  "source_accepted": false,
+  "both_leaf_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 6,
+  "primary_shutdown": "confirmed",
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0,
+  "mixed_commit_incident": {
+    "commit": "7ef1211a0f89eba23ea14560b8cea179eef04f16",
+    "user_decision": "Keep commit and coordinate",
+    "canonical_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0116.yaml",
+    "notified": [
+      "t2m2",
+      "t2k9"
+    ],
+    "revert_unstage_discard_history_rewrite": false,
+    "future_commits": "explicit path-only"
+  }
+}

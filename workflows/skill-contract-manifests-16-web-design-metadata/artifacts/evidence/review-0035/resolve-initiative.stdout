@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "shared-context-resolution/v1",
+  "kind": "initiative",
+  "adapter": "markdown",
+  "store": "repository",
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/skill-contract-manifests",
+  "ref": "tracker/initiatives/skill-contract-manifests",
+  "publication": "repository"
+}

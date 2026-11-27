@@ -1,0 +1,16 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "dab2338e",
+    "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "--",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "seconds": 0.01566013999999268,
+  "stdout": "diff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\nindex 94b2c1d0..2d21655f 100644\n--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\n+++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\n@@ -1,5 +1,11 @@\n # Upgrade design source metadata\n \n+- **Procedure purpose:** Use this procedure to convert supported web-design source metadata with separate user authority.\n+- **Intended reader:** Skill maintainers and operators.\n+- **Document date:** 2026-11-27.\n+\n+For format definitions and read-only validation, read [Design source metadata](source-metadata.md).\n+\n The only declared edge is `design-source-metadata/v1` to `design-source-metadata/v2`, with procedure `file:references/source-metadata-upgrade.md` and trusted adapter `file:scripts/source-metadata.ts`.\n \n The adapter validates the explicit numeric source. It replaces only the top-level numeric identity token with the current string identity. All other UTF-8 bytes remain unchanged. This wire cutover preserves these items:\ndiff --git a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\nindex bed5a54e..a8155299 100644\n--- a/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\n+++ b/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\n@@ -1,5 +1,11 @@\n # Design source metadata\n \n+- **Reference purpose:** Use this reference to interpret and validate supported web-design source metadata.\n+- **Intended reader:** Skill maintainers and agents.\n+- **Document date:** 2026-11-27.\n+\n+For authorised conversion, read [Upgrade design source metadata](source-metadata-upgrade.md).\n+\n The web-design skill owns this catalog family. `assets/sources.json` is the bundled catalog. `scripts/source-metadata.ts` owns these operations:\n \n - **Identity detection:** Detect the exact identity.\n",
+  "stderr": ""
+}

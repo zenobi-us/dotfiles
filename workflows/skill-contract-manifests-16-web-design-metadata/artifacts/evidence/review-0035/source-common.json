@@ -1,0 +1,13 @@
+{
+  "command": [
+    "git",
+    "rev-parse",
+    "--path-format=absolute",
+    "--git-common-dir"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "seconds": 0.006616076999999997,
+  "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git\n",
+  "stderr": ""
+}

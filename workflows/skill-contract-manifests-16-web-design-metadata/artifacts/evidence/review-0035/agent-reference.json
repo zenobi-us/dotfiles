@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/agents/omp.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5072796699999998,
+  "stdout": "# Agent contract: OMP\n\n## Detection\n\n`OMPCODE=1` identifies OMP in its spawned shells. The OMP extension also supplies `agent=\"omp\"` as an explicit caller identity.\n\nWhen several environment markers identify different agents, `detect-agent` returns `unknown-agent`. An explicit caller identity takes precedence. Do not infer OMP from `command -v omp`; that only proves that the executable is installed.\n\n## Launch\n\n```bash\nomp <task or -- @handoff-file>\n```\n\nHerdr's built-in agent kind for this agent is `omp`.\n\n## Non-interactive invocation\n\n```bash\nomp -p --no-session <prompt>\n```\n\nUse this form only for short one-shot work. Use the interactive launch for full agent work.\n\n## Resume\n\n`omp --continue` resumes the most recent session in the current directory.\n",
+  "stderr": ""
+}

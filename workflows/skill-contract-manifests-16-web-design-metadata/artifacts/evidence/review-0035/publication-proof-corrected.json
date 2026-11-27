@@ -1,0 +1,22 @@
+{
+  "body_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0035.md",
+  "sha256": "074c6952c7da2efa734847077b079f7625d0b160664a9faa7341036fdc2ab640",
+  "candidate_equal": true,
+  "intended_equal": true,
+  "exclusive_publication": true,
+  "recovery_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0115.yaml",
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "tree": "77df53d39098775775469a221d525467d1c3e35a"
+  },
+  "verdict": "FAILURE",
+  "finding_ids": [
+    "standards-011",
+    "standards-012"
+  ],
+  "original_failure_preserved": true,
+  "original_input_preserved": true
+}

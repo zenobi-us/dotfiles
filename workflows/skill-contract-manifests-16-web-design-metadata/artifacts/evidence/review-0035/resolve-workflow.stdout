@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "shared-context-resolution/v1",
+  "kind": "workflow",
+  "adapter": "files",
+  "store": "repository",
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata",
+  "ref": "workflows/skill-contract-manifests-16-web-design-metadata",
+  "publication": "repository"
+}

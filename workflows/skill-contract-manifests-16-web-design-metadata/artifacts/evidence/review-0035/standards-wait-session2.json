@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "wait",
+    "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "signal": null,
+  "seconds": 0.81539751,
+  "stdout": "{\"schemaVersion\":\"muxer-wait/v2\",\"signal\":{\"schemaVersion\":\"muxer-completion/v2\",\"runId\":\"4f0425d9-7fe1-4cef-8481-2491c5a3dcd1\",\"sequence\":2,\"state\":\"completed\",\"source\":\"agent\",\"timestamp\":\"2026-11-27T00:28:32.770Z\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"4f0425d9-7fe1-4cef-8481-2491c5a3dcd1\",\"observedAt\":\"2026-11-27T00:28:32.931Z\",\"processes\":[{\"pid\":1011236,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"44444580\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+  "stderr": ""
+}

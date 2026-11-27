@@ -1,0 +1,16 @@
+{
+  "candidate_sha256": "074c6952c7da2efa734847077b079f7625d0b160664a9faa7341036fdc2ab640",
+  "intended_sha256": "074c6952c7da2efa734847077b079f7625d0b160664a9faa7341036fdc2ab640",
+  "exact_intended_bytes": true,
+  "one_output_terminator": false,
+  "utf8": true,
+  "source_commit_present": true,
+  "source_tree_present": true,
+  "base_present": true,
+  "standards_report_exact": true,
+  "spec_report_exact": true,
+  "findings_preserved": true,
+  "verdict_failure": true,
+  "input_preserved": true,
+  "recovery_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0115.yaml"
+}

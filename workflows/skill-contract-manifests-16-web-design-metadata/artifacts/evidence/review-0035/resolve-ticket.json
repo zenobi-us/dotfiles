@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts",
+    "resolve",
+    "ticket",
+    "--id",
+    "skill-contract-manifests-16-web-design-metadata",
+    "--json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5793218050000014,
+  "stdout": "{\n  \"schemaVersion\": \"shared-context-resolution/v1\",\n  \"kind\": \"ticket\",\n  \"adapter\": \"local-markdown\",\n  \"store\": \"repository\",\n  \"root\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-16-web-design-metadata.md\",\n  \"ref\": \"tracker/tickets/skill-contract-manifests-16-web-design-metadata.md\",\n  \"publication\": \"repository\"\n}\n",
+  "stderr": ""
+}

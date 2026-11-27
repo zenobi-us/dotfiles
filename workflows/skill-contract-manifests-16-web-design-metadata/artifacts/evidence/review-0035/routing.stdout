@@ -1,0 +1,14 @@
+mode: repository
+root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+shared root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+shared candidate: /home/zenobius/Notes/SharedAgentContext/github-com-zenobi-us-dotfiles--cf0ba890
+origin: git@github.com:zenobi-us/dotfiles.git
+slug: github-com-zenobi-us-dotfiles--cf0ba890
+
+
+alignment: repository
+tickets: repository
+initiatives: repository
+workflows: repository
+evidence: workflows -> repository
+sources: alignment -> repository

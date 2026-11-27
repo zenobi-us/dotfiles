@@ -1,0 +1,14 @@
+{
+  "command": [
+    "hc",
+    "wait",
+    "t2m4",
+    "--json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "signal": null,
+  "seconds": 0.0076851179999999995,
+  "stdout": "{\"children\":[],\"ended\":false,\"exit_code\":null,\"from\":\"t2dv\",\"reason\":\"message\",\"signal\":null,\"status\":\"working\",\"terminal\":\"t2m4\",\"turn\":0}\n",
+  "stderr": ""
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/docs/agents/domain.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5331062259999999,
+  "stdout": "# Domain docs\n\nThis repository uses one context.\n\n## Read before exploration\n\n1. Read `CONTEXT-MAP.md` at the active alignment root.\n2. Read `CONTEXT.md` when it exists.\n3. Read `docs/adr/index.md` and ADRs that affect the current area.\n\nIf a domain document does not exist, continue without it. Use the `domain-modeling` skill to record terms and decisions when they are resolved.\n\n## Document layout\n\nKeep the glossary and domain rules in `CONTEXT.md`. Keep architecture decisions under `docs/adr/`. Keep stable entry points in `CONTEXT-MAP.md`.\n\nUse the glossary's terms in ticket titles, code proposals, hypotheses, and tests. Update domain documents when a resolved decision changes a term or rule.\n\n",
+  "stderr": ""
+}

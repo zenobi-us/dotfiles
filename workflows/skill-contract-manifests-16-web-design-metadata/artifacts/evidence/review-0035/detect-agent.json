@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "detect-agent"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5738103760000001,
+  "stdout": "unknown-agent\n",
+  "stderr": ""
+}

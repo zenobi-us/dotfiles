@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "resources",
+    "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 1,
+  "signal": null,
+  "seconds": 0.619068663,
+  "stdout": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"4f0425d9-7fe1-4cef-8481-2491c5a3dcd1\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2m5\",\"createdAt\":\"2026-11-27T00:25:43.142Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"4f0425d9-7fe1-4cef-8481-2491c5a3dcd1\",\"parentRunId\":\"0418c7c3-103c-4afe-bff8-384759f9ff8b\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"4f0425d9-7fe1-4cef-8481-2491c5a3dcd1\",\"observedAt\":\"2026-11-27T00:28:55.852Z\",\"processes\":[{\"pid\":1011236,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"44444580\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+  "stderr": ""
+}

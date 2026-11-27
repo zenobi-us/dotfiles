@@ -1,0 +1,13 @@
+{
+  "command": [
+    "hc",
+    "rm",
+    "t2m6"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "signal": null,
+  "seconds": 0.012401869999999999,
+  "stdout": "{\"removed\":\"t2m6\"}\n",
+  "stderr": ""
+}

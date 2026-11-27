@@ -127,3 +127,14 @@ No extra agents, services, dependencies or configuration changes occurred. No or
 
 Parent owns publication-checkout commits, YAML view updates, tracker changes, independent review, integration and primary closure. All prior immutable artifacts remain unchanged.
 
+
+
+## Latest review: review-0035
+
+- **Verdict:** FAILURE for `14705f57e663196bc211fbf394a8829820dcf9fc`, tree `77df53d39098775775469a221d525467d1c3e35a`.
+- **Standards:** Two low hard findings remain: `standards-011` and `standards-012`.
+- **Spec:** No findings.
+- **Validation:** All56 fresh primary native outcomes match. All11 frozen blobs and protected7/all5 assets remain preserved.
+- **Next action:** Replace the two comparison tables with repeated records, then use American spelling in the conversion referral. No source acceptance.
+- **Review:** [Immutable report](../artifacts/reviews/review-review-0035.md).
+- **Reconciliation:** [Validated completion](../events/review-complete-0036.yaml).

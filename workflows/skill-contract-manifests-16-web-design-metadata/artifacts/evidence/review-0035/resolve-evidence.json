@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts",
+    "resolve",
+    "evidence",
+    "--workflow",
+    "skill-contract-manifests-16-web-design-metadata",
+    "--run",
+    "review-0035",
+    "--json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.648771655999999,
+  "stdout": "{\n  \"schemaVersion\": \"shared-context-resolution/v1\",\n  \"kind\": \"evidence\",\n  \"adapter\": \"files\",\n  \"store\": \"repository\",\n  \"root\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0035\",\n  \"ref\": \"workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0035\",\n  \"publication\": \"repository\"\n}\n",
+  "stderr": ""
+}

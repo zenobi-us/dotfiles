@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "worktree-phase-context/v2",
+  "receipt_schema": "worktree-receipt/v3",
+  "receipt_id": "review-0035",
+  "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+  "event": "phase-result",
+  "phase": "review",
+  "attempt": 7,
+  "parent_receipt": "review-start-0034",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-16-web-design-metadata",
+    "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md"
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+    "tree": "77df53d39098775775469a221d525467d1c3e35a"
+  },
+  "session": {
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "pane_id": "t2m4",
+    "session_id": "herdr-app:t2m4",
+    "run_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+    "operation_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b"
+  },
+  "goal_run_id": "skill-contract-manifests-20261125-t2dv",
+  "goal_dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0113.yaml"
+}

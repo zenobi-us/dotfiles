@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5665850479999999,
+  "stdout": "mode: repository\nroot: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\nshared root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\nshared candidate: /home/zenobius/Notes/SharedAgentContext/github-com-zenobi-us-dotfiles--cf0ba890\norigin: git@github.com:zenobi-us/dotfiles.git\nslug: github-com-zenobi-us-dotfiles--cf0ba890\n\n\nalignment: repository\ntickets: repository\ninitiatives: repository\nworkflows: repository\nevidence: workflows -> repository\nsources: alignment -> repository\n",
+  "stderr": ""
+}

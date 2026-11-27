@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0116",
+  "parent_event": "checkpoint-0115",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 7,
+  "state": "user_authorized_keep_accidental_mixed_commit",
+  "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+  "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+  "reason": "Parent used exact git add paths but committed the shared base index without path-only restriction. Five unrelated already-staged Strata paths entered the recovery-authorization commit, which was pushed before the unexpected seven-file count was diagnosed. No reversal, unstaging, discard or history rewrite occurred. Review35 was delivered before the requested publication pause; it remains immutable completed FAILURE.",
+  "unrelated_published_commit": "7ef1211a0f89eba23ea14560b8cea179eef04f16",
+  "unrelated_paths": [
+    "README.md",
+    "mise/conf.d/devtools-unbiased-strata/README.md",
+    "mise/conf.d/devtools-unbiased-strata/mise.linux.toml",
+    "mise/conf.d/devtools-unbiased-strata/scripts/build",
+    "mise/conf.d/devtools-unbiased-strata/scripts/unbiased-strata"
+  ],
+  "authorization": {
+    "source": "User selected Keep commit and coordinate in foreignstagedcommit questionnaire",
+    "keep_published_commit": true,
+    "keep_file_contents": true,
+    "notify_owner": true,
+    "resume_selected_ticket": true,
+    "no_revert": true,
+    "no_unstage_or_discard": true,
+    "no_history_rewrite": true,
+    "future_explicit_path_only_commits": true
+  },
+  "coordination": {
+    "notified_terminal": "t2m2",
+    "topic": "Strata module ownership/publication routing; no modifications requested",
+    "owner_acknowledgement": "pending"
+  },
+  "prevention": "Separate exact git add action from git commit. Use git commit --only with the explicit planned path list; preserve all other concurrent staged work. Do not reset or restore the shared index.",
+  "child_run_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+  "child_terminal": "t2m4",
+  "accounting": {
+    "ticket_attempts_consumed": 12,
+    "ticket_attempts_remaining": 88,
+    "dispatches_consumed": 26,
+    "dispatches_remaining": 2474,
+    "omp_token_budget": null
+  },
+  "relocation_defect": "ESCALATION ONLY",
+  "created_at": "2026-11-27T01:44:54.351Z"
+}

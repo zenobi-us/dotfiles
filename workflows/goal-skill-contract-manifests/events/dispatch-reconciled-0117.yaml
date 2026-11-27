@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0117",
+  "parent_event": "checkpoint-0116",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 7,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0113.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0036.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0035.yaml",
+  "status": "completed",
+  "acceptance_status": "usable_failure_two_hard_presentation_spelling_findings",
+  "source_commit": "14705f57e663196bc211fbf394a8829820dcf9fc",
+  "source_tree": "77df53d39098775775469a221d525467d1c3e35a",
+  "child_run_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+  "child_terminal": "t2m4",
+  "validation": {
+    "fresh_native_outcomes": 56,
+    "all_expected": true,
+    "positive": 21,
+    "expected_negative": 35,
+    "all11_frozen_bindings": true,
+    "protected7_all5assets": true,
+    "standards_low_hard_findings": 2,
+    "spec_findings": 0,
+    "prior006_through010_resolved": true,
+    "body_sha256": "074c6952c7da2efa734847077b079f7625d0b160664a9faa7341036fdc2ab640",
+    "publication_recovery115": true,
+    "native_or_axis_reruns": 0,
+    "source_accepted": false
+  },
+  "resource_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 6,
+  "leaf_shutdown": [
+    {
+      "axis": "standards",
+      "run_id": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "shutdown": "confirmed",
+      "acknowledged": true
+    },
+    {
+      "axis": "spec",
+      "run_id": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "shutdown": "confirmed",
+      "acknowledged": true
+    }
+  ],
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0,
+  "scope_incident_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0116.yaml",
+  "scope_incident_decision": "Keep published7ef unchanged; notifiedt2m2 andt2k9; future explicit path-only commits.",
+  "accounting": {
+    "ticket_attempts_consumed": 12,
+    "ticket_attempts_remaining": 88,
+    "dispatches_consumed": 26,
+    "dispatches_remaining": 2474,
+    "omp_token_budget": null
+  },
+  "next_action": "Fresh inspector fix/begin for exact current standards011/012. Choose required fallback repeated records for both tables, without new headings/TOC or an invented width. Change authorised to authorized. Preserve all other prose/identities/commands and all runtime/catalog/assets. Single source reference plus normal2 hook metadata only. Existing active goal covers ordinary findings-driven fix.",
+  "created_at": "2026-11-27T01:50:10.945Z"
+}

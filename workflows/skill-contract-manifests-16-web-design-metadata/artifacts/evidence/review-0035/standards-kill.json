@@ -1,0 +1,13 @@
+{
+  "command": [
+    "hc",
+    "kill",
+    "t2m5"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "status": 0,
+  "signal": null,
+  "seconds": 0.09621888099999999,
+  "stdout": "{\"address\":\"t2m5\",\"argv\":[\"/usr/bin/zsh\",\"-ic\",\"\\\"$@\\\"; exec \\\"$0\\\" -i\",\"/usr/bin/zsh\",\"env\",\"MUXER_SUBAGENT_DEPTH=2\",\"XDG_STATE_HOME=/home/zenobius/.local/state\",\"RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/4f0425d9-7fe1-4cef-8481-2491c5a3dcd1/context.json\",\"MUXER_SUBAGENT_RUN_ID=4f0425d9-7fe1-4cef-8481-2491c5a3dcd1\",\"MUXER_SUBAGENT_ROLE=child\",\"MUXER_SUBAGENT_PARENT_RUN_ID=0418c7c3-103c-4afe-bff8-384759f9ff8b\",\"omp\",\"--\",\"@/home/zenobius/.local/state/muxer-subagents/runs/4f0425d9-7fe1-4cef-8481-2491c5a3dcd1/prompt.md\"],\"cols\":300,\"created_ms\":1795739143168,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"die_with_parent\":false,\"exit_code\":1,\"finished_ms\":1795739345163,\"identity\":\"ghostty\",\"keep\":true,\"labels\":{\"herdr.seen\":\"0\",\"herdr.space\":\"sp0ce93287020249c8e1a5ef0f06c80582\",\"herdr.tab\":\"tb62b2cd6d94a1715d5e34621264b0c784\",\"where\":\"feature-skill-contract-manifests-16-web-design-metadata / skill-contract-manifests-16-web-design-metadata · standards\"},\"name\":null,\"notify\":true,\"parent\":null,\"pid\":1010628,\"reason\":\"killed\",\"reported\":true,\"rm\":false,\"rows\":83,\"screen\":\"exact\",\"signal\":null,\"state\":\"finished\",\"status\":null,\"status_ms\":1795739345163,\"template\":null,\"title\":\"π > 📋 REVIEW: Review skill contract standards\",\"turn\":1}\n",
+  "stderr": ""
+}

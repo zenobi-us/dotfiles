@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "raw",
+    "import \"github.com/harehare/okf.mq\" | .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/CONTEXT.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "status": 0,
+  "seconds": 0.5042649460000029,
+  "stdout": "---\ndescription: Confirmed vocabulary for ideas and planned work\ntitle: Engineering context\ntype: Concept\n---\n\n# Engineering context\n\nThis context describes ideas and their conversion into planned work for one repository.\n\n## Language\n\n**Idea**:\nA short record of user intent for one repository, before that intent becomes planned work. An idea has an original sentence, context, concepts, and separate exploration suggestions.\n_Avoid_: Draft ticket, unfinished initiative\n\n**Concept**:\nOne identifiable part of an idea that the user wants to pursue. The concept checklist defines the scope that conversion must cover.\n_Avoid_: Implementation task, agent suggestion\n\n**Exploration suggestion**:\nAn agent-proposed direction for future research or grilling. It is not part of conversion scope unless the user approves it as a concept.\n_Avoid_: Requirement, confirmed intent\n\n**Research record**:\nA separate record of findings and their sources for an idea or selected concepts.\n\n**Grilling record**:\nA separate record of questions, answers, and confirmed conclusions for an idea or selected concepts.\n\n**Clarification**:\nA question that needs a confirmed resolution through grilling before the affected concept can enter conversion.\n\n**Coverage**:\nThe user-confirmed relationship between a concept and the initiative or ticket records that cover its intent. Coverage means planned work, not completed implementation.\n_Avoid_: Implementation progress\n\n**Conversion**:\nThe explicit creation or update of initiatives or tickets from an idea after required grilling. Conversion is complete when destination records have confirmed coverage of every concept.\n_Avoid_: Implementation, delivery\n\n**Initiative**:\nA complete specification that can group executable tickets.\n_Avoid_: Specification ticket\n\n**Ticket**:\nAn executable record of planned work.\n\n**Open idea**:\nAn idea without confirmed coverage of every concept.\n\n**Done idea**:\nAn idea whose destination records have confirmed coverage of every concept. Its implementation can remain incomplete.\n_Avoid_: Shipped feature\n\n**Archived idea**:\nAn idea that the user explicitly sets aside without conversion.\n\n",
+  "stderr": ""
+}
