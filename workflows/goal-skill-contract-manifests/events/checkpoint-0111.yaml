@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0111",
+  "parent_event": "dispatch-observed-0110",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 4,
+  "state": "user_authorized_append_only_dispatch_correction",
+  "reason": "Parent spread an old dispatch template and failed to replace several canonical fields. Entry110 is schema-valid but semantically inconsistent. Preserve it unchanged; this checkpoint supplies the authoritative actual launch values. No duplicate spawn occurred. Child confirmed read-only investigation only during pause, with no source edits, checks, commits or publications.",
+  "authorization": {
+    "source": "User selected Append correction and resume in the dispatch110correction questionnaire",
+    "preserve_entry110": true,
+    "append_only": true,
+    "resume_same_fixer": true,
+    "no_rerun_of_completed_checks": true,
+    "no_new_scope": true
+  },
+  "corrects_ref": "workflows/goal-skill-contract-manifests/events/dispatch-observed-0110.yaml",
+  "corrected_fields": {
+    "phase_start_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0031.yaml",
+    "child_run_id": "3f63a9e1-5635-492e-b746-8e729b9354d3",
+    "child_terminal": "t2m1",
+    "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/3f63a9e1-5635-492e-b746-8e729b9354d3/context.json",
+    "result_target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/3f63a9e1-5635-492e-b746-8e729b9354d3/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/3f63a9e1-5635-492e-b746-8e729b9354d3/result.json",
+      "schema": "worktree-receipt/v3"
+    },
+    "launch_source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+    "launch_source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f",
+    "launch_coordination": {
+      "inventory_complete": false,
+      "ownership_reported": "unknown",
+      "hard_blockers": [],
+      "record_diagnostics": [],
+      "owners": [
+        {
+          "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0030.yaml",
+          "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+          "sessionId": "herdr-app:t2dv",
+          "agent": "omp",
+          "muxer": "herdr-app",
+          "paneId": "t2dv"
+        }
+      ],
+      "source_observations": [
+        {
+          "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "source": {
+            "state": "available",
+            "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+            "commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+            "candidates": 1
+          },
+          "errors": []
+        }
+      ],
+      "reservations": [],
+      "reservation106": {
+        "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0106.yaml",
+        "runId": "skill-contract-manifests-20261125-t2dv",
+        "ticketRef": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+        "phase": "review",
+        "coordinator": {
+          "session_id": "herdr-app:t2dv",
+          "muxer": "herdr-app",
+          "pane_id": "t2dv",
+          "agent": "omp"
+        },
+        "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0030.yaml",
+        "locations": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reserved-0106.yaml"
+        ],
+        "ambiguous": false,
+        "reconciliationVerified": true
+      },
+      "generated_file_overlaps": [
+        {
+          "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+          "assessment": "cleanup-only",
+          "overlaps": [
+            {
+              "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+              "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+            }
+          ]
+        },
+        {
+          "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+          "assessment": "overlap-risk",
+          "overlaps": [
+            {
+              "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+              "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+            }
+          ]
+        },
+        {
+          "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+          "assessment": "overlap-risk",
+          "overlaps": [
+            {
+              "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+              "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+            },
+            {
+              "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+              "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+            }
+          ]
+        },
+        {
+          "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+          "assessment": "overlap-risk",
+          "overlaps": [
+            {
+              "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+              "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+            }
+          ]
+        }
+      ],
+      "assessment": "Fresh three-scope coordination confirms sole recorded parent t2dv, unique exact dab2338e source and no proposed reservations/hard blockers/record diagnostics.106 reconciled to parent30 verified. All prior owned review processes stopped/confirmed and source desktop absent. Incomplete unrelated inventory remains unknown. Same4 generated metadata overlaps are separate-worktree future integration risks, not shared source writes. Authorize only the two authored opening blocks plus normal2 hook metadata in isolated source. No takeover, relocation or serverfiles work."
+    },
+    "retained_findings_to_reassess": [
+      "standards-009",
+      "standards-010"
+    ],
+    "verification_policy": "Read full ISO5 house guidance and exact9/10 findings. Apply only the supplied purpose/reader/date blocks and referrals. Manually check opening tasks, audience, human date, short sentences, bold labels, <=5-sentence paragraphs and no semantics changed. Run owning native executable ONCE from /tmp after final edits. Full56 outcomes, direct stdout/stderr/status capture. Bind executed runtime and authored files to final committed objects. No wording/source-text tests.",
+    "accounting": {
+      "ticket_attempts_consumed": 11,
+      "ticket_attempts_remaining": 89,
+      "dispatches_consumed": 25,
+      "dispatches_remaining": 2475,
+      "omp_token_budget": null
+    }
+  },
+  "source_commit": "dab2338e6be69e208c39c6c05164c0a1a066dbf7",
+  "source_tree": "85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f",
+  "child_run_id": "3f63a9e1-5635-492e-b746-8e729b9354d3",
+  "child_terminal": "t2m1",
+  "accounting": {
+    "ticket_attempts_consumed": 11,
+    "ticket_attempts_remaining": 89,
+    "dispatches_consumed": 25,
+    "dispatches_remaining": 2475,
+    "omp_token_budget": null
+  },
+  "relocation_defect": "ESCALATION ONLY",
+  "created_at": "2026-11-27T00:09:36.985Z"
+}
