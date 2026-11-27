@@ -1,0 +1,17 @@
+{
+  "title": "MCPorter",
+  "description": "Manage the MCPorter CLI and its platform-specific configuration links.",
+  "items": [
+    {
+      "id": "mcporter",
+      "title": "MCPorter",
+      "description": "Manage MCPorter and its platform-specific configuration location.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/mcporter/README.md",
+      "howto": "docs/mcporter/HOWTO.md"
+    }
+  ]
+}

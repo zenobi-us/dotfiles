@@ -1,0 +1,39 @@
+{
+  "title": "Code quality",
+  "description": "Shell and TOML analysis and formatting tools.",
+  "items": [
+    {
+      "id": "shellcheck",
+      "title": "ShellCheck",
+      "description": "Find common errors in shell scripts.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/shellcheck/README.md",
+      "howto": "docs/shellcheck/HOWTO.md"
+    },
+    {
+      "id": "shfmt",
+      "title": "shfmt",
+      "description": "Format shell source files consistently.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/shfmt/README.md",
+      "howto": "docs/shfmt/HOWTO.md"
+    },
+    {
+      "id": "tombi",
+      "title": "Tombi",
+      "description": "Provide TOML tooling for formatting, validation, and editor use.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/tombi/README.md",
+      "howto": "docs/tombi/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Fonts",
+  "description": "Install the curated Nerd Fonts archive list and required native font headers.",
+  "items": [
+    {
+      "id": "font-install",
+      "title": "Font installer",
+      "description": "Install the curated Nerd Fonts archive list.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml",
+        "fonts.txt"
+      ],
+      "readme": "docs/font-install/README.md",
+      "howto": "docs/font-install/HOWTO.md"
+    }
+  ]
+}

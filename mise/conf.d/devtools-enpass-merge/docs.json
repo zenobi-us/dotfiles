@@ -1,0 +1,30 @@
+{
+  "title": "Enpass export merger",
+  "description": "Merge backed-up Enpass exports and configure Bun JSR scope resolution.",
+  "items": [
+    {
+      "id": "enpass-merge",
+      "title": "Enpass export merger",
+      "description": "Combine two Enpass exports while preserving the selected conflict winner.",
+      "kind": "command",
+      "sources": [
+        "enpass-merge.ts",
+        "ENPASS-MERGE.md"
+      ],
+      "readme": "docs/enpass-merge/README.md",
+      "howto": "docs/enpass-merge/HOWTO.md"
+    },
+    {
+      "id": "bun-jsr",
+      "title": "Bun JSR scope mapping",
+      "description": "Resolve @jsr packages through the npm-compatible JSR registry.",
+      "kind": "configuration",
+      "sources": [
+        "bunfig.toml",
+        "mise.toml"
+      ],
+      "readme": "docs/bun-jsr/README.md",
+      "howto": "docs/bun-jsr/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Git development tools",
+  "description": "Manage forge CLIs, release tooling, hooks, and global Git configuration.",
+  "items": [
+    {
+      "id": "github-cli",
+      "title": "GitHub CLI",
+      "description": "Manage gh for GitHub workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/github-cli/README.md",
+      "howto": "docs/github-cli/HOWTO.md"
+    },
+    {
+      "id": "glab",
+      "title": "GitLab CLI",
+      "description": "Manage glab for GitLab workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/glab/README.md",
+      "howto": "docs/glab/HOWTO.md"
+    },
+    {
+      "id": "release-please",
+      "title": "Release Please",
+      "description": "Manage the release automation CLI.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/release-please/README.md",
+      "howto": "docs/release-please/HOWTO.md"
+    },
+    {
+      "id": "hk",
+      "title": "hk hook manager",
+      "description": "Manage the repository hook tool.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/hk/README.md",
+      "howto": "docs/hk/HOWTO.md"
+    },
+    {
+      "id": "worktrunk",
+      "title": "Worktrunk",
+      "description": "Use the canonical Worktrunk installation and configuration guide.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "href": "/modules/devtools-worktrunk/items/worktrunk/"
+    },
+    {
+      "id": "git-configuration",
+      "title": "Global Git configuration",
+      "description": "Copy shared Git configuration and ignore rules into the home directory.",
+      "kind": "configuration",
+      "sources": [
+        "mise.toml",
+        ".gitconfig",
+        ".gitignore_global"
+      ],
+      "readme": "docs/git-configuration/README.md",
+      "howto": "docs/git-configuration/HOWTO.md"
+    }
+  ]
+}

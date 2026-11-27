@@ -1,0 +1,61 @@
+{
+  "title": "Browser automation",
+  "description": "Browser automation clients and DevTools MCP servers.",
+  "items": [
+    {
+      "id": "playwright-cli",
+      "title": "Playwright CLI",
+      "description": "Control browser sessions from command-line automation.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/playwright-cli/README.md",
+      "howto": "docs/playwright-cli/HOWTO.md"
+    },
+    {
+      "id": "agent-browser",
+      "title": "Agent Browser",
+      "description": "Automate browser interactions for agent workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/agent-browser/README.md",
+      "howto": "docs/agent-browser/HOWTO.md"
+    },
+    {
+      "id": "chrome-devtools-mcp",
+      "title": "Chrome DevTools MCP",
+      "description": "Expose Chrome debugging and automation through an MCP server.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/chrome-devtools-mcp/README.md",
+      "howto": "docs/chrome-devtools-mcp/HOWTO.md"
+    },
+    {
+      "id": "firefox-devtools-mcp",
+      "title": "Firefox DevTools MCP",
+      "description": "Expose Firefox debugging and automation through an MCP server.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/firefox-devtools-mcp/README.md",
+      "howto": "docs/firefox-devtools-mcp/HOWTO.md"
+    },
+    {
+      "id": "surf",
+      "title": "Surf CLI",
+      "description": "Automate browser interactions from the command line.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/surf/README.md",
+      "howto": "docs/surf/HOWTO.md"
+    }
+  ]
+}

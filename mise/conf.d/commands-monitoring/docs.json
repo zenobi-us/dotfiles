@@ -1,0 +1,17 @@
+{
+  "title": "Monitoring commands",
+  "description": "Terminal monitoring for local coding-agent sessions.",
+  "items": [
+    {
+      "id": "abtop",
+      "title": "abtop",
+      "description": "Monitor local AI coding-agent sessions in a terminal interface.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/abtop/README.md",
+      "howto": "docs/abtop/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "WinGet settings",
+  "description": "Copy Windows App Installer settings for local package installation preferences.",
+  "items": [
+    {
+      "id": "winget-settings",
+      "title": "WinGet user settings",
+      "description": "Copy the supplied WinGet settings into App Installer local state.",
+      "kind": "configuration",
+      "sources": [
+        "mise.windows.toml",
+        "winget.json"
+      ],
+      "readme": "docs/winget-settings/README.md",
+      "howto": "docs/winget-settings/HOWTO.md"
+    }
+  ]
+}

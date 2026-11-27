@@ -1,0 +1,61 @@
+{
+  "title": "Creative assets",
+  "description": "Diagram, image, poster, and ComfyUI tooling.",
+  "items": [
+    {
+      "id": "d2",
+      "title": "D2",
+      "description": "Create diagrams from text descriptions.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/d2/README.md",
+      "howto": "docs/d2/HOWTO.md"
+    },
+    {
+      "id": "artem",
+      "title": "Artem",
+      "description": "Convert images into terminal-friendly ASCII art.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/artem/README.md",
+      "howto": "docs/artem/HOWTO.md"
+    },
+    {
+      "id": "takumi",
+      "title": "Takumi",
+      "description": "Render images, animations, and SVG from JSX, HTML, and CSS.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/takumi/README.md",
+      "howto": "docs/takumi/HOWTO.md"
+    },
+    {
+      "id": "poster",
+      "title": "Poster",
+      "description": "Create distributable React posters from a single TSX file.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/poster/README.md",
+      "howto": "docs/poster/HOWTO.md"
+    },
+    {
+      "id": "comfy-cli",
+      "title": "Comfy CLI",
+      "description": "Manage ComfyUI environments and workflow operations.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/comfy-cli/README.md",
+      "howto": "docs/comfy-cli/HOWTO.md"
+    }
+  ]
+}

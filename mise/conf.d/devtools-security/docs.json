@@ -1,0 +1,28 @@
+{
+  "title": "Security tools",
+  "description": "Vulnerability scanning and secret detection clients.",
+  "items": [
+    {
+      "id": "grype",
+      "title": "Grype",
+      "description": "Scan software artifacts for known vulnerabilities.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/grype/README.md",
+      "howto": "docs/grype/HOWTO.md"
+    },
+    {
+      "id": "trufflehog",
+      "title": "TruffleHog",
+      "description": "Detect exposed secrets in code and other data sources.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/trufflehog/README.md",
+      "howto": "docs/trufflehog/HOWTO.md"
+    }
+  ]
+}

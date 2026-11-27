@@ -1,0 +1,20 @@
+{
+  "title": "Mise integration",
+  "description": "Connect repository and platform mise configuration to user configuration paths.",
+  "items": [
+    {
+      "id": "mise-configuration",
+      "title": "Mise configuration integration",
+      "description": "Link root and platform mise configuration into user configuration locations.",
+      "kind": "configuration",
+      "sources": [
+        "mise.toml",
+        "mise.unix.toml",
+        "mise.linux.toml",
+        "mise.windows.toml"
+      ],
+      "readme": "docs/mise-configuration/README.md",
+      "howto": "docs/mise-configuration/HOWTO.md"
+    }
+  ]
+}

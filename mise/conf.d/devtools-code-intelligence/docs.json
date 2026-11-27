@@ -1,0 +1,72 @@
+{
+  "title": "Code intelligence",
+  "description": "Syntax-aware inspection and language-server tools.",
+  "items": [
+    {
+      "id": "codemapper",
+      "title": "Codemapper",
+      "description": "Inspect code structure with a source-code mapping tool.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/codemapper/README.md",
+      "howto": "docs/codemapper/HOWTO.md"
+    },
+    {
+      "id": "markdown-oxide",
+      "title": "Markdown Oxide",
+      "description": "Provide language-server support for Markdown knowledge bases.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/markdown-oxide/README.md",
+      "howto": "docs/markdown-oxide/HOWTO.md"
+    },
+    {
+      "id": "ast-grep",
+      "title": "ast-grep",
+      "description": "Search and transform source code with syntax-aware patterns.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/ast-grep/README.md",
+      "howto": "docs/ast-grep/HOWTO.md"
+    },
+    {
+      "id": "typescript-language-server",
+      "title": "TypeScript Language Server",
+      "description": "Provide TypeScript and JavaScript editor language services.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/typescript-language-server/README.md",
+      "howto": "docs/typescript-language-server/HOWTO.md"
+    },
+    {
+      "id": "tree-sitter",
+      "title": "Tree-sitter",
+      "description": "Work with incremental parsing grammars and syntax trees.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/tree-sitter/README.md",
+      "howto": "docs/tree-sitter/HOWTO.md"
+    },
+    {
+      "id": "lsp-cli",
+      "title": "LSP CLI",
+      "description": "Run language-server diagnostics from the command line.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/lsp-cli/README.md",
+      "howto": "docs/lsp-cli/HOWTO.md"
+    }
+  ]
+}

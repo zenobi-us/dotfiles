@@ -1,0 +1,19 @@
+{
+  "title": "Firefox extensions",
+  "description": "Provide a local QR-code extension and a temporary-extension loader.",
+  "items": [
+    {
+      "id": "qr-code",
+      "title": "QR Code Generator",
+      "description": "Turn the active Firefox tab URL into a QR code.",
+      "kind": "extension",
+      "sources": [
+        "extensions/qr-code/manifest.json",
+        "extensions/qr-code/popup/popup.js",
+        "load-extensions.sh"
+      ],
+      "readme": "extensions/qr-code/README.md",
+      "howto": "extensions/qr-code/HOWTO.md"
+    }
+  ]
+}

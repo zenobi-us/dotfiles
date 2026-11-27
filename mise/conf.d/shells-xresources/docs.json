@@ -1,0 +1,19 @@
+{
+  "title": "X11 resources",
+  "description": "Link and optionally merge XTerm and URxvt resources and bundled themes.",
+  "items": [
+    {
+      "id": "xresources",
+      "title": "X11 resources and themes",
+      "description": "Load terminal X resources and a selected bundled color theme.",
+      "kind": "configuration",
+      "sources": [
+        "mise.unix.toml",
+        ".Xresources",
+        ".XresourceThemes"
+      ],
+      "readme": "docs/xresources/README.md",
+      "howto": "docs/xresources/HOWTO.md"
+    }
+  ]
+}

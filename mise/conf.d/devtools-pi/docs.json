@@ -1,0 +1,20 @@
+{
+  "title": "Pi agent host",
+  "description": "Configure Pi packages, keybindings, settings, and shared bundle dependencies.",
+  "items": [
+    {
+      "id": "pi-host",
+      "title": "Pi host configuration",
+      "description": "Configure Pi settings, keybindings, packages, and shared bundle links.",
+      "kind": "configuration",
+      "sources": [
+        "mise.unix.toml",
+        "agent/package.json",
+        "agent/settings.json",
+        "agent/keybindings.json"
+      ],
+      "readme": "docs/pi-host/README.md",
+      "howto": "docs/pi-host/HOWTO.md"
+    }
+  ]
+}

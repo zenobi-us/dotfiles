@@ -1,0 +1,20 @@
+{
+  "title": "Desktop application launchers",
+  "description": "Copy Linux desktop entries and MIME integration files.",
+  "items": [
+    {
+      "id": "neovim-desktop",
+      "title": "Neovim desktop launcher",
+      "description": "Open text files in a terminal-backed Neovim desktop entry.",
+      "kind": "configuration",
+      "sources": [
+        "nvim.desktop",
+        "mise.linux.toml",
+        "defaults.list",
+        "mimeapps.list"
+      ],
+      "readme": "docs/neovim-desktop/README.md",
+      "howto": "docs/neovim-desktop/HOWTO.md"
+    }
+  ]
+}

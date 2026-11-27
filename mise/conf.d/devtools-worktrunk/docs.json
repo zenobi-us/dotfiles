@@ -1,0 +1,18 @@
+{
+  "title": "Worktrunk",
+  "description": "Own the pinned Worktrunk tool and shared worktree lifecycle configuration.",
+  "items": [
+    {
+      "id": "worktrunk",
+      "title": "Worktrunk",
+      "description": "Manage worktrees with the shared Worktrunk policy.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml",
+        "config.toml"
+      ],
+      "readme": "docs/worktrunk/README.md",
+      "howto": "docs/worktrunk/HOWTO.md"
+    }
+  ]
+}

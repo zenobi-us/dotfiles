@@ -1,0 +1,182 @@
+{
+  "title": "Development runtimes",
+  "description": "Language runtimes, SDKs, and package managers.",
+  "items": [
+    {
+      "id": "bun",
+      "title": "Bun",
+      "description": "Run JavaScript and TypeScript with the Bun toolkit.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/bun/README.md",
+      "howto": "docs/bun/HOWTO.md"
+    },
+    {
+      "id": "deno",
+      "title": "Deno",
+      "description": "Run JavaScript and TypeScript with Deno.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/deno/README.md",
+      "howto": "docs/deno/HOWTO.md"
+    },
+    {
+      "id": "dotnet",
+      "title": ".NET SDK",
+      "description": "Develop and run .NET applications.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/dotnet/README.md",
+      "howto": "docs/dotnet/HOWTO.md"
+    },
+    {
+      "id": "golang",
+      "title": "Go",
+      "description": "Build and run Go programs.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/golang/README.md",
+      "howto": "docs/golang/HOWTO.md"
+    },
+    {
+      "id": "java",
+      "title": "Java",
+      "description": "Run Java applications and Java development tools.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/java/README.md",
+      "howto": "docs/java/HOWTO.md"
+    },
+    {
+      "id": "lua",
+      "title": "Lua",
+      "description": "Run Lua programs.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/lua/README.md",
+      "howto": "docs/lua/HOWTO.md"
+    },
+    {
+      "id": "node",
+      "title": "Node.js",
+      "description": "Run server-side JavaScript programs.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/node/README.md",
+      "howto": "docs/node/HOWTO.md"
+    },
+    {
+      "id": "npm",
+      "title": "npm",
+      "description": "Manage JavaScript packages with npm.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/npm/README.md",
+      "howto": "docs/npm/HOWTO.md"
+    },
+    {
+      "id": "pdm",
+      "title": "PDM",
+      "description": "Manage Python project environments and dependencies.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/pdm/README.md",
+      "howto": "docs/pdm/HOWTO.md"
+    },
+    {
+      "id": "pnpm",
+      "title": "pnpm",
+      "description": "Manage JavaScript workspace dependencies with pnpm.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/pnpm/README.md",
+      "howto": "docs/pnpm/HOWTO.md"
+    },
+    {
+      "id": "python",
+      "title": "Python",
+      "description": "Run Python programs.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/python/README.md",
+      "howto": "docs/python/HOWTO.md"
+    },
+    {
+      "id": "rust",
+      "title": "Rust",
+      "description": "Develop Rust applications with the Rust toolchain.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/rust/README.md",
+      "howto": "docs/rust/HOWTO.md"
+    },
+    {
+      "id": "uv",
+      "title": "uv",
+      "description": "Manage Python packages, environments, and tool execution.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/uv/README.md",
+      "howto": "docs/uv/HOWTO.md"
+    },
+    {
+      "id": "yarn",
+      "title": "Yarn",
+      "description": "Manage JavaScript project dependencies with Yarn.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/yarn/README.md",
+      "howto": "docs/yarn/HOWTO.md"
+    },
+    {
+      "id": "zig",
+      "title": "Zig",
+      "description": "Develop software with the Zig compiler and toolkit.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zig/README.md",
+      "howto": "docs/zig/HOWTO.md"
+    },
+    {
+      "id": "pkl",
+      "title": "Pkl",
+      "description": "Evaluate configuration expressed in the Pkl language.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/pkl/README.md",
+      "howto": "docs/pkl/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Ghostty",
+  "description": "Link Unix Ghostty configuration and local themes without installing the terminal.",
+  "items": [
+    {
+      "id": "ghostty",
+      "title": "Ghostty terminal configuration",
+      "description": "Link Ghostty configuration and local themes on Unix.",
+      "kind": "configuration",
+      "sources": [
+        "mise.unix.toml",
+        "config",
+        "themes"
+      ],
+      "readme": "docs/ghostty/README.md",
+      "howto": "docs/ghostty/HOWTO.md"
+    }
+  ]
+}

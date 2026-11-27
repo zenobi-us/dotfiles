@@ -1,0 +1,95 @@
+{
+  "title": "Zot",
+  "description": "Manage Zot, local themes, and externally owned extension repositories.",
+  "items": [
+    {
+      "id": "zot",
+      "title": "Zot",
+      "description": "Manage Zot with local themes and linked agent extensions.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml",
+        "themes"
+      ],
+      "readme": "docs/zot/README.md",
+      "howto": "docs/zot/HOWTO.md"
+    },
+    {
+      "id": "zot-annotate",
+      "title": "zot-annotate",
+      "description": "Register the external Zot annotation extension.",
+      "kind": "extension",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zot-annotate/README.md",
+      "howto": "docs/zot-annotate/HOWTO.md"
+    },
+    {
+      "id": "zot-usage-limits",
+      "title": "zot-usage-limits",
+      "description": "Register the external Zot usage-limit extension.",
+      "kind": "extension",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zot-usage-limits/README.md",
+      "howto": "docs/zot-usage-limits/HOWTO.md"
+    },
+    {
+      "id": "zot-extension-template-golang",
+      "title": "zot-extension-template-golang",
+      "description": "Register the external Go extension template.",
+      "kind": "extension",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zot-extension-template-golang/README.md",
+      "howto": "docs/zot-extension-template-golang/HOWTO.md"
+    },
+    {
+      "id": "zot-claude-hooks",
+      "title": "zot-claude-hooks",
+      "description": "Register the external Claude hook extension.",
+      "kind": "extension",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zot-claude-hooks/README.md",
+      "howto": "docs/zot-claude-hooks/HOWTO.md"
+    },
+    {
+      "id": "zot-question",
+      "title": "zot-question",
+      "description": "Register the external question extension.",
+      "kind": "extension",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zot-question/README.md",
+      "howto": "docs/zot-question/HOWTO.md"
+    },
+    {
+      "id": "zot-skill-cmds",
+      "title": "zot-skill-cmds",
+      "description": "Register the external skill-command extension.",
+      "kind": "extension",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zot-skill-cmds/README.md",
+      "howto": "docs/zot-skill-cmds/HOWTO.md"
+    },
+    {
+      "id": "zot-todo",
+      "title": "zot-todo",
+      "description": "Register the external todo extension.",
+      "kind": "extension",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/zot-todo/README.md",
+      "howto": "docs/zot-todo/HOWTO.md"
+    }
+  ]
+}

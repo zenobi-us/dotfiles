@@ -1,0 +1,18 @@
+{
+  "title": "WirePlumber Bluetooth audio",
+  "description": "Copy a Linux WirePlumber fragment enabling selected Bluetooth roles.",
+  "items": [
+    {
+      "id": "bluetooth-roles",
+      "title": "WirePlumber Bluetooth roles",
+      "description": "Enable the configured A2DP and HFP roles in WirePlumber.",
+      "kind": "configuration",
+      "sources": [
+        "mise.linux.toml",
+        "wireplumber.conf.d/51-bluez-handsfree.conf"
+      ],
+      "readme": "docs/bluetooth-roles/README.md",
+      "howto": "docs/bluetooth-roles/HOWTO.md"
+    }
+  ]
+}

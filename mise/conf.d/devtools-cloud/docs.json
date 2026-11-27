@@ -1,0 +1,39 @@
+{
+  "title": "Cloud tools",
+  "description": "Cloud access, infrastructure, and container management clients.",
+  "items": [
+    {
+      "id": "granted",
+      "title": "Granted",
+      "description": "Manage cloud role access with Granted.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/granted/README.md",
+      "howto": "docs/granted/HOWTO.md"
+    },
+    {
+      "id": "terraform",
+      "title": "Terraform",
+      "description": "Describe and manage infrastructure as code.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/terraform/README.md",
+      "howto": "docs/terraform/HOWTO.md"
+    },
+    {
+      "id": "lazydocker",
+      "title": "Lazydocker",
+      "description": "Inspect and manage container workloads in a terminal interface.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/lazydocker/README.md",
+      "howto": "docs/lazydocker/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Download commands",
+  "description": "Media and itch.io download clients.",
+  "items": [
+    {
+      "id": "yt-dlp",
+      "title": "yt-dlp",
+      "description": "Download media from supported websites.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/yt-dlp/README.md",
+      "howto": "docs/yt-dlp/HOWTO.md"
+    },
+    {
+      "id": "youtube-dl",
+      "title": "youtube-dl",
+      "description": "Download media with the youtube-dl command-line client.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/youtube-dl/README.md",
+      "howto": "docs/youtube-dl/HOWTO.md"
+    },
+    {
+      "id": "itch-dl",
+      "title": "itch-dl",
+      "description": "Bulk download games and assets from itch.io.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/itch-dl/README.md",
+      "howto": "docs/itch-dl/HOWTO.md"
+    }
+  ]
+}

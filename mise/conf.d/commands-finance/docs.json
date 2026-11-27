@@ -1,0 +1,17 @@
+{
+  "title": "Finance commands",
+  "description": "Plain-text accounting tools.",
+  "items": [
+    {
+      "id": "rustledger",
+      "title": "Rustledger",
+      "description": "Work with Beancount-compatible plain-text accounting ledgers.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/rustledger/README.md",
+      "howto": "docs/rustledger/HOWTO.md"
+    }
+  ]
+}

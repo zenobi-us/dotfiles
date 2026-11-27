@@ -337,3 +337,24 @@ source "$DOTFILE_ROOT/modules/mymodule__config.zsh"
     ├── *__config.zsh    # Interactive phase
     └── *__aliases.zsh   # Commands & aliases
 ```
+
+## Notable items
+
+- **[Zsh phase loader](docs/zsh-loader/README.md)** — Load explicitly registered shell modules through Zinit.
+- **[fzf command](docs/fzf/README.md)** — Acquire the fzf command through Zinit GitHub releases.
+- **[fzf-tab completion plugin](docs/fzf-tab/README.md)** — Choose completion candidates through the fzf-tab plugin.
+- **[Mise shell integration](docs/mise-shell-integration/README.md)** — Activate mise for environment, login, and interactive Zsh phases.
+- **[dotfiles bootstrap command](docs/dotfiles-command/README.md)** — Forward bootstrap options to the detected Dotfiles repository.
+- **[McFly history search](docs/mcfly/README.md)** — Initialise McFly history search in interactive Zsh.
+- **[Selection-aware Zsh keybindings](docs/keybindings/README.md)** — Provide word movement and selection-aware editing widgets.
+- **[Clipboard image path helper](docs/clipimg/README.md)** — Save a Wayland clipboard image as a temporary PNG for terminal tools.
+- **[Terminal font picker](docs/shellfont/README.md)** — Choose an installed font and update a supported terminal configuration.
+- **[Git history rewrite helpers](docs/git-history-helpers/README.md)** — Provide explicit commit re-signing and author-rewrite functions.
+- **[Home Assistant vault command](docs/hass-local/README.md)** — Run Home Assistant CLI with a vault-selected fnox profile.
+- **[Zellij helper commands](docs/zellij-helpers/README.md)** — Select a Zellij session or reload the configured agent-thread plugin.
+- **[Granted AWS profile integration](docs/granted-integration/README.md)** — Source assume and add Granted completion directories to Zsh.
+- **[WSL environment integration](docs/wsl-integration/README.md)** — Select the WSL2 mise environment and add limited Windows interop paths.
+- **[Prompt and terminal environment](docs/prompt-terminal-integration/README.md)** — Initialise Starship and set terminal capability environment in Zsh.
+- **[Worktrunk shell integration](docs/worktrunk-shell-integration/README.md)** — Initialise Worktrunk shell support when wt is available.
+
+The original guide above remains preserved. Current item guides distinguish active loader calls from dormant fragments and note source/guide discrepancies.

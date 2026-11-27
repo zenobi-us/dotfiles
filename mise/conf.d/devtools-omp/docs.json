@@ -1,0 +1,40 @@
+{
+  "title": "OMP agent host",
+  "description": "Link OMP host configuration, shared bundles, and local extensions.",
+  "items": [
+    {
+      "id": "omp-host",
+      "title": "OMP host configuration",
+      "description": "Link OMP configuration and shared bundles into the user agent directory.",
+      "kind": "configuration",
+      "sources": [
+        "mise.unix.toml"
+      ],
+      "readme": "docs/omp-host/README.md",
+      "howto": "docs/omp-host/HOWTO.md"
+    },
+    {
+      "id": "image-annotator",
+      "title": "Interactive image annotator",
+      "description": "Draw or annotate images manually and return the completed PNG to OMP.",
+      "kind": "extension",
+      "sources": [
+        "extensions/image-annotator/index.ts",
+        "extensions/image-annotator/package.json"
+      ],
+      "readme": "extensions/image-annotator/README.md",
+      "howto": "extensions/image-annotator/HOWTO.md"
+    },
+    {
+      "id": "herdr-agent-state",
+      "title": "Herdr OMP agent-state integration",
+      "description": "Report root OMP session activity to its owning Herdr pane.",
+      "kind": "integration",
+      "sources": [
+        "extensions/herdr-omp-agent-state.ts"
+      ],
+      "readme": "docs/herdr-agent-state/README.md",
+      "howto": "docs/herdr-agent-state/HOWTO.md"
+    }
+  ]
+}

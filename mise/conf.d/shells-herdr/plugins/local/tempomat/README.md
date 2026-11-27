@@ -74,3 +74,7 @@ herdr plugin log list --plugin tempomat --limit 20
 A rule pattern that never matches produces no trackers at all — check
 `tempomat.status` first, then confirm your regex/glob against the pane's
 actual title/cwd with `herdr pane get <pane_id>`.
+
+## Task guide
+
+Use the [focus-tracking task guide](HOWTO.md) for a cautious dry-run setup.

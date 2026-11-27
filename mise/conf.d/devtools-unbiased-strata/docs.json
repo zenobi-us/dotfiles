@@ -1,0 +1,19 @@
+{
+  "title": "UnbiasedStrata",
+  "description": "Build and launch the pinned upstream project inside the strata Distrobox.",
+  "items": [
+    {
+      "id": "unbiased-strata",
+      "title": "UnbiasedStrata container workflow",
+      "description": "Build and run the pinned UnbiasedStrata checkout inside the strata Distrobox.",
+      "kind": "configuration",
+      "sources": [
+        "mise.linux.toml",
+        "scripts/build",
+        "scripts/unbiased-strata"
+      ],
+      "readme": "docs/unbiased-strata/README.md",
+      "howto": "docs/unbiased-strata/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Starship",
+  "description": "Manage Starship and the shared prompt configuration.",
+  "items": [
+    {
+      "id": "starship",
+      "title": "Starship prompt",
+      "description": "Manage Starship and its text-based prompt symbols.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml",
+        "starship.toml"
+      ],
+      "readme": "docs/starship/README.md",
+      "howto": "docs/starship/HOWTO.md"
+    }
+  ]
+}

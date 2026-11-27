@@ -1,0 +1,33 @@
+{
+  "title": "Herdr",
+  "description": "Manage Herdr terminal configuration and the local Tempomat plugin.",
+  "items": [
+    {
+      "id": "herdr",
+      "title": "Herdr",
+      "description": "Manage Herdr configuration and local plugin registration.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml",
+        "config.toml",
+        "mise.unix.toml",
+        "mise.windows.toml"
+      ],
+      "readme": "docs/herdr/README.md",
+      "howto": "docs/herdr/HOWTO.md"
+    },
+    {
+      "id": "tempomat",
+      "title": "Tempomat focus tracking",
+      "description": "Map focused Herdr panes to Tempo issue trackers through local rules.",
+      "kind": "plugin",
+      "sources": [
+        "plugins/local/tempomat/herdr-plugin.toml",
+        "plugins/local/tempomat/rules.example.toml",
+        "plugins/local/tempomat/track.ts"
+      ],
+      "readme": "plugins/local/tempomat/README.md",
+      "howto": "plugins/local/tempomat/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Deskflow",
+  "description": "Link Deskflow server configuration on Unix and Windows.",
+  "items": [
+    {
+      "id": "deskflow",
+      "title": "Deskflow server configuration",
+      "description": "Share a Deskflow server configuration across Unix and Windows.",
+      "kind": "configuration",
+      "sources": [
+        "mise.unix.toml",
+        "mise.windows.toml",
+        "server.conf"
+      ],
+      "readme": "docs/deskflow/README.md",
+      "howto": "docs/deskflow/HOWTO.md"
+    }
+  ]
+}

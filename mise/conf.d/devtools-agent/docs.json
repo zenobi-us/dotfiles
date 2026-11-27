@@ -1,0 +1,132 @@
+{
+  "title": "Shared agent tooling",
+  "description": "Manage independent agent tools and canonical cross-host skill bundles.",
+  "items": [
+    {
+      "id": "gondolin",
+      "title": "Gondolin",
+      "description": "Manage the Gondolin package declared for agent workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/gondolin/README.md",
+      "howto": "docs/gondolin/HOWTO.md"
+    },
+    {
+      "id": "kandev",
+      "title": "Kandev",
+      "description": "Manage the Kandev package declared for agent workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/kandev/README.md",
+      "howto": "docs/kandev/HOWTO.md"
+    },
+    {
+      "id": "colibri",
+      "title": "Colibri",
+      "description": "Manage the Colibri release tool declared for agent workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/colibri/README.md",
+      "howto": "docs/colibri/HOWTO.md"
+    },
+    {
+      "id": "dealve",
+      "title": "Dealve TUI",
+      "description": "Manage the Dealve terminal application declared for agent workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/dealve/README.md",
+      "howto": "docs/dealve/HOWTO.md"
+    },
+    {
+      "id": "agent-core",
+      "title": "Agent Core bundle",
+      "description": "Core agent skills, shared context, and delegation.",
+      "kind": "bundle",
+      "sources": [
+        "bundles/agent-core/extension.json"
+      ],
+      "href": "/bundles/agent-core/"
+    },
+    {
+      "id": "creator",
+      "title": "Creator bundle",
+      "description": "Product creation and user-interface skills.",
+      "kind": "bundle",
+      "sources": [
+        "bundles/creator/extension.json"
+      ],
+      "href": "/bundles/creator/"
+    },
+    {
+      "id": "developer",
+      "title": "Developer bundle",
+      "description": "Development, review, testing, and Git workflow skills.",
+      "kind": "bundle",
+      "sources": [
+        "bundles/developer/extension.json"
+      ],
+      "href": "/bundles/developer/"
+    },
+    {
+      "id": "matt-pocock",
+      "title": "Matt Pocock bundle",
+      "description": "Engineering alignment and ticket workflows.",
+      "kind": "bundle",
+      "sources": [
+        "bundles/matt-pocock/extension.json"
+      ],
+      "href": "/bundles/matt-pocock/"
+    },
+    {
+      "id": "platform",
+      "title": "Platform bundle",
+      "description": "Infrastructure, deployment, and home automation skills.",
+      "kind": "bundle",
+      "sources": [
+        "bundles/platform/extension.json"
+      ],
+      "href": "/bundles/platform/"
+    },
+    {
+      "id": "researcher",
+      "title": "Researcher bundle",
+      "description": "Research methodology and analysis personas.",
+      "kind": "bundle",
+      "sources": [
+        "bundles/researcher/extension.json"
+      ],
+      "href": "/bundles/researcher/"
+    },
+    {
+      "id": "writing",
+      "title": "Writing bundle",
+      "description": "Business and professional writing skills.",
+      "kind": "bundle",
+      "sources": [
+        "bundles/writing/extension.json"
+      ],
+      "href": "/bundles/writing/"
+    },
+    {
+      "id": "agent-host-integration",
+      "title": "Agent host integration",
+      "description": "Share bundle directories, hook registrations, and command entrypoints across agent hosts.",
+      "kind": "configuration",
+      "sources": [
+        "mise.unix.toml",
+        "bundles/.claude-plugin/marketplace.json"
+      ],
+      "readme": "docs/agent-host-integration/README.md",
+      "howto": "docs/agent-host-integration/HOWTO.md"
+    }
+  ]
+}

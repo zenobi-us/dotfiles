@@ -32,3 +32,8 @@ Expected output:
 [install.scopes]
 "@jsr" = "https://npm.jsr.io"
 ```
+
+## Notable items
+
+- **[Enpass export merger](docs/enpass-merge/README.md)** — Combine two Enpass exports while preserving the selected conflict winner.
+- **[Bun JSR scope mapping](docs/bun-jsr/README.md)** — Resolve @jsr packages through the npm-compatible JSR registry.

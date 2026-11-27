@@ -1,0 +1,116 @@
+{
+  "title": "Terminal commands",
+  "description": "File navigation, search, editing, and structured-data tools.",
+  "items": [
+    {
+      "id": "fzf",
+      "title": "fzf",
+      "description": "Select entries with an interactive fuzzy finder.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/fzf/README.md",
+      "howto": "docs/fzf/HOWTO.md"
+    },
+    {
+      "id": "glow",
+      "title": "Glow",
+      "description": "Read Markdown in the terminal.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/glow/README.md",
+      "howto": "docs/glow/HOWTO.md"
+    },
+    {
+      "id": "jq",
+      "title": "jq",
+      "description": "Filter and transform JSON from the command line.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/jq/README.md",
+      "howto": "docs/jq/HOWTO.md"
+    },
+    {
+      "id": "mc",
+      "title": "Midnight Commander",
+      "description": "Browse and manage files in a terminal file manager.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/mc/README.md",
+      "howto": "docs/mc/HOWTO.md"
+    },
+    {
+      "id": "ripgrep",
+      "title": "ripgrep",
+      "description": "Search file contents with the rg command.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/ripgrep/README.md",
+      "howto": "docs/ripgrep/HOWTO.md"
+    },
+    {
+      "id": "yq",
+      "title": "yq",
+      "description": "Query and transform structured documents from the terminal.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/yq/README.md",
+      "howto": "docs/yq/HOWTO.md"
+    },
+    {
+      "id": "fd",
+      "title": "fd",
+      "description": "Find filesystem entries with a concise command-line interface.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/fd/README.md",
+      "howto": "docs/fd/HOWTO.md"
+    },
+    {
+      "id": "micro",
+      "title": "Micro",
+      "description": "Edit text files in a terminal editor.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/micro/README.md",
+      "howto": "docs/micro/HOWTO.md"
+    },
+    {
+      "id": "neofetch",
+      "title": "Neofetch",
+      "description": "Display system information beside terminal artwork.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/neofetch/README.md",
+      "howto": "docs/neofetch/HOWTO.md"
+    },
+    {
+      "id": "mq",
+      "title": "mq",
+      "description": "Query, transform, and render Markdown and structured data.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/mq/README.md",
+      "howto": "docs/mq/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "title": "Local commands",
+  "description": "Expose standalone utility commands through ~/.local/bin on Unix.",
+  "items": [
+    {
+      "id": "add-mise",
+      "title": "Project mise bootstrap copier",
+      "description": "Copy the bundled mise installer into the current project.",
+      "kind": "command",
+      "sources": [
+        "add-mise",
+        "setup-mise.bash"
+      ],
+      "readme": "docs/add-mise/README.md",
+      "howto": "docs/add-mise/HOWTO.md"
+    },
+    {
+      "id": "androiddev",
+      "title": "Legacy Android SDK helper",
+      "description": "Provide legacy Android SDK installation and AVD creation routines.",
+      "kind": "command",
+      "sources": [
+        "androiddev.sh"
+      ],
+      "readme": "docs/androiddev/README.md",
+      "howto": "docs/androiddev/HOWTO.md"
+    },
+    {
+      "id": "devtool",
+      "title": "Browser debug bridge",
+      "description": "Pass the first local Chrome debug target to bdg.",
+      "kind": "command",
+      "sources": [
+        "devtool"
+      ],
+      "readme": "docs/devtool/README.md",
+      "howto": "docs/devtool/HOWTO.md"
+    },
+    {
+      "id": "docker-osx",
+      "title": "Docker-OSX launcher",
+      "description": "Launch the configured Sonoma Docker-OSX container.",
+      "kind": "command",
+      "sources": [
+        "docker-osx"
+      ],
+      "readme": "docs/docker-osx/README.md",
+      "howto": "docs/docker-osx/HOWTO.md"
+    },
+    {
+      "id": "gallery",
+      "title": "Directory gallery",
+      "description": "Serve the current directory as an image gallery and file browser.",
+      "kind": "command",
+      "sources": [
+        "gallery"
+      ],
+      "readme": "docs/gallery/README.md",
+      "howto": "docs/gallery/HOWTO.md"
+    },
+    {
+      "id": "ghostty-shaders",
+      "title": "Ghostty shader manager",
+      "description": "Manage shader sources and apply Ghostty shader selections.",
+      "kind": "command",
+      "sources": [
+        "ghostty-shaders"
+      ],
+      "readme": "docs/ghostty-shaders/README.md",
+      "howto": "docs/ghostty-shaders/HOWTO.md"
+    },
+    {
+      "id": "lora-organise",
+      "title": "LoRA organiser",
+      "description": "Review metadata-based LoRA move plans before explicit application.",
+      "kind": "command",
+      "sources": [
+        "lora-organise"
+      ],
+      "readme": "docs/lora-organise/README.md",
+      "howto": "docs/lora-organise/HOWTO.md"
+    },
+    {
+      "id": "markdown-view",
+      "title": "Markdown viewer",
+      "description": "Serve one Markdown document on a loopback HTTP listener.",
+      "kind": "command",
+      "sources": [
+        "markdown-view"
+      ],
+      "readme": "docs/markdown-view/README.md",
+      "howto": "docs/markdown-view/HOWTO.md"
+    },
+    {
+      "id": "samba-here",
+      "title": "Samba container launcher",
+      "description": "Provide a Docker-based directory-sharing launcher for inspection.",
+      "kind": "command",
+      "sources": [
+        "samba-here"
+      ],
+      "readme": "docs/samba-here/README.md",
+      "howto": "docs/samba-here/HOWTO.md"
+    },
+    {
+      "id": "zerotier-join",
+      "title": "ZeroTier DNS join helper",
+      "description": "Join a ZeroTier network and configure its split DNS with systemd-resolved.",
+      "kind": "command",
+      "sources": [
+        "zerotier-join"
+      ],
+      "readme": "docs/zerotier-join/README.md",
+      "howto": "docs/zerotier-join/HOWTO.md"
+    },
+    {
+      "id": "enpass-merge",
+      "title": "Enpass export merger",
+      "description": "Forward to the canonical Enpass export merger.",
+      "kind": "command",
+      "sources": [
+        "enpass-merge"
+      ],
+      "href": "/modules/devtools-enpass-merge/items/enpass-merge/"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "title": "Herdr App workspace",
+  "description": "Configure Herdr App presentation, shared-context queries, and local mods.",
+  "items": [
+    {
+      "id": "herdr-context",
+      "title": "Herdr context query helper",
+      "description": "Run target-side shared-context queries through a JSON protocol.",
+      "kind": "command",
+      "sources": [
+        "build/cli.ts",
+        "build/protocol.ts",
+        "app/bin/herdr-context.mjs"
+      ],
+      "readme": "docs/herdr-context/README.md",
+      "howto": "docs/herdr-context/HOWTO.md"
+    },
+    {
+      "id": "shared-context",
+      "title": "Shared Context panel",
+      "description": "Browse repository context, tracker records, and workflow activity in Herdr App.",
+      "kind": "extension",
+      "sources": [
+        "app/mods/shared-context/main.js",
+        "app/mods/shared-context/mod.json",
+        "app/preferences/shared-context.json"
+      ],
+      "readme": "app/mods/shared-context/README.md",
+      "howto": "app/mods/shared-context/HOWTO.md"
+    },
+    {
+      "id": "shared-context-tabs",
+      "title": "Shared Context tab strip",
+      "description": "Provide space-local panel selection and tab controls for Herdr App.",
+      "kind": "extension",
+      "sources": [
+        "app/mods/shared-context-tabs/main.js",
+        "app/mods/shared-context-tabs/mod.json"
+      ],
+      "readme": "app/mods/shared-context-tabs/README.md",
+      "howto": "app/mods/shared-context-tabs/HOWTO.md"
+    },
+    {
+      "id": "equalise-panes",
+      "title": "Equalise panes mod",
+      "description": "Restore equal pane dimensions after splits and closes.",
+      "kind": "extension",
+      "sources": [
+        "app/mods/equalise-panes/mod.json",
+        "app/mods/equalise-panes/main.js",
+        "app/mods/equalise-panes/equalize.mjs"
+      ],
+      "readme": "app/mods/equalise-panes/README.md",
+      "howto": "app/mods/equalise-panes/HOWTO.md"
+    },
+    {
+      "id": "workspace-presentation",
+      "title": "Herdr App workspace presentation",
+      "description": "Provide the MonoSlate theme, preferences, and zenobius layout.",
+      "kind": "configuration",
+      "sources": [
+        "app/themes/monoslate.json",
+        "app/layouts/zenobius.json",
+        "app/preferences",
+        "mise.toml"
+      ],
+      "readme": "docs/workspace-presentation/README.md",
+      "howto": "docs/workspace-presentation/HOWTO.md"
+    }
+  ]
+}

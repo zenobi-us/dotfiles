@@ -1,0 +1,50 @@
+{
+  "title": "Continuous integration tools",
+  "description": "Local GitHub Actions tooling and semantic-version utilities.",
+  "items": [
+    {
+      "id": "act",
+      "title": "act",
+      "description": "Run GitHub Actions workflows locally.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/act/README.md",
+      "howto": "docs/act/HOWTO.md"
+    },
+    {
+      "id": "actionlint",
+      "title": "actionlint",
+      "description": "Check GitHub Actions workflow definitions.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/actionlint/README.md",
+      "howto": "docs/actionlint/HOWTO.md"
+    },
+    {
+      "id": "gh-actions-language-server",
+      "title": "GitHub Actions Language Server",
+      "description": "Provide editor language services for GitHub Actions workflows.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/gh-actions-language-server/README.md",
+      "howto": "docs/gh-actions-language-server/HOWTO.md"
+    },
+    {
+      "id": "semver",
+      "title": "Semver",
+      "description": "Evaluate and manipulate semantic versions from the command line.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/semver/README.md",
+      "howto": "docs/semver/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Alacritty",
+  "description": "Manage the Windows terminal release and supplied configuration and themes.",
+  "items": [
+    {
+      "id": "alacritty",
+      "title": "Alacritty Windows configuration",
+      "description": "Manage the Windows Alacritty release and bundled terminal themes.",
+      "kind": "tool",
+      "sources": [
+        "mise.windows.toml",
+        "alacritty.windows.toml",
+        "themes"
+      ],
+      "readme": "docs/alacritty/README.md",
+      "howto": "docs/alacritty/HOWTO.md"
+    }
+  ]
+}

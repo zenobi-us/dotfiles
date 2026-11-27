@@ -1,0 +1,54 @@
+{
+  "title": "Claude tooling",
+  "description": "Manage Claude CLI declarations, bundle installation, and host integrations.",
+  "items": [
+    {
+      "id": "claude-code",
+      "title": "Claude Code",
+      "description": "Manage Claude CLI tooling and shared bundle installation.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/claude-code/README.md",
+      "howto": "docs/claude-code/HOWTO.md"
+    },
+    {
+      "id": "statusline",
+      "title": "Claude status line",
+      "description": "Render model, directory, and context usage from Claude session JSON.",
+      "kind": "configuration",
+      "sources": [
+        "statusline.sh",
+        "mise.unix.toml"
+      ],
+      "readme": "docs/statusline/README.md",
+      "howto": "docs/statusline/HOWTO.md"
+    },
+    {
+      "id": "clip-bridge",
+      "title": "WSLg clipboard image bridge",
+      "description": "Convert WSLg mirrored BMP images into PNG for Claude paste.",
+      "kind": "configuration",
+      "sources": [
+        "clip-bridge",
+        "mise.wsl2.toml"
+      ],
+      "readme": "docs/clip-bridge/README.md",
+      "howto": "docs/clip-bridge/HOWTO.md"
+    },
+    {
+      "id": "presentation",
+      "title": "Claude themes and output styles",
+      "description": "Provide local themes and authored response styles for Claude.",
+      "kind": "configuration",
+      "sources": [
+        "themes",
+        "output-styles",
+        "mise.unix.toml"
+      ],
+      "readme": "docs/presentation/README.md",
+      "howto": "docs/presentation/HOWTO.md"
+    }
+  ]
+}

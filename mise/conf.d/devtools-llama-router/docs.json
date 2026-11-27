@@ -1,0 +1,51 @@
+{
+  "title": "Local model routing",
+  "description": "Manage model utilities and the local llama-server router launcher.",
+  "items": [
+    {
+      "id": "llmctl",
+      "title": "llmctl",
+      "description": "Manage the pinned llmctl release.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/llmctl/README.md",
+      "howto": "docs/llmctl/HOWTO.md"
+    },
+    {
+      "id": "llmfit",
+      "title": "llmfit",
+      "description": "Manage the llmfit release tool.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/llmfit/README.md",
+      "howto": "docs/llmfit/HOWTO.md"
+    },
+    {
+      "id": "llmserve",
+      "title": "llmserve",
+      "description": "Manage the llmserve release tool.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/llmserve/README.md",
+      "howto": "docs/llmserve/HOWTO.md"
+    },
+    {
+      "id": "llama-router",
+      "title": "Local llama router launcher",
+      "description": "Generate local model presets from a template before launching the server.",
+      "kind": "configuration",
+      "sources": [
+        "llama-router.sh",
+        "models.ini.in"
+      ],
+      "readme": "docs/llama-router/README.md",
+      "howto": "docs/llama-router/HOWTO.md"
+    }
+  ]
+}

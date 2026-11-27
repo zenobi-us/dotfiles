@@ -1,0 +1,72 @@
+{
+  "title": "Service tools",
+  "description": "Development services, proxies, tunnels, and the Tempo.io client.",
+  "items": [
+    {
+      "id": "pitchfork",
+      "title": "Pitchfork",
+      "description": "Manage background development services.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/pitchfork/README.md",
+      "howto": "docs/pitchfork/HOWTO.md"
+    },
+    {
+      "id": "cloudflared",
+      "title": "Cloudflared",
+      "description": "Connect services through Cloudflare Tunnel.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/cloudflared/README.md",
+      "howto": "docs/cloudflared/HOWTO.md"
+    },
+    {
+      "id": "portless",
+      "title": "Portless",
+      "description": "Give development servers stable named localhost URLs.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/portless/README.md",
+      "howto": "docs/portless/HOWTO.md"
+    },
+    {
+      "id": "traefik",
+      "title": "Traefik",
+      "description": "Route incoming requests to configured services.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/traefik/README.md",
+      "howto": "docs/traefik/HOWTO.md"
+    },
+    {
+      "id": "serve",
+      "title": "Serve",
+      "description": "Serve static files with a small HTTP server.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/serve/README.md",
+      "howto": "docs/serve/HOWTO.md"
+    },
+    {
+      "id": "tempomat",
+      "title": "Tempomat",
+      "description": "Access Tempo.io cloud services from the command line.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/tempomat/README.md",
+      "howto": "docs/tempomat/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "PowerShell profile",
+  "description": "Copy the Windows PowerShell profile, initialisers, and aliases.",
+  "items": [
+    {
+      "id": "powershell-profile",
+      "title": "PowerShell profile",
+      "description": "Load shared initialisers and command aliases from the managed PowerShell profile.",
+      "kind": "configuration",
+      "sources": [
+        "mise.windows.toml",
+        "Microsoft.PowerShell_profile.ps1",
+        "common.ps1",
+        "parts"
+      ],
+      "readme": "docs/powershell-profile/README.md",
+      "howto": "docs/powershell-profile/HOWTO.md"
+    }
+  ]
+}

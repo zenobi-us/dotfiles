@@ -1,0 +1,18 @@
+{
+  "title": "GitHub repository policy",
+  "description": "Store reusable GitHub settings and default-branch ruleset templates.",
+  "items": [
+    {
+      "id": "repository-policy",
+      "title": "Default GitHub repository policy",
+      "description": "Provide reusable repository settings and default-branch ruleset JSON.",
+      "kind": "configuration",
+      "sources": [
+        "default/repository-settings/settings.json",
+        "default/rulesets/protect-default-branch.json"
+      ],
+      "readme": "docs/repository-policy/README.md",
+      "howto": "docs/repository-policy/HOWTO.md"
+    }
+  ]
+}

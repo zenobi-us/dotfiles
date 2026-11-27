@@ -1,0 +1,19 @@
+{
+  "title": "Neovim",
+  "description": "Manage Neovim, editor environment variables, and external platform profiles.",
+  "items": [
+    {
+      "id": "neovim",
+      "title": "Neovim",
+      "description": "Manage Neovim and platform-specific editor profiles.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml",
+        "mise.unix.toml",
+        "mise.windows.toml"
+      ],
+      "readme": "docs/neovim/README.md",
+      "howto": "docs/neovim/HOWTO.md"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Build tools",
+  "description": "Build configuration, workspace tasks, toolchains, and file watching.",
+  "items": [
+    {
+      "id": "cmake",
+      "title": "CMake",
+      "description": "Configure native software build systems.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/cmake/README.md",
+      "howto": "docs/cmake/HOWTO.md"
+    },
+    {
+      "id": "moon",
+      "title": "Moon",
+      "description": "Run tasks across a moonrepo workspace.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/moon/README.md",
+      "howto": "docs/moon/HOWTO.md"
+    },
+    {
+      "id": "proto",
+      "title": "Proto",
+      "description": "Manage project toolchains with moonrepo Proto.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/proto/README.md",
+      "howto": "docs/proto/HOWTO.md"
+    },
+    {
+      "id": "watchexec",
+      "title": "Watchexec",
+      "description": "Run commands in response to filesystem changes.",
+      "kind": "tool",
+      "sources": [
+        "mise.toml"
+      ],
+      "readme": "docs/watchexec/README.md",
+      "howto": "docs/watchexec/HOWTO.md"
+    }
+  ]
+}
