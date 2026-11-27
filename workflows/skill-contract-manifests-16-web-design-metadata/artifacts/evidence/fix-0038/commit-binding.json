@@ -1,0 +1,62 @@
+{
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "precommit_run": true,
+  "no_postcommit_rerun": true,
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "kind": "executed-runtime",
+      "git_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "working_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "committed_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "executed_or_final_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "matches": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "kind": "executed-runtime",
+      "git_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "working_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "committed_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "executed_or_final_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "matches": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "kind": "executed-runtime",
+      "git_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "working_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "committed_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "executed_or_final_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "matches": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "kind": "final-reference",
+      "git_blob": "6bec3c91e77b56a0b2a859e345d0fc7a47f1948b",
+      "working_sha256": "06691df93021d0f376f065fe8dd7dd9fafa6ee2c36a23681d245db6468a09b03",
+      "committed_sha256": "06691df93021d0f376f065fe8dd7dd9fafa6ee2c36a23681d245db6468a09b03",
+      "executed_or_final_sha256": "06691df93021d0f376f065fe8dd7dd9fafa6ee2c36a23681d245db6468a09b03",
+      "matches": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "kind": "normal-hook-metadata",
+      "git_blob": "74196f8cf5ba5b5175f932fb4d872c42b65b4872",
+      "working_sha256": "18b884914a03e40d0b7874f9bbb38ed5cc87e9abcc421b27ee062381e7a76605",
+      "committed_sha256": "18b884914a03e40d0b7874f9bbb38ed5cc87e9abcc421b27ee062381e7a76605",
+      "executed_or_final_sha256": "18b884914a03e40d0b7874f9bbb38ed5cc87e9abcc421b27ee062381e7a76605",
+      "matches": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "kind": "normal-hook-metadata",
+      "git_blob": "cf17853c97d02d7df2fff735bde7bbcaf3b11e3e",
+      "working_sha256": "236ba09dde9eda653ea08a388665bd660114c834682067f0aabb205332f17f5d",
+      "committed_sha256": "236ba09dde9eda653ea08a388665bd660114c834682067f0aabb205332f17f5d",
+      "executed_or_final_sha256": "236ba09dde9eda653ea08a388665bd660114c834682067f0aabb205332f17f5d",
+      "matches": true
+    }
+  ]
+}

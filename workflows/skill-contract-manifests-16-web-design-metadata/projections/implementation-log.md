@@ -2,7 +2,7 @@
 
 ## implementation-0002
 
-Source commit `9689169146996ad84d19430cd19aa2a386c733b2`; tree `67e2145f36f92662554a7bc7c9d2a0032c5a3bb7`. Implemented current and historical metadata contracts, safe explicit conversion, and verified bundled-source consumption. Changed files and all validation results are in [workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-implementation-0002.md](workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-implementation-0002.md).
+Source commit `9689169146996ad84d19430cd19aa2a386c733b2`; tree `67e2145f36f92662554a7bc7c9d2a0032c5a3bb7`. Implemented current and historical metadata contracts, safe explicit conversion, and verified bundled-source consumption. Changed files and all validation results are in [workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-implementation-0002.md](../artifacts/snapshots/pr-draft-implementation-0002.md).
 
 Native smoke passed 52 command outcomes. Installed public validation and resolution passed. Tests ran before commit and committed blob identities match the tested authored bytes. Five asset hashes and all non-identity catalog bytes match the parent baseline.
 
@@ -14,11 +14,11 @@ Receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/imple
 
 ## fix-0011 and approved publication recovery
 
-Historical statements above describe implementation-0002 at its recorded time. Review2 subsequently returned FAILURE for source 9689169146996ad84d19430cd19aa2a386c733b2; see [immutable review](workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md).
+Historical statements above describe implementation-0002 at its recorded time. Review2 subsequently returned FAILURE for source 9689169146996ad84d19430cd19aa2a386c733b2; see [immutable review](../artifacts/reviews/review-review-0008.md).
 
 Fixed source `fb4104c7ea2e27f215fab95ec69682b71b101c1b`; tree `c7ecc92e759b7720f1ffadc4d2377473ff481403`. The source decoder and native regression address malformed UTF-8 acceptance while preserving valid Unicode, catalog bytes and all five assets. Fixer56-command native smoke passed before commit/guidance; three executed blobs match the committed tree. Parent independently exercised six fixed-commit native outcomes, including exact retained invalid bytes and valid current/historical Unicode controls; all expected, all input bytes preserved.
 
-Fix result remains BLOCKED on failed publication, not a successful accepted handoff. Invalid immutable snapshot `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md` is retained. Approval86 authorizes this new immutable draft and mutable-view recovery without source changes: [source-bound draft](workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-review-start-0013.md). Fresh independent review remains pending. No integration or ticket completion occurred. All five owned fixer processes stopped; no extra signals.
+Fix result remains BLOCKED on failed publication, not a successful accepted handoff. Invalid immutable snapshot `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0011.md` is retained. Approval86 authorizes this new immutable draft and mutable-view recovery without source changes: [source-bound draft](../artifacts/snapshots/pr-draft-review-start-0013.md). Fresh independent review remains pending. No integration or ticket completion occurred. All five owned fixer processes stopped; no extra signals.
 
 Receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml`. Parent: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml`. Native proof: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0002/encoding-native-probes.json`.
 
@@ -54,7 +54,7 @@ No unresolved implementation question remains. Independent review and source acc
 
 ## fix-0026: labelled lists and paragraph limits
 
-Review23 returned FAILURE for `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`. It reported three low hard prose findings. Native56 passed and Spec reported no findings. [Review23 body](workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md) remains immutable.
+Review23 returned FAILURE for `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`. It reported three low hard prose findings. Native56 passed and Spec reported no findings. [Review23 body](../artifacts/reviews/review-review-0023.md) remains immutable.
 
 New source commit: `dab2338e6be69e208c39c6c05164c0a1a066dbf7`. Tree: `85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f`. Fix26 resolves standards-006 through standards-008. Only the three authorised prose sections changed. Normal hooks updated only the two declared metadata paths.
 
@@ -111,3 +111,42 @@ The manual audit count transcription correction is retained separately; no sourc
 [New snapshot32](../artifacts/snapshots/pr-draft-fix-0032.md) records the complete review history. No assigned finding or implementation question remains unresolved. Fresh independent review is PENDING for the new source. Source is not accepted, pushed or merged.
 
 Receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0032.yaml` is the assigned final publication. Parent owns journal reconciliation112, YAML views, tracker changes, independent review and normal primary closure. No extra agents, services or signals occurred. Relocation remains escalation-only.
+
+
+
+## fix-0038: repeated labeled records and American spelling
+
+Review35 returned FAILURE for `14705f57e663196bc211fbf394a8829820dcf9fc`. Its two low hard findings concern table presentation and American spelling. Its Spec axis had no findings. Parent36 validated its native56 and receipt delivery. [Review35](../artifacts/reviews/review-review-0035.md) remains immutable.
+
+Fix38 resolves standards-011 and standards-012. Both tables now use repeated labeled records with exact field labels and values. The conversion referral uses `authorized`. Its link and separate conversion authority remain unchanged.
+
+Source commit: `b039c503841014575faf26c16d3dfa61e9c63db6`. Tree: `29ef53bfe84e272f0ea7e965bc554f33f21f194c`.
+
+- **Authored reference:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md`.
+- **Normal hook:** `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json`.
+- **Normal hook:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`.
+
+Normal hooks set Creator metadata to `0.1.9`. The exact path-only commit preserved unrelated staging. All eight protected nonhook feature paths and all five assets remain unchanged. Catalog nonidentity bytes match the parent numeric baseline.
+
+The absolute owning executable ran once from `/tmp` after final edits and before commit. Outer exit was 0 and stderr was empty. All 56 JSON outcomes matched expectations. There were 21 successful commands and 35 expected refusals. The final non-JSON PASS line was separate.
+
+Execution started at `2026-11-27T01:58:21.865578+00:00` and took 8.352266530 seconds. This is precommit evidence, not a postcommit run. Six bindings cover the three executed runtime blobs, final reference and two hook metadata blobs.
+
+The full final reference was read through MQ. All 26 original table cells retain their meaning and technical values. The document keeps five sections and at most two list levels. No permanent wording tests were added.
+
+- **Assigned result:** `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0038.yaml` is the final receipt publication.
+- **Phase authorization:** [fix-start-0037](../events/fix-start-0037.yaml).
+- **Consumed parent:** [review-complete-0036](../events/review-complete-0036.yaml).
+- **New snapshot:** [draft38](../artifacts/snapshots/pr-draft-fix-0038.md).
+- **Native evidence:** [Full execution](../artifacts/evidence/fix-0038/native-smoke.json).
+- **Actual outcomes:** [All row comparisons](../artifacts/evidence/fix-0038/native-validation.json).
+- **Manual inspection:** [Row-to-record audit](../artifacts/evidence/fix-0038/manual-prose-validation.json).
+- **Commit bindings:** [Six final objects](../artifacts/evidence/fix-0038/commit-binding.json).
+- **Preserved source:** [Preservation evidence](../artifacts/evidence/fix-0038/preservation.json).
+
+No assigned finding or implementation question remains unresolved. Fresh independent review is PENDING for the new source. No stale verdict applies. Source remains local, not merged or pushed.
+
+All prior immutable records and failed captures remain unchanged. Checkpoint116 remains historical coordination, not added source scope. No extra agents, services, source refresh or original-provenance access occurred. No relocation, serverfiles or infrastructure work occurred.
+
+The primary remains live for normal parent closure. Parent owns tracker and YAML views. Parent also owns publication-checkout commits, fresh review and integration.
+

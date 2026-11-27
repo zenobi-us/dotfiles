@@ -1,0 +1,34 @@
+{
+  "observation": "Parent manually read both changed sections and opening referral through MQ before formal child result. Bind this exact source hash to final committed object before acceptance.",
+  "authored_path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+  "sha256": "06691df93021d0f376f065fe8dd7dd9fafa6ee2c36a23681d245db6468a09b03",
+  "findings": [
+    "standards-011",
+    "standards-012"
+  ],
+  "inventory_boundary_records": 5,
+  "inventory_fields_preserved": [
+    "Boundary",
+    "Direction",
+    "Definition and validator",
+    "Reading and conversion"
+  ],
+  "identity_records": 2,
+  "identity_fields_preserved": [
+    "Declared contract",
+    "Wire identity",
+    "Support"
+  ],
+  "all_table_cell_meanings_preserved": true,
+  "exact_wire_literals_and_support_restrictions_preserved": true,
+  "maximum_observed_list_levels": 2,
+  "existing_section_count": 5,
+  "no_new_per_record_headings": true,
+  "no_presentation_width_invented": true,
+  "referral_spelling": "authorized",
+  "referral_link_and_separate_authority_preserved": true,
+  "source_accepted": false,
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "hash_matches_final_committed_binding": true
+}

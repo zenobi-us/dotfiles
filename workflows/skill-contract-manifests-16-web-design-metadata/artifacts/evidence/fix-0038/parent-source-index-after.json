@@ -1,0 +1,16 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0120.yaml",
+  "aligned_index_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "operation": "git add -- <the two exact owned metadata paths> in isolated source",
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "file_edits": 0,
+  "new_source_commits": 0,
+  "native_or_axis_reruns": 0,
+  "source_guard": "Same native parent39 writer succeeded after alignment, preserving the clean/frozen-source check",
+  "parent_receipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0039.yaml",
+  "old_index_evidence": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0038/parent-source-index-before.json"
+}

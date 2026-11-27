@@ -1,0 +1,69 @@
+{
+  "resolved_findings": [
+    "standards-011",
+    "standards-012"
+  ],
+  "reading_interface": "MQ raw input, text output, required okf.mq import",
+  "inventory_records": [
+    {
+      "Boundary": "Source catalog",
+      "Direction": "Input and current conversion output",
+      "Definition and validator": "This definition. `validateCatalog` and `readCatalog`",
+      "Reading and conversion": "Numeric v1 and string v2. Explicit shared upgrade only"
+    },
+    {
+      "Boundary": "`contracts.json`",
+      "Direction": "Declaration",
+      "Definition and validator": "Shared built-in `skill-contract-manifest/v1`. Shared validator",
+      "Reading and conversion": "Shared manifest reader"
+    },
+    {
+      "Boundary": "Design Markdown",
+      "Direction": "Human guidance or opaque asset bytes",
+      "Definition and validator": "Not independent structured records",
+      "Reading and conversion": "No injected identity or conversion"
+    },
+    {
+      "Boundary": "Task guidance",
+      "Direction": "Human guidance",
+      "Definition and validator": "Not independent structured records",
+      "Reading and conversion": "No injected identity or conversion"
+    },
+    {
+      "Boundary": "CLI display text",
+      "Direction": "Human guidance",
+      "Definition and validator": "Not independent structured records",
+      "Reading and conversion": "No injected identity or conversion"
+    }
+  ],
+  "identity_records": [
+    {
+      "Declared contract": "`design-source-metadata/v1`",
+      "Wire identity": "JSON number `schemaVersion: 1`",
+      "Support": "Known historical input only"
+    },
+    {
+      "Declared contract": "`design-source-metadata/v2`",
+      "Wire identity": "String `schemaVersion: \"design-source-metadata/v2\"`",
+      "Support": "Current input and explicit conversion output"
+    }
+  ],
+  "manual_checks": {
+    "all_20_inventory_cells_preserved": true,
+    "all_6_identity_cells_preserved": true,
+    "existing_field_labels": true,
+    "existing_five_sections_only": true,
+    "maximum_list_depth": 2,
+    "each_bullet_one_paragraph_one_idea": true,
+    "sets_of_three_or_more_vertical": true,
+    "paragraphs_at_most_five_sentences": true,
+    "short_complete_prose_sentences": true,
+    "new_spelling_American": true,
+    "opening_purpose_reader_date_referral_preserved": true,
+    "no_new_contract_identifier_or_width": true,
+    "ownership_validators_wire_values_restrictions_preserved": true,
+    "separate_conversion_authority_preserved": true,
+    "all_other_passages_commands_literals_links_unchanged": true
+  },
+  "scope": "Descriptive reference; exact field values retain their existing wording. Only the two table structures and the referral spelling changed. No permanent wording tests."
+}

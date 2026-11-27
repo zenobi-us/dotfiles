@@ -1,0 +1,21 @@
+{
+  "creation": {
+    "exit_code": 0,
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0038/snapshot-candidate.md",
+    "query_form": "NULL INPUT SCALAR LITERAL",
+    "output_format": "text"
+  },
+  "frontmatter": {
+    "schemaVersion": "worktree-pr-draft/v1",
+    "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+    "receipt_id": "fix-0038",
+    "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+    "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c"
+  },
+  "body_sha256": "29e6780fde22d8b8daf2bb43f6d1b003a08d552eef3a6e5bdd6b7107c3b698ae",
+  "body_complete": true,
+  "source_review": "PENDING",
+  "producer_receipt": "fix-0038",
+  "prevalidated_before_final_publication": true
+}

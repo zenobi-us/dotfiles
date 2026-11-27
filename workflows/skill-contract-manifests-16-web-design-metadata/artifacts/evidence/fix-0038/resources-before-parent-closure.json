@@ -1,0 +1,34 @@
+{
+  "registered_resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "52bb2921-63fe-47bf-98b8-713649d2645c",
+    "observedAt": "2026-11-27T02:00:59.859Z",
+    "processes": [
+      {
+        "pid": 1222107,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "44984512",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 1223403,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "44988683",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  },
+  "primary_terminal": "t2mh",
+  "primary_session": "01a21ab7-3932-75a4-9280-5ddea162c187",
+  "extra_agents": [],
+  "services_started": [],
+  "extra_signals_sent": 0,
+  "shutdown": "pending",
+  "closure_owner": "parent t2dv; normal primary closure",
+  "note": "Registered primary OMP and evaluation kernel remain owned by this live phase. No source workspace closure or infrastructure change."
+}

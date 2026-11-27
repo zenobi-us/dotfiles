@@ -1,0 +1,736 @@
+{
+  "rows": 56,
+  "exit0": 21,
+  "expected_exit1": 35,
+  "all_expected": true,
+  "outer_exit": 0,
+  "stderr_empty": true,
+  "summary": [
+    "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+  ],
+  "outcomes": [
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--contract",
+        "design-source-metadata/v1"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--contract",
+        "design-source-metadata/v2"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/historical.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "report-dashboard",
+        "styles/report-dashboard/DESIGN.md",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "widget-grid-dashboard",
+        "styles/widget-grid-dashboard/DESIGN.md",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "widget-grid-dashboard",
+        "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "project-info",
+        "styles/project-info/DESIGN.md",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "project-info",
+        "styles/project-info/EDITOR-DESIGN.md",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "report-dashboard",
+        "styles/report-dashboard/DESIGN.md",
+        "/tmp/web-design-metadata-SDA8Wu/historical.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "widget-grid-dashboard",
+        "styles/widget-grid-dashboard/DESIGN.md",
+        "/tmp/web-design-metadata-SDA8Wu/historical.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "widget-grid-dashboard",
+        "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+        "/tmp/web-design-metadata-SDA8Wu/historical.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "project-info",
+        "styles/project-info/DESIGN.md",
+        "/tmp/web-design-metadata-SDA8Wu/historical.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "project-info",
+        "styles/project-info/EDITOR-DESIGN.md",
+        "/tmp/web-design-metadata-SDA8Wu/historical.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "project-info",
+        "styles/widget-grid-dashboard/DESIGN.md"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unicode-current.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "report-dashboard",
+        "styles/report-dashboard/DESIGN.md",
+        "/tmp/web-design-metadata-SDA8Wu/unicode-current.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/invalid-utf8.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "select",
+        "report-dashboard",
+        "styles/report-dashboard/DESIGN.md",
+        "/tmp/web-design-metadata-SDA8Wu/invalid-utf8.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/authored.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/authored.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/authored.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-0.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-0.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-1.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-1.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-2.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-2.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-3.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-3.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-4.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-4.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-5.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-5.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-6.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-6.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-7.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-7.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-8.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unknown-8.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/absent.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/absent.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/mixed.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/mixed.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/duplicate.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/duplicate.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/malformed.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/malformed.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/immutable.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/immutable.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "validate",
+        "/tmp/web-design-metadata-SDA8Wu/bad-association.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/bad-association.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifact",
+        "/tmp/web-design-metadata-SDA8Wu/unsupported.json",
+        "--operation",
+        "refresh"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "bulk-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/",
+        "--owner",
+        "file:scripts/source-metadata.ts",
+        "--artifacts",
+        "/tmp/web-design-metadata-SDA8Wu/selected.json"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "argv": [
+        "/tmp/web-design-metadata-SDA8Wu/isolated-owner/scripts/sources.ts",
+        "select",
+        "report-dashboard",
+        "styles/report-dashboard/DESIGN.md"
+      ],
+      "cwd": "/tmp/web-design-metadata-SDA8Wu",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    }
+  ]
+}

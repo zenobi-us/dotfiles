@@ -1,0 +1,27 @@
+{
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+  ],
+  "authored_files": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+  ],
+  "hook_files": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "exact_only_table_and_spelling_changes": true,
+  "protected8_and_assets5_committed_bytes_preserved": true,
+  "initial_index_sha256": "445fe2000ea11c7e9cb6494fd484795e777965d5e6d7d30176a522f745071c5e",
+  "initial_source_status": "clean",
+  "normal_hooks": {
+    "creator_version": "0.1.9",
+    "paths": [
+      "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+    ]
+  }
+}

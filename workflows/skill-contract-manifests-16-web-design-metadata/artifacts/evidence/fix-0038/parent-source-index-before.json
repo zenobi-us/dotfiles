@@ -1,0 +1,28 @@
+{
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "failed_operation": "write-result.ts --parent-event for fix-complete-0039",
+  "error": "Frozen source worktree has uncommitted changes",
+  "writer_exit": 1,
+  "source_file_diff_against_HEAD": "empty for both metadata files",
+  "working_and_HEAD_creator_version": "0.1.9",
+  "staged_creator_version": "0.1.8",
+  "index_entries": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "mode": "100644",
+      "stage": 0,
+      "blob": "a7d58f5106e33c9a803e0b7d9bbd447260c4c63b"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "mode": "100644",
+      "stage": 0,
+      "blob": "c0d615dc6a6a1d5999c304fa3222eee29b68594d"
+    }
+  ],
+  "authorization": "User selected Align owned index entries",
+  "no_file_edits": true,
+  "no_source_commit": true,
+  "no_native_or_axis_reruns": true
+}
