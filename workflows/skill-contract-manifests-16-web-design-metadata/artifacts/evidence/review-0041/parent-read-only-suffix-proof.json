@@ -1,0 +1,13 @@
+{
+  "failure_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0041/body-preflight-byte-mismatch.json",
+  "candidate_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0041/owned-body-preflight-candidate.md",
+  "observed_bytes": 16217,
+  "intended_bytes": 16216,
+  "last_byte": 10,
+  "prefix_without_last_byte_sha256": "508b9063fc1f8e89974f1548f599580a16b9323ec792c5633037d8cfa798de1a",
+  "intended_sha256": "508b9063fc1f8e89974f1548f599580a16b9323ec792c5633037d8cfa798de1a",
+  "exactly_intended_bytes_plus_one_LF": true,
+  "original_candidate_changed": false,
+  "expectation_changed": false,
+  "source_or_axis_or_native_reruns": 0
+}
