@@ -1,0 +1,39 @@
+{
+  "error": "Parent mistakenly treated the successful execFile capture wrapper as a muxer-spawn/v2 domain record. Guard failed on missing wrapper-level fields, not on actual native launch identity.",
+  "actual_shape": {
+    "wrapper_fields": [
+      "command",
+      "cwd",
+      "status",
+      "seconds",
+      "stdout",
+      "stderr"
+    ],
+    "domain_location": "JSON.parse(capture.stdout)"
+  },
+  "resolution": "Read retained full stdout from both successful captures. Both actual native records have depth2, matching primary parent run, assigned context/result schema and exact source cwd.",
+  "actual_launches": [
+    {
+      "axis": "standards",
+      "run_id": "4f0425d9-7fe1-4cef-8481-2491c5a3dcd1",
+      "parent_run_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+      "depth": 2,
+      "target": "t2m5",
+      "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/4f0425d9-7fe1-4cef-8481-2491c5a3dcd1/context.json",
+      "result_schema": "review-axis/v1"
+    },
+    {
+      "axis": "spec",
+      "run_id": "eac7e16a-1ec6-4db2-9268-3d42e67d9472",
+      "parent_run_id": "0418c7c3-103c-4afe-bff8-384759f9ff8b",
+      "depth": 2,
+      "target": "t2m6",
+      "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/eac7e16a-1ec6-4db2-9268-3d42e67d9472/context.json",
+      "result_schema": "review-axis/v1"
+    }
+  ],
+  "read_only_input_correction": true,
+  "source_or_axis_checks_rerun": 0,
+  "launches_repeated": 0,
+  "source_or_validation_guards_changed": false
+}

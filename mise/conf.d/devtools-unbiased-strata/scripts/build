@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Share the container entry path for builds and CUDA-free upstream checks.
+set -euo pipefail
+
+repo="$HOME/.local/share/unbiased-strata"
+target="${1:-build}"
+case "$target" in
+  build | test) ;;
+  *) printf 'Expected build or test.\n' >&2; exit 2 ;;
+esac
+
+if [[ ! -d "$repo/.git" ]]; then
+  printf 'UnbiasedStrata is not cloned. Run mise bootstrap --only repos --yes.\n' >&2
+  exit 1
+fi
+
+# Resolve the shared home path before crossing the container boundary.
+repo=$(realpath "$repo")
+# The quoted program expands variables inside the container, not on the host.
+# shellcheck disable=SC2016
+exec distrobox enter --name strata --no-tty -- bash -c '
+  set -euo pipefail
+  cd "$1"
+  target=$2
+  for tool in git cmake make gcc g++; do
+    command -v "$tool" >/dev/null || {
+      printf "Install %s inside the strata Distrobox.\n" "$tool" >&2
+      exit 1
+    }
+  done
+  if [[ "$target" == build ]]; then
+    nvcc=""
+    for candidate in /usr/local/cuda-12*/bin/nvcc "$(command -v nvcc || true)" /usr/local/cuda/bin/nvcc; do
+      if [[ -x "$candidate" && $("$candidate" --version) == *"release 12."* ]]; then
+        nvcc=$candidate
+        break
+      fi
+    done
+    if [[ -z "$nvcc" ]]; then
+      printf "Install the CUDA 12.x toolkit inside the strata Distrobox, not on the host.\n" >&2
+      exit 1
+    fi
+    "$nvcc" --version
+  else
+    for tool in python3 curl; do
+      command -v "$tool" >/dev/null || {
+        printf "Install %s inside the strata Distrobox.\n" "$tool" >&2
+        exit 1
+      }
+    done
+  fi
+  git submodule update --init
+  if [[ "$target" == build ]]; then
+    exec make build CUDA_ARCHS=86 "NVCC=$nvcc"
+  fi
+  exec make test
+' unbiased-strata-build "$repo" "$target"

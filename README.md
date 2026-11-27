@@ -725,3 +725,50 @@ The current tree appears before changed detail bodies finish. The footer counts 
 
 Setup, action preparation, writes, and agent launch authorization bypass these caches. Every action uses fresh canonical preparation. Cached display data never authorizes an action. Run `bun run build` and `bun run test` in `mise/conf.d/devtools-herdrapp` to build the helper and run the scoped regressions.
 
+
+## UnbiasedStrata inference server
+
+The Linux module `mise/conf.d/devtools-unbiased-strata/mise.linux.toml` clones
+[UnbiasedStrata](https://github.com/robertkarl/UnbiasedStrata) at a pinned commit
+into `~/.local/share/unbiased-strata`. Builds are explicit, not bootstrap tasks.
+
+Use Distroshelf to manage a Distrobox named `strata`. The existing instance uses
+Ubuntu 24.04 with NVIDIA integration and a shared home directory. Install build
+dependencies inside that instance, not on the host:
+
+```sh
+distrobox enter --name strata -- sudo apt-get update
+distrobox enter --name strata -- sudo apt-get install -y --no-install-recommends \
+  git cmake make gcc g++ python3 curl cuda-toolkit-12-8
+```
+
+The CUDA package requires the NVIDIA CUDA APT repository inside the instance.
+Keep the NVIDIA driver on the host. The build script selects CUDA 12.x from
+`/usr/local/cuda-12*/bin/nvcc`, then checks `PATH` and `/usr/local/cuda/bin/nvcc`.
+It does not use a CUDA 13 compiler.
+
+From the Dotfiles repository root, apply the clone and launcher, then build and check:
+
+```sh
+mise bootstrap repos apply --skip-dirty --yes
+mise bootstrap --only dotfiles --yes
+mise run unbiased-strata:build
+mise run unbiased-strata:check
+unbiased-strata --help
+```
+
+The bootstrap commands apply all configured repositories or dotfiles. The build
+task initializes the pinned submodule and runs `make build CUDA_ARCHS=86` inside
+`strata` for the RTX 3090 Ti. Outputs remain together in
+`~/.local/share/unbiased-strata/build/bin/`. The check task runs upstream
+`make test` inside the same instance; it needs no model or GPU.
+
+The `~/.local/bin/unbiased-strata` launcher runs inside `strata` so CUDA and C++
+libraries match the build. It forwards all arguments unchanged. Use a bare engine
+name such as `--engine strata-poly` to find the engine beside the binary.
+Keep models under `/var/run/media/zenobius/Backup/LLMModels/` and generated packs
+under its `unbiased-strata/packs/` directory. This module downloads no models and
+starts no server. Use upstream model-specific serving options and bind to
+`127.0.0.1:18090` for local use. Frontend checks do not prove model inference.
+
+Upstream `--help` prints usage and exits with status 2.

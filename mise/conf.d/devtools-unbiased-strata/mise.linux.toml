@@ -1,0 +1,14 @@
+# Keep CUDA builds and runtime libraries inside the Distroshelf-managed Distrobox.
+[bootstrap.repos]
+"~/.local/share/unbiased-strata" = { url = "https://github.com/robertkarl/UnbiasedStrata.git", ref = "9f75192287c2abf88c77da3b4b6f54ccee01db83" }
+
+[dotfiles]
+"~/.local/bin/unbiased-strata" = { source = "./scripts/unbiased-strata", mode = "symlink" }
+
+[tasks."unbiased-strata:build"]
+description = "Build UnbiasedStrata with CUDA inside the strata Distrobox"
+run = 'bash "{{config_root}}/scripts/build" build'
+
+[tasks."unbiased-strata:check"]
+description = "Run upstream frontend checks inside the strata Distrobox"
+run = 'bash "{{config_root}}/scripts/build" test'

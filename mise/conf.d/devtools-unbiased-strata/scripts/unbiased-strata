@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Run beside the compiled engines with the same libraries used for the build.
+set -euo pipefail
+
+binary="$HOME/.local/share/unbiased-strata/build/bin/unbiased-strata"
+if [[ ! -x "$binary" ]]; then
+  printf 'UnbiasedStrata is not built. Run mise run unbiased-strata:build from Dotfiles.\n' >&2
+  exit 1
+fi
+
+binary=$(realpath "$binary")
+exec distrobox enter --name strata --no-tty -- "$binary" "$@"
