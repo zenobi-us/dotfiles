@@ -1,22 +1,5 @@
 {
   "mcpServers": {
-    "atlassian": {
-      "type": "local",
-      "command": [
-        "mise",
-        "x",
-        "node@22",
-        "--",
-        "npx",
-        "-y",
-        "mcp-remote",
-        "https://mcp.atlassian.com/v1/mcp"
-      ]
-    },
-    "figma-desktop": {
-      "type": "remote",
-      "baseUrl": "http://127.0.0.1:3845/mcp"
-    },
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app"
@@ -37,14 +20,7 @@
     },
     "firefox-devtools": {
       "type": "local",
-      "command": [
-        "mise",
-        "x",
-        "node@22",
-        "--",
-        "firefox-devtools-mcp",
-        "--connect-existing"
-      ],
+      "command": ["mise", "x", "node@22", "--", "firefox-devtools-mcp", "--connect-existing"],
       "env": {
         "npm_config_loglevel": "error"
       }
