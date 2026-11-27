@@ -1,0 +1,36 @@
+{
+  "finding_ids": [
+    "standards-013",
+    "standards-014"
+  ],
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+  ],
+  "hook_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "scope": "First-use prose acronym definitions in these2 added references only. No runtime/schema semantics, code/literal/command changes or new headings. Actual review41 findings13/14 govern; consume final receipt before acting.",
+  "required_definitions": {
+    "CLI": "command-line interface",
+    "JSON": "JavaScript Object Notation",
+    "UTC": "Coordinated Universal Time",
+    "ISO": "International Organization for Standardization",
+    "UTF8": "Unicode Transformation Format with 8-bit code units",
+    "BOM": "byte order mark",
+    "SHA256": "256-bit Secure Hash Algorithm"
+  },
+  "writing_rules": [
+    "At first prose use, put the full term before the exact acronym in parentheses. Use a technically correct conventional full name, not an invented expansion. Preserve exact technical literals inside code/commands.",
+    "Audit both full references for first-use prose acronyms, not only the first cited example. For remaining prose cwd, use current working directory or define it once. Do not change code identifiers/command arguments/paths.",
+    "Preserve all five Inventory records, both identity records, labels, meanings, wire literals and support restrictions. CLI boundary may gain its required full-name definition without changing meaning.",
+    "Keep existing purpose/reader/date/referrals and separate conversion authority. Split expanded long sentences/paragraphs as needed: <=20 procedural/25 descriptive words, <=5 sentences, all3+ series vertical, at most2 nested list levels. No new section heading, glossary or TOC.",
+    "Preserve byte-level conversion, malformed-encoding refusal, intentionally encodedU+FFFD support, no implicit BOM removal, checksum validation and no-repair guarantees. Do not redefine behavior while explaining terms."
+  ],
+  "preserve": "All7 other nonhook feature paths and all5 assets remain exact atb039c503. Catalog nonidentity bytes/capture/provenance/ordered associations/checksums unchanged. Existing reference content unchanged except minimal first-use definitions and necessary local sentence/paragraph splits. Every prior immutable receipt/review/snapshot/evidence/capture retained.",
+  "validation": "Read full final references through MQ --no-lockfile. Manually audit every prose acronym first-use and record preserved semantic clauses. No permanent wording/source-text tests. After ALL final edits, owning absolute native executable ONCE from /tmp:56 JSON rows + finalPASS,21 successful0/35 expected1, full actual captures. Bind runtime3+final2references+normal2hook files to final commit (seven bindings), honest precommit timing.",
+  "commit_and_index": "Separate exact staging and commit actions. Normal hooks; explicit path-only git commit --only for these2 references+2 hook metadata paths; ticket ID in <=72-char conventional subject. Preserve unrelated staging. Known partial-commit hook behavior can leave ONLY the two owned metadata index entries at their previous version although working bytes equal committed HEAD. BEFORE final publication, inspect exact owned index/working/HEAD values. If this exact known condition occurs with no other changes, retain old index identities and align ONLY these same2 already-authorized owned hook paths with unchanged working/HEAD files using git add; no reset/restore/global unstage/new source commit or byte edits. This is normal owned staging reconciliation before a guard, not permission to bypass a failed CLI. Any unexpected dirty path/byte change or actual failed required command stops. Require final source clean before snapshot/receipt.",
+  "publication": "NEW pr-draft-fix-0044.md, valid worktree-pr-draft/v1, producerfix44, exact final source/commit/tree. Prevalidate candidate with proven MQ null-input scalar -F text, explicitly include the formatter one-terminal-LF in expected byte model before check; no JSON .body/raw object extraction, no cross-device rename. Exclusive final snapshot once. Current projections use correctly rebased relative links validated from actual MQ AST; full review history preserved, new source reviewPENDING. Parent owns tracker/views/goal/publication commits.",
+  "boundaries": "Only2 authored references+normal2 hook metadata in isolated source. No sourcepush/merge/rebase, dependencies/config/code/tests/extraagents/services or original-provenance access. No source/runtime/axis reruns for capture corrections. Stop on NEW actual required CLI/check/publication failure before immutable final files. No relocation/serverfiles/infrastructure or extra process signals."
+}

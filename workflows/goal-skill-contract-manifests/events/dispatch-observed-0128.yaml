@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-observed-0128",
+  "parent_event": "dispatch-reserved-0127",
+  "kind": "dispatch_observed",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 6,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0127.yaml",
+  "start_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0043.yaml",
+  "parent_review_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0041.yaml",
+  "parent_completion_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0042.yaml",
+  "child_run_id": "21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e",
+  "child_terminal": "t2mv",
+  "child_operation_id": "21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e",
+  "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e/context.json",
+  "result_target": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/21ad3fab-083b-4b8b-86c5-fc3eb6ebfc0e/result.json",
+    "schema": "worktree-receipt/v3"
+  },
+  "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+  "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "source_branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "base_branch": "master",
+  "scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "constraints_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0044/parent-authored-constraints.json",
+  "handoff_contract_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0044/parent-handoff-contract.json",
+  "native_spawn_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0044/parent-spawn.json",
+  "accounting": {
+    "ticket_attempts_consumed": 15,
+    "ticket_attempts_remaining": 85,
+    "dispatches_consumed": 29,
+    "dispatches_remaining": 2471,
+    "omp_token_budget": null
+  },
+  "coordination_assessment": {
+    "raw_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0044/parent-coordination.json",
+    "inventory_complete": false,
+    "native_hard_blockers": [],
+    "native_record_diagnostics": [],
+    "ownership_native": "unknown",
+    "assessment": "Sole matching owner is current herdr-app:t2dv receipt review-complete42; exact source b039 available with one candidate and no errors. Native unknown/global incomplete reflects unrelated unresolved inventory, not a competing source owner. Same4 generated marketplace/Creator overlap records retained; all changes occur in this isolated source index. No shared-base code or hook metadata edits/rebase/integration authorized. Prior review reservation122 independently reconciled by parent42. No competing current ticket reservation.",
+    "overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "source_commit": "b039c503841014575faf26c16d3dfa61e9c63db6",
+    "source_tree": "29ef53bfe84e272f0ea7e965bc554f33f21f194c",
+    "decision": "Fresh minimal two-reference first-use definition fix6 under active goal."
+  },
+  "decision": "Fresh depth1 owned fixer6 dispatched by actual Bash native router with exact two first-use findings, unchanged-source semantic boundaries and proper assigned v3 transport. No duplicate phase, sourcepush/integration or relocation work. Parent owns review/closure and publication.",
+  "created_at": "2026-11-27T21:41:46.128Z"
+}
