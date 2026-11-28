@@ -1,0 +1,38 @@
+{
+  "original_handoff_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-handoff-contract.json",
+  "error": "Parent handoff incorrectly instructed primary to find an existing installed worktree axis contract. Retained reports have schemaVersion review-axis/v1, but installed worktree contracts.json, worktree review/contracts references and code-review SKILL do not define that record. Historical payload identity is not registry authority.",
+  "resolution": "User selected Correct caller handoff. This attempt explicitly assigns the exact retained axis report field shape as caller-owned, using existing wire labelreview-axis/v1. It does not claim a skill-owned declaration, modify any skill contracts, alter source, upgrade history or change report semantics.",
+  "caller_shape_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/caller-axis-report-shape.json",
+  "ownership": "Caller owns expected domain report shape and current-source semantic validation. result-delivery owns generic transport; muxer owns assigned run/operation/parent/depth/lifecycle. Worktree owner still produces only primaryworktree-receipt/v3.",
+  "retained_shape_source": "Actual Standards and Spec review41 domain fields inspected:11fields and their types; concrete findings shape. Existing wire label/field meanings retained.",
+  "semantic_validation": [
+    "Native spawned depth2, actual parentRunId cc605e9b-863f-4787-8ae7-d9c5ff01c0d6, assigned context target schema review-axis/v1.",
+    "run_id and operation_id exactly equal the corresponding leaf assigned values, never primary or prior run.",
+    "axis exactly expected role; no swapped reports, source/base/scope exactly frozen contract.",
+    "Every finding has concrete rule/spec citation in description/report, source file/line and required change; distinguish hard from heuristic.",
+    "Structural validation of explicit caller shape using existing runtime/tools only, no dependency/environment repair. Explicit same-key/type/value guards are sufficient; no AJV install/alias needed.",
+    "Validate each assigned artifact via result-delivery, compare actual domain/source identities and transport SHA, ACK actualhash. Normal owned closure and full resource proof remain required."
+  ],
+  "guardrails": {
+    "same_primary": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+    "same_source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+    "same_source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+    "same_base": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+    "no_native_rerun": true,
+    "no_axis_started_before_correction": true,
+    "no_source_or_skill_contract_changes": true,
+    "no_prior_handoff_rewrite": true,
+    "no_prior_result_rewrite": true,
+    "no_new_attempt": true
+  },
+  "primary_native_observation": {
+    "status": "child-reported once fresh postcommit native56 passed before hold; full proof remains to be validated at domain consumption",
+    "positive": 21,
+    "expected_negative": 35,
+    "outer_exit": 0,
+    "stderr_empty": true,
+    "duration_seconds": 7.571888995997142,
+    "retained_ref": "/tmp/scm16-review0047-primary/native56-postcommit.json"
+  },
+  "inspector_recovery_assessment": "Inspector currently review/retry atstart46 with no result, diagnosticsnull. Current primary is explicitly alive/holding and user selected same-review input correction, not abandonment or duplicate dispatch. Do not start another primary. Resume only current held primary after this supplement."
+}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Caller-assigned review9 axis report",
+  "description": "Ephemeral caller handoff shape for the existing review-axis/v1 reports. Not an installed worktree/code-review owner contract, not added to any skill manifest, and not an upgrade or reinterpretation of retained artifacts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "axis",
+    "run_id",
+    "operation_id",
+    "parent_run_id",
+    "source_commit",
+    "source_tree",
+    "review_base_commit",
+    "changed_scope",
+    "findings",
+    "report"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "review-axis/v1"
+    },
+    "axis": {
+      "enum": [
+        "standards",
+        "spec"
+      ]
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_run_id": {
+      "const": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6"
+    },
+    "source_commit": {
+      "const": "b0d12b0912d15b1c1add96caca33afa573f5144b"
+    },
+    "source_tree": {
+      "const": "c163046bd7dd4e1a0874a34215b523a8c13af70a"
+    },
+    "review_base_commit": {
+      "const": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1"
+    },
+    "changed_scope": {
+      "const": [
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+        "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+        "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "severity",
+          "file",
+          "line",
+          "description",
+          "required_change",
+          "validation_command",
+          "adr"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "type": "string",
+            "minLength": 1
+          },
+          "line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required_change": {
+            "type": "string",
+            "minLength": 1
+          },
+          "validation_command": {
+            "type": "string",
+            "minLength": 1
+          },
+          "adr": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "report": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
