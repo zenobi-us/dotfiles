@@ -1,0 +1,89 @@
+{
+  "at": "2026-11-28T11:21:10.381Z",
+  "standards": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "e6b0056e-533c-452e-a90b-f3da438e31d5",
+    "observedAt": "2026-11-28T11:20:37.165Z",
+    "processes": [
+      {
+        "pid": 2566623,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "56556805",
+        "command": "omp",
+        "parentPid": 2566054,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "stopped"
+      },
+      {
+        "pid": 2571580,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "56560199",
+        "command": "mise",
+        "parentPid": 2566623,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      },
+      {
+        "pid": 2571581,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "56560199",
+        "command": "mise",
+        "parentPid": 2566623,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      },
+      {
+        "pid": 2573441,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "56567700",
+        "command": "omp",
+        "parentPid": 2566623,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "confirmed"
+  },
+  "spec": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+    "observedAt": "2026-11-28T11:21:10.365Z",
+    "processes": [
+      {
+        "pid": 2566703,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "56556810",
+        "command": "omp",
+        "parentPid": 2566064,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "stopped"
+      },
+      {
+        "pid": 2573884,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "56570186",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 2575204,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "56574430",
+        "command": "python",
+        "parentPid": 2566703,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "pending"
+  },
+  "normal_kill_rm_counts": {
+    "standards": 1,
+    "spec": 1
+  },
+  "extra_signals": 0,
+  "repeated_closure": 0,
+  "body_final_receipt": "held",
+  "primary": "left live"
+}

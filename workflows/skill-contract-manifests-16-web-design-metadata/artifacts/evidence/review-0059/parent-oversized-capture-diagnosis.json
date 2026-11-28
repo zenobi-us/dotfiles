@@ -1,0 +1,72 @@
+{
+  "cause": "The capture stores full successful skill-contracts validate stdout. The public CLI returns resolved definition.content strings; its JSON serializer emits the full documents. Repeated consumers repeat the same documents. This is capture bloat, not large validation diagnostics.",
+  "producer": {
+    "entrypoint": "mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+    "validate_lines": "12-14",
+    "serializer_lines": "45-47"
+  },
+  "raw_bytes": 153440897,
+  "successful_stdout_utf8_bytes": 143630922,
+  "failed_stdout_bytes": 0,
+  "stderr_bytes": 3053,
+  "results": 244,
+  "exit0": 201,
+  "exit1": 43,
+  "dominant_definitions": [
+    {
+      "definition": "whatwg-html/v1",
+      "content_utf8_bytes": 8131205,
+      "occurrences": 11,
+      "total_content_bytes": 89443255,
+      "sha256": "34da99576e546e9594e7f7f0e62b797772d8950093ba6dcf9277de60a8580b3a"
+    },
+    {
+      "definition": "cloudflare-rest-api/v1",
+      "content_utf8_bytes": 29706631,
+      "occurrences": 1,
+      "total_content_bytes": 29706631,
+      "sha256": "b75ba2b7b14538afbb2be12f9466a1f6fd26cf4298d42e61c919bd3bed03b39d"
+    },
+    {
+      "definition": "godot-gdscript/v1",
+      "content_utf8_bytes": 115085,
+      "occurrences": 52,
+      "total_content_bytes": 5984420,
+      "sha256": "e66efe3878d92cfa696a835e7a2285b6a3ab0a635b34ae47ec4f03c9d152fbd5"
+    },
+    {
+      "definition": "typescript-source/v1",
+      "content_utf8_bytes": 278970,
+      "occurrences": 11,
+      "total_content_bytes": 3068670,
+      "sha256": "7fca96d4ff099b8075ba07e1077162ce910e3ac3d85f48c449d311bfc0290622"
+    },
+    {
+      "definition": "godot-project-settings/v1",
+      "content_utf8_bytes": 1307184,
+      "occurrences": 2,
+      "total_content_bytes": 2614368,
+      "sha256": "2ec9c159748f9e13dad069f52a9a4a3c3516e30b6734a4a9175a29237ec05661"
+    },
+    {
+      "definition": "mise-config/v1",
+      "content_utf8_bytes": 425213,
+      "occurrences": 2,
+      "total_content_bytes": 850426,
+      "sha256": "22db9da489f19b0550eb3035c4cf3f4777e8a16810cf9c318dcb271daa52781b"
+    }
+  ],
+  "original_sha256": "8cdae5f192188cf38526c2409393cc5636ca2511d7eb31938d3879b5c7d87873",
+  "preview_summary": "/tmp/scm18-evidence-rewrite-7bm7homa/source-validation.json",
+  "preview_summary_bytes": 639776,
+  "preview_lossless_archive": "/tmp/scm18-evidence-rewrite-7bm7homa/source-validation.raw.json.gz",
+  "preview_archive_bytes": 22973126,
+  "archive_sha256": "cdb3169a1cc05d28720026e7a69f155cbd8de46ce94532fa354ccb9e9acdf9e7",
+  "archive_decompression_sha256_equals_original": true,
+  "all244_original_command_metadata_preserved": true,
+  "all43_original_failure_diagnostics_preserved": true,
+  "summary_explicitly_marks_derived_stdout_and_links_raw_archive": true,
+  "original_validator_and_push_not_rerun": true,
+  "history_or_repository_capture_not_changed": true,
+  "proposed_rewrite": "Amend only unpublished tip5ed618ac with transparent compact JSON at the original referenced path plus adjacent lossless gzip archive. Retain original tip under a local backup ref. Do not install LFS, rewrite published commits, modify receipts, change source or force push."
+}

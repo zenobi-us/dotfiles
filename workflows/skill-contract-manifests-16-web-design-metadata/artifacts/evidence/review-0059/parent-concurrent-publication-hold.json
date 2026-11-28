@@ -1,0 +1,51 @@
+{
+  "event_id": "checkpoint-0152",
+  "parent_event": "checkpoint-0151",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 11,
+  "status": "blocked",
+  "reason": "Required parent path-only recovery-record commit exited1 with nothing added to commit. Actual Git history shows the recovery records already committed concurrently, not lost. Do not retry the commit, rewrite history or push unrelated unpublished work without scoped direction.",
+  "goal_dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0148.yaml",
+  "child_run_id": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "child_terminal": "t2tk",
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "observed_existing_commits": [
+    {
+      "commit": "296434eedc9ec61067b61b0433ad51adaf486d1b",
+      "subject": "chore(workflow): retain web-design review11 blocked evidence",
+      "scope": "Includes all eight parent-selected recovery paths plus additional original review11 captures; no source16 changes listed."
+    },
+    {
+      "commit": "5ed618ac0486e1b2464740ba01b75ae9ccd25d9b",
+      "subject": "chore(workflow): retain manifest coverage validation evidence",
+      "scope": "Separate ticket18 source-validation.json evidence; preserve."
+    }
+  ],
+  "prior_commit": {
+    "commit": "8d123caf535dd19eee4ea60d4d379a9f0a8b7fb9",
+    "subject": "fix(website): expose the development server on network interfaces",
+    "scope": "Unrelated docs/website/package.json; preserve."
+  },
+  "commit_failure_observation": {
+    "exit_code": 1,
+    "message": "nothing added to commit but untracked files present",
+    "reported_local_ahead": 2,
+    "push_attempted": false,
+    "commit_retried": false,
+    "history_rewritten": false
+  },
+  "review_body_final_receipt_held": true,
+  "approved_transport_recovery": "Original151 authority remains narrowly valid for any already-started unchanged-report delivery; no new retries. Primary instructed to preserve its actual result and hold body/final receipt.",
+  "extra_signals_authorized": false,
+  "accounting": {
+    "ticket_attempts_consumed": 20,
+    "ticket_attempts_remaining": 80,
+    "dispatches_consumed": 34,
+    "dispatches_remaining": 2466,
+    "omp_token_budget": null
+  },
+  "next_action": "Obtain scoped disposition for already-created concurrent commits and their publication. Preserve all source, staging and history. No duplicate commit/push, source/check/axis rerun or integration."
+}

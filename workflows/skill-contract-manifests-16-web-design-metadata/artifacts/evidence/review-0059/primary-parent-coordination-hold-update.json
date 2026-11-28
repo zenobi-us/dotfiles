@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-28T11:05:57.957Z",
+  "parent_independent_transport_validation": true,
+  "both_domains_exact": true,
+  "both_axes_findings": 0,
+  "user_selection": "Keep commits and coordinate",
+  "preserved_commits": [
+    "296434ee",
+    "5ed618ac"
+  ],
+  "pending": "Existing-agent ownership/publication confirmation",
+  "body_and_final_receipt": "held",
+  "completion": "review-complete-0060",
+  "goal_reconciliation": "dispatch-reconciled-0154 unless another checkpoint",
+  "delivery_native_help_axes_reruns": 0,
+  "acknowledgements": 0,
+  "closures": 0,
+  "signals": 0,
+  "capture_helper_correction": "Retained; not a source or CLI failure"
+}

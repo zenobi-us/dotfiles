@@ -1,0 +1,44 @@
+{
+  "old_tip": "5ed618ac0486e1b2464740ba01b75ae9ccd25d9b",
+  "new_tip": "be67c29f131f058ef5b49b05770281ccc840d942",
+  "unchanged_parent": "296434eedc9ec61067b61b0433ad51adaf486d1b",
+  "backup_ref": "refs/backup/skill-contract-manifests-18-evidence-5ed618ac",
+  "backup_ref_commit": "5ed618ac0486e1b2464740ba01b75ae9ccd25d9b",
+  "exact_changed_paths": [
+    "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.json",
+    "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.raw.json.gz"
+  ],
+  "all_other_committed_paths_and_receipts_unchanged": true,
+  "summary": {
+    "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.json",
+    "bytes": 639776,
+    "sha256": "442127bcb0c55cba539b3ea7a5b550309c6c4e38947a7c4ba2aa1695f44dc1b2",
+    "explicitly_derived": true,
+    "existing_receipt_path_preserved": true
+  },
+  "raw_archive": {
+    "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.raw.json.gz",
+    "bytes": 22973126,
+    "sha256": "cdb3169a1cc05d28720026e7a69f155cbd8de46ce94532fa354ccb9e9acdf9e7",
+    "decompressed_bytes": 153440897,
+    "decompressed_sha256": "8cdae5f192188cf38526c2409393cc5636ca2511d7eb31938d3879b5c7d87873",
+    "actual_repo_archive_roundtrip_exact": true
+  },
+  "all244_command_metadata_preserved": true,
+  "original_exit0": 201,
+  "original_exit1": 43,
+  "all43_failure_diagnostics_preserved": true,
+  "original_stderr_bytes": 3053,
+  "publish_range_base": "2592ac5673f8a040a6633b3402fab51968ef265e",
+  "publish_range_original_oversized_blob_absent": true,
+  "publish_range_oversized_blobs": [],
+  "maximum_new_blob_bytes": 22973126,
+  "source_changes": false,
+  "validation_reruns": false,
+  "receipt_modifications": false,
+  "lfs_setup": false,
+  "force_push": false,
+  "push_attempted": false,
+  "index_before_and_after_empty": true,
+  "unrelated_website_commit_preserved": "8d123caf535dd19eee4ea60d4d379a9f0a8b7fb9"
+}

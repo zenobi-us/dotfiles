@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "result-delivery/v2",
+  "kind": "reference",
+  "runId": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+  "operationId": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+  "sha256": "8e2a348061eb371f00377688e033c6292988d07eaf3ac4a6191865fe339e1e03",
+  "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/result.json",
+  "resultSchema": "review-axis/v1"
+}

@@ -1,0 +1,13 @@
+{
+  "pid": 2573884,
+  "start_ticks": "56570186",
+  "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+  "run_id": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+  "signals_sent": 0,
+  "bound_seconds": 15,
+  "start": 1795864849.7885232,
+  "identity_matches": true,
+  "pidfd_exit_observed": false,
+  "finish": 1795864864.8027697,
+  "duration_seconds": 15.014246463775635
+}

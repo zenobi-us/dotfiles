@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-28T11:09:34.977Z",
+  "reported_ground_truth": "GitHub rejected ticket18 manifest-coverage-recovery-0008/source-validation.json:146.33MB exceeds100MB",
+  "push_retry": false,
+  "parent_action": "Locating offending unpublished commit for scoped disposition",
+  "review_publication": "held",
+  "reports_captures_commits": "preserved",
+  "delivery_native_help_axes_reruns": 0,
+  "source_environment_repairs": 0,
+  "closures": 0,
+  "signals": 0
+}

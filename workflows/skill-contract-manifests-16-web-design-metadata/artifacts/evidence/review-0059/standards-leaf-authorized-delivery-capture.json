@@ -1,0 +1,17 @@
+{
+  "authority": "workflows/goal-skill-contract-manifests/events/checkpoint-0151.yaml",
+  "argv": ["/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts", "emit", "--context", "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json", "--input", "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/prepared-domain.json"],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "start": null,
+  "finish": null,
+  "duration": null,
+  "exit_code": null,
+  "tool_status": "success",
+  "stdout": null,
+  "stderr": null,
+  "capture_limit": "The Bash tool returned success and the complete combined output below. It did not expose an explicit exit code, separate stdout/stderr, timestamps, or duration. No command was replayed to obtain missing fields.",
+  "combined_output": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"reference\",\"runId\":\"e6b0056e-533c-452e-a90b-f3da438e31d5\",\"operationId\":\"e6b0056e-533c-452e-a90b-f3da438e31d5\",\"sha256\":\"878f9f8685bc0179ccd9ab2f6febc6d801b4bdc22734f7054b8d9e190e89a562\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/result.json\",\"resultSchema\":\"review-axis/v1\"}\n",
+  "attempts": 1,
+  "payload_changed": false,
+  "context_changed": false
+}

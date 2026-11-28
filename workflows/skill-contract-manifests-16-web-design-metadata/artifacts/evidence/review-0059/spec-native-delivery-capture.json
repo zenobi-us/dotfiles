@@ -1,0 +1,19 @@
+{
+  "authority": "checkpoint-0151.yaml, relayed by parent t2tk",
+  "attempt": 1,
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+    "emit",
+    "--context",
+    "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/context.json",
+    "--input",
+    "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/spec-domain.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "exit_code": 0,
+  "combined_tool_output": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"reference\",\"runId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"operationId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"sha256\":\"8e2a348061eb371f00377688e033c6292988d07eaf3ac4a6191865fe339e1e03\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/result.json\",\"resultSchema\":\"review-axis/v1\"}\n",
+  "stdout": null,
+  "stderr": null,
+  "timing": null,
+  "capture_note": "Complete Bash tool output retained. Tool did not expose separate stream fields or elapsed timing. No transport retry or environment repair. Domain input unchanged."
+}

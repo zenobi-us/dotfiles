@@ -1,0 +1,35 @@
+{
+  "initial_contacts": [
+    "t27n",
+    "t2jf"
+  ],
+  "mistake": "Desktop directory matching alone did not establish agent identity. hc get showed a website dev server and nvim, not agent coordinators. No further input or process operation will be sent to either terminal.",
+  "hc_send_results": [
+    {
+      "address": "t27n",
+      "started": false,
+      "status": null,
+      "turn": 7
+    },
+    {
+      "address": "t2jf",
+      "started": false,
+      "status": null,
+      "turn": 1
+    }
+  ],
+  "effect_on_those_programs": "Unknown; preserve user state and do not attempt repair or further input.",
+  "inventory_projection_error": "jq assumed the hc ls root was an array. Actual output has hidden_finished and terminals. Original native ls status was not captured separately; no source/check/publication rerun occurred.",
+  "correction": "Captured one unprojected native inventory into /tmp/scm16-coordination-terminal-inventory.json and decoded its actual terminals collection.",
+  "actual_other_dotfiles_agent": [
+    {
+      "address": "t1yk",
+      "agent": "omp",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "state": "live",
+      "status": "idle",
+      "turn": 0,
+      "where": "finance / 1"
+    }
+  ]
+}

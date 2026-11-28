@@ -1,0 +1,5 @@
+{
+  "failure": "Read-only capture assertion used absent details.exitCode. Actual original Bash trace.status is0; no CLI/check failure and no command rerun.",
+  "trace_status": 0,
+  "retained_original": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-recovered-read-tool.json"
+}

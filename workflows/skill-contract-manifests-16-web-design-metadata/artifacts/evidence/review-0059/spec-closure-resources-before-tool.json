@@ -1,0 +1,201 @@
+{
+  "text": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2tn\",\"createdAt\":\"2026-11-28T10:04:25.237Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"parentRunId\":\"ba8b7214-2853-4577-82bc-ec3a7fc962aa\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"observedAt\":\"2026-11-28T11:20:37.756Z\",\"processes\":[{\"pid\":2566703,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"56556810\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Githu…\n\n\nCommand exited with code 1\n\n[Some lines truncated to 768 bytes. Use artifact://69:raw:1-1 to read line 1 whole]",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 60,
+    "wallTimeMs": 589.840386999771,
+    "exitCode": 1,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 1,
+      "rootVpid": 1073741824,
+      "t_ns": 588927098,
+      "script": "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts resources 179f5a0c-4c41-4139-8656-ccb8c2896750",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 132,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 132,
+              "state": "fail"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 132,
+              "p": 0,
+              "state": "fail"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 132,
+              "p": 1,
+              "state": "fail",
+              "runs": 1,
+              "st": 1,
+              "fails": 1,
+              "ns": 588884499,
+              "at": 28303,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+                "resources",
+                "179f5a0c-4c41-4139-8656-ccb8c2896750"
+              ],
+              "res": "external",
+              "pid": 2635463,
+              "end_ns": 588912802,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 95,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 96,
+              "hi": 132,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAIQBAQCEAQAAAQIAhAEAAAMDAFUBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvbXV4ZXItc3ViYWdlbnRzL3NjcmlwdHMvcm91dGVyLnRzBFZfAQAJcmVzb3VyY2VzBWCEAQEAJDE3OWY1YTBjLTRjNDEtNDEzOS04NjU2LWNjYjhjMjg5Njc1MAAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 207,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 28303,
+          "event_seq": 209,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 31,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 28303,
+          "event_seq": 210,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 31,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+            "resources",
+            "179f5a0c-4c41-4139-8656-ccb8c2896750"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 433301,
+          "event_seq": 211,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 31,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 2635463,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+            "resources",
+            "179f5a0c-4c41-4139-8656-ccb8c2896750"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 583207183,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 31,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2tn\",\"createdAt\":\"2026-11-28T10:04:25.237Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"parentRunId\":\"ba8b7214-2853-4577-82bc-ec3a7fc962aa\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"179f5a0c-4c41-4139-8656-ccb8c2896750\",\"observedAt\":\"2026-11-28T11:20:37.756Z\",\"processes\":[{\"pid\":2566703,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"56556810\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":2573884,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"56570186\",\"command\":\"omp daemon brok\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"},{\"pid\":2575204,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"56574430\",\"command\":\"python\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 588912802,
+          "event_seq": 212,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 31,
+            "vpid": 1073741824,
+            "seq": 32
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 1,
+          "dur_ns": 588884499,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 588927098,
+          "event_seq": 213,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 1
+        }
+      ]
+    },
+    "meta": {
+      "limits": {
+        "columnTruncated": {
+          "maxColumn": 768,
+          "unit": "bytes",
+          "artifactId": "69",
+          "lines": {
+            "first": 1,
+            "last": 1
+          }
+        }
+      }
+    }
+  },
+  "hasError": true
+}

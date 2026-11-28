@@ -1,0 +1,208 @@
+{
+  "text": "{\n  \"axis\": \"standards\",\n  \"changed_scope\": [\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\",\n    \"mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\"\n  ],\n  \"findings\": [],\n  \"operation_id\": \"e6b0056e-533c-452e-a90b-f3da438e31d5\",\n  \"parent_run_id\": \"ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\n  \"report\": \"No evidence-backed Standards findings. Reviewed the complete original eleven-file three-dot feature diff, not only the final help correction. Read the canonical complete ticket and initiative, domain context, decision index, contract rules, and required writing standards. The indexed decision concerns Pi cleanup and does not govern this feature.\\n\\nPrior standards-013/014 are resolved: both new references define their acronyms. Standards-015/016 are resolved in the inspected source: style-selection.md:48 and sources.ts:9 now say current working directory. Commands and contract identities remain intact. New guidance keeps installed-root resolution, explicit conversion authority, historical numeric-1 reading, and current string-v2 output distin…\n  \"review_base_commit\": \"c7ba47e30520530e2ffdc5c9f8a1119ed258c172\",\n  \"run_id\": \"e6b0056e-533c-452e-a90b-f3da438e31d5\",\n  \"schemaVersion\": \"review-axis/v1\",\n  \"source_commit\": \"9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930\",\n  \"source_tree\": \"97a55fab87da13de54a7724062a36adc4626aa70\"\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://51:raw:19-19 to read line 19 whole]",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 60,
+    "wallTimeMs": 453.8957779998891,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 452432841,
+      "script": "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts read --context /var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 203,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 203,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 203,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 203,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 452388949,
+              "at": 34224,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+                "read",
+                "--context",
+                "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json"
+              ],
+              "res": "external",
+              "pid": 2615571,
+              "end_ns": 452423173,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 85,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 86,
+              "hi": 90,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 91,
+              "hi": 100,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 101,
+              "hi": 203,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAMsBAQDLAQAAAQIAywEAAAQDAFUBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvcmVzdWx0LWRlbGl2ZXJ5L3NjcmlwdHMvcm91dGVyLnRzBFZaAQAEcmVhZAVbZAEACS0tY29udGV4dAZlywEBAGYvdmFyL2hvbWUvemVub2JpdXMvLmxvY2FsL3N0YXRlL3Jlc3VsdC1kZWxpdmVyeS9ydW5zL2U2YjAwNTZlLTUzM2MtNDUyZS1hOTBiLWYzZGE0MzhlMzFkNS9jb250ZXh0Lmpzb24AAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 144,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 34224,
+          "event_seq": 146,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 34224,
+          "event_seq": 147,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+            "read",
+            "--context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 442347,
+          "event_seq": 148,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 2615571,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+            "read",
+            "--context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 447730473,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\n  \"axis\": \"standards\",\n  \"changed_scope\": [\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\",\n    \"mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\"\n  ],\n  \"findings\": [],\n  \"operation_id\": \"e6b0056e-533c-452e-a90b-f3da438e31d5\",\n  \"parent_run_id\": \"ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\n  \"report\": \"No evidence-backed Standards findings. Reviewed the complete original eleven-file three-dot feature diff, not only the final help correction. Read the canonical complete ticket and initiative, domain context, decision index, contract rules, and required writing standards. The indexed decision concerns Pi cleanup and does not govern this feature.\\n\\nPrior standards-013/014 are resolved: both new references define their acronyms. Standards-015/016 are resolved in the inspected source: style-selection.md:48 and sources.ts:9 now say current working directory. Commands and contract identities remain intact. New guidance keeps installed-root resolution, explicit conversion authority, historical numeric-1 reading, and current string-v2 output distinct. Ordinary prose and opaque assets receive no identities. No additional documented breach or warranted heuristic smell was found. Unchanged prose and tooling-enforced concerns were excluded.\\n\\nNo source edits, setup, tests, delegation, provenance access, or runtime probes occurred. The primary owns native56 and the single help run. The known historical encoding failure was consumed, not replayed.\\n\\nRetained procedural failures were reported to parent terminal t2tk: an incorrect shared-context ticket flag, a nonexistent initiative filename, and unsupported hc message syntax. No failed command was rerun or repaired. Canonical initiative content was subsequently read from its linked index. These failures are not source findings; the parent must assess their workflow effect.\\n\\nThe primary placed publication on HOLD after these procedural failures. Retained capture: workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-leaf-procedural-failures.json. Exact timing and separate output streams were unavailable in tool results. Delivery import also failed before publication because ajv@^8.17.1 could not resolve. The complete domain payload is preserved beside the assigned result target for parent-owned recovery; this is not a delivered transport result.\",\n  \"review_base_commit\": \"c7ba47e30520530e2ffdc5c9f8a1119ed258c172\",\n  \"run_id\": \"e6b0056e-533c-452e-a90b-f3da438e31d5\",\n  \"schemaVersion\": \"review-axis/v1\",\n  \"source_commit\": \"9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930\",\n  \"source_tree\": \"97a55fab87da13de54a7724062a36adc4626aa70\"\n}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 452423173,
+          "event_seq": 149,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 22,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 452388949,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 452432841,
+          "event_seq": 150,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "limits": {
+        "columnTruncated": {
+          "maxColumn": 768,
+          "unit": "bytes",
+          "artifactId": "51",
+          "lines": {
+            "first": 19,
+            "last": 19
+          }
+        }
+      }
+    }
+  }
+}

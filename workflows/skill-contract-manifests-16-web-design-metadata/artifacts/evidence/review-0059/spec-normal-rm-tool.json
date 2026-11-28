@@ -1,0 +1,185 @@
+{
+  "text": "{\"removed\":\"t2tn\"}\n",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 60,
+    "wallTimeMs": 9.215708000585437,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 8543690,
+      "script": "hc rm t2tn",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 10,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 10,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 10,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 10,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 8516951,
+              "at": 21730,
+              "argv": [
+                "hc",
+                "rm",
+                "t2tn"
+              ],
+              "res": "external",
+              "pid": 2635601,
+              "end_ns": 8538681,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 2,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 3,
+              "hi": 5,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 6,
+              "hi": 10,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAAoBAAoAAAECAAoAAAMDAAIBAAJoYwQDBQEAAnJtBQYKAQAEdDJ0bgAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 221,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 21730,
+          "event_seq": 223,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 33,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 34194,
+          "event_seq": 224,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 33,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "hc",
+            "rm",
+            "t2tn"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 340046,
+          "event_seq": 225,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 33,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 2635601,
+          "argv": [
+            "hc",
+            "rm",
+            "t2tn"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 8433043,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 33,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"removed\":\"t2tn\"}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 8538681,
+          "event_seq": 226,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 33,
+            "vpid": 1073741824,
+            "seq": 34
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 8516951,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 8543690,
+          "event_seq": 227,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

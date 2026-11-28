@@ -1,0 +1,26 @@
+{
+  "native_capture": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-native-postcommit.json",
+  "native_rows": 56,
+  "success0": 21,
+  "expected1": 35,
+  "all_actual_expected": true,
+  "outer_exit": 0,
+  "stderr_empty": true,
+  "cwd": "/tmp",
+  "duration_seconds": 10.255226481999998,
+  "help_capture": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-help-postcommit.json",
+  "help_exit": 0,
+  "help_stderr_empty": true,
+  "actual_human_term_expanded": true,
+  "help_duration_seconds": 0.14277171300000918,
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+  },
+  "native_help_invocations": "One each by original primary; parent only reads retained full captures.",
+  "source_or_check_or_axis_reruns": false,
+  "source_verdict_not_yet_published": true
+}

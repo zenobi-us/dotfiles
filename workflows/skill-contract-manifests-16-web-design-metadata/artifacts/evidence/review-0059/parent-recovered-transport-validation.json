@@ -1,0 +1,28 @@
+{
+  "standards": {
+    "run": "e6b0056e-533c-452e-a90b-f3da438e31d5",
+    "sha256": "878f9f8685bc0179ccd9ab2f6febc6d801b4bdc22734f7054b8d9e190e89a562",
+    "saved3530_byte_payload_hash": "b10b56efe87aa75a2f1983132f54194f4bc18805550ac2dc4aed97fec5d2449c",
+    "parsed_domain_unchanged": true,
+    "findings": 0
+  },
+  "spec": {
+    "run": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+    "sha256": "8e2a348061eb371f00377688e033c6292988d07eaf3ac4a6191865fe339e1e03",
+    "parsed_domain_unchanged": true,
+    "findings": 0
+  },
+  "both_actual_assigned_envelopes_match_original_domains": true,
+  "caller_shape_eleven_fields_and_semantic_source_base_scope_parent_bindings": true,
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+  },
+  "required_eval_import_failure_preserved": true,
+  "source_help_native_axis_reruns": 0,
+  "dependency_setup": false,
+  "body_or_final_receipt_authorization": false
+}

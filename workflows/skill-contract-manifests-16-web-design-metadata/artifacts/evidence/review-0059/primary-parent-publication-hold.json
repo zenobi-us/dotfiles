@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-28T11:01:43.486Z",
+  "reason": "Parent required path-only commit publication failure; parent inspecting concurrent commit ownership.",
+  "both_original_deliveries_complete": true,
+  "both_native_reads_succeeded": true,
+  "both_domains_exact": true,
+  "acknowledgements": 0,
+  "closures": 0,
+  "signals": 0,
+  "body_or_receipt_published": false
+}

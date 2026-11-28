@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-28T11:11:19.316Z",
+  "supersedes": "primary-parent-large-artifact-hold.json path transcription only",
+  "actual_path": "manifest-coverage-recovery-0006/source-validation.json",
+  "previous_incorrect_path": "manifest-coverage-recovery-0008/source-validation.json",
+  "blob": "4d94c0fd700505eb1ea5ca77727774c2df86fcfe",
+  "bytes": 153440897,
+  "introduced_by_unpublished_tip": "5ed618ac",
+  "immutable_reference": "implementation-0006.yaml references exact .json path",
+  "parent_decision_pending": "Scoped lossless large-file/history recovery",
+  "review_publication": "held",
+  "source_check_delivery_reruns": 0
+}

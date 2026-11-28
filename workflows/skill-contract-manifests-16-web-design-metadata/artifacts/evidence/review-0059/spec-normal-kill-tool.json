@@ -1,0 +1,198 @@
+{
+  "text": "{\"address\":\"t2tn\",\"argv\":[\"/usr/bin/zsh\",\"-ic\",\"\\\"$@\\\"; exec \\\"$0\\\" -i\",\"/usr/bin/zsh\",\"env\",\"MUXER_SUBAGENT_DEPTH=2\",\"XDG_STATE_HOME=/home/zenobius/.local/state\",\"RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/context.json\",\"MUXER_SUBAGENT_RUN_ID=179f5a0c-4c41-4139-8656-ccb8c2896750\",\"MUXER_SUBAGENT_ROLE=child\",\"MUXER_SUBAGENT_PARENT_RUN_ID=ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\"omp\",\"--\",\"@/home/zenobius/.local/state/muxer-subagents/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/prompt.md\"],\"cols\":320,\"created_ms\":1795860265284,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"die_with_parent\":false,\"exit_code\":1…\n\n\n[Some lines truncated to 768 bytes. Use artifact://70:raw:1-1 to read line 1 whole]",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 60,
+    "wallTimeMs": 75.42300899978727,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 73360038,
+      "script": "hc kill t2tn",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 12,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 12,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 12,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 12,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 73241477,
+              "at": 30076,
+              "argv": [
+                "hc",
+                "kill",
+                "t2tn"
+              ],
+              "res": "external",
+              "pid": 2635588,
+              "end_ns": 73271553,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 2,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 3,
+              "hi": 7,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 8,
+              "hi": 12,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAAwBAAwAAAECAAwAAAMDAAIBAAJoYwQDBwEABGtpbGwFCAwBAAR0MnRuAAAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 214,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 30076,
+          "event_seq": 216,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 42149,
+          "event_seq": 217,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "hc",
+            "kill",
+            "t2tn"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 411971,
+          "event_seq": 218,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 2635588,
+          "argv": [
+            "hc",
+            "kill",
+            "t2tn"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 72991388,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"address\":\"t2tn\",\"argv\":[\"/usr/bin/zsh\",\"-ic\",\"\\\"$@\\\"; exec \\\"$0\\\" -i\",\"/usr/bin/zsh\",\"env\",\"MUXER_SUBAGENT_DEPTH=2\",\"XDG_STATE_HOME=/home/zenobius/.local/state\",\"RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/context.json\",\"MUXER_SUBAGENT_RUN_ID=179f5a0c-4c41-4139-8656-ccb8c2896750\",\"MUXER_SUBAGENT_ROLE=child\",\"MUXER_SUBAGENT_PARENT_RUN_ID=ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\"omp\",\"--\",\"@/home/zenobius/.local/state/muxer-subagents/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/prompt.md\"],\"cols\":320,\"created_ms\":1795860265284,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"die_with_parent\":false,\"exit_code\":1,\"finished_ms\":1795864837818,\"identity\":\"ghostty\",\"keep\":true,\"labels\":{\"herdr.seen\":\"0\",\"herdr.space\":\"sp1eb0f42e162d62f078d26a6a6517b0eb\",\"herdr.tab\":\"tb395bbbab54bfca992160e660c2341593\",\"where\":\"feature-skill-contract-manifests-16-web-design-metadata / skill-contract-manifests-16-web-design-metadata · Spec11\"},\"name\":null,\"notify\":true,\"parent\":null,\"pid\":2566064,\"reason\":\"killed\",\"reported\":true,\"rm\":false,\"rows\":83,\"screen\":\"exact\",\"signal\":null,\"state\":\"finished\",\"status\":null,\"status_ms\":1795864837818,\"template\":null,\"title\":\"π > 📜 REVIEW: Review skill contract requirements\",\"turn\":2}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 73271553,
+          "event_seq": 219,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 33
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 73241477,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 73360038,
+          "event_seq": 220,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "limits": {
+        "columnTruncated": {
+          "maxColumn": 768,
+          "unit": "bytes",
+          "artifactId": "70",
+          "lines": {
+            "first": 1,
+            "last": 1
+          }
+        }
+      }
+    }
+  }
+}
