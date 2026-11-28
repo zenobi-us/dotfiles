@@ -1,0 +1,42 @@
+{
+  "spec": {
+    "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+    "operation_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+    "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+    "sha256": "8d84203725440d38f5a2dde938a1ee56620d6cfd777c6c48cc8021e6fe59c609",
+    "shape_fields": 11,
+    "finding_fields": 8,
+    "finding_count": 0,
+    "source_base_ordered_scope_verified": true,
+    "assigned_envelope_equals_domain": true,
+    "ack": {
+      "schemaVersion": "result-delivery/v2",
+      "kind": "acknowledgement",
+      "runId": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "operationId": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "sha256": "8d84203725440d38f5a2dde938a1ee56620d6cfd777c6c48cc8021e6fe59c609",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/e3dfd74c-a509-4a4a-adb4-b0262560c4eb/result.json",
+      "resultSchema": "review-axis/v1"
+    }
+  },
+  "standards": {
+    "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+    "operation_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+    "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+    "sha256": "ae185cd0e0c8ad0954dfb2bc4c1449a9afd809123fa7cc15b0299be5ccbfd2e1",
+    "shape_fields": 11,
+    "finding_fields": 8,
+    "finding_count": 1,
+    "source_base_ordered_scope_verified": true,
+    "assigned_envelope_equals_domain": true,
+    "ack": {
+      "schemaVersion": "result-delivery/v2",
+      "kind": "acknowledgement",
+      "runId": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "operationId": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "sha256": "ae185cd0e0c8ad0954dfb2bc4c1449a9afd809123fa7cc15b0299be5ccbfd2e1",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/9954eeec-8270-4c58-99b3-4d5562363ec8/result.json",
+      "resultSchema": "review-axis/v1"
+    }
+  }
+}

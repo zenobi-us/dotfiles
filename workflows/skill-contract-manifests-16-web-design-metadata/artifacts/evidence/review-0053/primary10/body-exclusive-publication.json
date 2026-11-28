@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "--install=fallback",
+    "-e",
+    "import { publishImmutableFile } from \"/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/delivery.ts\"; const input = await Bun.stdin.text(); const path=\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md\"; if (!await publishImmutableFile(path,input)) throw new Error(\"Review body already exists\"); console.log(JSON.stringify({published:true,path,bytes:Buffer.byteLength(input),sha256:new Bun.CryptoHasher(\"sha256\").update(input).digest(\"hex\")}));"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "started_at": "2026-11-28T09:36:12.888298+00:00",
+  "finished_at": "2026-11-28T09:36:13.401697+00:00",
+  "duration_seconds": 0.513418857997749,
+  "exit_code": 0,
+  "stdout": "{\"published\":true,\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md\",\"bytes\":7210,\"sha256\":\"8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685\"}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "candidate_bytes": 7210,
+  "candidate_sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "same_captured_mq_bytes": true,
+  "mq_regeneration": false
+}

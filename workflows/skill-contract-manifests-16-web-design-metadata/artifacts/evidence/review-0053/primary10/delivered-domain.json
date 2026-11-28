@@ -1,0 +1,303 @@
+{
+  "affected_contracts": [
+    "design-source-metadata/v1",
+    "design-source-metadata/v2",
+    "skill-contract-manifest/v1",
+    "UpgradeOwner/safeUpgrade/bulkUpgrade",
+    "bundled asset SHA-256 and style/provenance associations",
+    "readCatalog/selectSource",
+    "worktree-receipt/v3",
+    "Creator plugin/marketplace version synchronization"
+  ],
+  "agent": "omp",
+  "attempt": 10,
+  "axes": {
+    "spec": {
+      "ack": {
+        "kind": "acknowledgement",
+        "operationId": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+        "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/e3dfd74c-a509-4a4a-adb4-b0262560c4eb/result.json",
+        "resultSchema": "review-axis/v1",
+        "runId": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+        "schemaVersion": "result-delivery/v2",
+        "sha256": "8d84203725440d38f5a2dde938a1ee56620d6cfd777c6c48cc8021e6fe59c609"
+      },
+      "assigned_envelope_equals_domain": true,
+      "finding_count": 0,
+      "finding_fields": 8,
+      "operation_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+      "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "sha256": "8d84203725440d38f5a2dde938a1ee56620d6cfd777c6c48cc8021e6fe59c609",
+      "shape_fields": 11,
+      "source_base_ordered_scope_verified": true
+    },
+    "standards": {
+      "ack": {
+        "kind": "acknowledgement",
+        "operationId": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+        "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/9954eeec-8270-4c58-99b3-4d5562363ec8/result.json",
+        "resultSchema": "review-axis/v1",
+        "runId": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+        "schemaVersion": "result-delivery/v2",
+        "sha256": "ae185cd0e0c8ad0954dfb2bc4c1449a9afd809123fa7cc15b0299be5ccbfd2e1"
+      },
+      "assigned_envelope_equals_domain": true,
+      "finding_count": 1,
+      "finding_fields": 8,
+      "operation_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+      "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "sha256": "ae185cd0e0c8ad0954dfb2bc4c1449a9afd809123fa7cc15b0299be5ccbfd2e1",
+      "shape_fields": 11,
+      "source_base_ordered_scope_verified": true
+    }
+  },
+  "base_branch": "master",
+  "body_bytes": 7210,
+  "body_correction_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/candidate-validation.json",
+  "body_sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "coordination_assessment_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/coordination-assessment.json",
+  "created_at": "2026-11-28T09:36:48.987Z",
+  "event": "phase-result",
+  "evidence": {
+    "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053",
+    "store": "repository"
+  },
+  "findings": [
+    {
+      "adr": null,
+      "description": "Hard documented-rule breach: iso-24495-3/SKILL.md, Quantitative Rules rule 3, requires first-use acronym definitions. The newly added help sentence ends with “not cwd.” The actual --help command prints this undefined acronym. This is human-facing explanatory prose, not a command argument or code identifier.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "id": "standards-016",
+      "line": 9,
+      "required_change": "Replace cwd with current working directory in the human-facing help sentence. Preserve command syntax, metadata meaning, and runtime behavior.",
+      "severity": "low",
+      "validation_command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts --help"
+    }
+  ],
+  "goal_dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0140.yaml",
+  "goal_run_id": "skill-contract-manifests-20261125-t2dv",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/skill-contract-manifests/index.md"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0052.yaml"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0050.yaml"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0051.yaml"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0050.md"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0140.yaml"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/caller-axis-report-shape.json"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0002/encoding-native-probes.json"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/native-probes.json"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-validation.json"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-manual-reference-inspection.json"
+    },
+    {
+      "kind": "consumed-record",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-coordination-assessment.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0142.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0143.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-leaf-shutdown-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-authorized-leaf-shutdown.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-standards-resources-final-authority0142.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-spec-resources-final-authority0142.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-readonly-preflight-assessment.json"
+    }
+  ],
+  "integration_checks": [
+    {
+      "argv": [
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      ]
+    }
+  ],
+  "muxer": "herdr-app",
+  "operation_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0053.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10"
+    }
+  ],
+  "pane_id": "t2tf",
+  "parent_next": {
+    "body_retained_prior_reconciliation_text": 143,
+    "completion_receipt": "review-complete-0054",
+    "goal_reconciliation": 144
+  },
+  "parent_receipt": "review-start-0052",
+  "phase": "review",
+  "primary_left_for_parent_closure": true,
+  "receipt_id": "review-0053",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "resolved_finding_ids": [
+    "standards-013",
+    "standards-014",
+    "standards-015"
+  ],
+  "resource_shutdown": "confirmed",
+  "resource_shutdown_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-leaf-shutdown-validation.json",
+  "retained_comparison_input_error": "Standards direct-base marketplace equality assumption failed on developer versions0.2.84 versus0.2.82. Not actual three-dot feature delta; preserved without rerun or repair.",
+  "review_artifact_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md",
+  "review_base_commit": "404991992d4514434abf4ae60dba4e8475984337",
+  "run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "schemaVersion": "worktree-receipt/v3",
+  "session_id": "herdr-app:t2tf",
+  "source_accepted": false,
+  "source_branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_merged": false,
+  "source_mutations": false,
+  "source_pushed": false,
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "status": "completed",
+  "summary": "Independent full-feature review10: one low hard Standards finding standards-016 in human-facing help at sources.ts:9. Spec has no findings. Fresh native56 once postcommit passed21/35. Both typed axes validated and ACKed. All11 source bindings clean; protected8/all5 preserved. Parent0142 confirms all4 leaf identities stopped. Parent0143 accepts only exact retained mise warning; same7210-byte MQ body published exclusively.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-16-web-design-metadata",
+    "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "validation_results": [
+    {
+      "all_expected": true,
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      ],
+      "cwd": "/tmp",
+      "duration_seconds": 7.987557200016454,
+      "execution": "once fresh postcommit",
+      "exit_code": 0,
+      "expected_refusal_exit1": 35,
+      "finished_at": "2026-11-28T06:01:44.475267+00:00",
+      "native_json_rows": 56,
+      "pass_line": "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries.",
+      "record_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/native-smoke.json",
+      "row_validation_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/native-validation.json",
+      "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+      "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+      "started_at": "2026-11-28T06:01:36.487713+00:00",
+      "stderr_empty": true,
+      "successful_exit0": 21
+    },
+    {
+      "kind": "frozen-all11-working-committed-bindings",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/final-frozen-guard.json",
+      "status": "passed"
+    },
+    {
+      "kind": "protected8-assets5-and-catalog-preservation",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/preservation.json",
+      "status": "passed"
+    },
+    {
+      "kind": "typed-axis-envelope-caller-shape-and-ack",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/axis-validation.json",
+      "status": "passed"
+    },
+    {
+      "kind": "parent-authorized-nested-shutdown",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-leaf-shutdown-validation.json",
+      "status": "passed"
+    },
+    {
+      "bytes": 7210,
+      "kind": "exact-captured-body-exclusive-publication",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/body-exclusive-publication.json",
+      "sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+      "status": "passed"
+    },
+    {
+      "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0143.yaml",
+      "kind": "scoped-known-warning-correction",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/known-warning-correction.json",
+      "status": "passed"
+    }
+  ],
+  "verdict": "FAILURE",
+  "workflow": {
+    "ref": "workflows/skill-contract-manifests-16-web-design-metadata",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata"
+}

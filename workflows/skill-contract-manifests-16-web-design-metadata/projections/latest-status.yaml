@@ -2,10 +2,29 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-16-web-design-metadata,
   ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
-  state: IMPLEMENTED,
-  latest_receipt: fix-complete-0051,
+  state: REVIEW_FAILED,
+  latest_receipt: review-complete-0054,
   latest_source_commit: a30ab1903988834d63abd2b997659e103112a88f,
   latest_source_tree: c78f0057fbb2be8e003ed7fd7a381d91eba0486d,
-  latest_review_verdict: null,
-  open_findings: []
+  latest_review_verdict: FAILURE,
+  open_findings:
+    [
+      {
+          adr: null,
+          description: "Hard documented-rule breach: iso-24495-3/SKILL.md, Quantitative
+            Rules rule 3, requires first-use acronym definitions. The newly
+            added help sentence ends with “not cwd.” The actual --help command
+            prints this undefined acronym. This is human-facing explanatory
+            prose, not a command argument or code identifier.",
+          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts,
+          id: standards-016,
+          line: 9,
+          required_change: "Replace cwd with current working directory in the human-facing
+            help sentence. Preserve command syntax, metadata meaning, and
+            runtime behavior.",
+          severity: low,
+          validation_command: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts
+            --help
+        }
+    ]
 }

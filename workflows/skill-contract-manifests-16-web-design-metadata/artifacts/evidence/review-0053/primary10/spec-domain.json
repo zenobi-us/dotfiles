@@ -1,0 +1,25 @@
+{
+  "axis": "spec",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "findings": [],
+  "operation_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+  "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "report": "PASS. No spec findings.\n\nI reviewed all 11 changed paths against the canonical ticket and full initiative in the publication checkout. The declared owner accepts only numeric historical 1 and current design-source-metadata/v2. Missing, mixed, duplicate, malformed, and unknown identities fail without a legacy fallback.\n\nThe adapter keeps conversion pure. Shared safe/bulk operations own validation, preservation comparison, locking, persistence, immutable-path refusals, and partial outcomes. Conversion replaces only the identity token. Unknown properties and numeric lexemes remain unchanged.\n\nThe consumer resolves assets from its installed module, checks realpath containment and checksums, rejects malformed UTF-8 before JSON parsing, and never repairs content. Valid encoded U+FFFD remains valid. Selection retains style, companion, and provenance associations. Guidance routes actual selection through this consumer. Ordinary prose, opaque assets, and human display text receive no new identities.\n\nIndependent checks: frozen base/source catalog bytes differ only at the identity token. All five asset blobs remain byte-identical, with matching SHA-256 values. Capture time, ordered associations, provenance, and checksums remain unchanged. Creator plugin and marketplace versions change together to 0.1.11.\n\nNative check: the actual sources.ts validate command succeeded from /tmp with empty stderr. I inspected retained encoding-native-probes.json evidence for historical/current Unicode reads and malformed-byte refusals. That evidence belongs to fb4104c7, not this review run. I did not rerun the full smoke suite or the known failure. Fresh native56 execution remains the primary reviewer’s responsibility.\n",
+  "review_base_commit": "404991992d4514434abf4ae60dba4e8475984337",
+  "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+  "schemaVersion": "review-axis/v1",
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d"
+}

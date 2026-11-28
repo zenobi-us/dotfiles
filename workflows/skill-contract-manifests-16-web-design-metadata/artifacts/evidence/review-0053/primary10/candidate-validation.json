@@ -1,0 +1,103 @@
+{
+  "candidate_sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "bytes": 7210,
+  "frontmatter_source_base_producer_verdict_verified": true,
+  "links": [
+    {
+      "url": "../../../../tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "exists": true
+    },
+    {
+      "url": "../../../../tracker/initiatives/skill-contract-manifests/index.md",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/skill-contract-manifests/index.md",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/committed.diff",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/committed.diff",
+      "exists": true
+    },
+    {
+      "url": "../../events/review-start-0052.yaml",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0052.yaml",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/final-frozen-guard.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/final-frozen-guard.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/standards-domain.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/standards-domain.json",
+      "exists": true
+    },
+    {
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts#L9",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "exists": true
+    },
+    {
+      "url": "file:///home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-3/SKILL.md",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-3/SKILL.md",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/preservation.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/preservation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/spec-domain.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/spec-domain.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/native-smoke.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/native-smoke.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/native-validation.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/native-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/axis-validation.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/axis-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0050/parent-validation.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/parent-authorized-leaf-shutdown.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-authorized-leaf-shutdown.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/parent-leaf-shutdown-validation.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-leaf-shutdown-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0053/primary10/coordination-assessment.json",
+      "resolved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/coordination-assessment.json",
+      "exists": true
+    }
+  ],
+  "link_count": 17,
+  "axis_sha256": {
+    "spec": "8d84203725440d38f5a2dde938a1ee56620d6cfd777c6c48cc8021e6fe59c609",
+    "standards": "ae185cd0e0c8ad0954dfb2bc4c1449a9afd809123fa7cc15b0299be5ccbfd2e1"
+  },
+  "nested_resources_confirmed_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-leaf-shutdown-validation.json",
+  "final_all11_guard_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/final-frozen-guard.json",
+  "publication_authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0143.yaml",
+  "parent_reconciliation_current": 144,
+  "body_retains_original_reconciliation143_text": true,
+  "note": "Parent checkpoint143 supersedes only the administrative reconciliation number in the unchanged captured body. Source verdict, evidence, and bytes remain unchanged."
+}

@@ -1,0 +1,160 @@
+│ c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9                                                     │
+│ marketplace_creator 0.1.11                                                                                           │
+│ Traceback (most recent call last):                                                                                   │
+│   File "<cell>", line 30, in <module>                                                                                │
+│ AssertionError                                                                                                       │
+│ … 14 more lines (Ctrl+O to expand)                                                                                   │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 16:33:10  ⤵ 3.2K  ⤴ 1K  💾 93K  ⏱ 1.3s  ⚡ 47.2/s
+
+ Inspecting old/new differences
+
+╭─── 🐍 ✔ Preserving actual comparison failure · (39ms) ───────────────────────────────────────────────────────────────╮
+│ print('Captured marketplace comparison differences:')                                                                │
+│ print('base',json.dumps(old,ensure_ascii=False,indent=2))                                                            │
+│ print('source',json.dumps(new,ensure_ascii=False,indent=2))                                                          │
+│ print('Remaining independent frozen bindings:')                                                                      │
+│ print('all11_working_bytes_match_frozen',all(pathlib.Path(src,p).read_bytes()==blob(commit,p) for p in scope))       │
+│ print('frozen_tree',subprocess.run(['git','rev-parse',f'{commit}^{{tree}}'],cwd=src,capture_output=True,text=True).s │
+│ tdout.strip())                                                                                                       │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ └ • name: "zenobius-agent-bundles"                                                                                   │
+│   • owner: {name: "Zeno Jiricek"}                                                                                    │
+│   • plugins [7]                                                                                                      │
+│     ├─ 0 {4}                                                                                                         │
+│     │  └─ …                                                                                                          │
+│     ├─ 1 {4}                                                                                                         │
+│ …                                                                                                                    │
+│ Remaining independent frozen bindings:                                                                               │
+│ all11_working_bytes_match_frozen True                                                                                │
+│ frozen_tree c78f0057fbb2be8e003ed7fd7a381d91eba0486d                                                                 │
+│ … 10 more lines (Ctrl+O to expand)                                                                                   │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 16:33:32  ⤵ 675  ⤴ 249  💾 97K  ⏱ 1.3s  ⚡ 29.6/s
+
+ Reading CLI usage
+
+╭─── ☑ Todo 3 tasks ───────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ├─ ☑ Inspect all changed code and prose with preservation evidence                                                   │
+│ └─ ☐ Deliver immutable standards result                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ $ cd /tmp &&                                                                                                         │
+│   /home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts --help  204ms                │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ … (3 earlier lines, showing 10 of 13) ⟦Ctrl+O: Expand⟧                                                               │
+│   result-delivery <command> [options]                                                                                │
+│                                                                                                                      │
+│ COMMANDS:                                                                                                            │
+│   route      Print the validated delivery context as JSON without writing artifacts.                                 │
+│   emit       Deliver a domain JSON object from --input or stdin. Artifact delivery cannot be overridden.             │
+│   read       Verify artifact schema, identity and hash, then print the unchanged domain result as JSON.              │
+│   ack        Write a matching immutable acknowledgement without deleting the delivered artifact.                     │
+│                                                                                                                      │
+│ OPTIONS:                                                                                                             │
+│   -h, --help                   Show help                                                                             │
+╰─── Wall: 0.21s · Timeout: 60s ───────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 16:33:40  ⤵ 963  ⤴ 502  💾 98K  ⏱ 1.3s  ⚡ 33.9/s
+
+ Checking loaded shape
+
+ Emitting help subcommand
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ $ cd /tmp &&                                                                                                         │
+│   /home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts emit --help  210ms           │
+├─── Output ───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ result-delivery emit - Deliver a domain JSON object from --input or stdin. Artifact delivery cannot be overridden.   │
+│                                                                                                                      │
+│ USAGE:                                                                                                               │
+│   result-delivery emit [options]                                                                                     │
+│                                                                                                                      │
+│ OPTIONS:                                                                                                             │
+│   --context                    Absolute context JSON file; otherwise use RESULT_DELIVERY_CONTEXT or human output.    │
+│   --input                      Read the domain JSON object from this file instead of stdin.                          │
+│   --format                     Presentation: human or json. Does not replace assigned artifact delivery.             │
+│   -h, --help                   Show help                                                                             │
+╰─── Wall: 0.21s · Timeout: 60s ───────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 16:33:55  ⤵ 406  ⤴ 207  💾 99K  ⏱ 1.2s  ⚡ 18.7/s
+
+ Reporting retained output
+
+╭─── 🐍 ✔ Delivering immutable standards report · (236ms) ─────────────────────────────────────────────────────────────╮
+│ … 18 earlier lines ⟦Ctrl+O: Expand⟧                                                                                  │
+│ I reviewed all 11 changed paths and the full original feature against the frozen three-dot diff. I read the          │
+│ canonical ticket and complete initiative in publication through MQ. The domain index lists no applicable             │
+│ architecture decision.                                                                                               │
+│                                                                                                                      │
+│ The help display still uses undefined “cwd” at scripts/sources.ts:9. I ran the absolute --help command from /tmp. It │
+│ exited zero and printed that sentence. Rule 3 of iso-24495-3 requires a first-use definition. Replace the acronym    │
+│ with “current working directory.”                                                                                    │
+│                                                                                                                      │
+│ Fix50 itself is exact: style-selection.md:48 expands the former acronym and changes no other bytes in that document. │
+│ The prior UTF-8 and JSON definitions remain. Both new references supply purpose, reader, date, and referrals. Their  │
+│ inventories preserve five boundaries and two identity records. Source-format rules, owner conversion, shared         │
+│ persistence, and literal commands retain separate authority.                                                         │
+│                                                                                                                      │
+│ Independent byte checks confirmed all eight protected paths match b0d12b09. The catalog differs from the base only   │
+│ in its identity token. All five asset bytes and checksums match the base. Capture time, provenance, association      │
+│ order, and companion identities remain unchanged. All 11 working files match frozen committed blobs; the tree        │
+│ matches c78f0057fbb2be8e003ed7fd7a381d91eba0486d.                                                                    │
+│                                                                                                                      │
+│ A direct-base marketplace comparison assertion failed because developer versions differ: base 0.2.84, source 0.2.82. │
+│ I preserved the captured values and did not rerun or repair that check. This matches the contract’s moving-base      │
+│ warning; it is not a three-dot feature finding.                                                                      │
+│                                                                                                                      │
+│ I inspected retained encoding-native-probes.json evidence. I did not rerun the full native suite or the known        │
+│ malformed-byte failure. No source or environment edits occurred. Primary owns fresh native56 verification and        │
+│ closure.'''                                                                                                          │
+│ }                                                                                                                    │
+│ assert len(result)==11 and len(result['findings'][0])==8                                                             │
+│ assert len(result['report'].split())<400                                                                             │
+│ p=subprocess.run(['/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts','emit','-- │
+│ context','/var/home/zenobius/.local/state/result-delivery/runs/9954eeec-8270-4c58-99b3-4d5562363ec8/context.json'],i │
+│ nput=json.dumps(result,ensure_ascii=False),cwd='/tmp',capture_output=True,text=True)                                 │
+│ print('delivery_exit',p.returncode)                                                                                  │
+│   • kind: "reference"                                                                                                │
+│   • runId: "9954eeec-8270-4c58-99b3-4d5562363ec8"                                                                    │
+│   • operationId: "9954eeec-8270-4c58-99b3-4d5562363ec8"                                                              │
+│   • sha256: "ae185cd0e0c8ad0954dfb2bc4c1449a9afd809123fa7cc15b0299be5ccb…"                                           │
+│   • ref: "file:///var/home/zenobius/.local/state/result-delivery/runs…"                                              │
+│ …                                                                                                                    │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+ 2026-11-28 16:34:07  ⤵ 209  ⤴ 1K  💾 99K  ⏱ 1.1s  ⚡ 47.3/s
+
+ Reading delivered envelope
+
+╭─── ☑ Todo 3 tasks ───────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ├─ ☑ Read required standards and canonical context                                                                   │
+│ ├─ ☑ Inspect all changed code and prose with preservation evidence                                                   │
+│ └─ ☑ Deliver immutable standards result                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+ ✔ Read /var/home/zenobius/.local/state/result-delivery/runs/9954eeec-8270-4c58-99b3-4d5562363ec8/result.json:1-10
+
+ 2026-11-28 16:34:28  ⤵ 258  ⤴ 156  💾 101K  ⏱ 1.2s  ⚡ 16.7/s
+
+ Delivered the standards report through the assigned transport. Verdict: FAILURE; one low finding for undefined “cwd”
+ in CLI help at scripts/sources.ts:9.
+
+ 2026-11-28 16:34:38  ⤵ 535  ⤴ 37  💾 101K  ⏱ 2.0s  ⚡ 13.3/s
+
+ TODO
+  ├─ Review · 3/3
+  │  ├─ ☑ Read required standards and canonical context
+  │  ├─ ☑ Inspect all changed code and prose with preservation evidence
+  │  └─ ☑ Deliver immutable standards result
+  └─────
+
+                                                                                                           ⚡ 34.0 tok/s
+
+──────────────────────────────────────── 📋 REVIEW: Review skill contract standards · 🪙 104K · S0.39 · ◫ 20.3%/500K ⟲ ─
+❯
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ◑ GPT-6.1 Sol · 📁 …ntract-manifests-16-web-design-metadata

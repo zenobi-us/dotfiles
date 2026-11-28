@@ -1,0 +1,36 @@
+{
+  "axis": "standards",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "findings": [
+    {
+      "adr": null,
+      "description": "Hard documented-rule breach: iso-24495-3/SKILL.md, Quantitative Rules rule 3, requires first-use acronym definitions. The newly added help sentence ends with “not cwd.” The actual --help command prints this undefined acronym. This is human-facing explanatory prose, not a command argument or code identifier.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "id": "standards-016",
+      "line": 9,
+      "required_change": "Replace cwd with current working directory in the human-facing help sentence. Preserve command syntax, metadata meaning, and runtime behavior.",
+      "severity": "low",
+      "validation_command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts --help"
+    }
+  ],
+  "operation_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+  "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "report": "FAILURE: one low hard standards finding remains. No heuristic smell warrants a separate finding.\n\nI reviewed all 11 changed paths and the full original feature against the frozen three-dot diff. I read the canonical ticket and complete initiative in publication through MQ. The domain index lists no applicable architecture decision.\n\nThe help display still uses undefined “cwd” at scripts/sources.ts:9. I ran the absolute --help command from /tmp. It exited zero and printed that sentence. Rule 3 of iso-24495-3 requires a first-use definition. Replace the acronym with “current working directory.”\n\nFix50 itself is exact: style-selection.md:48 expands the former acronym and changes no other bytes in that document. The prior UTF-8 and JSON definitions remain. Both new references supply purpose, reader, date, and referrals. Their inventories preserve five boundaries and two identity records. Source-format rules, owner conversion, shared persistence, and literal commands retain separate authority.\n\nIndependent byte checks confirmed all eight protected paths match b0d12b09. The catalog differs from the base only in its identity token. All five asset bytes and checksums match the base. Capture time, provenance, association order, and companion identities remain unchanged. All 11 working files match frozen committed blobs; the tree matches c78f0057fbb2be8e003ed7fd7a381d91eba0486d.\n\nA direct-base marketplace comparison assertion failed because developer versions differ: base 0.2.84, source 0.2.82. I preserved the captured values and did not rerun or repair that check. This matches the contract’s moving-base warning; it is not a three-dot feature finding.\n\nI inspected retained encoding-native-probes.json evidence. I did not rerun the full native suite or the known malformed-byte failure. No source or environment edits occurred. Primary owns fresh native56 verification and closure.",
+  "review_base_commit": "404991992d4514434abf4ae60dba4e8475984337",
+  "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+  "schemaVersion": "review-axis/v1",
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d"
+}

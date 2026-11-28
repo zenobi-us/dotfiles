@@ -1,0 +1,38 @@
+{
+  "bounded_wait_ms": 10000,
+  "processes": [
+    {
+      "identity": {
+        "pid": 2334527,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "55098388",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      "observed_boot": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "signal_sent": false,
+      "observed_start_ticks": "55098388",
+      "observed_state": "T",
+      "identity_match": true,
+      "pidfd_exit_observed": false
+    },
+    {
+      "identity": {
+        "pid": 2335018,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "55099179",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      "observed_boot": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "signal_sent": false,
+      "observed_start_ticks": "55099179",
+      "observed_state": "S",
+      "identity_match": true,
+      "pidfd_exit_observed": false
+    }
+  ],
+  "signals_sent": 0
+}

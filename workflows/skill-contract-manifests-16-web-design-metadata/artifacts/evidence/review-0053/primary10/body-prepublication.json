@@ -1,0 +1,15 @@
+{
+  "argv_mode": "mq -I null -F text; scalar literal without terminal LF",
+  "expected_formatter_lf_count": 1,
+  "expected_bytes": 7210,
+  "expected_sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "actual_bytes": 7210,
+  "actual_sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "exit_code": 0,
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "producer": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "review_base_commit": "404991992d4514434abf4ae60dba4e8475984337",
+  "verdict": "FAILURE"
+}

@@ -1,0 +1,20 @@
+{
+  "reason": "Both exact owned leaves remain pending after one normal kill/rm and bounded signal-free pidfd exit observation. Hold sole body and receipt.",
+  "source_verdict_if_gate_clears": "FAILURE",
+  "open_findings": [
+    {
+      "adr": null,
+      "description": "Hard documented-rule breach: iso-24495-3/SKILL.md, Quantitative Rules rule 3, requires first-use acronym definitions. The newly added help sentence ends with \u201cnot cwd.\u201d The actual --help command prints this undefined acronym. This is human-facing explanatory prose, not a command argument or code identifier.",
+      "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "id": "standards-016",
+      "line": 9,
+      "required_change": "Replace cwd with current working directory in the human-facing help sentence. Preserve command syntax, metadata meaning, and runtime behavior.",
+      "severity": "low",
+      "validation_command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts --help"
+    }
+  ],
+  "signals_sent_outside_normal_closure": 0,
+  "body_published": false,
+  "receipt_published": false,
+  "primary_left_for_parent_closure": true
+}

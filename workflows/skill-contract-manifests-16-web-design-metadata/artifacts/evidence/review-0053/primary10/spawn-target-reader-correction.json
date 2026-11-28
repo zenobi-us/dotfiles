@@ -1,0 +1,7 @@
+{
+  "original_error": "TypeError: resultTarget object passed to pathlib.Path",
+  "correction": "Use actual resultTarget.path after inspecting saved complete native spawn JSON",
+  "domain_or_source_failure": false,
+  "native_or_axis_rerun": false,
+  "publication_attempted": false
+}

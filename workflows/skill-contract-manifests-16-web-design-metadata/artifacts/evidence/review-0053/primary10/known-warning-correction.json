@@ -1,0 +1,16 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0143.yaml",
+  "original_preflight_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/body-prepublication.json",
+  "original_capture_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/body-preflight-mismatch-capture.json",
+  "originals_unchanged": true,
+  "corrected_precondition": "Accept only the exact retained mise warning when exit0 and actual body bytes equal expected. No other stderr is accepted.",
+  "bytes": 7210,
+  "sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "exit_code": 0,
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "mq_generation_reruns": 0,
+  "environment_changes": false,
+  "source_changes": false,
+  "same_captured_content": true,
+  "reader_correction": "candidate assignment followed failed combined assertion; decoded same saved stdout_base64, not regenerated content."
+}

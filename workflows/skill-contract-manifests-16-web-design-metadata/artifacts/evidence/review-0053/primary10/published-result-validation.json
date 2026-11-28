@@ -1,0 +1,24 @@
+{
+  "receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0053.yaml",
+  "review_artifact_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md",
+  "transport_context": "/var/home/zenobius/.local/state/result-delivery/runs/1987bd65-c067-4a86-bc7b-a690271ce21d/context.json",
+  "transport_sha256": "a92bf108bc5ca483721707a533277fc0866c9f0a6bf0c20883ac6adb7e416581",
+  "event_equals_delivered_domain": true,
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "verdict": "FAILURE",
+  "standards_findings": [
+    "standards-016"
+  ],
+  "spec_findings": [],
+  "body_bytes": 7210,
+  "body_sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "body_equals_original_captured_bytes": true,
+  "writer_invocations": 1,
+  "body_publications": 1,
+  "nested_shutdown": "confirmed",
+  "source_smoke_axis_reruns": false,
+  "parent_reconciliation": 144,
+  "original_preflight_and_pending_captures_preserved": true,
+  "primary_left_for_normal_parent_closure": true
+}

@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ],
+  "cwd": "/tmp",
+  "started_at": "2026-11-28T06:01:36.487713+00:00",
+  "finished_at": "2026-11-28T06:01:44.475267+00:00",
+  "duration_seconds": 7.987557200016454,
+  "exit_code": 0,
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "execution": "once fresh postcommit",
+  "native_json_rows": 56,
+  "successful_exit0": 21,
+  "expected_refusal_exit1": 35,
+  "all_expected": true,
+  "stderr_empty": true,
+  "pass_line": "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+}

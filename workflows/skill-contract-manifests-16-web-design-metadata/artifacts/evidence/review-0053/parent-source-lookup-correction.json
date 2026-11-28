@@ -1,0 +1,11 @@
+{
+  "operation": "read-only preparation for reported sources.ts helpfinding",
+  "original_lookup": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+  "original_result": "Path not found in publication checkout; feature remains unmerged.",
+  "correction": "Read exact supplied source workspace path instead; no sourcechange/nativecheckrerun.",
+  "actual_read": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts:1-35",
+  "observed_usage_line": 9,
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "publication_or_domain_failure": false
+}
