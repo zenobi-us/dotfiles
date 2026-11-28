@@ -1,0 +1,245 @@
+{
+  "text": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"reference\",\"runId\":\"ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\"operationId\":\"ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\"sha256\":\"043a265a3354312be15509fe8cb2678b56a5be6d8367c320aef6af86fddcac89\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/result.json\",\"resultSchema\":\"worktree-receipt/v3\"}\n\n\nWall time: 1.29 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 60,
+    "wallTimeMs": 1292.509266000241,
+    "trace": {
+      "v": 1,
+      "seq": 8,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 1290181880,
+      "script": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --phase-context /tmp/scm16-review59-final-phase-context.json --input /tmp/scm16-review59-final-outcome.json --delivery-context /var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/context.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 386,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 386,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 386,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 386,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 1290107851,
+              "at": 55023,
+              "argv": [
+                "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+                "--repository",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+                "--phase-context",
+                "/tmp/scm16-review59-final-phase-context.json",
+                "--input",
+                "/tmp/scm16-review59-final-outcome.json",
+                "--delivery-context",
+                "/var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/context.json"
+              ],
+              "res": "external",
+              "pid": 2773449,
+              "end_ns": 1290162874,
+              "end_seq": 7
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 87,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 88,
+              "hi": 100,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 101,
+              "hi": 156,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 157,
+              "hi": 172,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 173,
+              "hi": 217,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 218,
+              "hi": 225,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 226,
+              "hi": 264,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 265,
+              "hi": 283,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 284,
+              "hi": 386,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAIIDAQCCAwAAAQIAggMAAAkDAFcBAFcvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvZGV2ZWxvcGVyL3NraWxscy9naXQvd29ya3RyZWUvc2NyaXB0cy93cml0ZS1yZXN1bHQudHMEWGQBAAwtLXJlcG9zaXRvcnkFZZwBAQA3L3J1bi9tZWRpYS96ZW5vYml1cy9TdG9yZS9Qcm9qZWN0cy9NaW5lL0dpdGh1Yi9Eb3RmaWxlcwadAawBAQAPLS1waGFzZS1jb250ZXh0B60B2QEBACwvdG1wL3NjbTE2LXJldmlldzU5LWZpbmFsLXBoYXNlLWNvbnRleHQuanNvbgjaAeEBAQAHLS1pbnB1dAniAYgCAQAmL3RtcC9zY20xNi1yZXZpZXc1OS1maW5hbC1vdXRjb21lLmpzb24KiQKbAgEAEi0tZGVsaXZlcnktY29udGV4dAucAoIDAQBmL3Zhci9ob21lL3plbm9iaXVzLy5sb2NhbC9zdGF0ZS9yZXN1bHQtZGVsaXZlcnkvcnVucy9iYThiNzIxNC0yODUzLTQ1NzctODJiYy1lYzNhN2ZjOTYyYWEvY29udGV4dC5qc29uAAAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 256,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 55023,
+          "event_seq": 258,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 38,
+            "vpid": 1073741824,
+            "seq": 39
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 55023,
+          "event_seq": 259,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 38,
+            "vpid": 1073741824,
+            "seq": 39
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+            "--repository",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "--phase-context",
+            "/tmp/scm16-review59-final-phase-context.json",
+            "--input",
+            "/tmp/scm16-review59-final-outcome.json",
+            "--delivery-context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/context.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 639747,
+          "event_seq": 260,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 38,
+            "vpid": 1073741824,
+            "seq": 39
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 2773449,
+          "argv": [
+            "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+            "--repository",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "--phase-context",
+            "/tmp/scm16-review59-final-phase-context.json",
+            "--input",
+            "/tmp/scm16-review59-final-outcome.json",
+            "--delivery-context",
+            "/var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/context.json"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 1283331579,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 38,
+            "vpid": 1073741824,
+            "seq": 39
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"reference\",\"runId\":\"ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\"operationId\":\"ba8b7214-2853-4577-82bc-ec3a7fc962aa\",\"sha256\":\"043a265a3354312be15509fe8cb2678b56a5be6d8367c320aef6af86fddcac89\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/result.json\",\"resultSchema\":\"worktree-receipt/v3\"}\n",
+          "fd": 1
+        },
+        {
+          "seq": 7,
+          "t_ns": 1290162874,
+          "event_seq": 261,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 38,
+            "vpid": 1073741824,
+            "seq": 39
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 1290107851,
+          "pipestatus": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 1290181880,
+          "event_seq": 262,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

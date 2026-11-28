@@ -1,0 +1,119 @@
+{
+  "mq_header": {
+    "type": "Report",
+    "title": "Web-design metadata review 11",
+    "producer": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+    "receipt_id": "review-0059",
+    "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+    "review_base_commit": "c7ba47e30520530e2ffdc5c9f8a1119ed258c172",
+    "verdict": "SUCCESS",
+    "created_at": "2026-11-28T13:42:01.224Z"
+  },
+  "actual_links": [
+    {
+      "url": "../../../goal-skill-contract-manifests/events/checkpoint-0159.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/checkpoint-0159.yaml",
+      "exists": true
+    },
+    {
+      "url": "../../../../tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "exists": true
+    },
+    {
+      "url": "../../../../tracker/initiatives/skill-contract-manifests/index.md",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/skill-contract-manifests/index.md",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/primary-all-command-captures.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-all-command-captures.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/primary-final-exact-source-guard.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-final-exact-source-guard.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/standards-undelivered-domain.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-undelivered-domain.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/spec-undelivered-domain.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/spec-undelivered-domain.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/primary-source-bindings.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-source-bindings.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/primary-native-postcommit.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-native-postcommit.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/primary-help-postcommit.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-help-postcommit.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/parent-verification-0001/native-probes.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0001/native-probes.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/parent-verification-0002/encoding-native-probes.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/parent-verification-0002/encoding-native-probes.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/primary-axis-validation.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-axis-validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/standards-leaf-eval-import-failure.txt",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-leaf-eval-import-failure.txt",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/primary-read-capture-correction.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-read-capture-correction.json",
+      "exists": true
+    },
+    {
+      "url": "../../../goal-skill-contract-manifests/events/checkpoint-0151.yaml",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/checkpoint-0151.yaml",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/standards-normal-closure-observations.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-normal-closure-observations.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/parent-spec-resources-final-authority0159.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/parent-spec-resources-final-authority0159.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/parent-bounded-evidence-publication.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/parent-bounded-evidence-publication.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0059/parent-coordination-assessment.json",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/parent-coordination-assessment.json",
+      "exists": true
+    }
+  ],
+  "count": 20,
+  "all_exist": true,
+  "body_sha256": "3e8c8667602c57dfeec7d715ca451bd3db11917261933e38d72e3e3f0aea5c84",
+  "body_bytes": 8231
+}

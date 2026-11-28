@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-28T13:12:59.225Z",
+  "parent_reported_publication_commit": "c68ccc64a060908a1d1bee63e483f9757ad268c6",
+  "amended_unpublished_tip": {
+    "from": "5ed618ac",
+    "to": "be67c29f"
+  },
+  "raw_archive_original_sha256_prefix": "8cdae5f",
+  "summary_bytes": 639776,
+  "gzip_bytes": 22973126,
+  "records_preserved": 244,
+  "failure_diagnostics_preserved": 43,
+  "normal_nonforce_push": true,
+  "resource_observation_authority": "User157 consumed by parent",
+  "spec_last_parent_observation": "2026-11-28T13:07:43.502Z pending",
+  "remaining_process": {
+    "pid": 2573884,
+    "start_ticks": "56570186",
+    "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+    "run_id": "179f5a0c-4c41-4139-8656-ccb8c2896750"
+  },
+  "further_resource_actions": "not authorized",
+  "body_final_receipt": "held",
+  "completion": "review-complete-0060",
+  "reconciliation": "Resolve from new checkpoint sequence; old150/152/154/158 stale"
+}

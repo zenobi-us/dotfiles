@@ -1,0 +1,9 @@
+{
+  "failure_stage": "Eval parser before code execution",
+  "cli_invocations_from_failed_input": 0,
+  "publication_writes_from_failed_input": 0,
+  "source_changes": 0,
+  "correction": "Replaced escaped backticks in in-memory draft template. Corrected MQ command ran once. Exact precomputed formatter bytes and all links passed before sole exclusive publication.",
+  "body_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0059.md",
+  "body_sha256": "3e8c8667602c57dfeec7d715ca451bd3db11917261933e38d72e3e3f0aea5c84"
+}

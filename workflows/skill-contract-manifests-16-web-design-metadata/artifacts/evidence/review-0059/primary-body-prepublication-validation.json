@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-28T13:42:01.224Z",
+  "expected_bytes": 8231,
+  "expected_sha256": "3e8c8667602c57dfeec7d715ca451bd3db11917261933e38d72e3e3f0aea5c84",
+  "mq_exit": 0,
+  "mq_stderr": "",
+  "formatter": "Scalar without terminal LF plus one formatter LF; expected bytes computed before assertion",
+  "links_validated": 20,
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+  },
+  "base": "c7ba47e30520530e2ffdc5c9f8a1119ed258c172",
+  "verdict": "SUCCESS",
+  "producer": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "pre_execution_correction": "Prior Eval template syntax failed before any MQ command or publication. Corrected only draft construction; no command rerun."
+}

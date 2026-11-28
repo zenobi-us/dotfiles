@@ -1,0 +1,255 @@
+{
+  "spaces": [
+    {
+      "id": "spe45e3a290a7169a83b0357ebf63b9682",
+      "name": "Dotfiles",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tbae75d29018190fc873ff17539081b275",
+          "name": "t1tb",
+          "active": false,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t27n",
+              "pane": "p680d280643e3f3e7674213a70d811960",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2jf",
+              "pane": "pa8fce4e7bb620b6771502393e7acdba2",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        },
+        {
+          "id": "tbe54ef9a9c03991c5c02d91d7247a167c",
+          "name": "OMP",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t2dv",
+              "pane": "p7e1ee1978781e9c7b30772486cbade2c",
+              "status": "working",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2tq",
+              "pane": "pc16a63236846e2661536b624bc43d70c",
+              "status": "working",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spca1c0868790ec1d450089b3788844696",
+      "name": "finance",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tbfb2960b90a0820f66d7835405342e851",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t1yk",
+              "pane": "p3f03a96212d38abe75e76f2c3118a3e3",
+              "status": "blocked",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spfc73af3306768ff31c4d6084d01dbdfe",
+      "name": "serverfiles",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tb5a7fba06a9a7805c438ad5d0c234a067",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t2h5",
+              "pane": "peffd8f5f8a76a0de38a293c939115168",
+              "status": "done",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2mp",
+              "pane": "pc002bf3d3a08fe9836571ae4a0e40570",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sp6ea778c6bf0cea6e12ea4aa68ee3c2dc",
+      "name": "nvim",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tbe7ef56c7ec8782261b57393603647803",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t2jq",
+              "pane": "pf430dc89dd2e1ee6ad933fc4c98fe816",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t2jr",
+              "pane": "p0dac007a175dddfb20433520d9a0946a",
+              "status": "idle",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sp0217442c89c88e8cce5a23551c1d11dd",
+      "name": "bazzite-workstation",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/serverfiles",
+      "machine": null,
+      "active": true,
+      "tabs": [
+        {
+          "id": "tb17597c342e66d5d49cb641db9e3a902e",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t2tp",
+              "pane": "p9517d20c650ca379b1a9f19b66d09696",
+              "status": "working",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "recent": [
+    {
+      "name": "feature-skill-contract-manifests-16-web-design-metadata",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata"
+    },
+    {
+      "name": "shells-zsh",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/shells-zsh"
+    },
+    {
+      "name": "commands-terminal",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/commands-terminal"
+    },
+    {
+      "name": "flux-production-architecture-03-local-nfs",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-03-local-nfs"
+    },
+    {
+      "name": "flux-production-architecture-04-production-k0s",
+      "folder": "/var/home/zenobius/Applications/serverfiles.worktrees/flux-production-architecture-04-production-k0s"
+    },
+    {
+      "name": "feature-skill-contract-manifests-15-plain-language",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language"
+    },
+    {
+      "name": "feature-skill-contract-manifests-14-homeassistant",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant"
+    },
+    {
+      "name": "resolve-skill-contract-manifests-11-artifact-sharing-finish",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish"
+    },
+    {
+      "name": "flux-production-architecture-02-release-gate",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-02-release-gate"
+    },
+    {
+      "name": "feature-skill-contract-manifests-18-manifest-coverage",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage"
+    },
+    {
+      "name": "feature-skill-contract-manifests-11-artifact-sharing",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing"
+    },
+    {
+      "name": "flux-production-architecture-05-production-nfs",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-05-production-nfs"
+    },
+    {
+      "name": "flux-production-architecture-01-shared-configuration",
+      "folder": "/var/home/zenobius/Applications/serverfiles.worktrees/flux-production-architecture-01-shared-configuration"
+    },
+    {
+      "name": "resolve-skill-contract-manifests-07-shared-context-finish",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish"
+    },
+    {
+      "name": "feature-skill-contract-manifests-07-shared-context",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context"
+    },
+    {
+      "name": "resolve-skill-contract-manifests-08-worktree-finish",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish"
+    },
+    {
+      "name": "feature-skill-contract-manifests-13-twg-benchmark",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark"
+    },
+    {
+      "name": "feature-skill-contract-manifests-12-backlog-grooming",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-12-backlog-grooming"
+    },
+    {
+      "name": "feature-skill-contract-manifests-08-worktree",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "original_argv": [
+    "records.ts",
+    "check",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "--ticket",
+    "skill-contract-manifests-16-web-design-metadata",
+    "--format",
+    "human"
+  ],
+  "original_exit": 1,
+  "original_output": "check: failed\nValidation: failed; Unknown or repeated argument; use --help\nFailure: Unknown or repeated argument; use --help",
+  "failure_stage": "Argument parsing before record validation or tracker writes.",
+  "help_observed": "records.ts check --repository <absolute-path> (--ticket <id> | --initiative <id>)",
+  "corrected_argv": [
+    "records.ts",
+    "check",
+    "--repository",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "--ticket",
+    "skill-contract-manifests-16-web-design-metadata",
+    "--format",
+    "human"
+  ],
+  "tracker_mutations_from_failed_call": 0,
+  "source_native_help_axis_reruns": 0
+}

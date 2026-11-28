@@ -1,0 +1,38 @@
+{
+  "eventCheck": {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import {readFileSync} from \"node:fs\";import assert from \"node:assert/strict\";const event=Bun.YAML.parse(readFileSync(process.argv[1],\"utf8\"));const envelope=JSON.parse(readFileSync(process.argv[2],\"utf8\"));assert.deepEqual(event,envelope.result);console.log(JSON.stringify({event_equals_delivered_domain:true,receipt:event.receipt_id,verdict:event.verdict,source_commit:event.source_commit,source_tree:event.source_tree,parent_next:event.parent_next,sha256:envelope.sha256}));",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/review-0059.yaml",
+      "/var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/result.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "start": "2026-11-28T13:43:29.340Z",
+    "finish": "2026-11-28T13:43:29.680Z",
+    "duration_seconds": 0.33922279700078073,
+    "exit": 0,
+    "stdout": "{\"event_equals_delivered_domain\":true,\"receipt\":\"review-0059\",\"verdict\":\"SUCCESS\",\"source_commit\":\"9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930\",\"source_tree\":\"97a55fab87da13de54a7724062a36adc4626aa70\",\"parent_next\":{\"completion\":\"review-complete-0060\",\"goal_reconciliation\":\"dispatch-reconciled-0160 unless a new checkpoint intervenes\"},\"sha256\":\"043a265a3354312be15509fe8cb2678b56a5be6d8367c320aef6af86fddcac89\"}\n",
+    "stderr": ""
+  },
+  "equivalence": {
+    "event_equals_delivered_domain": true,
+    "receipt": "review-0059",
+    "verdict": "SUCCESS",
+    "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+    "parent_next": {
+      "completion": "review-complete-0060",
+      "goal_reconciliation": "dispatch-reconciled-0160 unless a new checkpoint intervenes"
+    },
+    "sha256": "043a265a3354312be15509fe8cb2678b56a5be6d8367c320aef6af86fddcac89"
+  },
+  "body_bytes": 8231,
+  "body_sha256": "3e8c8667602c57dfeec7d715ca451bd3db11917261933e38d72e3e3f0aea5c84",
+  "single_writer": true,
+  "single_body": true,
+  "source_guard_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/primary-final-exact-source-guard.json"
+}

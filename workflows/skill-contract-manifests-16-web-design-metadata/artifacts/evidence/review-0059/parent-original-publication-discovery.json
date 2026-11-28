@@ -1,0 +1,13 @@
+{
+  "existing_manifest_ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/publication-manifest.json",
+  "existing_qualification": "Raw JSON retained locally; compressed archive is the Git-tracked copy.",
+  "existing_archive_ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.json.gz",
+  "existing_archive_bytes": 22611536,
+  "existing_archive_sha256": "a7e90d3425386fe220f18f39be3c98d3ba09a294eea86d122ab1ddd76da1e7e5",
+  "existing_archive_raw_sha256": "8cdae5f192188cf38526c2409393cc5636ca2511d7eb31938d3879b5c7d87873",
+  "matches_original_153440897_byte_capture": true,
+  "root_cause_followup": "The large raw JSON was intended to remain local. Commit5ed618ac accidentally tracked that decompressed copy. Its content was large because validate returns full resolved specifications.",
+  "repair_limitation": "The approved repair created an additional lossless archive before this pre-existing publication manifest was inspected. The extra archive is redundant and now referenced by published immutable recovery proofs. Do not rewrite published history or delete its referenced evidence without new authorization.",
+  "existing_manifest_and_archive_unchanged": true,
+  "no_source_or_validation_or_push_rerun": true
+}

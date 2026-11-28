@@ -1,0 +1,10 @@
+{
+  "pid": 2766772,
+  "start_ticks": "57845034",
+  "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+  "run_id": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "signals_sent": 0,
+  "method": "Single exact signal-free pidfd observation after the one normal primary closure",
+  "bound_seconds": 30,
+  "result": "already_absent"
+}
