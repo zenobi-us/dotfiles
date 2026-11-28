@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Caller-assigned review10 axis report",
+  "description": "Explicit caller handoff for existing review-axis/v1 report fields. Not an installed worktree/code-review owner contract or historical upgrade. Primary must bind parent_run_id to its own assigned RESULT_DELIVERY_CONTEXT.runId, and leaf run_id/operation_id to each actual native spawn. Current source/base/scope constants are frozen below.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "axis",
+    "run_id",
+    "operation_id",
+    "parent_run_id",
+    "source_commit",
+    "source_tree",
+    "review_base_commit",
+    "changed_scope",
+    "findings",
+    "report"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "review-axis/v1"
+    },
+    "axis": {
+      "enum": [
+        "standards",
+        "spec"
+      ]
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_commit": {
+      "const": "a30ab1903988834d63abd2b997659e103112a88f"
+    },
+    "source_tree": {
+      "const": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d"
+    },
+    "review_base_commit": {
+      "const": "404991992d4514434abf4ae60dba4e8475984337"
+    },
+    "changed_scope": {
+      "const": [
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+        "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+        "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "severity",
+          "file",
+          "line",
+          "description",
+          "required_change",
+          "validation_command",
+          "adr"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "type": "string",
+            "minLength": 1
+          },
+          "line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required_change": {
+            "type": "string",
+            "minLength": 1
+          },
+          "validation_command": {
+            "type": "string",
+            "minLength": 1
+          },
+          "adr": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "report": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
