@@ -1,0 +1,124 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+  },
+  "review_receipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0059.yaml",
+  "review_completion": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0060.yaml",
+  "review_verdict": "SUCCESS",
+  "owning_inspector_action": "finish",
+  "owning_inspector_mode": "begin",
+  "direct_prerequisite03": "COMPLETED",
+  "native_coordination_schema": "worktree-coordination/v2",
+  "native_coordination_sha256": "c244d20ed20a25c013bee275ce6567913e2f23cdc9b22edb08b9528999e9e842",
+  "inventory_complete": false,
+  "hard_blockers": [],
+  "record_diagnostics": [],
+  "native_ownership": "unknown",
+  "sole_matching_owner": {
+    "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0060.yaml",
+    "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "sessionId": "herdr-app:t2dv",
+    "agent": "omp",
+    "muxer": "herdr-app",
+    "paneId": "t2dv"
+  },
+  "exact_source_observations": [
+    {
+      "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "source": {
+        "state": "available",
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+        "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+        "candidates": 1
+      },
+      "errors": []
+    }
+  ],
+  "prior_review_reconciliation": {
+    "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0148.yaml",
+    "runId": "skill-contract-manifests-20261125-t2dv",
+    "ticketRef": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "phase": "review",
+    "coordinator": {
+      "session_id": "herdr-app:t2dv",
+      "muxer": "herdr-app",
+      "pane_id": "t2dv",
+      "agent": "omp"
+    },
+    "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0060.yaml",
+    "locations": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reserved-0148.yaml"
+    ],
+    "ambiguous": false,
+    "reconciliationVerified": true
+  },
+  "overlap_assessment": [
+    {
+      "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+      "assessment": "cleanup-only",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        },
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+          "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    }
+  ],
+  "source_review_and_phase_shutdown_verified_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/parent-validation.json",
+  "writer_handoff_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/finish-0001/writer-v4-owner-handoff.json",
+  "current_writer_receipt_schema": "worktree-receipt/v4",
+  "current_phase_context": "worktree-phase-context/v2",
+  "owner_cutover_published_with": "570c9d999b95d8e78cded728d65cbc1ac243bba7",
+  "base_interface_changes_since_review": "Only parent metadata, user website change, and owner-approved receipt-v4 cutover; web-design product/shared-upgrade paths were not changed in committed base before that cutover. Exact combined-tree check remains mandatory.",
+  "unrelated_models_guard_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/finish-0001/unrelated-models-preservation-preflight.json",
+  "unrelated_models_policy": "Do not stage/restore/commit. Before apply verify plan tree leaves its committed blob unchanged; retain current working checksum before/after actual operation. Native Worktrunk current candidate must stay clean.",
+  "selected_integration_method": "merge",
+  "required_checks": [
+    {
+      "argv": [
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      ]
+    }
+  ],
+  "source_or_integration_mutation_yet": false
+}
