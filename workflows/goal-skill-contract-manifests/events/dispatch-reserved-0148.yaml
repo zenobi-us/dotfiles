@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0148",
+  "parent_event": "dispatch-reconciled-0147",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 11,
+  "dispatch_id": "review-0059",
+  "start_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0058.yaml",
+  "parent_fix_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0056.yaml",
+  "parent_completion_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0057.yaml",
+  "snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0056.md",
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "review_base_commit": "c7ba47e30520530e2ffdc5c9f8a1119ed258c172",
+  "scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "accounting": {
+    "ticket_attempts_consumed": 20,
+    "ticket_attempts_remaining": 80,
+    "dispatches_consumed": 34,
+    "dispatches_remaining": 2466,
+    "omp_token_budget": null
+  },
+  "authorization": "Active user-approved ordinary fresh independent review after usable failure-driven fix8. Original100 per-ticket/2500 global limits. No source mutation or integration.",
+  "coordination_assessment": {
+    "native_inventory_complete": false,
+    "native_hard_blockers": [],
+    "native_record_diagnostics": [],
+    "native_ownership": "unknown",
+    "sole_matching_owner": "herdr-app:t2dv via fix-complete-0057",
+    "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+    "source_available_candidates": 1,
+    "source_errors": [],
+    "prior_fix_reservation_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml",
+    "prior_fix_reconciliation_verified": true,
+    "existing_generated_metadata_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "The current parent is the sole matching owner. One exact clean source candidate is available. Fix reservation145 is reconciled through completion57. Global inventory remains incomplete/ownership unknown; those facts are retained. The same four generated metadata overlaps use separate source indices. This dispatch is read-only review and does not mutate shared metadata or integrate. Prior phase resources are confirmed stopped. No competing current source owner or concrete blocker appears."
+  },
+  "caller_axis_shape_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/caller-axis-report-shape.json",
+  "caller_axis_shape_binding": "Caller-owned review-axis/v1; semantic parent_run_id equals this NEW primary assigned context.runId, leaf IDs match actual leaf contexts. No installed owner-contract claim.",
+  "controls": [
+    "Review the full original feature and all eleven committed paths, not only the final help literal.",
+    "Launch fresh independent concurrent Standards and Spec depth2 leaves using the explicit caller-owned shape. No nonexistent installed axis definition is required.",
+    "Recheck standards-016: sources.ts:9 human help now says current working directory. Help syntax and authority are unchanged. Prior013/014/015 remain resolved.",
+    "Eight other nonhook paths match a30 exactly. All five assets and catalog nonidentity bytes/capture/provenance/order/checksums remain exact. Normal hooks generated Creator0.1.12.",
+    "Validate historical numeric1/current stringv2, pure owner/shared safe-bulk, strict UTF8, exact nonidentity bytes/number lexemes, immutable/path refusals and honest partial bulk.",
+    "Run the primary native56 once fresh postcommit from /tmp. Preserve all actual rows/timing/stdout/stderr and separate PASS. Fix56 help/native captures are retained PRECOMMIT observations only.",
+    "Inspect actual human --help once from /tmp for the assigned literal finding. No permanent wording test or source mutation.",
+    "Bind all eleven final working/committed files and verify clean source before publication.",
+    "Retain leaf findings verbatim and separate primary observations. Every actual hard finding blocks, even low severity. Do not manufacture findings on unrelated unchanged prose.",
+    "Normal closure pending is an observation, not an immediate failed assertion. Use bounded exact signal-free observation and one fresh native capture. Hold if still live; no extra signals without NEW exact approval.",
+    "Known mise DOTFILE_REPO_ROOT warning on publication MQ is retained read-only environment output. It is not a byte mismatch when exit0 and exact stdout bytes match. Do not require empty stderr for MQ; new unknown required failures still stop.",
+    "For MQ scalar text output, compute expected bytes before assertion: scalar without terminal LF plus exactly one formatter LF. Validate source/base/producer/links/verdict before one exclusive body and native writer once.",
+    "Preserve prior immutable events/reviews/snapshots/evidence and all failed captures. Parent prelaunch variable-type construction error occurred before any native command, corrected to actual eleven-path array; no check was rerun."
+  ],
+  "created_at": "2026-11-28T10:02:16.922Z"
+}

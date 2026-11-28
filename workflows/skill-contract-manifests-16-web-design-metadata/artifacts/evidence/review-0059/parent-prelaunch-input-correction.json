@@ -1,0 +1,8 @@
+{
+  "original_error": "TypeError: scope16.map is not a function",
+  "cause": "Existing scope16 is a directory string, not the eleven-path array. Failure occurred while constructing a command before tool.bash execution.",
+  "required_commands_executed": 0,
+  "source_or_workflow_mutations": 0,
+  "correction": "Use the actual frozen eleven-path changed_scope from the prior full-feature handoff; do not infer variable types.",
+  "checks_rerun": 0
+}

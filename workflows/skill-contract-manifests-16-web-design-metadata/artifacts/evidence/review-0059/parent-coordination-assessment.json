@@ -1,0 +1,60 @@
+{
+  "native_inventory_complete": false,
+  "native_hard_blockers": [],
+  "native_record_diagnostics": [],
+  "native_ownership": "unknown",
+  "sole_matching_owner": "herdr-app:t2dv via fix-complete-0057",
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "source_available_candidates": 1,
+  "source_errors": [],
+  "prior_fix_reservation_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml",
+  "prior_fix_reconciliation_verified": true,
+  "existing_generated_metadata_overlaps": [
+    {
+      "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+      "assessment": "cleanup-only",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        },
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+          "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    }
+  ],
+  "assessment": "The current parent is the sole matching owner. One exact clean source candidate is available. Fix reservation145 is reconciled through completion57. Global inventory remains incomplete/ownership unknown; those facts are retained. The same four generated metadata overlaps use separate source indices. This dispatch is read-only review and does not mutate shared metadata or integrate. Prior phase resources are confirmed stopped. No competing current source owner or concrete blocker appears."
+}
