@@ -1,0 +1,502 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-observed-0146",
+  "parent_event": "dispatch-reserved-0145",
+  "kind": "dispatch_observed",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 8,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml",
+  "start_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0055.yaml",
+  "parent_review_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0053.yaml",
+  "parent_completion_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0054.yaml",
+  "child_run_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+  "child_terminal": "t2tj",
+  "child_operation_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+  "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/ed268fa0-aa08-48c5-91d5-54203a476117/context.json",
+  "result_target": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/ed268fa0-aa08-48c5-91d5-54203a476117/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/ed268fa0-aa08-48c5-91d5-54203a476117/result.json",
+    "schema": "worktree-receipt/v3"
+  },
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "source_branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "base_branch": "master",
+  "scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "constraints_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/parent-authored-constraints.json",
+  "handoff_contract_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/parent-handoff-contract.json",
+  "native_spawn_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/parent-spawn.json",
+  "accounting": {
+    "ticket_attempts_consumed": 19,
+    "ticket_attempts_remaining": 81,
+    "dispatches_consumed": 33,
+    "dispatches_remaining": 2467,
+    "omp_token_budget": null
+  },
+  "coordination_assessment": {
+    "native_inventory_complete": false,
+    "native_hard_blockers": [],
+    "native_record_diagnostics": [],
+    "native_ownership": "unknown",
+    "sole_matching_owner": "herdr-app:t2dv viareview-complete54",
+    "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+    "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+    "source_available_candidates": 1,
+    "source_errors": [],
+    "prior_review_reservation_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0140.yaml",
+    "prior_review_reconciliation_verified": true,
+    "existing_generated_metadata_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "unrelated_ambiguous_reservations": [
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0004.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0007.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0014.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0015.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0016.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0024.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0028.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0029.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0030.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0038.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0045.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0046.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0047.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0055.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0059.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0064.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0067.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0068.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0069.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0076.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0084.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0085.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0086.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0093.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0097.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0102.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0106.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0110.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0115.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0116.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0117.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0127.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0133.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0138.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0139.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0140.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0151.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0152.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0153.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0165.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0166.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0172.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0173.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0182.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0188.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0192.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0195.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0198.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0201.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0204.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0207.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0211.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0215.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0216.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0221.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0222.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0227.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0233.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0234.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0239.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0244.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0245.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0250.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0255.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0256.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0261.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0266.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0270.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0274.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      },
+      {
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0279.yaml",
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "Existingunrelatedticketinventoryambiguity, not a competingcurrent sourceowner/reservation. No operationsthere."
+      }
+    ],
+    "assessment": "Freshfix8 isolated exactsourcea30/treec78. Solematchingparent54owner, oneavailablecandidate/noerrors;review140independentlyreconciled. Globalincomplete/unknown/unrelatedambiguity preserved. Same4generatedmetadataoverlaps differentsourceindices; no sharedbasehook/code/integrationchange. Allpriorowneddirect+leafresourcesconfirmedstopped. Onlyhumanhelpliteralexpansion/FIVEunique finalbindings."
+  },
+  "decision": "Freshhelp-onlyfixer8 launchedviaactualBash native router, exacta30/treec78/depth1/assignedv3context. Onehumanusage literal only, --helpaftereditONCE+native56aftereditONCE/FIVEunique bindings. No API/flag/codeflow/otherprose changes, protect8/all5assets/history, normalownedindex+knownwarningformatterguards. Parentownscompletion57/reconciliation147 andnormalclosure.",
+  "created_at": "2026-11-28T09:45:37.428Z"
+}

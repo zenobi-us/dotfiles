@@ -1,0 +1,22 @@
+{
+  "finding_ids": [
+    "standards-016"
+  ],
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts"
+  ],
+  "hook_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "scope": "Pending actual usable review53 FAILURE consumption: human-facing usage literal only at sources.ts:9. Replace not cwd. with not the current working directory. No argument handling, identifiers, exports, runtime validation, interfaces, paths or other help changes.",
+  "exact_change": {
+    "from": "The default catalog and all assets resolve from the installed skill, not cwd.",
+    "to": "The default catalog and all assets resolve from the installed skill, not the current working directory."
+  },
+  "preserve": "All8 other nonhook feature paths exactly at a30, including all3prose first-use fixes13/14/15, source-metadata.ts and owningrunner. All5assets/catalognonidentity/capture/provenance/order/checksums exact. No parser/CLIflag/default/exit/outputformat/validationlogicchanges or codeidentifier rename. Existing documentation already uses fullterm; intentionally unchanged.",
+  "verification": "After final edit, invoke absolute sources.ts --help ONCE from/tmp and retain actualstdout/stderr/exit, demonstrating expandedhumantext and unchangedcommands/readonlyauthority. Then absolute native runner ONCE from/tmp:56JSONrows+separatePASS,21success0/35expected1, fullactualargv/cwd/timing/status. Bothafterfinaledit/precommit, no postcommitclaim. Bind FIVE UNIQUE finalfiles: runtime3 (sources.ts containsauthoredhelp change) plusnormal2hookmetadata. Do NOT duplicate sources.ts row to pretend sixbindings. No permanentwording/source-texttests.",
+  "commit_and_index": "Separate exact git add and git commit --only actions for ONLY authored scripts/sources.ts plus the two declared normal hook metadata paths. Normal hooks, <=72-character conventional title with full ticketID, preserve unrelated staging. BEFORE final guard inspect exact owned index/working/HEAD and all source status. If ONLY the known2owned hook index entries retain previous release while working=committedHEAD and no other changes exist, retain old blob IDs and git add ONLY those same2hook paths to align; no source-byte/newcommit/globalunstage/reset/restore. Any other dirtypath/byte or actual required failure =>STOP. Do not reuse a prior two-reference commit scope.",
+  "publication": "NEW pr-draft-fix-0056.md, validv1header/producerfix56/actualnewsourceSHA/tree. ExactMQnull-inputscalar-Ftext modelbeforeassert, originalMarkdownterminalLFspreserved, knownmisewarningretainednotmislabelledbytesfailure. No generalstderr suppression; newunknownrequired failuresSTOP. Validatecompletecandidatebeforeexclusivepublication/currentprojectionscorrectactualMQASTlinks, historypreserved/newsourcePENDING. Parentownstracker/YAMLviews/goal/publicationcommits.",
+  "boundaries": "Freshfix8 onlyafteractualreview53usabletypedFAILURE/parent54.1authoredTShelpliteral+normal2hooks. No codeflow/API/exportchanges, docsrestyling/newCLIflags/tests/config/deps/extraagents/services/sourcepush/merge/rebase/relocation/serverfiles/infrastructure. Knownownedposthookindex2pathalignmentbeforeguardonly withworking=HEADproof. StopNEWactualrequiredCLI/check/publication/ownershipfailure, preserveevidence/no selfauthorizedreruns."
+}
