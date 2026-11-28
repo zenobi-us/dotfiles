@@ -183,3 +183,33 @@ All seven protected nonhook feature paths and all five assets remain baseline ex
 No assigned finding or implementation question remains unresolved. Fresh independent review is PENDING for the new source. No stale verdict applies. Source remains local, not merged or pushed.
 
 All prior immutable history and failed captures remain unchanged. The primary remains live for normal parent closure. Parent owns fresh review, acceptance, tracker and YAML views, publication commits, and integration.
+
+
+## fix-0050: expand current working directory
+
+[Review47](../artifacts/reviews/review-review-0047.md) returned FAILURE for `b0d12b0912d15b1c1add96caca33afa573f5144b`. Both independent leaves reported zero findings. The primary added standards-015 at style-selection.md:48. Parent48 validated the review. Caller correction132 and exact shutdown133–135 remain historical phase evidence.
+
+Fix50 resolves standards-015 with one literal prose replacement. Standards-013 and standards-014 remain resolved. Source commit: `a30ab1903988834d63abd2b997659e103112a88f`. Tree: `c78f0057fbb2be8e003ed7fd7a381d91eba0486d`. Fresh independent review is **PENDING**. No stale verdict applies. Source remains local, not accepted, merged, or pushed.
+
+- **Authored reference:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md`.
+- **Normal hook:** `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json`.
+- **Normal hook:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`.
+
+Normal hooks set Creator to `0.1.11`. Both known stale owned index entries were captured and reconciled before the clean guard. Working bytes already equaled committed HEAD. No source bytes or commit changed through that reconciliation.
+
+The owning absolute executable ran once from `/tmp` after all final edits and before commit. Outer exit was 0. Standard error was empty. All 56 JSON rows matched expected exits: 21 successes and 35 expected refusals. The separate PASS line remains captured. Start: `2026-11-28T05:47:03,090576601+00:00`. Duration: 8.076859 seconds. This is precommit proof, not a postcommit run. Six final bindings cover three runtime files, the reference, and two hook files.
+
+The complete final reference was read through MQ. The replacement sentence has nine words. All other document bytes, commands, paths, style selection, companions, user overrides, and separate authority remain intact. All eight other nonhook feature paths, all five assets, catalog nonidentity bytes, provenance, capture time, ordered associations, and checksums remain unchanged.
+
+- **New snapshot:** [Draft50](../artifacts/snapshots/pr-draft-fix-0050.md).
+- **Phase authorization:** [Start49](../events/fix-start-0049.yaml).
+- **Consumed completion:** [Parent48](../events/review-complete-0048.yaml).
+- **Actual execution:** [Complete capture](../artifacts/evidence/fix-0050/native-smoke.json).
+- **Actual outcomes:** [Row validation](../artifacts/evidence/fix-0050/native-validation.json).
+- **Committed objects:** [Six bindings](../artifacts/evidence/fix-0050/commit-binding.json).
+- **Preservation:** [Protected source and assets](../artifacts/evidence/fix-0050/preservation.json).
+- **Manual inspection:** [Exact prose audit](../artifacts/evidence/fix-0050/manual-prose-validation.json).
+
+Assigned receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0050.yaml`. Goal run: `skill-contract-manifests-20261125-t2dv`. Reservation: `workflows/goal-skill-contract-manifests/events/dispatch-reserved-0137.yaml`.
+
+No assigned finding or implementation question remains unresolved. All prior immutable history, failed captures, and errors remain unchanged. No extra agents, services, signals, source refresh, original-provenance access, permanent wording tests, or dependency changes occurred. The primary remains live for normal parent closure. Parent owns fresh review, tracker and YAML views, goal reconciliation, publication commits, and integration.

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/dep-tree-cli.ts",
+    "markdown",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "--ticket",
+    "skill-contract-manifests-16-web-design-metadata"
+  ],
+  "exit_code": 0,
+  "current_ticket": {
+    "id": "skill-contract-manifests-16-web-design-metadata",
+    "status": "IN PROGRESS"
+  },
+  "direct_dependency": {
+    "id": "skill-contract-manifests-03-safe-upgrades",
+    "status": "COMPLETED"
+  },
+  "observed_completed_prefix": "skill-contract-manifests-01 through15",
+  "selected_next_ticket": false,
+  "focus_preserved": "skill-contract-manifests-16-web-design-metadata",
+  "cli_scope_note": "Documented markdown --ticket renders containing initiative graph. Its blocked-by labels list dependency edges even for completed nodes; do not infer an unmet blocker from that label when prerequisite status isCOMPLETED."
+}

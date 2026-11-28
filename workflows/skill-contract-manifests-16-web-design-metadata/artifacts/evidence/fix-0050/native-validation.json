@@ -1,0 +1,11 @@
+{
+  "rows": 56,
+  "positive": 21,
+  "expected_negative": 35,
+  "all_expected": true,
+  "outer_exit": 0,
+  "stderr_empty": true,
+  "non_json_lines": [
+    "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+  ]
+}

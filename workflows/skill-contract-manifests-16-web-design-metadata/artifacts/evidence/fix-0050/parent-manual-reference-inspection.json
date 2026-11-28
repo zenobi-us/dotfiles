@@ -1,0 +1,22 @@
+{
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "method": "Read the complete immutable committed style-selection reference through git show piped to MQ raw/raw OKF. No working/index changes or source/native check rerun.",
+  "authored_path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+  "observed_sentence": "Invoke its absolute entrypoint from any current working directory.",
+  "ordinary_sentence_words": 9,
+  "assigned_finding": "standards-015",
+  "preserved": {
+    "entrypoint_resolution": true,
+    "validate_select_commands": true,
+    "selection_and_companion_rules": true,
+    "style_provenance_distinctness": true,
+    "bundled_integrity_and_no_implicit_repair": true,
+    "user_requirements_and_authority_boundaries": true,
+    "original_preexisting_prose_tables_and_paths": true,
+    "metadata_contract_links": true,
+    "all_existing_section_headings": true
+  },
+  "source_accepted": false,
+  "fresh_independent_review_required": true
+}

@@ -1,0 +1,41 @@
+{
+  "run_id": "2ce7872d-5c3c-42da-bad8-f54ed4c7aca9",
+  "resource_observation": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "2ce7872d-5c3c-42da-bad8-f54ed4c7aca9",
+    "observedAt": "2026-11-28T05:50:41.266Z",
+    "processes": [
+      {
+        "pid": 2296810,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "54994601",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 2298379,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "54999718",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 2308528,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "55034094",
+        "command": "bun",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  },
+  "observer_exit_code": 1,
+  "expected_reason": "Primary is live for normal parent closure; no service or extra agent was started.",
+  "extra_agents": [],
+  "services": [],
+  "signals_sent": 0,
+  "parent_owns_primary_closure": true
+}

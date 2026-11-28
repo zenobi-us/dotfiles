@@ -1,0 +1,7 @@
+{
+  "scalar_terminal_lf": false,
+  "formatter_lfs": 1,
+  "expected_bytes": 14857,
+  "expected_sha256": "524db049359040a7b5d6dd813205b5b1311c12a03381e3d70223c3b1e8a1956f",
+  "declared_before_byte_assertion": true
+}

@@ -1,0 +1,54 @@
+{
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "execution": "precommit only; no postcommit native run",
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "working_equals_committed": true,
+      "role": "tested-runtime",
+      "equals_tested_bytes": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "working_equals_committed": true,
+      "role": "tested-runtime",
+      "equals_tested_bytes": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "working_equals_committed": true,
+      "role": "tested-runtime",
+      "equals_tested_bytes": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "sha256": "34cfe5a71f23e94f5354507d0e48fcb9d83649d5e4b13007149b732b40b21652",
+      "blob": "946f5380d3b0ac0a873af388de3caa54f5c82c3a",
+      "working_equals_committed": true,
+      "role": "final-authored-reference",
+      "equals_tested_bytes": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "sha256": "7c282022609b3f15a3be2c7eb37e6b699d4a576233881048eb3c69290309d2a6",
+      "blob": "44deb5b5636a73005a7d966c15b775bf759e8dee",
+      "working_equals_committed": true,
+      "role": "normal-hook"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "sha256": "17350ec1ee1266239a6edd590bdd1ae9533fcac7ed78f0a610f232f9741a3e95",
+      "blob": "a33d5521eae4dc62fe0e8ada1e7e3341f23cef83",
+      "working_equals_committed": true,
+      "role": "normal-hook"
+    }
+  ],
+  "count": 6
+}

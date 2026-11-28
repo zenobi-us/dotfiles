@@ -2,35 +2,10 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-16-web-design-metadata,
   ticket: tracker/tickets/skill-contract-manifests-16-web-design-metadata.md,
-  state: REVIEW_FAILED,
-  latest_receipt: review-complete-0048,
-  latest_source_commit: b0d12b0912d15b1c1add96caca33afa573f5144b,
-  latest_source_tree: c163046bd7dd4e1a0874a34215b523a8c13af70a,
-  latest_review_verdict: FAILURE,
-  open_findings:
-    [
-      {
-          adr: null,
-          description: "Hard documented-rule violation: iso-24495-3/SKILL.md, Quantitative
-            Rules rule 3, requires each acronym or domain-specific term to be
-            defined on first use. The entirely added Metadata consumption
-            section says ‘Invoke its absolute entrypoint from any cwd.’ The
-            prose uses cwd without a first-use definition in this document. This
-            is ordinary prose, not an exempt command or code identifier. The
-            fresh Standards leaf reported no findings; this separate primary
-            finding does not replace or rewrite that immutable report.",
-          file: mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md,
-          id: standards-015,
-          line: 48,
-          required_change: "Replace prose cwd with current working directory. Preserve the
-            entrypoint, commands, metadata meaning, and authority boundaries. No
-            glossary, heading, runtime change, or wording regression test is
-            necessary.",
-          severity: low,
-          validation_command: mise exec -- mq --allow-http-import --no-lockfile -I
-            markdown -F json 'import "github.com/harehare/okf.mq" | .'
-            mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md;
-            inspect the first-use prose against iso-24495-3 rule 3.
-        }
-    ]
+  state: IMPLEMENTED,
+  latest_receipt: fix-complete-0051,
+  latest_source_commit: a30ab1903988834d63abd2b997659e103112a88f,
+  latest_source_tree: c78f0057fbb2be8e003ed7fd7a381d91eba0486d,
+  latest_review_verdict: null,
+  open_findings: []
 }

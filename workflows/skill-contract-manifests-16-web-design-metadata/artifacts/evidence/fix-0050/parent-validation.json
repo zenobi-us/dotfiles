@@ -1,0 +1,61 @@
+{
+  "receipt_id": "fix-0050",
+  "transport_sha256": "eb6b00f5631ab1048b90dd6dad2dc4d5ffca5dc208e2a6bcdc970d4220707849",
+  "event_equals_delivered_domain": true,
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "resolved_finding_ids": [
+    "standards-015"
+  ],
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "hook_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "creator_version": "0.1.11",
+  "exact_literal_only": true,
+  "new_sentence_words": 9,
+  "parent_full_reference_and_snapshot_read_via_mq": true,
+  "parent_manual_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-manual-reference-inspection.json",
+  "protected8_independent_git_object_equality": true,
+  "all5_assets_and_catalog_nonidentity_capture_provenance_order_preserved": true,
+  "actual_native_rows": 56,
+  "success0": 21,
+  "expected1": 35,
+  "all_expected": true,
+  "outer_exit": 0,
+  "stderr_empty": true,
+  "started_at": "2026-11-28T05:47:03,090576601+00:00",
+  "finished_at": "2026-11-28T05:47:11,167435694+00:00",
+  "duration_seconds": 8.076859,
+  "execution": "once after finaledit/precommit, sixfinalbindings; no postcommit rerun",
+  "six_final_bindings": true,
+  "source_clean": true,
+  "owned2_hook_index_reconciled_before_guard": true,
+  "old_index_identities_retained": true,
+  "index_alignment_did_not_change_source_or_commit": true,
+  "snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0050.md",
+  "snapshot_bytes": 14857,
+  "snapshot_sha256": "524db049359040a7b5d6dd813205b5b1311c12a03381e3d70223c3b1e8a1956f",
+  "formatter_expected_declared_before_assertion": true,
+  "published_actual_ast_link_counts": [
+    63,
+    63,
+    35
+  ],
+  "all896_prior_immutable_files_unchanged": true,
+  "readonly_terminal_lf_preparation_correction_retained": true,
+  "parent_readonly_tee_missing_directory_capture_error_retained": true,
+  "no_git_or_native_rerun_for_parent_capture_correction": true,
+  "direct_dependency03_completed": true,
+  "primary_processes_stopped": 3,
+  "primary_shutdown": "confirmed",
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0,
+  "source_accepted": false,
+  "source_pushed": false,
+  "source_merged": false,
+  "fresh_review_required": true
+}

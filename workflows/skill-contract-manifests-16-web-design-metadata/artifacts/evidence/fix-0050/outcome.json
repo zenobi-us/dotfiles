@@ -1,0 +1,350 @@
+{
+  "status": "completed",
+  "summary": "Resolve primary standards-015 by replacing only prose cwd with current working directory at style-selection.md:48. Native56 passed once precommit; six final committed bindings. Normal hooks only, known owned index reconciled, protected8/all5 and prior immutable history preserved. New snapshot50 and rebased Markdown projections published; new source review PENDING.",
+  "run_id": "2ce7872d-5c3c-42da-bad8-f54ed4c7aca9",
+  "operation_id": "2ce7872d-5c3c-42da-bad8-f54ed4c7aca9",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/skill-contract-manifests/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0047.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0048.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0049.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0047.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0044.md"
+    },
+    {
+      "kind": "goal-dispatch",
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0137.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0044/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-coordination-assessment.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0050.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0050.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-stdout.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-stderr.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/commit-binding.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/manual-prose-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/preservation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/source-scope-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/owned-index-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/history-preservation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/snapshot-formatter-model.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/snapshot-prepublication-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/published-artifact-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/query-input-correction.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/resources-before-parent-closure.json"
+    }
+  ],
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050"
+  },
+  "consumed_review_receipts": [
+    "review-0047",
+    "review-complete-0048"
+  ],
+  "resolved_finding_ids": [
+    "standards-015"
+  ],
+  "unresolved_finding_ids": [],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "hook_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "affected_contracts": [
+    "design-source-metadata/v1",
+    "design-source-metadata/v2",
+    "skill-contract-manifest/v1",
+    "UpgradeOwner/safeUpgrade/bulkUpgrade",
+    "bundled asset SHA-256 and style/provenance associations",
+    "readCatalog/selectSource",
+    "worktree-receipt/v3",
+    "Creator plugin/marketplace version synchronization"
+  ],
+  "integration_checks": [
+    {
+      "argv": [
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "started_at": "2026-11-28T05:47:03,090576601+00:00",
+      "finished_at": "2026-11-28T05:47:11,167435694+00:00",
+      "duration_seconds": 8.076859,
+      "execution": "once after all final prose edits and before commit; six final object bindings; no postcommit execution",
+      "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+      "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+      "native_json_rows": 56,
+      "successful_exit0": 21,
+      "expected_refusal_exit1": 35,
+      "all_expected": true,
+      "stderr_empty": true,
+      "record_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-smoke.json",
+      "stdout_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-stdout.txt",
+      "stderr_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-stderr.txt",
+      "row_validation_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/native-validation.json"
+    },
+    {
+      "kind": "manual-first-use-and-semantics",
+      "status": "passed",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/manual-prose-validation.json"
+    },
+    {
+      "kind": "six-final-committed-bindings",
+      "status": "passed",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/commit-binding.json"
+    },
+    {
+      "kind": "protected-source-assets-and-history",
+      "status": "passed",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/preservation.json",
+      "history_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/history-preservation.json"
+    },
+    {
+      "kind": "exclusive-snapshot-and-rebased-mq-ast-links",
+      "status": "passed",
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/published-artifact-validation.json"
+    }
+  ],
+  "draft_snapshot_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0050.md",
+  "projection_paths": [
+    "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+    "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md"
+  ],
+  "open_questions": [],
+  "new_source_review": "PENDING",
+  "source_accepted": false,
+  "source_pushed": false,
+  "source_merged": false,
+  "resources": {
+    "run_id": "2ce7872d-5c3c-42da-bad8-f54ed4c7aca9",
+    "target": "t2td",
+    "shutdown": "pending",
+    "parent_owns_primary_closure": true,
+    "extra_agents": [],
+    "services": [],
+    "signals_sent": 0,
+    "record_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/resources-before-parent-closure.json",
+    "observed_processes": [
+      {
+        "pid": 2296810,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "54994601",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 2298379,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "54999718",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      },
+      {
+        "pid": 2308528,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "55034094",
+        "command": "bun",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+        "state": "running"
+      }
+    ]
+  },
+  "publication_owner": "parent owns tracker, YAML views, goal reconciliation, publication checkout commits, fresh review, integration, and normal primary closure",
+  "known_owned_index_reconciliation": {
+    "performed": true,
+    "old_index_identities_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/owned-index-observation.json",
+    "paths": [
+      "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+    ],
+    "working_already_equal_head": true,
+    "source_bytes_changed": false,
+    "new_commit_created": false
+  },
+  "preservation": {
+    "protected_nonhook_paths": 8,
+    "all5_assets": true,
+    "catalog_nonidentity_bytes": true,
+    "capture_provenance_ordered_associations": true,
+    "prior_immutable_files": 896,
+    "prior_immutable_files_unchanged": true
+  },
+  "scope_limits": {
+    "only_exact_prose_replacement": true,
+    "permanent_tests_added": false,
+    "source_refresh": false,
+    "original_provenance_access": false,
+    "source_push_merge_rebase": false,
+    "infrastructure_operations": false
+  },
+  "coordination_assessment": {
+    "native_inventory_complete": false,
+    "native_hard_blockers": [],
+    "native_record_diagnostics": [],
+    "native_ownership": "unknown",
+    "sole_matching_owner": "herdr-app:t2dv viareview-complete48",
+    "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+    "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+    "source_available_candidates": 1,
+    "source_errors": [],
+    "prior_review_reservation_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0130.yaml",
+    "prior_review_reconciliation_verified": true,
+    "existing_generated_metadata_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "Freshfix7 limited toone newlyadded prose sentence. Native globalinventoryincomplete/ownershipunknown preserved; currentticket has solematchingparent48owner, exactsourceonecandidate/noerrors, priorreview130reconciled. Same4 generatedmetadataoverlaps are different sourceindices; no sharedbasehook/sourcepush/integration authorized. Allreviewresources confirmedstopped. Optionalreadonlytee missingdirectorycaptureerror retained; existingvalidatedimmutable8objectrecords savedwithoutGit/native rerun."
+  }
+}

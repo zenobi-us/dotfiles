@@ -1,0 +1,28 @@
+{
+  "commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "status": "",
+  "blobs": {
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md": "8d440016ecbf988620b12ddad3ace0171775f3745bc68565e85030391451b510",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json": "367c9341bf829eec0b4a369d1104bce1eb117939d135961c61666a542bb741f2",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json": "d01970fb730313a18e419a394f27854f1bc0eba7ce9fd2c34641f470abbcbc6d"
+  },
+  "protected_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ]
+}

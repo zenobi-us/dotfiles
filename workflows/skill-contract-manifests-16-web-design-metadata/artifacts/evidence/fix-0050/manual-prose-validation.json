@@ -1,0 +1,13 @@
+{
+  "finding": "standards-015",
+  "line": 48,
+  "replacement_sentence": "Invoke its absolute entrypoint from any current working directory.",
+  "word_count": 9,
+  "full_document_read_via_mq": true,
+  "exact_literal_only": true,
+  "commands_paths_layout_unchanged": true,
+  "style_companion_override_and_separate_authority_preserved": true,
+  "prior_013_014_references_unchanged": true,
+  "permanent_tests_added": false,
+  "read_only_interface_correction": "Initial targeted read used read; full authoritative document reading and authoring use MQ."
+}

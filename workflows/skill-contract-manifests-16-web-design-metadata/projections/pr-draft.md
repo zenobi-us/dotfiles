@@ -1,10 +1,68 @@
 ---
 schemaVersion: worktree-pr-draft/v1
 workflow_id: skill-contract-manifests-16-web-design-metadata
-receipt_id: fix-0044
-source_commit: b0d12b0912d15b1c1add96caca33afa573f5144b
-source_tree: c163046bd7dd4e1a0874a34215b523a8c13af70a
+receipt_id: fix-0050
+source_commit: a30ab1903988834d63abd2b997659e103112a88f
+source_tree: c78f0057fbb2be8e003ed7fd7a381d91eba0486d
 ---
+# Web-design source metadata contracts
+
+Purpose: Record fix50 and its committed evidence for the parent coordinator and independent reviewer. Date: 2026-11-28.
+
+## Current fix50 result
+
+Fix50 resolves standards-015. The sentence now says: “Invoke its absolute entrypoint from any current working directory.” It has nine words.
+
+Fresh independent review is **PENDING** for `a30ab1903988834d63abd2b997659e103112a88f`, tree `c78f0057fbb2be8e003ed7fd7a381d91eba0486d`. Review47's FAILURE applies only to the previous source `b0d12b0912d15b1c1add96caca33afa573f5144b`. The new source is not accepted, merged, or pushed.
+
+Source branch: `feature/skill-contract-manifests-16-web-design-metadata`. Base branch: `master`. Source workspace: `/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata`.
+
+- **Authored change:** `mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md` contains the one literal prose replacement at line48.
+- **Normal hooks:** `mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json` and `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json` now record Creator `0.1.11`.
+- **Protected source:** All eight other nonhook feature paths and all five assets remain exact. Capture time, provenance, ordered associations, catalog nonidentity bytes, and checksums remain unchanged.
+
+## Current validation
+
+The absolute owning executable ran once from `/tmp` after all final edits and before commit. It returned 0 with empty standard error. All 56 JavaScript Object Notation (JSON) rows matched expected exits: 21 successes and 35 expected refusals. The separate PASS line remains captured.
+
+Start: `2026-11-28T05:47:03,090576601+00:00`. Finish: `2026-11-28T05:47:11,167435694+00:00`. Duration: 8.076859 seconds. This is precommit evidence, not a postcommit run. Six final bindings cover three runtime files, the final reference, and two normal hook files.
+
+The known owned index condition occurred. Both old hook index identities remain captured. Working bytes already equaled committed HEAD. Scoped staging reconciliation changed neither source bytes nor the commit. The final source is clean.
+
+The full final reference was read through MQ. User overrides, style selection, required companions, command literals, provenance, and separate conversion authority remain intact. No permanent wording tests were added.
+
+- **Actual execution:** [Complete native capture](../artifacts/evidence/fix-0050/native-smoke.json).
+- **Actual outcomes:** [Row validation](../artifacts/evidence/fix-0050/native-validation.json).
+- **Committed source:** [Six bindings](../artifacts/evidence/fix-0050/commit-binding.json).
+- **Protected bytes:** [Preservation](../artifacts/evidence/fix-0050/preservation.json).
+- **Manual inspection:** [Exact prose audit](../artifacts/evidence/fix-0050/manual-prose-validation.json).
+- **Owned staging:** [Old index identities](../artifacts/evidence/fix-0050/owned-index-observation.json).
+- **Read-only input correction:** [Terminal-newline preparation correction](../artifacts/evidence/fix-0050/query-input-correction.json).
+
+## Consumed review47 and authority
+
+Both independent leaves reported zero findings. The primary added low hard finding standards-015 at style-selection.md:48. Fix50 resolves that finding only. Standards-013 and standards-014 remain resolved.
+
+- **Consumed review:** [Immutable review47](../artifacts/reviews/review-review-0047.md).
+- **Consumed event:** [Review47 receipt](../events/review-0047.yaml).
+- **Consumed completion:** [Parent48](../events/review-complete-0048.yaml).
+- **Phase authorization:** [Start49](../events/fix-start-0049.yaml).
+- **Goal reservation:** [Reservation137](../../goal-skill-contract-manifests/events/dispatch-reserved-0137.yaml).
+- **Parent validation:** [Validated review47](../artifacts/evidence/review-0047/parent-validation.json).
+- **Prior snapshot:** [Draft44](../artifacts/snapshots/pr-draft-fix-0044.md).
+
+Produced receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0050.yaml`. Produced snapshot: `workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0050.md`. Current projections: `workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md` and `workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md`.
+
+No assigned finding or implementation question remains unresolved. Goal run remains `skill-contract-manifests-20261125-t2dv`.
+
+Caller correction132 and exact shutdown133–135 remain historical evidence, not repair scope. All prior events, reviews, snapshots, captures, and errors remain unchanged. No extra agents, services, source refresh, original-provenance access, infrastructure changes, or signals occurred.
+
+The primary remains live for normal parent closure. Parent owns fresh review, tracker changes, YAML views, goal reconciliation, publication commits, and integration.
+
+## Historical fix44 and review47 records
+
+The following text describes those prior phases. Its source identities and verdicts do not apply to the new source.
+
 # Web-design source metadata contracts
 
 Purpose: Record fix44 and its committed source evidence. Reader: Parent coordinator and independent reviewer. Date: 2026-11-27.

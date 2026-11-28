@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "muxer-contracts/v2",
+  "session": {
+    "role": "unspecified"
+  },
+  "delivery": {
+    "context": null,
+    "contextEnvironment": "RESULT_DELIVERY_CONTEXT",
+    "artifactReference": true,
+    "nativeStructuredResult": false,
+    "completionImpliesResultSuccess": false
+  },
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "muxerContract": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/muxers/herdr-app.md",
+  "agentContract": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/agents/omp.md",
+  "limits": {
+    "maxSubagentsPerSession": 5,
+    "maxDepth": 2,
+    "currentDepth": 0
+  },
+  "needsOperatorInput": false
+}

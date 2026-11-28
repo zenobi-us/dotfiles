@@ -1,0 +1,7 @@
+{
+  "operation": "read-only source candidate preparation",
+  "error": "AssertionError: assumed source has exactly one terminal LF",
+  "source_written": false,
+  "native_runs": 0,
+  "correction": "Preserve all original terminal LFs; text formatter supplies only the final LF. Snapshot scalar will still have no terminal LF."
+}

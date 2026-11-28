@@ -1,0 +1,10 @@
+{
+  "scalar_terminal_lfs": 1,
+  "formatter_lf": 1,
+  "expected_terminal_lfs": 2,
+  "expected_sha256": "34cfe5a71f23e94f5354507d0e48fcb9d83649d5e4b13007149b732b40b21652",
+  "exact_literal_change": {
+    "from": "Invoke its absolute entrypoint from any cwd.",
+    "to": "Invoke its absolute entrypoint from any current working directory."
+  }
+}

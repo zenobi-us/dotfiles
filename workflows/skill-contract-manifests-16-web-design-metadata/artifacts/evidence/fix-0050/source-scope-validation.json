@@ -1,0 +1,71 @@
+{
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "source_clean": true,
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "exact_literal_only": true,
+  "protected8": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "previous_sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "head_sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "working_sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "previous_sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "head_sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "working_sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "previous_sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "head_sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "working_sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "previous_sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "head_sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "working_sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "previous_sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "head_sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "working_sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "previous_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "head_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "working_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "previous_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "head_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "working_sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "previous_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "head_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "working_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "equal": true
+    }
+  ],
+  "known_owned_index_reconciled": true,
+  "no_commit_or_working_bytes_changed_by_alignment": true
+}

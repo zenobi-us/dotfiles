@@ -1,0 +1,23 @@
+{
+  "commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "status": "MM mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\nMM mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n",
+  "paths": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "index_blob": "8ecd28576c393b9320201949692c479a644cbef3",
+      "head_blob": "44deb5b5636a73005a7d966c15b775bf759e8dee",
+      "working_blob": "44deb5b5636a73005a7d966c15b775bf759e8dee",
+      "working_equals_head": true,
+      "index_equals_previous": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "index_blob": "f3a91598affe2089d1e130d5f43922b13570983a",
+      "head_blob": "a33d5521eae4dc62fe0e8ada1e7e3341f23cef83",
+      "working_blob": "a33d5521eae4dc62fe0e8ada1e7e3341f23cef83",
+      "working_equals_head": true,
+      "index_equals_previous": true
+    }
+  ]
+}
