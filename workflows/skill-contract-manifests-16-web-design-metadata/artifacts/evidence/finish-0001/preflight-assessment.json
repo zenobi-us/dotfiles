@@ -1,0 +1,297 @@
+{
+  "phase_dispatched": false,
+  "review": {
+    "receipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0059.yaml",
+    "completion": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0060.yaml",
+    "verdict": "SUCCESS",
+    "source": {
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+      "base_branch": "master",
+      "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+      "tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+    },
+    "review_base_commit": "c7ba47e30520530e2ffdc5c9f8a1119ed258c172",
+    "published_commit": "38de1559e243da214400e63124cf23ce1d36ad48"
+  },
+  "authoritative_next_action": {
+    "action": "finish",
+    "mode": "begin",
+    "parent_receipt": "review-complete-0060",
+    "diagnostics": null
+  },
+  "direct_dependency_observation": {
+    "owning_command": [
+      "dep-tree-cli.ts",
+      "markdown",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--ticket",
+      "skill-contract-manifests-16-web-design-metadata"
+    ],
+    "blocker_id": "skill-contract-manifests-03-safe-upgrades",
+    "blocker_state": "COMPLETED",
+    "selected_ticket_state": "IN PROGRESS",
+    "remaining_ticket_not_selected": true
+  },
+  "coordination": {
+    "schemaVersion": "worktree-coordination/v2",
+    "native_report_sha256": "c244d20ed20a25c013bee275ce6567913e2f23cdc9b22edb08b9528999e9e842",
+    "native_report_temporary_capture": "/tmp/scm16-finish-coordination-0002.json",
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "record_diagnostics": [],
+    "proposed": {
+      "ticket": {
+        "id": "skill-contract-manifests-16-web-design-metadata",
+        "title": "Adopt contracts in web-design source metadata",
+        "documentType": "enhancement",
+        "fields": {
+          "schemaVersion": "tracker-ticket/v2",
+          "blocked_by": [
+            "skill-contract-manifests-03-safe-upgrades"
+          ],
+          "id": "skill-contract-manifests-16-web-design-metadata",
+          "parent": "skill-contract-manifests",
+          "sequence": 16,
+          "title": "Adopt contracts in web-design source metadata",
+          "triage": "ready-for-agent",
+          "type": "enhancement",
+          "work_status": "claimed"
+        },
+        "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+        "backend": "local-markdown",
+        "status": "claimed",
+        "blockedBy": [
+          "skill-contract-manifests-03-safe-upgrades"
+        ],
+        "body": "## What to build\n\nUse an authoritative record-family contract for web-design source metadata and its actual consumers.\n\nImplement this slice under the parent initiative. Preserve its contract ownership, safety boundaries, and scope limits.\n\n## Acceptance criteria\n\n- [ ] Declare source-metadata production or acceptance as applicable, authoritative ownership, validation, historical reading, and supported upgrades.\n- [ ] Replace the known numeric schemaVersion identifier through an explicit historical contract and declared conversion. Do not classify an unknown explicit version as unversioned.\n- [ ] Exercise actual metadata validation and consumption with the current format, the supported historical format, and rejected invalid identifiers.\n- [ ] Preserve source locations, asset associations, capture metadata, and checksums. Do not independently version ordinary design prose or opaque assets without a structural consumer need.\n\n## Verification\n\nExercise the changed behaviour through actual owning commands, not helper tests alone. Check persisted content and rejected operations. Update affected guidance and examples with the implementation.\n\n## Comments\n\n\n\n- Review 2026-11-26T09:15:25.403Z: **FAILURE**. Commit `9689169146996ad84d19430cd19aa2a386c733b2`; tree `67e2145f36f92662554a7bc7c9d2a0032c5a3bb7`. [Review artifact](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0008.md).\n\n\n- Review 2026-11-26T21:14:17.955Z: FAILURE. Source `fb4104c7ea2e27f215fab95ec69682b71b101c1b`, tree `c7ecc92e759b7720f1ffadc4d2377473ff481403`. Four low hard prose-rule findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0017.md).\n\n\n- Review 2026-11-26T21:47:39.841Z: FAILURE. Source `d50d3bb1719c03c53f9dc911a34017ca09cddfd6`, tree `bb15b43f805dbc4946d846862e16caddd485621a`. Three low hard prose-rule findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0023.md).\n\n\n- Review 2026-11-26T22:16:26.879Z: FAILURE. Source `dab2338e6be69e208c39c6c05164c0a1a066dbf7`, tree `85f6c82ecdf7dd5d51f6d4552ea933b7ab82a78f`. Two low hard opening-block findings; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0029.md).\n\n\n- Review 2026-11-27T01:25:05.254Z: FAILURE. Source `14705f57e663196bc211fbf394a8829820dcf9fc`, tree `77df53d39098775775469a221d525467d1c3e35a`. Two low hard findings remain: table presentation and American spelling. Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0035.md).\n\n\n- Review 2026-11-27T21:32:23.324Z: FAILURE. Source `b039c503841014575faf26c16d3dfa61e9c63db6`, tree `29ef53bfe84e272f0ea7e965bc554f33f21f194c`. Two low hard first-use definition findings remain. Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md).\n\n\n- Review 2026-11-28T05:35:31.689Z: FAILURE. Source `b0d12b0912d15b1c1add96caca33afa573f5144b`, tree `c163046bd7dd4e1a0874a34215b523a8c13af70a`. One primary hard first-use finding remains; both independent leaves reported no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0047.md).\n\n\n- Review 2026-11-28T09:36:48.987Z: FAILURE. Source `a30ab1903988834d63abd2b997659e103112a88f`, tree `c78f0057fbb2be8e003ed7fd7a381d91eba0486d`. One hard help-text first-use finding remains; Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md).\n\n\n- Review 2026-11-28T13:43:15.732Z: SUCCESS. Source `9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930`, tree `97a55fab87da13de54a7724062a36adc4626aa70`. [Immutable review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0059.md)."
+      },
+      "initiatives": [
+        {
+          "id": "skill-contract-manifests",
+          "ref": "tracker/initiatives/skill-contract-manifests/index.md"
+        }
+      ],
+      "scope": {
+        "state": "declared",
+        "plannedScope": "known",
+        "paths": [
+          "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+          "mise/conf.d/devtools-agent/bundles/creator/skills/web-design"
+        ],
+        "evidence": [
+          {
+            "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+            "paths": [
+              "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+              "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+              "mise/conf.d/devtools-agent/bundles/creator/skills/web-design"
+            ],
+            "kind": "declared"
+          }
+        ]
+      },
+      "reservations": [],
+      "ownership": "unknown",
+      "owners": [
+        {
+          "ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0060.yaml",
+          "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+          "sourceBranch": "feature/skill-contract-manifests-16-web-design-metadata",
+          "sessionId": "herdr-app:t2dv",
+          "agent": "omp",
+          "muxer": "herdr-app",
+          "paneId": "t2dv"
+        }
+      ],
+      "sourceObservations": [
+        {
+          "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "source": {
+            "state": "available",
+            "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+            "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+            "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+            "candidates": 1
+          },
+          "errors": []
+        }
+      ],
+      "receiptRefs": [
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0060.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0059.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0058.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0057.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0056.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0055.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0054.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0053.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0052.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0051.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0050.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0049.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0048.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0047.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0046.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0045.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0044.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0043.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0042.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0041.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0040.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0039.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0038.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0037.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0036.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0035.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0034.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0033.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0032.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0031.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0030.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0029.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0028.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0027.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0026.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0025.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0024.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0023.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0022.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0021.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0020.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0019.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0018.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0017.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0016.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0015.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0014.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0013.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0012.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0011.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0010.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0009.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0008.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0007.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0006.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0005.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/review-start-0004.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/start-complete-0003.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/implementation-0002.yaml",
+        "workflows/skill-contract-manifests-16-web-design-metadata/events/start-0001.yaml"
+      ]
+    },
+    "overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "prior_review_reconciliation": {
+      "ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0148.yaml",
+      "runId": "skill-contract-manifests-20261125-t2dv",
+      "ticketRef": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "phase": "review",
+      "coordinator": {
+        "session_id": "herdr-app:t2dv",
+        "muxer": "herdr-app",
+        "pane_id": "t2dv",
+        "agent": "omp"
+      },
+      "reconciledReceipt": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0060.yaml",
+      "locations": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reserved-0148.yaml"
+      ],
+      "ambiguous": false,
+      "reconciliationVerified": true
+    }
+  },
+  "base_interface_assessment": {
+    "compared_from": "c7ba47e30520530e2ffdc5c9f8a1119ed258c172",
+    "compared_to": "38de1559e243da214400e63124cf23ce1d36ad48",
+    "scope": [
+      "agent-core/skills/skill-contracts",
+      "creator/skills/web-design",
+      "Creator plugin/marketplace metadata"
+    ],
+    "observed_committed_affected_interface_changes": [],
+    "unrelated_existing_website_commit_preserved": "8d123caf535dd19eee4ea60d4d379a9f0a8b7fb9",
+    "mechanical_generated_metadata_conflict": "Prior inference only; no prepare/merge attempted."
+  },
+  "worktrunk": {
+    "version": "0.80.0",
+    "project_config": "not found",
+    "selected_integration_method": "merge",
+    "default_squash": true,
+    "override_required": true,
+    "configured_pre_merge_hooks": [],
+    "configured_post_merge_hooks": [],
+    "candidate_creation": "Owning integration helper uses isolated Worktrunk candidate without start hooks.",
+    "pre_remove_hook": "lsof -ti :{{ branch | hash_port }} -sTCP:LISTEN | xargs kill 2>/dev/null || true",
+    "cleanup_gate": "Before named source/candidate cleanup, observe each actual branch hash port. Do not permit this hook to terminate an unrelated listener. Preserve busy/dirty/unknown resources and request scoped disposition."
+  },
+  "active_new_operational_gate": {
+    "ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0161.yaml",
+    "owner_contact": "t2tq",
+    "verified_foreground": "omp in actual Dotfiles cwd",
+    "state": "awaiting receipt-v4 cutover ownership/check/commit handoff",
+    "source_review_still_valid": true,
+    "unrelated_dirty_models_preserved": true,
+    "finish_start_or_reservation": false,
+    "integration_attempt": false
+  },
+  "integration_checks": [
+    {
+      "argv": [
+        "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+      ]
+    }
+  ],
+  "accounting": {
+    "ticket_attempts_consumed": 20,
+    "ticket_attempts_remaining": 80,
+    "dispatches_consumed": 34,
+    "dispatches_remaining": 2466,
+    "omp_token_budget": null
+  }
+}

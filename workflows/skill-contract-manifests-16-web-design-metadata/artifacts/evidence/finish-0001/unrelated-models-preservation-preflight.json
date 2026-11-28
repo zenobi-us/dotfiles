@@ -1,0 +1,7 @@
+{
+  "path": "mise/conf.d/devtools-omp/models.yaml",
+  "bytes": 955,
+  "sha256": "ca91d70ecc855f90e212763af07c3248b2680da5a242ae97c2b0ea8b7c80db7e",
+  "ownership": "User/unrelated; do not stage, commit, restore or discard.",
+  "integration_gate": "Before apply, prove expected candidate tree does not change this path relative to base_before. Preserve working checksum across the native isolated-candidate/fast-forward operation. If safety is not established or native Worktrunk refuses, preserve all state and request scoped disposition."
+}

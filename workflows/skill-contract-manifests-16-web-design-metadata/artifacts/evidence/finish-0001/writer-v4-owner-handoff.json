@@ -1,0 +1,293 @@
+{
+  "owner_session": "t2tq",
+  "commit": "9a8d707ab440732da5daf2d4c1e2b8464a0e7ada",
+  "owner_ownership_confirmed": true,
+  "owner_publication_approval": "Yes. Publish9a8d707a with your next scoped coordinator checkpoint commit. No remaining publication gate from me.",
+  "owner_hook_index_alignment": {
+    "paths": [
+      "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+      "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+    ],
+    "working_equal_HEAD_before_alignment": true,
+    "old_indices": [
+      "1a7397de119625f4bc1af822f2d2edccfad23858",
+      "d07004af45a4493c13133087ed5f5898901a2214"
+    ],
+    "HEAD_and_working": [
+      "74b9eedc2e2e8682f7627af86ddf0b8b6832f548",
+      "c9fbce238df6638598ea59203c87943d110ea265"
+    ],
+    "owner_reported_scoped_verification_passed": true,
+    "coordinator_staged_or_reset_those_paths": false,
+    "working_models_workflows_unchanged_by_owner": true
+  },
+  "current_contract": {
+    "receipt": "worktree-receipt/v4",
+    "phase_context": "worktree-phase-context/v2",
+    "yaml_max_bytes": 65536,
+    "json_max_bytes": 65536,
+    "string_max_bytes": 2048,
+    "narrative_max_bytes": 8192,
+    "file_artifacts": [
+      "ref",
+      "sha256",
+      "bytes",
+      "media_type"
+    ],
+    "retain_original_v1_v2_v3_history": true,
+    "raw_integration_output": "Externalize each complete validation_results[].output into a checksum-bound artifact; retain argv/cwd/exit/source commit/tree inline. Never copy helper result or nested schema into receipt."
+  },
+  "owner_reported_checks": {
+    "publication_regressions": "passed",
+    "boundary_tests": {
+      "passed": 5,
+      "failed": 0,
+      "assertions": 14
+    },
+    "installed_writer_smoke": {
+      "event_bytes": 1335,
+      "transport_bytes": 1750,
+      "artifact_bytes": 360000,
+      "exact_artifact_retained": true,
+      "oversized_rejection_no_result_writes": true
+    },
+    "known_limitations": "Three broader suites remain blocked by existing Bun resolution of yaml@^2.8.1. Owner disclosed; no rerun or dependency repair requested."
+  },
+  "independent_operational_checks": {
+    "native_installed_manifest_validate_exit": 0,
+    "manifest_schemaVersion": "skill-contract-manifest/v1",
+    "produces": [
+      "worktree-receipt/v4",
+      "worktree-receipt/v3",
+      "worktree-receipt/v1",
+      "worktree-receipt/v2",
+      "worktree-phase-context/v2",
+      "worktree-goal/v2",
+      "worktree-inspection/v1",
+      "worktree-inspection-error/v1",
+      "worktree-coordination/v2",
+      "worktree-workflow/v3",
+      "worktree-latest-status/v2",
+      "worktree-view-result/v1",
+      "worktree-pr-draft/v1",
+      "worktree-integration/v2"
+    ],
+    "accepts": [
+      "worktree-receipt/v4",
+      "worktree-receipt/v3",
+      "worktree-phase-context/v2",
+      "worktree-goal/v2",
+      "worktree-workflow/v3",
+      "worktree-latest-status/v2",
+      "worktree-pr-draft/v1",
+      "worktree-integration/v2",
+      "worktree-receipt/v1",
+      "worktree-receipt/v2",
+      "worktree-phase-context/v1",
+      "worktree-goal/v1",
+      "worktree-workflow/v2",
+      "worktree-latest-status/v1",
+      "tracker-ticket/v1",
+      "tracker-ticket/v2",
+      "tracker-initiative/v1",
+      "tracker-initiative/v2",
+      "result-delivery/v1",
+      "result-delivery/v2",
+      "shared-context-resolution/v1"
+    ],
+    "definition_ids": [
+      "worktree-receipt/v1",
+      "worktree-receipt/v2",
+      "worktree-receipt/v3",
+      "worktree-receipt/v4",
+      "worktree-phase-context/v1",
+      "worktree-phase-context/v2",
+      "worktree-goal/v1",
+      "worktree-goal/v2",
+      "worktree-workflow/v2",
+      "worktree-workflow/v3",
+      "worktree-latest-status/v1",
+      "worktree-latest-status/v2",
+      "worktree-inspection/v1",
+      "worktree-inspection-error/v1",
+      "worktree-coordination/v1",
+      "worktree-coordination/v2",
+      "worktree-view-result/v1",
+      "worktree-pr-draft/v1",
+      "worktree-integration/v2",
+      "tracker-ticket/v1",
+      "tracker-ticket/v2",
+      "tracker-initiative/v1",
+      "tracker-initiative/v2",
+      "result-delivery/v1",
+      "result-delivery/v2",
+      "shared-context-resolution/v1"
+    ],
+    "definition_hashes": {
+      "worktree-receipt/v1": {
+        "reference": "file:references/contracts/receipt-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/receipt-v1.json",
+        "content_bytes": 1652,
+        "content_sha256": "d1ee03703fd3f1fbd94a2f12898214d184eee9d193c25449b753727e2468d7ad"
+      },
+      "worktree-receipt/v2": {
+        "reference": "file:references/contracts/receipt-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/receipt-v2.json",
+        "content_bytes": 1788,
+        "content_sha256": "b046a3e514b40af855ca7047172eb72b88447d7164bd06540eee35b46204420b"
+      },
+      "worktree-receipt/v3": {
+        "reference": "file:references/contracts/receipt-v3.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/receipt-v3.json",
+        "content_bytes": 1795,
+        "content_sha256": "73e62164f01fd43452c211ebd5e2ebdf9808a15be9574b070c12597adb5640ba"
+      },
+      "worktree-receipt/v4": {
+        "reference": "file:references/contracts/receipt-v4.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/receipt-v4.json",
+        "content_bytes": 3028,
+        "content_sha256": "f06eafb18bfbece933794a3d2cf13d5a122796e4c4809d9c541d04370539e396"
+      },
+      "worktree-phase-context/v1": {
+        "reference": "file:references/contracts/phase-context-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/phase-context-v1.json",
+        "content_bytes": 1182,
+        "content_sha256": "e23e77dadfc23ca9679eb9430cc8b20092430656de51e2fea6e62afbd67d08ae"
+      },
+      "worktree-phase-context/v2": {
+        "reference": "file:references/contracts/phase-context-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/phase-context-v2.json",
+        "content_bytes": 1189,
+        "content_sha256": "4f53dde89de61fca2054d4c2994884f6fb7229b34cb5c06496ea98a2d3a558d2"
+      },
+      "worktree-goal/v1": {
+        "reference": "file:references/contracts/goal-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/goal-v1.json",
+        "content_bytes": 1109,
+        "content_sha256": "e2e0d6c6ce7705f6c8d79085b02af765a76cde754eba18716d70ff3192459d1d"
+      },
+      "worktree-goal/v2": {
+        "reference": "file:references/contracts/goal-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/goal-v2.json",
+        "content_bytes": 1116,
+        "content_sha256": "e77703c6ac7ef61b0199a2e82efedaf5d60e1845cc62ed827fac70ce77bf67a9"
+      },
+      "worktree-workflow/v2": {
+        "reference": "file:references/contracts/workflow-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/workflow-v2.json",
+        "content_bytes": 1143,
+        "content_sha256": "3ed36005ac82f75906234e9bab3df9c8324ae256acbb4eeb2259e8cb9d0b2d47"
+      },
+      "worktree-workflow/v3": {
+        "reference": "file:references/contracts/workflow-v3.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/workflow-v3.json",
+        "content_bytes": 1320,
+        "content_sha256": "9f51fbcc711a51f6da720906f7eac154cee1e39eb6a6701dfb648114a1a42c14"
+      },
+      "worktree-latest-status/v1": {
+        "reference": "file:references/contracts/latest-status-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/latest-status-v1.json",
+        "content_bytes": 1375,
+        "content_sha256": "1d345f5729bb4233ef38ce763eb9ebb5b97fd79b4b6abb8cd0214a4df7004770"
+      },
+      "worktree-latest-status/v2": {
+        "reference": "file:references/contracts/latest-status-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/latest-status-v2.json",
+        "content_bytes": 1382,
+        "content_sha256": "8f5f491341f7a93365931d1aed344872bd2f2d6976021dddf9a090fd40cb938b"
+      },
+      "worktree-inspection/v1": {
+        "reference": "file:references/contracts/inspection-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/inspection-v1.json",
+        "content_bytes": 1008,
+        "content_sha256": "2895579a20c9d4879b6a3affd33b694785115bee6e21ad3d81b478580966f716"
+      },
+      "worktree-inspection-error/v1": {
+        "reference": "file:references/contracts/inspection-error-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/inspection-error-v1.json",
+        "content_bytes": 499,
+        "content_sha256": "8500bab0be6c24177aa6419fb23e1530f1c802f98d97a2883270afc4a7634310"
+      },
+      "worktree-coordination/v1": {
+        "reference": "file:references/contracts/coordination-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/coordination-v1.json",
+        "content_bytes": 912,
+        "content_sha256": "93ae60294ef1766b3b6ce7fc0b4b4b34bdbb76a3daf3024031d1189858903541"
+      },
+      "worktree-coordination/v2": {
+        "reference": "file:references/contracts/coordination-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/coordination-v2.json",
+        "content_bytes": 919,
+        "content_sha256": "6d29613b501b82eebdfbc73aee3cad4b688492d2faf2f57a763dcf28c665fada"
+      },
+      "worktree-view-result/v1": {
+        "reference": "file:references/contracts/view-result-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/view-result-v1.json",
+        "content_bytes": 863,
+        "content_sha256": "b70a8009b351391e222ceb535f3fa7a31dc6780be0f8e29ccf398e6b6b6eea3c"
+      },
+      "worktree-pr-draft/v1": {
+        "reference": "file:references/contracts/pr-draft-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/pr-draft-v1.json",
+        "content_bytes": 1182,
+        "content_sha256": "20778023611c2d5bab112a3f801e5a18a45fccda260f03e7bd5bbd543d143fc5"
+      },
+      "worktree-integration/v2": {
+        "reference": "file:references/contracts/integration-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/references/contracts/integration-v2.json",
+        "content_bytes": 1311,
+        "content_sha256": "a816c4ae25fe8da4cdcc6291b7c0cb7b78e9f52661e6a07fd2309fa2a97d417f"
+      },
+      "tracker-ticket/v1": {
+        "reference": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v1.json",
+        "content_bytes": 1162,
+        "content_sha256": "d6bc23c20a48d2fa217490e6d2f1a68ebee9c3ec3b129602ef4c1a6802e4204d"
+      },
+      "tracker-ticket/v2": {
+        "reference": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v2.json",
+        "content_bytes": 1169,
+        "content_sha256": "bc5ea78c6640db59d21b4d239cea05f64f0dacbd06a00e5b7ed33ba83dc5c212"
+      },
+      "tracker-initiative/v1": {
+        "reference": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v1.json",
+        "content_bytes": 913,
+        "content_sha256": "631c7a26276f7c5925e0c16e5641c082936447fc648f8f8614b8012bbb71993a"
+      },
+      "tracker-initiative/v2": {
+        "reference": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v2.json",
+        "content_bytes": 920,
+        "content_sha256": "db9de0c95b12e2479cda562b2afeac6beeefdc7cec3a744689dc0756b7fa9d45"
+      },
+      "result-delivery/v1": {
+        "reference": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v1.json",
+        "path": "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/references/contracts/delivery-v1.json",
+        "content_bytes": 3574,
+        "content_sha256": "35de53ccebfec829aa89a02a852f386f5c0e8f3f367c1f1934e93009d370d8e0"
+      },
+      "result-delivery/v2": {
+        "reference": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v2.json",
+        "path": "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/references/contracts/delivery-v2.json",
+        "content_bytes": 3604,
+        "content_sha256": "0a24d555bfb618f9fee038a8cea9f7839cd7ba3b5493ddd9ece9e471b94332dc"
+      },
+      "shared-context-resolution/v1": {
+        "reference": "file:../../../../agent-core/skills/shared-context/references/contracts.md",
+        "path": "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/references/contracts.md",
+        "content_bytes": 5965,
+        "content_sha256": "9523366fbe7c608d248a131604cab4adb456879cb283904b336a45aafbc090ae"
+      }
+    },
+    "raw_response_bytes": 61996,
+    "raw_response_sha256": "a15a04dd49fa01d5a83b2b17825d08fbab9c827b8e41c86559591bd8336b38e9",
+    "full_definition_text_not_copied_into_repository": true,
+    "retained_review0059_and_parent0060_inspection": {
+      "action": "finish",
+      "mode": "begin",
+      "diagnostics": null
+    }
+  }
+}
