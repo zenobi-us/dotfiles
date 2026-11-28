@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/integration.ts",
+    "prepare",
+    "--source",
+    "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "--base",
+    "master",
+    "--method",
+    "merge"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "started_at": "2026-11-28T14:15:59.667701+00:00",
+  "finished_at": "2026-11-28T14:15:59.982797+00:00",
+  "duration_seconds": 0.3131415389943868,
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\ngit merge-tree failed (1): 1e6788eac674000d80849fe35b58f556d19762fb\n100644 67aa85163110ceece3ca16572cdac0e5155bb2a5 1\tmise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\n100644 c9fbce238df6638598ea59203c87943d110ea265 2\tmise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\n100644 d340aa6fa00df87342e75bc2c074feb23729680f 3\tmise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\n100644 5d247157ddd2b7f5691bc061ef4ca9802cdfac1f 1\tmise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n100644 8fac829ff63626f77aceb8c3082ef4b5e9463dd2 2\tmise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n100644 406c30d102e594ae7ed3d054ab1dda169800576b 3\tmise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n\nAuto-merging mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\nCONFLICT (content): Merge conflict in mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\nAuto-merging mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\nCONFLICT (content): Merge conflict in mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\n\n\n"
+}

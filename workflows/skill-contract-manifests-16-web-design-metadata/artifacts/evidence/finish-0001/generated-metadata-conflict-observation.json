@@ -1,0 +1,124 @@
+{
+  "source": "Static original merge-tree conflict-stage objects; no merge/prepare rerun.",
+  "versions": [
+    {
+      "label": "ancestor",
+      "creator": {
+        "name": "creator",
+        "version": "0.1.3"
+      },
+      "marketplace": [
+        {
+          "name": "agent-core",
+          "version": "0.1.47"
+        },
+        {
+          "name": "creator",
+          "version": "0.1.3"
+        },
+        {
+          "name": "developer",
+          "version": "0.2.82"
+        },
+        {
+          "name": "matt-pocock",
+          "version": "0.1.18"
+        },
+        {
+          "name": "platform",
+          "version": "0.1.1"
+        },
+        {
+          "name": "researcher",
+          "version": "0.1.2"
+        },
+        {
+          "name": "writing",
+          "version": "0.1.1"
+        }
+      ]
+    },
+    {
+      "label": "current-base",
+      "creator": {
+        "name": "creator",
+        "version": "0.1.4"
+      },
+      "marketplace": [
+        {
+          "name": "agent-core",
+          "version": "0.1.47"
+        },
+        {
+          "name": "creator",
+          "version": "0.1.4"
+        },
+        {
+          "name": "developer",
+          "version": "0.2.85"
+        },
+        {
+          "name": "matt-pocock",
+          "version": "0.1.18"
+        },
+        {
+          "name": "platform",
+          "version": "0.1.1"
+        },
+        {
+          "name": "researcher",
+          "version": "0.1.2"
+        },
+        {
+          "name": "writing",
+          "version": "0.1.1"
+        }
+      ]
+    },
+    {
+      "label": "reviewed-source",
+      "creator": {
+        "name": "creator",
+        "version": "0.1.12"
+      },
+      "marketplace": [
+        {
+          "name": "agent-core",
+          "version": "0.1.47"
+        },
+        {
+          "name": "creator",
+          "version": "0.1.12"
+        },
+        {
+          "name": "developer",
+          "version": "0.2.82"
+        },
+        {
+          "name": "matt-pocock",
+          "version": "0.1.18"
+        },
+        {
+          "name": "platform",
+          "version": "0.1.1"
+        },
+        {
+          "name": "researcher",
+          "version": "0.1.2"
+        },
+        {
+          "name": "writing",
+          "version": "0.1.1"
+        }
+      ]
+    }
+  ],
+  "conflicting_paths": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "source_review": "SUCCESS for9d00/tree97a",
+  "native_prepare_exit": 1,
+  "candidate_created": false,
+  "apply_invoked": false
+}
