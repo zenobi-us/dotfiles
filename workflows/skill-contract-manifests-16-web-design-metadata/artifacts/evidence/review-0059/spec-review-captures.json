@@ -1,0 +1,83 @@
+{
+  "run_id": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+  "operation_id": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+  "context": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/context.json",
+  "failures": [
+    {
+      "command": "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts resolve ticket --ticket skill-contract-manifests-16-web-design-metadata --json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 1,
+      "combined_tool_output": "resolve ticket requires --id\n",
+      "stdout": null,
+      "stderr": null,
+      "timing": null,
+      "stream_note": "The bash tool exposed combined output only. Separate streams and timing were not captured. Command strings are the exact submitted commands; process argv was not separately captured."
+    },
+    {
+      "command": "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts resolve initiative --initiative skill-contract-manifests --json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 1,
+      "combined_tool_output": "Error: Unknown flag \"--initiative\"\n",
+      "stdout": null,
+      "stderr": null,
+      "timing": null,
+      "stream_note": "The bash tool exposed combined output only. Separate streams and timing were not captured. Command strings are the exact submitted commands; process argv was not separately captured."
+    },
+    {
+      "command": "hc message --help",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "exit_code": 2,
+      "combined_tool_output": "{\"error\":{\"hint\":\"see `hc --help`\",\"kind\":\"usage\",\"message\":\"unrecognized subcommand 'message'\"}}\n",
+      "stdout": null,
+      "stderr": null,
+      "timing": null,
+      "stream_note": "The bash tool exposed combined output only. Separate streams and timing were not captured. Command strings are the exact submitted commands; process argv was not separately captured."
+    },
+    {
+      "command": "hc get",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "exit_code": 7,
+      "combined_tool_output": "{\"error\":{\"hint\":\"pass an address like t7 or a name\",\"kind\":\"needs_target\",\"message\":\"which terminal? t1yk, t27n, t2dv, t2h5, t2jf, t2jq, t2jr, t2kn, t2mp, t2tk, t2tm, t2tn\"}}\n",
+      "stdout": null,
+      "stderr": null,
+      "timing": null,
+      "stream_note": "The bash tool exposed combined output only. Separate streams and timing were not captured. Command strings are the exact submitted commands; process argv was not separately captured."
+    }
+  ],
+  "repairs_or_retries": false,
+  "canonical_mq_captures": [
+    {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/domain-mq-tool-capture.txt",
+      "original_tool_artifact": "artifact://6",
+      "command": "mise exec -- mq --allow-http-import -I raw -F text 'import \"github.com/harehare/okf.mq\" | .' docs/agents/issue-tracker.md docs/agents/domain.md CONTEXT-MAP.md CONTEXT.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/domain-mq-tool-capture.txt",
+      "stderr": null,
+      "timing": null,
+      "note": "Complete original tool artifact retained. Separate stderr and timing not exposed."
+    },
+    {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/specification-mq-tool-capture.txt",
+      "original_tool_artifact": "artifact://9",
+      "command": "mise exec -- mq --allow-http-import -I raw -F text 'import \"github.com/harehare/okf.mq\" | .' tracker/tickets/skill-contract-manifests-16-web-design-metadata.md tracker/initiatives/skill-contract-manifests/index.md docs/adr/index.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/specification-mq-tool-capture.txt",
+      "stderr": null,
+      "timing": null,
+      "note": "Complete original tool artifact retained. Separate stderr and timing not exposed."
+    },
+    {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/prior-reviews-mq-tool-capture.txt",
+      "original_tool_artifact": "artifact://19",
+      "command": "mise exec -- mq --allow-http-import -I raw -F text 'import \"github.com/harehare/okf.mq\" | .' workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0047.md workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/prior-reviews-mq-tool-capture.txt",
+      "stderr": null,
+      "timing": null,
+      "note": "Complete original tool artifact retained. Separate stderr and timing not exposed."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "source": "artifact://11",
+  "description": "Complete retained tool read response for original successful MQ output; not a command replay. Timing and separate stderr unavailable.",
+  "capture": {
+    "text": "# Local Markdown tracker\n\n## Collections\n\n- [Tickets](tickets/): Store one Markdown file per stable ticket ID.\n- [Initiatives](initiatives/): Store one directory per initiative, with an index that links its records.\n\n## Operations\n\nRead the [tracker configuration](../docs/agents/issue-tracker.md) before ticket work. Use the `reading-and-writing-tickets` skill for ticket operations. Resolve paths through the shared-context CLI.\n\nRead the [triage labels](../docs/agents/triage-labels.md) before changing ticket readiness. Keep `triage` separate from `work_status`.\n\n\n# Architecture decisions\n\nUse this directory for ADRs that record resolved architecture decisions. Use the shared-context CLI to resolve an ADR path before writing it. Add a link here when an ADR is created.\n\nRead the [domain configuration](../agents/domain.md) for domain document rules.\n\n\n- [Pi Ink cleanup trust boundary](0001-pi-ink-cleanup-trust-boundary.md) — Accepted trusted, exclusive-operation model; device execution still requires separate approval.\n\n# Domain docs\n\nThis repository uses one context.\n\n## Read before exploration\n\n1. Read `CONTEXT-MAP.md` at the active alignment root.\n2. Read `CONTEXT.md` when it exists.\n3. Read `docs/adr/index.md` and ADRs that affect the current area.\n\nIf a domain document does not exist, continue without it. Use the `domain-modeling` skill to record terms and decisions when they are resolved.\n\n## Document layout\n\nKeep the glossary and domain rules in `CONTEXT.md`. Keep architecture decisions under `docs/adr/`. Keep stable entry points in `CONTEXT-MAP.md`.\n\nUse the glossary's terms in ticket titles, code proposals, hypotheses, and tests. Update domain documents when a resolved decision changes a term or rule.\n\n\n",
+    "details": {
+      "totalLines": 42,
+      "rowPrefixes": false,
+      "displayContent": {
+        "text": "# Local Markdown tracker\n\n## Collections\n\n- [Tickets](tickets/): Store one Markdown file per stable ticket ID.\n- [Initiatives](initiatives/): Store one directory per initiative, with an index that links its records.\n\n## Operations\n\nRead the [tracker configuration](../docs/agents/issue-tracker.md) before ticket work. Use the `reading-and-writing-tickets` skill for ticket operations. Resolve paths through the shared-context CLI.\n\nRead the [triage labels](../docs/agents/triage-labels.md) before changing ticket readiness. Keep `triage` separate from `work_status`.\n\n\n# Architecture decisions\n\nUse this directory for ADRs that record resolved architecture decisions. Use the shared-context CLI to resolve an ADR path before writing it. Add a link here when an ADR is created.\n\nRead the [domain configuration](../agents/domain.md) for domain document rules.\n\n\n- [Pi Ink cleanup trust boundary](0001-pi-ink-cleanup-trust-boundary.md) — Accepted trusted, exclusive-operation model; device execution still requires separate approval.\n\n# Domain docs\n\nThis repository uses one context.\n\n## Read before exploration\n\n1. Read `CONTEXT-MAP.md` at the active alignment root.\n2. Read `CONTEXT.md` when it exists.\n3. Read `docs/adr/index.md` and ADRs that affect the current area.\n\nIf a domain document does not exist, continue without it. Use the `domain-modeling` skill to record terms and decisions when they are resolved.\n\n## Document layout\n\nKeep the glossary and domain rules in `CONTEXT.md`. Keep architecture decisions under `docs/adr/`. Keep stable entry points in `CONTEXT-MAP.md`.\n\nUse the glossary's terms in ticket titles, code proposals, hypotheses, and tests. Update domain documents when a resolved decision changes a term or rule.\n\n\n",
+        "startLine": 1,
+        "lineNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ]
+      },
+      "fileSize": 1740,
+      "raw": true,
+      "meta": {
+        "source": {
+          "type": "internal",
+          "value": "artifact://11"
+        },
+        "pagedSource": true
+      },
+      "resolvedPath": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-skill-contract-manifests-16-web-design-metadata--/2026-11-28T10-04-28-135Z_01a2219d-0467-74f3-82e9-521fefea116c/11.bash-original.log"
+    }
+  }
+}

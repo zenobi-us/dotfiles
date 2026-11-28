@@ -1,0 +1,108 @@
+{
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "committed_sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "bytes": 3407
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "committed_sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "bytes": 2000
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "committed_sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "bytes": 514
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "sha256": "34cfe5a71f23e94f5354507d0e48fcb9d83649d5e4b13007149b732b40b21652",
+      "committed_sha256": "34cfe5a71f23e94f5354507d0e48fcb9d83649d5e4b13007149b732b40b21652",
+      "bytes": 5591
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "committed_sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "bytes": 7416
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "committed_sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "bytes": 3455
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "committed_sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "bytes": 7838
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "sha256": "f53e50a356fb3ff3afed952b09bb467e74eec6c7e693a5d3c1655342b04634b4",
+      "committed_sha256": "f53e50a356fb3ff3afed952b09bb467e74eec6c7e693a5d3c1655342b04634b4",
+      "bytes": 1852
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "committed_sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "bytes": 7725
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "sha256": "644608daf478f1db732af94c2126215bf7a8e29ced7ed451cad7a177f0753d13",
+      "committed_sha256": "644608daf478f1db732af94c2126215bf7a8e29ced7ed451cad7a177f0753d13",
+      "bytes": 1390
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "sha256": "457ea6a45b9184ea384bb212ffa2b0f54bdeb71713b2efe7d734027283becc6b",
+      "committed_sha256": "457ea6a45b9184ea384bb212ffa2b0f54bdeb71713b2efe7d734027283becc6b",
+      "bytes": 295
+    }
+  ],
+  "assets": [
+    {
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "baseline_equal": true
+    },
+    {
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "baseline_equal": true
+    },
+    {
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "baseline_equal": true
+    },
+    {
+      "asset": "styles/project-info/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "baseline_equal": true
+    },
+    {
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "baseline_equal": true
+    }
+  ],
+  "protected8": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+  ],
+  "catalog_nonidentity_exact": true
+}

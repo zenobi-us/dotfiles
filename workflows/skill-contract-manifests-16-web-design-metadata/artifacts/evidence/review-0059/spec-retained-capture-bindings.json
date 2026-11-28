@@ -1,0 +1,27 @@
+{
+  "spec-review-captures.json": {
+    "original": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/review-captures.json",
+    "bytes": 5499,
+    "sha256": "c6c9d292c77840b6fcd0bc48c75b47d5b72f1048e39872ce3ddff48b8fd527ad"
+  },
+  "spec-domain-mq-tool-capture.txt": {
+    "original": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/domain-mq-tool-capture.txt",
+    "bytes": 8030,
+    "sha256": "11b98342f84ca48eb545b8e4c0191e3fcd80418d70637f39f89c271cd541320e"
+  },
+  "spec-specification-mq-tool-capture.txt": {
+    "original": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/specification-mq-tool-capture.txt",
+    "bytes": 22256,
+    "sha256": "aa3dd1cf83679b45ab4ba0c299ca728a4c140f66b527128b10c77ae9dc3cd876"
+  },
+  "spec-prior-reviews-mq-tool-capture.txt": {
+    "original": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/prior-reviews-mq-tool-capture.txt",
+    "bytes": 28333,
+    "sha256": "cd537f64d5c7fc87487e98dcd53d2ee3fd92ab2ff7cb96efcf86c2319a6dbfbd"
+  },
+  "spec-context.json": {
+    "original": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/context.json",
+    "bytes": 468,
+    "sha256": "bd5f15a13f9a6016aaadf15dc19b49b063f63ca7b6715d70eae6abfb54a78516"
+  }
+}

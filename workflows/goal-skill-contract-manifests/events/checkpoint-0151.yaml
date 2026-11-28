@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0151",
+  "parent_event": "checkpoint-0150",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 11,
+  "status": "approved",
+  "reason": "User selected Recover delivery only. Recover the unchanged saved Standards report through the existing native delivery CLI and original context. No dependency setup or source/native/help/axis reruns. Continue the same review after validation and owned cleanup.",
+  "authorization": {
+    "user_selection": "Recover delivery only",
+    "allowed": [
+      "One native result-delivery router.ts emit for the original exact retained Standards payload and original context; preserve failed import/captures.",
+      "Validate delivered assigned envelope/hash/domain and ACK actual hash.",
+      "Finish the original independent Spec report and normal delivery without rerunning review or probes.",
+      "Continue the SAME review11 after both axes validate and exact normal owned shutdown confirms."
+    ],
+    "prohibited": [
+      "Manual dependency setup/alias/environment repair.",
+      "Source changes, new reviewer/axis run, native/help/check reruns.",
+      "Changed payload or context/target identity, duplicate final body/receipt.",
+      "Extra signals or repeated owned closure without fresh exact approval."
+    ]
+  },
+  "goal_dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0148.yaml",
+  "child_run_id": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "child_terminal": "t2tk",
+  "standards_run_id": "e6b0056e-533c-452e-a90b-f3da438e31d5",
+  "standards_payload_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-undelivered-domain.json",
+  "standards_payload_bytes": 3530,
+  "standards_payload_sha256": "b10b56efe87aa75a2f1983132f54194f4bc18805550ac2dc4aed97fec5d2449c",
+  "standards_context_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-assigned-context.json",
+  "standards_context_bytes": 468,
+  "standards_context_sha256": "485683bcb44a6370f8273e6a4038617410129886d9f21accb90350ca944c31b8",
+  "assigned_target_absent_before_authority": true,
+  "documented_recovery": "result-delivery/references/delivery-recovery.md: same identity and payload; existing router.ts shebang selects bun --install=fallback. No domain mutation rerun.",
+  "native_command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+    "emit",
+    "--context",
+    "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json",
+    "--input",
+    "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/prepared-domain.json"
+  ],
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "review_base_commit": "c7ba47e30520530e2ffdc5c9f8a1119ed258c172",
+  "accounting": {
+    "ticket_attempts_consumed": 20,
+    "ticket_attempts_remaining": 80,
+    "dispatches_consumed": 34,
+    "dispatches_remaining": 2466,
+    "omp_token_budget": null
+  },
+  "parent_completion": "review-complete-0060",
+  "goal_reconciliation": "dispatch-reconciled-0152 unless a new checkpoint intervenes",
+  "immutable_handoff_correction": "The original handoff planned reconciliation150. Checkpoints150/151 now occupy those IDs. Keep the frozen handoff unchanged and cite this append-only correction; final receipt parent_next must name152.",
+  "created_at": "2026-11-28T11:00:00.450Z"
+}

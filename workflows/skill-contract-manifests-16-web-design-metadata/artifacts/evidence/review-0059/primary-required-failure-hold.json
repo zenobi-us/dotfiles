@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-11-28T10:06:34.506Z",
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "body_published": false,
+  "receipt_published": false,
+  "reason": "New actual leaf CLI/MQ failures; prompt21 stop before body/final receipt.",
+  "standards_failures": [
+    "shared-context resolve ticket --ticket rejected",
+    "MQ nonexistent initiative.md input",
+    "hc message --help unsupported"
+  ],
+  "spec_failures": [
+    "shared-context resolve ticket --ticket rejected",
+    "shared-context resolve initiative --initiative rejected",
+    "hc message --help unsupported",
+    "hc get without inherited target failed"
+  ],
+  "native": {
+    "rows": 56,
+    "exit0": 21,
+    "exit1": 35,
+    "pass": [
+      "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+    ],
+    "outer": 0,
+    "nativeStderr": ""
+  },
+  "smoke_duration_seconds": 10.255226481999998,
+  "help_duration_seconds": 0.14277171300000918,
+  "parent_notified": true
+}

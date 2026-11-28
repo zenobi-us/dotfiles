@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-11-28T10:08:45.287Z",
+  "publication_held": true,
+  "review_body_exists": false,
+  "review_receipt_exists": false,
+  "standards": {
+    "run": "e6b0056e-533c-452e-a90b-f3da438e31d5",
+    "domain_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-undelivered-domain.json",
+    "context_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-assigned-context.json",
+    "failure_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/standards-leaf-eval-import-failure.txt",
+    "transport": "failed import before publication",
+    "ack": false
+  },
+  "spec": {
+    "run": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+    "domain_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/spec-undelivered-domain.json",
+    "context_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/spec-context.json",
+    "capture_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0059/spec-review-captures.json",
+    "transport": "not invoked",
+    "ack": false
+  },
+  "closures": 0,
+  "signals": 0,
+  "parent_notification": {
+    "command": "hc send t2dv <retained-ref update>",
+    "exit": 9,
+    "error": "parent blocked(question)",
+    "screen_observed": "User decision pending: recover delivery only / close blocked / keep paused. No response sent to dialog."
+  },
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+}

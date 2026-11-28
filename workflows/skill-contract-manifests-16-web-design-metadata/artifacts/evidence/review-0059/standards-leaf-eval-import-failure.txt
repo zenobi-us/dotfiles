@@ -1,0 +1,20 @@
+Failed tool: functions.eval
+language: js
+title: Delivering independent standards result
+timeout: 60
+reset: false
+Exact timestamps, elapsed time, and separate stdout/stderr were not exposed by the tool.
+
+INPUT CODE
+var contract = JSON.parse(await Bun.file('/tmp/scm16-review-0059-contract.json').text()); var shape = JSON.parse(await Bun.file(contract.publication_checkout + '/' + contract.caller_axis_shape_ref).text()); var report = {schemaVersion:'review-axis/v1',axis:'standards',run_id:'e6b0056e-533c-452e-a90b-f3da438e31d5',operation_id:'e6b0056e-533c-452e-a90b-f3da438e31d5',parent_run_id:'ba8b7214-2853-4577-82bc-ec3a7fc962aa',source_commit:contract.source.commit,source_tree:contract.source.tree,review_base_commit:contract.review_base_commit,changed_scope:contract.changed_scope,findings:[],report:'No evidence-backed Standards findings. Reviewed the complete original eleven-file three-dot feature diff, not only the final help correction. Read the canonical complete ticket and initiative, domain context, decision index, contract rules, and required writing standards. The indexed decision concerns Pi cleanup and does not govern this feature.\n\nPrior standards-013/014 are resolved: both new references define their acronyms. Standards-015/016 are resolved in the inspected source: style-selection.md:48 and sources.ts:9 now say current working directory. Commands and contract identities remain intact. New guidance keeps installed-root resolution, explicit conversion authority, historical numeric-1 reading, and current string-v2 output distinct. Ordinary prose and opaque assets receive no identities. No additional documented breach or warranted heuristic smell was found. Unchanged prose and tooling-enforced concerns were excluded.\n\nNo source edits, setup, tests, delegation, provenance access, or runtime probes occurred. The primary owns native56 and the single help run. The known historical encoding failure was consumed, not replayed.\n\nRetained procedural failures were reported to parent terminal t2tk: an incorrect shared-context ticket flag, a nonexistent initiative filename, and unsupported hc message syntax. No failed command was rerun or repaired. Canonical initiative content was subsequently read from its linked index. These failures are not source findings; the parent must assess their workflow effect.'}; if(JSON.stringify(Object.keys(report).sort()) !== JSON.stringify([...shape.required].sort())) throw Error('Field mismatch'); for(var [k,p] of Object.entries(shape.properties)){if('const' in p && JSON.stringify(report[k])!==JSON.stringify(p.const))throw Error('Constant mismatch '+k);if(p.enum&&!p.enum.includes(report[k]))throw Error('Enum mismatch '+k);} if(report.report.split(/\s+/).length>=400)throw Error('Word limit'); console.log('Validated eleven caller-owned fields, exact bindings, empty findings, and report word limit.'); var delivery = await import('/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/delivery.ts'); console.log(await delivery.deliverResult(report, await delivery.loadDeliveryContext('/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json')));
+
+COMPLETE TOOL OUTPUT
+Validated eleven caller-owned fields, exact bindings, empty findings, and report word limit.
+Error: Cannot find package 'ajv@^8.17.1' imported from /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/result-delivery/scripts
+JS package environment fallback /home/zenobius/.omp/agent/cache/eval-js/environments/f29fb91307745122 also failed: Cannot find package 'ajv@^8.17.1' imported from /home/zenobius/.omp/agent/cache/eval-js/environments/f29fb91307745122
+Install the missing dependency with %bun add (select %environment project only to modify the project).
+    at S (/$bunfs/root/chunks/cli-qd94jrv4.js:384:19)
+    at v (/$bunfs/root/chunks/cli-qd94jrv4.js:350:14)
+    at #S (/$bunfs/root/chunks/cli-qd94jrv4.js:101:18)
+
+Command exited with code 1

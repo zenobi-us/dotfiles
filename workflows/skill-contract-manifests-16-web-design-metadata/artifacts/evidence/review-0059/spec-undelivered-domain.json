@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "review-axis/v1",
+  "axis": "spec",
+  "run_id": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+  "operation_id": "179f5a0c-4c41-4139-8656-ccb8c2896750",
+  "parent_run_id": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "review_base_commit": "c7ba47e30520530e2ffdc5c9f8a1119ed258c172",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "findings": [],
+  "report": "No specification findings. Reviewed the complete eleven-file three-dot feature against the canonical ticket and full initiative. Read domain context and the architecture-decision index. No relevant architecture decision applies.\n\nThe review covers historical numeric-1 reading, current string-v2 output, explicit conversion authority, pure owner hooks, shared persistence, exact nonidentity bytes and number lexemes, immutable/path refusals, and partial bulk reporting. It also covers installed bundled resolution, realpath containment, strict UTF-8 without normalization or byte-order-mark removal, valid U+FFFD, checksums, and all five distinct associations. Ordinary prose and opaque assets receive no identities. The diff changes only catalog identity bytes and synchronized Creator versions outside the added implementation and guidance.\n\nPrior standards-013/014/015/016 corrections remain present in the inspected prose. The primary owns the fresh full runner and human help observation. This leaf did not repeat either command or the known historical failure. Before HOLD, the absolute sources.ts validate command ran from /tmp and returned the current identity, capture time, and five associations.\n\nProcess status: HOLD, not publication approval. Two shared-context invocations failed: resolve ticket --ticket exited 1, requiring --id; resolve initiative --initiative exited 1, rejecting that flag. Notification discovery captured hc message --help exit 2 and hc get exit 7. No failed command was repaired or rerun. Canonical caller-provided records were subsequently read completely through MQ. Complete available captures and stream limitations are retained in review-captures.json beside this result. No source edits, setup, or additional probes occurred. Parent reported a separate Standards transport failure; this leaf has not attempted transport."
+}

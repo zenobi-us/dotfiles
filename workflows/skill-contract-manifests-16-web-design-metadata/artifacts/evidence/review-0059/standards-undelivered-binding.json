@@ -1,0 +1,18 @@
+{
+  "retained": {
+    "standards-undelivered-domain.json": {
+      "original": "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/prepared-domain.json",
+      "sha256": "b10b56efe87aa75a2f1983132f54194f4bc18805550ac2dc4aed97fec5d2449c",
+      "bytes": 3530
+    },
+    "standards-assigned-context.json": {
+      "original": "/var/home/zenobius/.local/state/result-delivery/runs/e6b0056e-533c-452e-a90b-f3da438e31d5/context.json",
+      "sha256": "485683bcb44a6370f8273e6a4038617410129886d9f21accb90350ca944c31b8",
+      "bytes": 468
+    }
+  },
+  "domain_shape_valid": true,
+  "transport_delivered": false,
+  "acknowledged": false,
+  "closure_performed": false
+}

@@ -1,0 +1,9 @@
+{
+  "original": "/var/home/zenobius/.local/state/result-delivery/runs/179f5a0c-4c41-4139-8656-ccb8c2896750/spec-domain.json",
+  "bytes": 3328,
+  "sha256": "d37bd05a36a0c285852b62117e3f3c58d36bdec7b4870538750fcbf2353a29b3",
+  "domain_shape_valid": true,
+  "transport_attempted": false,
+  "acknowledged": false,
+  "closure_performed": false
+}

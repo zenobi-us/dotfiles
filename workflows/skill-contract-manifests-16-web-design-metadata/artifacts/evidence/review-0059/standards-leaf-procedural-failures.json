@@ -1,0 +1,47 @@
+{
+  "run_id": "e6b0056e-533c-452e-a90b-f3da438e31d5",
+  "parent_run_id": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "capture_limit": "Tool results expose command text, cwd, exit status and combined output. Separate stdout/stderr and exact timestamps/durations were not exposed; null means unavailable. No command was replayed.",
+  "failures": [
+    {
+      "command": "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts resolve ticket --ticket skill-contract-manifests-16-web-design-metadata --json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 1,
+      "combined_output": "resolve ticket requires --id\n",
+      "stdout": null,
+      "stderr": null,
+      "start": null,
+      "end": null,
+      "duration": null
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import -I raw -F text 'import \"github.com/harehare/okf.mq\" | .' tracker/initiatives/skill-contract-manifests.md docs/adr/index.md docs/agents/domain.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 1,
+      "combined_output": "Error:   × No such file or directory (os error 2)\n\n",
+      "stdout": null,
+      "stderr": null,
+      "start": null,
+      "end": null,
+      "duration": null
+    },
+    {
+      "command": "hc message --help",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+      "exit_code": 2,
+      "combined_output": "{\"error\":{\"hint\":\"see `hc --help`\",\"kind\":\"usage\",\"message\":\"unrecognized subcommand 'message'\"}}\n",
+      "stdout": null,
+      "stderr": null,
+      "start": null,
+      "end": null,
+      "duration": null
+    }
+  ],
+  "delivery_failure": {
+    "boundary": "Eval import before deliverResult invocation",
+    "error": "Cannot find package 'ajv@^8.17.1'",
+    "target_written": false,
+    "dependency_setup": false,
+    "retry": false
+  }
+}

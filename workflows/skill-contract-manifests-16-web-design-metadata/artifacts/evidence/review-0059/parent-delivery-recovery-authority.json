@@ -1,0 +1,20 @@
+{
+  "checkpoint_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0151.yaml",
+  "payload_sha256": "b10b56efe87aa75a2f1983132f54194f4bc18805550ac2dc4aed97fec5d2449c",
+  "context_sha256": "485683bcb44a6370f8273e6a4038617410129886d9f21accb90350ca944c31b8",
+  "payload_bytes": 3530,
+  "context_bytes": 468,
+  "assigned_target_absent_before_authority": true,
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+  },
+  "goal_reconciliation": "dispatch-reconciled-0152 unless new checkpoint",
+  "native_checks_rerun": false,
+  "axes_rerun": false,
+  "dependency_setup_authorized": false,
+  "extra_signals_authorized": false
+}
