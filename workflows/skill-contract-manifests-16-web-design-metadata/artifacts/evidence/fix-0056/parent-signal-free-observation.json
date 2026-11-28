@@ -1,0 +1,18 @@
+[
+  {
+    "pid": 2529555,
+    "start_ticks": "56453197",
+    "run_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+    "signals_sent": 0,
+    "method": "exact signal-free pidfd exit observation after normal fixer8 closure",
+    "result": "already_absent"
+  },
+  {
+    "pid": 2529581,
+    "start_ticks": "56453203",
+    "run_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+    "signals_sent": 0,
+    "method": "exact signal-free pidfd exit observation after normal fixer8 closure",
+    "result": "already_absent"
+  }
+]

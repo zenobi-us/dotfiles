@@ -1,0 +1,8 @@
+Usage:
+  sources.ts validate [absolute-catalog.json]
+  sources.ts select <style> <asset-relative-to-assets> [absolute-catalog.json]
+
+The default catalog and all assets resolve from the installed skill, not the current working directory.
+Selection prints provenance and verified bundled text. Read-only commands never upgrade.
+For explicit conversion, use the shared skill-contracts safe-upgrade or bulk-upgrade
+with --owner file:scripts/source-metadata.ts and this installed skill's --skill path.

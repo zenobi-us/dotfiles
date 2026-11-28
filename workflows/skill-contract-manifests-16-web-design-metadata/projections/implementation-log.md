@@ -213,3 +213,24 @@ The complete final reference was read through MQ. The replacement sentence has n
 Assigned receipt: `workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0050.yaml`. Goal run: `skill-contract-manifests-20261125-t2dv`. Reservation: `workflows/goal-skill-contract-manifests/events/dispatch-reserved-0137.yaml`.
 
 No assigned finding or implementation question remains unresolved. All prior immutable history, failed captures, and errors remain unchanged. No extra agents, services, signals, source refresh, original-provenance access, permanent wording tests, or dependency changes occurred. The primary remains live for normal parent closure. Parent owns fresh review, tracker and YAML views, goal reconciliation, publication commits, and integration.
+
+## fix-0056: expand human-facing help
+
+[Review53](../artifacts/reviews/review-review-0053.md) returned FAILURE for a30ab1903988834d63abd2b997659e103112a88f. Parent54 validated standards-016; Spec had no findings. Fix56 expands only the sources.ts:9 help literal. Prior013/014/015 remain resolved.
+
+Source commit: 9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930. Tree: 97a55fab87da13de54a7724062a36adc4626aa70. Fresh independent review is **PENDING**. Source is local, not accepted, merged, or pushed. No assigned finding or implementation question remains unresolved.
+
+Changed files: scripts/sources.ts under the web-design skill; Creator plugin.json and bundle marketplace.json from normal hooks. No other source files changed. Eight protected feature paths, five assets, catalog nonidentity bytes, capture metadata, provenance, order, and checksums remain exact.
+
+The absolute help command and owning runner each ran once from /tmp after the final edit and before commit. Both returned 0 with empty standard error. All 56 JSON outcomes matched: 21 successes and 35 expected refusals. The PASS line remains separate. Five unique bindings include the authored help among the three runtime files and the two hooks. No postcommit rerun occurred. The known two stale owned hook index entries were recorded and aligned with unchanged working HEAD.
+
+- **Full result and timings:** [Snapshot56](../artifacts/snapshots/pr-draft-fix-0056.md).
+- **Phase authorization:** [Start55](../events/fix-start-0055.yaml).
+- **Consumed completion:** [Parent54](../events/review-complete-0054.yaml).
+- **Help:** [Complete capture](../artifacts/evidence/fix-0056/help-smoke.json).
+- **Native execution:** [Complete capture](../artifacts/evidence/fix-0056/native-smoke.json).
+- **Outcomes:** [56 comparisons](../artifacts/evidence/fix-0056/native-validation.json).
+- **Final source:** [Five bindings](../artifacts/evidence/fix-0056/commit-binding.json).
+- **Preservation:** [Protected bytes](../artifacts/evidence/fix-0056/preservation.json).
+
+Goal run: skill-contract-manifests-20261125-t2dv. Reservation145 and reconciliation144 govern this attempt. The old review body counter143 is historical. Parent owns completion57, reconciliation147 unless superseded, YAML views, tracker, publication commits, fresh review, and integration. The primary remains live for normal closure. No extra agents, services, signals, permanent tests, or source refresh occurred.

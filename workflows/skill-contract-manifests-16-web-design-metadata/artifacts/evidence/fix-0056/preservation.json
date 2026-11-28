@@ -1,0 +1,64 @@
+{
+  "initial": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "protected_paths": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "git_blob": "4313780965d87c644c29364fbc10663bb6f566fa"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "git_blob": "16d989843ab202569632d7af4372e14804a1cc60"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "git_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "git_blob": "f0f3b36b6d9f505ac8d78fbf5e6c2957064fbec1"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "git_blob": "2c722299299bd4054f49bd7e29d5e164b8464103"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "git_blob": "946f5380d3b0ac0a873af388de3caa54f5c82c3a"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "git_blob": "89f2cf8d962545533d622d989ebca0556f0d411f"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "git_blob": "cce148b205250203af99fff3c98d4312f5f4b000"
+    }
+  ],
+  "assets": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/report-dashboard/DESIGN.md",
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/styles/project-info/EDITOR-DESIGN.md",
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    }
+  ],
+  "catalog_nonidentity_bytes_exact": true,
+  "capture_provenance_order_checksums_exact": true,
+  "only_literal_replacement": true,
+  "prior_013_014_015_preserved": true
+}

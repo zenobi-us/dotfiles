@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "--help"
+  ],
+  "cwd": "/tmp",
+  "started_at": "2026-11-28T09:47:54.567Z",
+  "finished_at": "2026-11-28T09:47:54.712Z",
+  "duration_seconds": 0.14573109,
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "Usage:\n  sources.ts validate [absolute-catalog.json]\n  sources.ts select <style> <asset-relative-to-assets> [absolute-catalog.json]\n\nThe default catalog and all assets resolve from the installed skill, not the current working directory.\nSelection prints provenance and verified bundled text. Read-only commands never upgrade.\nFor explicit conversion, use the shared skill-contracts safe-upgrade or bulk-upgrade\nwith --owner file:scripts/source-metadata.ts and this installed skill's --skill path.\n",
+  "stderr": ""
+}

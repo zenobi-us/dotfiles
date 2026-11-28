@@ -1,0 +1,14 @@
+{
+  "event_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0056.yaml",
+  "transport_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/ed268fa0-aa08-48c5-91d5-54203a476117/result.json",
+  "run_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+  "operation_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+  "sha256": "010ee2bd242d934fdc15bc2b55076bdaea36a63e750fbbf4b62a662b60e0590c",
+  "event_equals_delivered_domain": true,
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "status": "completed",
+  "result_schema": "worktree-receipt/v3",
+  "primary_shutdown": "pending normal parent closure",
+  "acknowledgement": "parent-owned"
+}

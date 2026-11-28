@@ -1,0 +1,8 @@
+{
+  "method": "ActualgitdiffHEADscopedtoallpreviouslycommittedevents/reviews/snapshots/evidence, notonlychild74events/snapshots/reviews. No pre-existingtrackedimmutablepaths changed; newcurrentphase artifactsareuntrackeduntilpublicationcommit.",
+  "git_diff_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/parent-prior-immutable-tracked-diff.txt",
+  "changed_prior_immutable_paths": [],
+  "child_checked_event_review_snapshot_records": 74,
+  "all_previous_tracked_immutable_evidence_preserved": true,
+  "native_or_source_checks_rerun": false
+}

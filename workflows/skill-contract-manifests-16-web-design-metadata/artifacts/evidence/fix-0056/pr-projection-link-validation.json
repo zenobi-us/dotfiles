@@ -1,0 +1,98 @@
+[
+  {
+    "url": "../artifacts/evidence/fix-0056/help-smoke.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/help-smoke.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/evidence/fix-0056/native-smoke.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/native-smoke.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/evidence/fix-0056/native-validation.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/native-validation.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/evidence/fix-0056/commit-binding.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/commit-binding.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/evidence/fix-0056/preservation.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/preservation.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/evidence/fix-0056/owned-index-observation.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/owned-index-observation.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/evidence/fix-0056/capture-preparation-error.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/capture-preparation-error.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/snapshots/pr-draft-fix-0050.md",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0050.md",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/reviews/review-review-0053.md",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0053.md",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../events/review-0053.yaml",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/review-0053.yaml",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../events/review-complete-0054.yaml",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0054.yaml",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../artifacts/evidence/review-0053/parent-validation.json",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-validation.json",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../events/fix-start-0055.yaml",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0055.yaml",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../../goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../../goal-skill-contract-manifests/events/dispatch-reconciled-0144.yaml",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/dispatch-reconciled-0144.yaml",
+    "planned_receipt": false,
+    "exists": true
+  },
+  {
+    "url": "../events/fix-0056.yaml",
+    "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0056.yaml",
+    "planned_receipt": true,
+    "exists": false
+  }
+]

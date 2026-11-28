@@ -1,0 +1,708 @@
+[
+  [
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/fix-0056/help-smoke.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Complete capture",
+              "position": {
+                "start": {
+                  "line": 39,
+                  "column": 23
+                },
+                "end": {
+                  "line": 39,
+                  "column": 39
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 39,
+              "column": 22
+            },
+            "end": {
+              "line": 39,
+              "column": 78
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/fix-0056/native-smoke.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Complete capture",
+              "position": {
+                "start": {
+                  "line": 40,
+                  "column": 25
+                },
+                "end": {
+                  "line": 40,
+                  "column": 41
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 40,
+              "column": 24
+            },
+            "end": {
+              "line": 40,
+              "column": 82
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/fix-0056/native-validation.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "56 actual rows",
+              "position": {
+                "start": {
+                  "line": 41,
+                  "column": 25
+                },
+                "end": {
+                  "line": 41,
+                  "column": 39
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 41,
+              "column": 24
+            },
+            "end": {
+              "line": 41,
+              "column": 85
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/fix-0056/commit-binding.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Five unique files",
+              "position": {
+                "start": {
+                  "line": 42,
+                  "column": 24
+                },
+                "end": {
+                  "line": 42,
+                  "column": 41
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 42,
+              "column": 23
+            },
+            "end": {
+              "line": 42,
+              "column": 84
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/fix-0056/preservation.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Preservation",
+              "position": {
+                "start": {
+                  "line": 43,
+                  "column": 25
+                },
+                "end": {
+                  "line": 43,
+                  "column": 37
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 43,
+              "column": 24
+            },
+            "end": {
+              "line": 43,
+              "column": 78
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/fix-0056/owned-index-observation.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Old index identities",
+              "position": {
+                "start": {
+                  "line": 44,
+                  "column": 23
+                },
+                "end": {
+                  "line": 44,
+                  "column": 43
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 44,
+              "column": 22
+            },
+            "end": {
+              "line": 44,
+              "column": 95
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/fix-0056/capture-preparation-error.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Retained pre-execution input correction",
+              "position": {
+                "start": {
+                  "line": 45,
+                  "column": 29
+                },
+                "end": {
+                  "line": 45,
+                  "column": 68
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 45,
+              "column": 28
+            },
+            "end": {
+              "line": 45,
+              "column": 122
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "pr-draft-fix-0050.md",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Snapshot50",
+              "position": {
+                "start": {
+                  "line": 51,
+                  "column": 34
+                },
+                "end": {
+                  "line": 51,
+                  "column": 44
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 51,
+              "column": 33
+            },
+            "end": {
+              "line": 51,
+              "column": 67
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../reviews/review-review-0053.md",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Review53",
+              "position": {
+                "start": {
+                  "line": 52,
+                  "column": 25
+                },
+                "end": {
+                  "line": 52,
+                  "column": 33
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 52,
+              "column": 24
+            },
+            "end": {
+              "line": 52,
+              "column": 68
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../../events/review-0053.yaml",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Review53 event",
+              "position": {
+                "start": {
+                  "line": 53,
+                  "column": 26
+                },
+                "end": {
+                  "line": 53,
+                  "column": 40
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 53,
+              "column": 25
+            },
+            "end": {
+              "line": 53,
+              "column": 72
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../../events/review-complete-0054.yaml",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Parent54",
+              "position": {
+                "start": {
+                  "line": 54,
+                  "column": 29
+                },
+                "end": {
+                  "line": 54,
+                  "column": 37
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 54,
+              "column": 28
+            },
+            "end": {
+              "line": 54,
+              "column": 78
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../evidence/review-0053/parent-validation.json",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Validated review53",
+              "position": {
+                "start": {
+                  "line": 55,
+                  "column": 27
+                },
+                "end": {
+                  "line": 55,
+                  "column": 45
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 55,
+              "column": 26
+            },
+            "end": {
+              "line": 55,
+              "column": 94
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../../events/fix-start-0055.yaml",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Start55",
+              "position": {
+                "start": {
+                  "line": 56,
+                  "column": 29
+                },
+                "end": {
+                  "line": 56,
+                  "column": 36
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 56,
+              "column": 28
+            },
+            "end": {
+              "line": 56,
+              "column": 71
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../../../goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Reservation145",
+              "position": {
+                "start": {
+                  "line": 57,
+                  "column": 26
+                },
+                "end": {
+                  "line": 57,
+                  "column": 40
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 57,
+              "column": 25
+            },
+            "end": {
+              "line": 57,
+              "column": 116
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../../../goal-skill-contract-manifests/events/dispatch-reconciled-0144.yaml",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Reconciliation144",
+              "position": {
+                "start": {
+                  "line": 58,
+                  "column": 42
+                },
+                "end": {
+                  "line": 58,
+                  "column": 59
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 58,
+              "column": 41
+            },
+            "end": {
+              "line": 58,
+              "column": 137
+            }
+          }
+        },
+        null
+      ]
+    },
+    {
+      "type": "Fragment",
+      "values": [
+        {
+          "type": "Fragment",
+          "values": [
+            null
+          ]
+        },
+        null,
+        {
+          "type": "Link",
+          "url": "../../events/fix-0056.yaml",
+          "title": null,
+          "values": [
+            {
+              "type": "Text",
+              "value": "Fix56",
+              "position": {
+                "start": {
+                  "line": 59,
+                  "column": 26
+                },
+                "end": {
+                  "line": 59,
+                  "column": 31
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 59,
+              "column": 25
+            },
+            "end": {
+              "line": 59,
+              "column": 60
+            }
+          }
+        },
+        null
+      ]
+    }
+  ]
+]

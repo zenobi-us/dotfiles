@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0147",
+  "parent_event": "dispatch-observed-0146",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 8,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-complete-0057.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-0056.yaml",
+  "status": "completed",
+  "acceptance_status": "implemented_new_source_review_pending",
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "child_run_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+  "child_terminal": "t2tj",
+  "resolved_findings": [
+    "standards-016"
+  ],
+  "authored_files": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts"
+  ],
+  "hook_files": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "validation": {
+    "help_actual_invocations": 1,
+    "help_exit": 0,
+    "help_stderr_empty": true,
+    "help_duration_seconds": 0.14573109,
+    "expanded_human_term": true,
+    "native_actual_invocations": 1,
+    "native_rows": 56,
+    "success0": 21,
+    "expected1": 35,
+    "all_actual_expected": true,
+    "outer_exit": 0,
+    "native_stderr_empty": true,
+    "native_duration_seconds": 10.233429404999999,
+    "both_after_final_edit_precommit": true,
+    "no_postcommit_rerun": true,
+    "unique_final_bindings": 5,
+    "authored_help_in_runtime_binding": true,
+    "protected8_independent_actual_git_objects_equal": true,
+    "assets5_catalog_capture_provenance_order_preserved": true,
+    "child_event_review_snapshot_history_checked": 74,
+    "all_previous_tracked_immutable_evidence_unchanged": true,
+    "extended_history_proof_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/parent-all-prior-immutable-preservation.json",
+    "creator_version": "0.1.12",
+    "snapshot": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0056.md",
+    "snapshot_bytes": 5267,
+    "snapshot_sha256": "ffe382837f10f1d323f53831f2ce803e74d3b54fb3480dfb24cb620f0644c4cf",
+    "exact_declared_oneLF_formatter": true,
+    "actual_published_ast_link_counts": [
+      16,
+      16,
+      44
+    ],
+    "known_owned_hook_index_alignment": {
+      "new_commit_created": false,
+      "paths": [
+        "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+        "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+      ],
+      "previous_release_index_proof": true,
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/owned-index-observation.json",
+      "source_bytes_changed": false,
+      "working_equal_committed_HEAD": true
+    },
+    "pre_execution_capture_syntax_and_header_query_corrections_retained": true,
+    "native_owner_inspector_accepts_actual_v3_outcome_fields": true,
+    "source_accepted": false
+  },
+  "resource_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 6,
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0,
+  "accounting": {
+    "ticket_attempts_consumed": 19,
+    "ticket_attempts_remaining": 81,
+    "dispatches_consumed": 33,
+    "dispatches_remaining": 2467,
+    "omp_token_budget": null
+  },
+  "next_action": "Freshnativeinspector then freshfullfeatureindependentreview11 on exact9d00fc45/tree97a55fab. Explicitcaller-ownedaxisformat/currentassignedparentbinding, Standards+Specfreshdepth2. Recheck016actualhelp+prior13/14/15; all11frozen/protect8/all5assets, primarynative56oncefreshpostcommit. Knownmisewarningretainednotfalsebytemismatch; exactpreflightbytes/oneformatterLF beforepublication. Normalclosurependingexpectedobserve/holdiflive/no unapprovedsignals. No integration/relocation.",
+  "created_at": "2026-11-28T09:58:23.078Z"
+}

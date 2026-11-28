@@ -1,0 +1,14 @@
+[
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "sha256": "f53e50a356fb3ff3afed952b09bb467e74eec6c7e693a5d3c1655342b04634b4"
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7"
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1"
+  }
+]

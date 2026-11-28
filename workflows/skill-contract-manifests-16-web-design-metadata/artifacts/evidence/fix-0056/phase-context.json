@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "worktree-phase-context/v2",
+  "receipt_schema": "worktree-receipt/v3",
+  "receipt_id": "fix-0056",
+  "workflow_id": "skill-contract-manifests-16-web-design-metadata",
+  "event": "phase-result",
+  "phase": "fix",
+  "attempt": 8,
+  "parent_receipt": "fix-start-0055",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-16-web-design-metadata",
+    "ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md"
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master"
+  },
+  "session": {
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "pane_id": "t2tj",
+    "session_id": "herdr-app:t2tj",
+    "run_id": "ed268fa0-aa08-48c5-91d5-54203a476117",
+    "operation_id": "ed268fa0-aa08-48c5-91d5-54203a476117"
+  },
+  "goal_run_id": "skill-contract-manifests-20261125-t2dv",
+  "goal_dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0145.yaml"
+}

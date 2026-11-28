@@ -1,0 +1,11 @@
+{
+  "snapshot": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0056.md",
+  "projections": [
+    "workflows/skill-contract-manifests-16-web-design-metadata/projections/pr-draft.md",
+    "workflows/skill-contract-manifests-16-web-design-metadata/projections/implementation-log.md"
+  ],
+  "actual_bytes_equal_candidates": true,
+  "links_valid": true,
+  "source_review": "PENDING",
+  "old_log_terminal_lfs_preserved": true
+}

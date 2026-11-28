@@ -1,0 +1,19 @@
+{
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "authored_path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+  "sha256": "f53e50a356fb3ff3afed952b09bb467e74eec6c7e693a5d3c1655342b04634b4",
+  "method": "Read complete30-line help CLI through specialized read after childcommit; opaquehash binds observed workingbytes to finalreceipt later. No sourceedit/--help/nativeexecution byparent.",
+  "observed_line9": "The default catalog and all assets resolve from the installed skill, not the current working directory.",
+  "preserved": {
+    "usage_commands": true,
+    "readonly_and_separate_upgrade_authority": true,
+    "imports_and_exports": true,
+    "command_parsing_and_defaults": true,
+    "validate_select_behavior": true,
+    "error_exit_handling": true,
+    "all_other_lines": true
+  },
+  "source_accepted": false,
+  "fresh_review_required": true
+}

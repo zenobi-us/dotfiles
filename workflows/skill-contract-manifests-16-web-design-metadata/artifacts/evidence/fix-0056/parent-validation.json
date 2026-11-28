@@ -1,0 +1,69 @@
+{
+  "receipt_id": "fix-0056",
+  "transport_sha256": "010ee2bd242d934fdc15bc2b55076bdaea36a63e750fbbf4b62a662b60e0590c",
+  "event_equals_delivered_domain": true,
+  "source_commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "source_tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "actual_outcome_fields": {
+    "authored_files": [
+      "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts"
+    ],
+    "hook_files": [
+      "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+    ],
+    "resolved_findings": [
+      "standards-016"
+    ],
+    "unresolved_findings": [],
+    "snapshot": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/snapshots/pr-draft-fix-0056.md"
+  },
+  "native_owner_inspector_accepted": true,
+  "creator_version": "0.1.12",
+  "help_real_invocations": 1,
+  "help_exit": 0,
+  "help_stderr_empty": true,
+  "help_duration_seconds": 0.14573109,
+  "actual_expanded_help": true,
+  "help_commands_and_authority_preserved": true,
+  "native_real_invocations": 1,
+  "native_rows": 56,
+  "success0": 21,
+  "expected1": 35,
+  "all_expected": true,
+  "outer_exit": 0,
+  "native_stderr_empty": true,
+  "native_duration_seconds": 10.233429404999999,
+  "both_executions": "after final edit/precommit; no postcommit rerun",
+  "five_unique_final_bindings": true,
+  "authoring_in_runtime_binding": true,
+  "parent_manual_help_hash_equal": true,
+  "only_helpliteral_changed": true,
+  "protected8_independent_actual_git_objects_equal": true,
+  "all5_assets_and_catalog_capture_provenance_order_preserved": true,
+  "child_event_review_snapshot_history_checked": 74,
+  "all_previous_tracked_immutable_evidence_unchanged": true,
+  "extended_history_proof_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0056/parent-all-prior-immutable-preservation.json",
+  "snapshot_bytes": 5267,
+  "snapshot_sha256": "ffe382837f10f1d323f53831f2ce803e74d3b54fb3480dfb24cb620f0644c4cf",
+  "exact_declared_oneLF_formatter": true,
+  "actual_all_published_mq_links_exist": 76,
+  "link_counts": [
+    16,
+    16,
+    44
+  ],
+  "known2_hook_index_alignment_before_guard": true,
+  "old_index_ids_retained": true,
+  "source_or_commit_changed_by_alignment": false,
+  "readonly_capture_preparation_syntax_and_header_query_corrections_retained": true,
+  "source_help_native_reruns": 0,
+  "primary_registered_processes_stopped": 6,
+  "normal_shutdown": "confirmed",
+  "source_desktop_absent": true,
+  "extra_signals_sent": 0,
+  "source_accepted": false,
+  "source_pushed": false,
+  "source_merged": false,
+  "fresh_review_required": true
+}

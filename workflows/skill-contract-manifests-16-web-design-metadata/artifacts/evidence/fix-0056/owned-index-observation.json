@@ -1,0 +1,19 @@
+{
+  "head": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+  "tree": "97a55fab87da13de54a7724062a36adc4626aa70",
+  "status": "MM mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\nMM mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+  "indexObs": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "index": "44deb5b5636a73005a7d966c15b775bf759e8dee",
+      "head": "406c30d102e594ae7ed3d054ab1dda169800576b",
+      "working": "406c30d102e594ae7ed3d054ab1dda169800576b"
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "index": "a33d5521eae4dc62fe0e8ada1e7e3341f23cef83",
+      "head": "d340aa6fa00df87342e75bc2c074feb23729680f",
+      "working": "d340aa6fa00df87342e75bc2c074feb23729680f"
+    }
+  ]
+}
