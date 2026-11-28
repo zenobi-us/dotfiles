@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "muxer-spawn/v2",
+  "runId": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "target": "t2tk",
+  "operationId": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+  "contextFile": "/var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/context.json",
+  "deliveryContext": {
+    "schemaVersion": "result-delivery/v2",
+    "kind": "context",
+    "audience": "agent",
+    "mode": "artifact-reference",
+    "runId": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+    "operationId": "ba8b7214-2853-4577-82bc-ec3a7fc962aa",
+    "target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/result.json",
+      "schema": "worktree-receipt/v3"
+    }
+  },
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/ba8b7214-2853-4577-82bc-ec3a7fc962aa/result.json",
+    "schema": "worktree-receipt/v3"
+  },
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "depth": 1
+}
