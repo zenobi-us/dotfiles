@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-observed-0138",
+  "parent_event": "dispatch-reserved-0137",
+  "kind": "dispatch_observed",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "fix",
+  "attempt": 7,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0137.yaml",
+  "start_receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/fix-start-0049.yaml",
+  "parent_review_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0047.yaml",
+  "parent_completion_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-complete-0048.yaml",
+  "child_run_id": "2ce7872d-5c3c-42da-bad8-f54ed4c7aca9",
+  "child_terminal": "t2td",
+  "child_operation_id": "2ce7872d-5c3c-42da-bad8-f54ed4c7aca9",
+  "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/2ce7872d-5c3c-42da-bad8-f54ed4c7aca9/context.json",
+  "result_target": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/2ce7872d-5c3c-42da-bad8-f54ed4c7aca9/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/2ce7872d-5c3c-42da-bad8-f54ed4c7aca9/result.json",
+    "schema": "worktree-receipt/v3"
+  },
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "source_branch": "feature/skill-contract-manifests-16-web-design-metadata",
+  "base_branch": "master",
+  "scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "constraints_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-authored-constraints.json",
+  "handoff_contract_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-handoff-contract.json",
+  "native_spawn_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/fix-0050/parent-spawn.json",
+  "accounting": {
+    "ticket_attempts_consumed": 17,
+    "ticket_attempts_remaining": 83,
+    "dispatches_consumed": 31,
+    "dispatches_remaining": 2469,
+    "omp_token_budget": null
+  },
+  "coordination_assessment": {
+    "native_inventory_complete": false,
+    "native_hard_blockers": [],
+    "native_record_diagnostics": [],
+    "native_ownership": "unknown",
+    "sole_matching_owner": "herdr-app:t2dv viareview-complete48",
+    "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+    "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+    "source_available_candidates": 1,
+    "source_errors": [],
+    "prior_review_reservation_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0130.yaml",
+    "prior_review_reconciliation_verified": true,
+    "existing_generated_metadata_overlaps": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+            "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+            "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+          }
+        ]
+      }
+    ],
+    "assessment": "Freshfix7 limited toone newlyadded prose sentence. Native globalinventoryincomplete/ownershipunknown preserved; currentticket has solematchingparent48owner, exactsourceonecandidate/noerrors, priorreview130reconciled. Same4 generatedmetadataoverlaps are different sourceindices; no sharedbasehook/sourcepush/integration authorized. Allreviewresources confirmedstopped. Optionalreadonlytee missingdirectorycaptureerror retained; existingvalidatedimmutable8objectrecords savedwithoutGit/native rerun."
+  },
+  "decision": "Fresh minimalfixer7 dispatched byactualBash native router, exactsourceb0d/treec163, depth1/v3assignedcontext. One newlyaddedprose cwd replacement;8protectedfiles/all5assets, native56once/sixfinalbindings, knownownedindex/formatterguards. No duplicatescope, sourcepush/integration or unrelatedops. Parentownscompletion51/reconciliation139 and normalclosure.",
+  "created_at": "2026-11-28T05:44:26.152Z"
+}

@@ -1,0 +1,23 @@
+{
+  "finding_ids": [
+    "standards-015"
+  ],
+  "authored_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+  ],
+  "hook_paths": [
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "scope": "Pending validation of actual review47 usable FAILURE: replace only the newly added prose cwd at style-selection.md:48 with current working directory. No runtime behavior or unrelated old prose changes.",
+  "exact_change": {
+    "from": "Invoke its absolute entrypoint from any cwd.",
+    "to": "Invoke its absolute entrypoint from any current working directory."
+  },
+  "preserve": "All8 other nonhook feature paths exactly atb0d12b09, including the two reference first-use fixes13/14. All5assets/catalog/capture/provenance/order/checksums exact. Existing style selection/companion/user-override/separate-authority meanings and all code/commands/paths remain. No source refresh, identifier changes, new headings/tables/glossary or wholesale rewrite.",
+  "writing": "Read full final style-selection reference through MQ. Keep existing line/body layout except exact replacement, procedural sentence <=20words. Preexisting unrelated prose is not new scope. No permanent wording/source-text tests.",
+  "validation": "Owning absolute native executable ONCE from/tmp after all final edits,56actualJSONrows+nonJSONPASS,21success0/35expected1, completeargv/cwd/timing/stdout/stderr; honestprecommit proof. Bind runtime3+finalauthoredref1+normalhook2 to final committedsource (six). Protect8/all5, all priorimmutablebytes.",
+  "commit_and_index": "Separate exact staging and commit actions. Normal hooks; explicit path-only git commit --only for these2 references+2 hook metadata paths; ticket ID in <=72-char conventional subject. Preserve unrelated staging. Known partial-commit hook behavior can leave ONLY the two owned metadata index entries at their previous version although working bytes equal committed HEAD. BEFORE final publication, inspect exact owned index/working/HEAD values. If this exact known condition occurs with no other changes, retain old index identities and align ONLY these same2 already-authorized owned hook paths with unchanged working/HEAD files using git add; no reset/restore/global unstage/new source commit or byte edits. This is normal owned staging reconciliation before a guard, not permission to bypass a failed CLI. Any unexpected dirty path/byte change or actual failed required command stops. Require final source clean before snapshot/receipt.",
+  "publication": "New pr-draft-fix-0050.md only after currentreview47 usabletypedFAILURE consumed. Proven MQ null-input scalar-Ftext, model scalarwithoutterminalLF plusoneformatterLF BEFOREbyteassertion. Exactfrontmatter producerfix50/source/tree, exclusivepublicationonce. Currentprojections correctrebaselinks/actualMQ AST, newsource reviewPENDING, fullhistory preserved. Parentownstracker/YAMLviews/goal/publicationcommits.",
+  "boundaries": "Only1authoredreference+normal2hook paths in isolatedsource. No code/tests/config/dependencies/extraagents/services/sourcepush/merge/rebase/relocation/serverfiles/infrastructure. Stop NEW actualrequiredCLI/check/publication/ownershipfailure, preserve evidence, no self-authorizedreruns. Normal known ownedposthookindexalignment beforeguard only with exactsame2 ownedhooks and working=HEAD proof; no globalunstage/reset/restore."
+}
