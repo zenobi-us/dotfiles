@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0142",
+  "parent_event": "dispatch-observed-0141",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 10,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0140.yaml",
+  "child_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "child_terminal": "t2tf",
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "review_base_commit": "404991992d4514434abf4ae60dba4e8475984337",
+  "decision": "User explicitly selected TERM, then KILL if needed for exactly four recorded current review10 leaf identities, plus read-only exit/finalnativeproof. Continue SAME review10 onlyifbothaxes resourcesconfirmed. No source/smoke/axis reruns.",
+  "authority": {
+    "source": "currentuseraskselection",
+    "choice": "TERM, then KILL if needed",
+    "scope": "Freshly verify boot/start/run tags before each exact pidfd signal. Send no signal if identity unreadable/changed. Observe exits, capture final native resource proof once per axis, then continue this review onlyifshutdownconfirmed. No source/smoke/axisreruns."
+  },
+  "processes": [
+    {
+      "axis": "standards",
+      "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+      "pid": 2334415,
+      "start_ticks": "55098385",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51"
+    },
+    {
+      "axis": "standards",
+      "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+      "pid": 2338229,
+      "start_ticks": "55101115",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51"
+    },
+    {
+      "axis": "spec",
+      "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+      "pid": 2334527,
+      "start_ticks": "55098388",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51"
+    },
+    {
+      "axis": "spec",
+      "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "parent_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+      "pid": 2335018,
+      "start_ticks": "55099179",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51"
+    }
+  ],
+  "retained_observations": [
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/standards-pidfd-observation.json",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/standards-resources-final.json",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/spec-pidfd-observation.json",
+    "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/spec-resources-final.json"
+  ],
+  "scope_owner": "Parentt2dv onlysignals exact4; primaryt2tf held topreventduplicates.",
+  "reported_review": {
+    "standards_findings": [
+      "standards-016"
+    ],
+    "spec_findings": 0,
+    "finding": "sources.ts:9 human-facinghelp cwd undefined",
+    "native56_once": true,
+    "positive": 21,
+    "expected_negative": 35,
+    "duration_seconds": 7.9875572,
+    "stderr_empty": true,
+    "body_unwritten": true,
+    "finalreceipt_unwritten": true,
+    "direct_base_marketplace_assumption": "Retainedreadonlycomparison-inputerror: sourceDeveloper82/base84, notthree-dotfeaturefailure; no rerun/repair."
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 18,
+    "ticket_attempts_remaining": 82,
+    "dispatches_consumed": 32,
+    "dispatches_remaining": 2468,
+    "omp_token_budget": null
+  },
+  "controls": [
+    "Onlyrecorded4exactPID/start/boot/runidentities. Freshchecks beforeEACHsignal throughpinnedpidfd; no processname/group/port orotherPIDsignals.",
+    "TERMfirst; boundedexitobservation. KILLonlyiftheSAMEverifiedidentityreceivedTERMandremainslive. Unreadable/mismatchedidentity=>NOsignal, retainguardresult, readonlyexitobservation; neverretryfailedidentityreadorrelaxguard.",
+    "No repeatedhc kill/rm, source/skillcontract/envchanges, smoke/axisreruns ornewattempt.",
+    "CaptureONEfreshnative resourcesreport peraxisafterparentobservation, newfilenames; requireconfirmed/allrecordedstoppedbeforebody/finalreceipt. Stilllive/unconfirmed=>holdandreport.",
+    "Retainalloriginalpending/native/pidfd/axisreports andreadonlydirect-basecomparisonerror, no fabricatedsourcefailure/verdict.",
+    "Continue sameprimary10 onlyafterconfirmed. ActualusableFAILURE forstandards016, Spec0; sourceunchanged.",
+    "Parentcompletion54unchanged; goalreconciliation now143 aftercheckpoint142."
+  ],
+  "created_at": "2026-11-28T09:23:09.929Z"
+}

@@ -1,0 +1,129 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0142.yaml",
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "primary_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "all4_recorded_identities_exited": true,
+  "signals_sent": 4,
+  "signal_details": [
+    {
+      "axis": "standards",
+      "pid": 2334415,
+      "start_ticks": "55098385",
+      "signals": [
+        "TERM",
+        "KILL"
+      ],
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2334415,
+          "expected_start_ticks": "55098385",
+          "expected_run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098385",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        },
+        {
+          "action": "KILL",
+          "pid": 2334415,
+          "expected_start_ticks": "55098385",
+          "expected_run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098385",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        }
+      ],
+      "exit_observed": true
+    },
+    {
+      "axis": "standards",
+      "pid": 2338229,
+      "start_ticks": "55101115",
+      "signals": [],
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2338229,
+          "expected_start_ticks": "55101115",
+          "expected_run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55101115",
+          "assigned_run_tag_present": false,
+          "identity_verified": false
+        }
+      ],
+      "exit_observed": true
+    },
+    {
+      "axis": "spec",
+      "pid": 2334527,
+      "start_ticks": "55098388",
+      "signals": [
+        "TERM",
+        "KILL"
+      ],
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2334527,
+          "expected_start_ticks": "55098388",
+          "expected_run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098388",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        },
+        {
+          "action": "KILL",
+          "pid": 2334527,
+          "expected_start_ticks": "55098388",
+          "expected_run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098388",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        }
+      ],
+      "exit_observed": true
+    },
+    {
+      "axis": "spec",
+      "pid": 2335018,
+      "start_ticks": "55099179",
+      "signals": [],
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2335018,
+          "expected_start_ticks": "55099179",
+          "expected_run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55099179",
+          "assigned_run_tag_present": false,
+          "identity_verified": false
+        }
+      ],
+      "exit_observed": true
+    }
+  ],
+  "guard_refusals_respected": "Both Python identities received NO signals because fresh assigned run-tag checks did not match; no failedcheckretry/guardrelaxation. Their exits separately observed. Only exact2OMP identities received verifiedTERM then verifiedKILL.",
+  "axes": {
+    "standards": {
+      "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "shutdown": "confirmed",
+      "recorded_processes_stopped": 2,
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-standards-resources-final-authority0142.json"
+    },
+    "spec": {
+      "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "shutdown": "confirmed",
+      "recorded_processes_stopped": 2,
+      "ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-spec-resources-final-authority0142.json"
+    }
+  },
+  "source_or_smoke_or_axis_reruns": false,
+  "new_attempt": false
+}

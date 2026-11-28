@@ -1,0 +1,121 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0142.yaml",
+  "required_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+  "processes": [
+    {
+      "axis": "standards",
+      "pid": 2334415,
+      "start_ticks": "55098385",
+      "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2334415,
+          "expected_start_ticks": "55098385",
+          "expected_run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098385",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        },
+        {
+          "action": "KILL",
+          "pid": 2334415,
+          "expected_start_ticks": "55098385",
+          "expected_run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098385",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        }
+      ],
+      "signals": [
+        "TERM",
+        "KILL"
+      ],
+      "exit_observed_at": "after_KILL_or_refused_signal_grace",
+      "exit_observed": true
+    },
+    {
+      "axis": "standards",
+      "pid": 2338229,
+      "start_ticks": "55101115",
+      "run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2338229,
+          "expected_start_ticks": "55101115",
+          "expected_run_id": "9954eeec-8270-4c58-99b3-4d5562363ec8",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55101115",
+          "assigned_run_tag_present": false,
+          "identity_verified": false
+        }
+      ],
+      "signals": [],
+      "guard_refused_TERM": true,
+      "exit_observed_at": "after_KILL_or_refused_signal_grace",
+      "exit_observed": true
+    },
+    {
+      "axis": "spec",
+      "pid": 2334527,
+      "start_ticks": "55098388",
+      "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2334527,
+          "expected_start_ticks": "55098388",
+          "expected_run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098388",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        },
+        {
+          "action": "KILL",
+          "pid": 2334527,
+          "expected_start_ticks": "55098388",
+          "expected_run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55098388",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        }
+      ],
+      "signals": [
+        "TERM",
+        "KILL"
+      ],
+      "exit_observed_at": "after_KILL_or_refused_signal_grace",
+      "exit_observed": true
+    },
+    {
+      "axis": "spec",
+      "pid": 2335018,
+      "start_ticks": "55099179",
+      "run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2335018,
+          "expected_start_ticks": "55099179",
+          "expected_run_id": "e3dfd74c-a509-4a4a-adb4-b0262560c4eb",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "55099179",
+          "assigned_run_tag_present": false,
+          "identity_verified": false
+        }
+      ],
+      "signals": [],
+      "guard_refused_TERM": true,
+      "exit_observed_at": "after_KILL_or_refused_signal_grace",
+      "exit_observed": true
+    }
+  ],
+  "signals_sent": 4,
+  "process_group_or_name_signals": false,
+  "all_recorded_identities_exited": true
+}
