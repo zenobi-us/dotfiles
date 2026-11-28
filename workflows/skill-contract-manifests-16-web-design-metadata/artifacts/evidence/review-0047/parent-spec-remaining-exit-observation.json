@@ -1,0 +1,7 @@
+{
+  "pid": 2066693,
+  "recorded_start_ticks": "53480464",
+  "signals_sent": 0,
+  "method": "read-only pidfd exit observation after environ permission failure; does not retry failed run-tag read or relax signal guard",
+  "result": "already_absent"
+}

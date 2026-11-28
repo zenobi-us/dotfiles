@@ -1,0 +1,13 @@
+{
+  "source": "hc message from current primaryt2mw",
+  "run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "checkpoint_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0132.yaml",
+  "acknowledged": true,
+  "same_primary": true,
+  "no_native_rerun": true,
+  "original_handoff_and_correction_retained": true,
+  "caller_owned_shape_read": true,
+  "preparing_fresh_depth2_axes": true,
+  "source_or_owner_contract_mutations": false,
+  "quoted_ack": "ACK checkpoint0132 and caller-owned report-shape supplement. Resume SAME primary9; fresh native56 retained, no rerun. All11 committed bindings/protected7/all5assets/nonidentity catalog preservation verified. Original erroneous handoff and correction retained. Preparing two fresh native depth2 axis leaves under explicit caller shape; no owner-contract or source mutation."
+}

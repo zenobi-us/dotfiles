@@ -1,0 +1,24 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0133.yaml",
+  "spec_run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+  "signals_sent": 0,
+  "observations_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-spec-signal-free-observation.json",
+  "result": "Both exact recorded boot/PID/start identities remain running after bounded pidfd observation, with matching assigned run tags. Observation did not establish shutdown. No repeated closure/signals/native/axis reruns.",
+  "fresh_resource_capture": "Exactly one authorized capture delegated to held primary, new filename, preserve old pending report/assertion. If pending, hold body/finalreceipt and ask for next scoped decision.",
+  "primary_finding_citation_correction": {
+    "original_checkpoint133_line": 47,
+    "corrected_line": 48,
+    "source": "primary message citing actual MQ AST node48:75-205",
+    "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "proof_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-additional-standards-finding.json",
+    "leaf_findings_unchanged": {
+      "standards": 0,
+      "spec": 0
+    },
+    "note": "Retain original line47 observation as superseded; do not rewrite immutable checkpoint133."
+  },
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "body_published": false,
+  "final_receipt_published": false
+}

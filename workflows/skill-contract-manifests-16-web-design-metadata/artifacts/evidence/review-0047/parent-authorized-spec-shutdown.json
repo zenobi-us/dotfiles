@@ -1,0 +1,43 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0134.yaml",
+  "run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+  "required_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+  "processes": [
+    {
+      "pid": 2065925,
+      "start_ticks": "53479138",
+      "checks": [
+        {
+          "action": "TERM",
+          "pid": 2065925,
+          "expected_start_ticks": "53479138",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "53479138",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        },
+        {
+          "action": "KILL",
+          "pid": 2065925,
+          "expected_start_ticks": "53479138",
+          "observed_boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "observed_start_ticks": "53479138",
+          "assigned_run_tag_present": true,
+          "identity_verified": true
+        }
+      ],
+      "signals": [
+        "TERM",
+        "KILL"
+      ],
+      "result": "exit_observed_after_KILL"
+    },
+    {
+      "pid": 2066693,
+      "start_ticks": "53480464",
+      "checks": [],
+      "signals": []
+    }
+  ],
+  "signals_sent": 2
+}

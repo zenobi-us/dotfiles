@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0133",
+  "parent_event": "checkpoint-0132",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 9,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0130.yaml",
+  "child_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "child_terminal": "t2mw",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "decision": "User explicitly selected Observe without signals. Permit exact owned Spec boot/PID/start pidfd observation then one fresh native resource report; retain failed immediate-confirmation assertion/pending capture, no new attempt/native/axis/closure rerun.",
+  "authority": {
+    "source": "current user ask selection",
+    "choice": "Observe without signals",
+    "scope": "Check exact boot/PID/start identities, await exit through pidfds, then capture one fresh native resource report. No TERM/KILL, repeated closure, source changes or native/axis reruns."
+  },
+  "spec_run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+  "spec_terminal": "t2n2",
+  "spec_parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "pending_report_ref": "/tmp/scm16-review0047-primary/spec-resources-after-native.json",
+  "processes": [
+    {
+      "pid": 2065925,
+      "start_ticks": "53479138",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51"
+    },
+    {
+      "pid": 2066693,
+      "start_ticks": "53480464",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51"
+    }
+  ],
+  "axis_observations": {
+    "status": "primary reported both actual typed leaves validated/ACKed with0findings; parent final domain consumption still pending",
+    "standards": "0findings/shutdownconfirmed2stopped",
+    "spec": "0findings/shutdownpendingimmediatelyafternormalclosure"
+  },
+  "primary_finding_observation": {
+    "status": "primary reported separate hard first-use issue, not suppressed by leaf0",
+    "file": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "line": 47,
+    "term": "cwd"
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 16,
+    "ticket_attempts_remaining": 84,
+    "dispatches_consumed": 30,
+    "dispatches_remaining": 2470,
+    "omp_token_budget": null
+  },
+  "controls": [
+    "Retain original raw pending report and helper immediate-confirmation assertion. Pending normal shutdown is not source/domain failure.",
+    "Parent signal-free observation only for recorded identities; no name/group/port/extra process signals or repeated kill/rm.",
+    "One fresh native Spec resource capture after observation. If identities remain live/unconfirmed, stop before body/receipt; do not invent confirmed status.",
+    "Both zero-finding leaf domains remain unchanged; primary separate full-feature cwd finding retained distinctly, no manufactured SUCCESS.",
+    "Same primary/source/base/native56 once. No source changes, dependency/environment repair, native/axis rerun or new attempt.",
+    "Parent completion48 unchanged; goal reconciliation now134 aftercheckpoint133."
+  ],
+  "created_at": "2026-11-28T03:26:29.025Z"
+}

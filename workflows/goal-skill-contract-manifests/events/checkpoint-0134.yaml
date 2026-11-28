@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0134",
+  "parent_event": "checkpoint-0133",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 9,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0130.yaml",
+  "child_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "child_terminal": "t2mw",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "decision": "User explicitly selected TERM, then KILL if needed for exactly two recorded owned Spec identities. Fresh boot/start/run-tag checks before each signal; no other processes/source/native/axis operations.",
+  "authority": {
+    "source": "current user ask selection",
+    "choice": "TERM, then KILL if needed",
+    "scope": "Signal only the two recorded identities. Recheck boot, start ticks and assigned run tag before each signal; use KILL only if TERM does not stop them. Preserve all evidence."
+  },
+  "spec_run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+  "spec_parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "processes": [
+    {
+      "pid": 2065925,
+      "start_ticks": "53479138",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "required_run_tag": "f9a23090-28b1-4d00-a052-d1ff240c5fb4"
+    },
+    {
+      "pid": 2066693,
+      "start_ticks": "53480464",
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "required_run_tag": "f9a23090-28b1-4d00-a052-d1ff240c5fb4"
+    }
+  ],
+  "prior_observation_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-spec-signal-free-observation.json",
+  "native_fresh_pending_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-spec-resources-authorized-observation0133-native.json",
+  "scope_owner": "parentt2dv performs exactpidfd signals; primaryt2mw held to avoid duplicate operations",
+  "accounting": {
+    "ticket_attempts_consumed": 16,
+    "ticket_attempts_remaining": 84,
+    "dispatches_consumed": 30,
+    "dispatches_remaining": 2470,
+    "omp_token_budget": null
+  },
+  "controls": [
+    "Only PID2065925/start53479138 and PID2066693/start53480464 under boot1093b557-9bca-45b2-a143-4217cd820f51, assigned Spec runf9a23090-28b1-4d00-a052-d1ff240c5fb4.",
+    "Fresh boot, exact start and assigned run tag before EACH signal; pidfds pin identities. Mismatch =>preserve, stop; never name/group/port/otherPID signals.",
+    "TERM first, boundedexit observation; KILL only ifsame exact identity survives TERM, then boundedobservation. Retain all observed values/actionoutcomes.",
+    "Original immediatepending report/assertion, signal-free observation and freshpending capture retained unchanged.",
+    "No repeatedhc kill/rm, source/skillcontract changes, native/axis reruns or new attempt.",
+    "Separate primary hardfinding015 atstyle-selection.md:48 retained; both immutableleaf domains0 unchanged.",
+    "Same held primary9. Require native finalresource confirmation before solebody/receipt. Parent completion48 unchanged; goal reconciliation now135."
+  ],
+  "created_at": "2026-11-28T05:25:15.748Z"
+}

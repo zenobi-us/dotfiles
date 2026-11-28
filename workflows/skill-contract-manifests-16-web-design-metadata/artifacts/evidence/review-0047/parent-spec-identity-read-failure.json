@@ -1,0 +1,11 @@
+{
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0134.yaml",
+  "operation": "fresh run-tag verification before TERM for second exact identity",
+  "pid": 2066693,
+  "start_ticks": "53480464",
+  "error": "PermissionError errno13 reading /proc/2066693/environ",
+  "signals_to_this_pid": 0,
+  "prior_first_pid_result": "2065925 received identity-verified TERM then identity-verified KILL; exit observed",
+  "original_partial_proof": "parent-authorized-spec-shutdown.json",
+  "no_failed_step_retried": true
+}

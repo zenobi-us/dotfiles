@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0135",
+  "parent_event": "checkpoint-0134",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 9,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0130.yaml",
+  "child_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "child_terminal": "t2mw",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "decision": "User explicitly selected Capture final proof and continue. One final native read-only Spec resource capture; resume same review9 only if both recorded identities confirmed stopped. No further signals or closure commands. Retain partialsignal/EACCES/originalpending proofs.",
+  "authority": {
+    "source": "current user ask selection after interrupted prompt was reasked",
+    "choice": "Capture final proof and continue",
+    "scope": "Preserve EACCES and partial signal logs. No more signals or closure commands. Capture native resource state once; continue same review only if both recorded identities stopped. No source, smoke or axis reruns."
+  },
+  "spec_run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+  "spec_parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "partial_shutdown_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-authorized-spec-shutdown.json",
+  "identity_read_failure_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-spec-identity-read-failure.json",
+  "remaining_exit_observation_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-spec-remaining-exit-observation.json",
+  "observed_results": {
+    "first_pid": 2065925,
+    "first_start_ticks": "53479138",
+    "first_signals": [
+      "TERM",
+      "KILL"
+    ],
+    "first_signal_checks": "fresh boot/start/run-tag allmatch beforeeach; exit observed afterKILL",
+    "second_pid": 2066693,
+    "second_start_ticks": "53480464",
+    "second_signals": [],
+    "second_result": "EACCES onrun-tag read beforeTERM, guardnotrelaxed/failedstepnotretried; later separatepidfdobservationalreadyabsent"
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 16,
+    "ticket_attempts_remaining": 84,
+    "dispatches_consumed": 30,
+    "dispatches_remaining": 2470,
+    "omp_token_budget": null
+  },
+  "controls": [
+    "Exactly one NEW native Spec resourcecapture, new filename. No more signals/closure/source/native/axis reruns.",
+    "Require raw resources.shutdown confirmed and all recorded identities stopped before solebody/finalreceipt. Pending/unconfirmed =>stop, no invented success.",
+    "Retain immediatepending/assertion, signal-free observation, authorizedfreshpending capture, partialshutdown/error/remainingexit proof unchanged.",
+    "Resume SAME held primary9 onlyafterconfirmed; no duplicatephase/attempt.",
+    "Native56 stays once beforehold; all11 frozen b0d/treec163, base72e2.",
+    "Both immutableleafdomains0 findings stayunchanged. Separate primary hardstandards015 atstyle-selection.md:48 determines actualcombinedFAILURE; no suppressedfinding or fakeleafverdict.",
+    "Parent completion48 unchanged; goal reconciliation now136."
+  ],
+  "created_at": "2026-11-28T05:31:33.602Z"
+}
