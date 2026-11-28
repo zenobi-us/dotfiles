@@ -1,0 +1,16 @@
+{
+  "retained_capture_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/body-preflight-mismatch-capture.json",
+  "exit_code": 0,
+  "expected_equals_actual": true,
+  "bytes": 7210,
+  "sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "actual_failed_condition": "Helper incorrectly also required empty stderr. Known mise warning is not a source/native failure or byte mismatch.",
+  "original_mislabelled_failure_preserved": true,
+  "mq_reruns": 0,
+  "environment_changes": false,
+  "source_changes": false,
+  "body_published": false,
+  "receipt_published": false,
+  "required_next": "Scoped user decision before final publication; no automatic guard suppression."
+}

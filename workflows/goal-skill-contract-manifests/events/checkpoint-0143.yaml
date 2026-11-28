@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0143",
+  "parent_event": "checkpoint-0142",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+  "phase": "review",
+  "attempt": 10,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0140.yaml",
+  "child_run_id": "1987bd65-c067-4a86-bc7b-a690271ce21d",
+  "child_terminal": "t2tf",
+  "source_commit": "a30ab1903988834d63abd2b997659e103112a88f",
+  "source_tree": "c78f0057fbb2be8e003ed7fd7a381d91eba0486d",
+  "review_base_commit": "404991992d4514434abf4ae60dba4e8475984337",
+  "decision": "User explicitly selected Accept warning and continue. Correct ONLY known-warning empty-stderr precondition; use SAME exact captured MQ bytes for sole publication, preserve original mislabeled assertion/capture, no preflight/native/axis rerun/envrepair/sourcechange.",
+  "authority": {
+    "source": "currentuseraskselection",
+    "choice": "Accept warning and continue",
+    "scope": "Retainstderr/failedassertion; correctonlyemptystderrpreconditionforthisknownwarning, publishexactcapturedbytes. NoMQpreflight/smoke/axisrerun/environmentrepair/sourcechanges."
+  },
+  "retained_capture_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/body-preflight-mismatch-capture.json",
+  "retained_prepublication_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/primary10/body-prepublication.json",
+  "parent_readonly_assessment_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0053/parent-readonly-preflight-assessment.json",
+  "observed_preflight": {
+    "exit_code": 0,
+    "expected_equals_actual": true,
+    "bytes": 7210,
+    "sha256": "8ed0f9b7a5f3d9162b42925a608f1b375878f366ceae2595bcc39e80d5b89685",
+    "formatter_lfs": 1,
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+    "actual_failed_condition": "Helper incorrectlycombinedexpectedbyteswithrequirementempty stderr; knownmise warningonly, notbytemismatch/source/nativefailure",
+    "body_unpublished": true,
+    "receipt_unpublished": true
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 18,
+    "ticket_attempts_remaining": 82,
+    "dispatches_consumed": 32,
+    "dispatches_remaining": 2468,
+    "omp_token_budget": null
+  },
+  "controls": [
+    "Preserve originalbody-prepublication/capture/failedmislabelledassertion byte-identical. Add correctionproof separately.",
+    "SAME captured7210bytes/SHA8ed0 andsameMQquery/content; no preflightrerun/source/content/formatterchange orenvvarrepair.",
+    "Accept ONLY capturedknownmiseDOTFILE_REPO_ROOT warning; no generalerrorsuppression. Finalpublicationmayretainthissamewarningwithexit0/exactbytes. NEWdifferentrequired failure =>STOP.",
+    "Allpriorbothaxesvalidated/ACKed/confirmedshutdown0142 and all11clean sourceguards remain. Native56once7.9875572s/21-35/emptyrunnerstderr; no native/axisrerun.",
+    "ActualusableFAILUREforstandards016 helpcwd/Spec0. No inventedSUCCESSorblockedbodyrelabel.",
+    "Currentprimaryalive/held; continueSAMEreview10 once, no duplicatephase/attempt. Parentcompletion54unchanged; goalreconciliationnow144."
+  ],
+  "created_at": "2026-11-28T09:34:39.587Z"
+}
