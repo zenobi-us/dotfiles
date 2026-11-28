@@ -1,0 +1,30 @@
+{
+  "published_commit": "c68ccc64a060908a1d1bee63e483f9757ad268c6",
+  "normal_push": {
+    "remote": "origin",
+    "ref": "refs/heads/master",
+    "old_remote": "2592ac5673f8a040a6633b3402fab51968ef265e",
+    "new_remote": "c68ccc64a060908a1d1bee63e483f9757ad268c6",
+    "exit": 0,
+    "force": false
+  },
+  "rewritten_evidence_tip": "be67c29f131f058ef5b49b05770281ccc840d942",
+  "original_tip_retained_under": "refs/backup/skill-contract-manifests-18-evidence-5ed618ac",
+  "original_tip": "5ed618ac0486e1b2464740ba01b75ae9ccd25d9b",
+  "raw_archive_exact_reconstruction_sha256": "8cdae5f192188cf38526c2409393cc5636ca2511d7eb31938d3879b5c7d87873",
+  "new_largest_blob_bytes": 22973126,
+  "all244_command_metadata_and43_diagnostics_preserved": true,
+  "only_approved_tip_rewritten": true,
+  "previous_published_history_unchanged": true,
+  "no_lfs_or_validation_rerun": true,
+  "owned_private_preview_files_removed": true,
+  "unrelated_existing_website_commit_preserved": "8d123caf535dd19eee4ea60d4d379a9f0a8b7fb9",
+  "review_source_still": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "branch": "feature/skill-contract-manifests-16-web-design-metadata",
+    "base_branch": "master",
+    "commit": "9d00fc4548d4bd8c5a79aa7d11661ad28dfd4930",
+    "tree": "97a55fab87da13de54a7724062a36adc4626aa70"
+  },
+  "review_body_final_receipt_held_for": "Exact Spec daemon shutdown remains pending after authorized signal-free observation; no signals sent."
+}
