@@ -1,0 +1,423 @@
+{
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+    "read",
+    "--context",
+    "/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/context.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "tool": {
+    "text": "{\n  \"axis\": \"spec\",\n  \"changed_scope\": [\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\",\n    \"mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\"\n  ],\n  \"findings\": [],\n  \"operation_id\": \"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\n  \"parent_run_id\": \"cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\",\n  \"report\": \"Spec: PASS for skill-contract-manifests-16-web-design-metadata. No missing, partial, unasked, or incorrect requirement found. Reviewed the complete canonical ticket and initiative, all 11 current scope files, the original implementation delta, and the final fix delta.\\n\\nThe manifest separates historical numeric-1 acceptance from current string-v2 production. The explicit reader rejects absent, unknown, null, mixed, duplicate, and string-v1 identities. Pure owner hooks use shared persistence for deliberate conversion. Identity-token replacement preserves every other authored byte, unknown property, number lexeme, association, checksum, and capture time. Immutable content and historical paths refuse conversion. Bulk outcomes retain partial fai\u2026\n  \"review_base_commit\": \"72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1\",\n  \"run_id\": \"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\n  \"schemaVersion\": \"review-axis/v1\",\n  \"source_commit\": \"b0d12b0912d15b1c1add96caca33afa573f5144b\",\n  \"source_tree\": \"c163046bd7dd4e1a0874a34215b523a8c13af70a\"\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://63:raw:19-19 to read line 19 whole]",
+    "details": {
+      "wallTimeNoticeEmitted": false,
+      "timeoutSeconds": 60,
+      "wallTimeMs": 418.2805070001632,
+      "trace": {
+        "v": 1,
+        "seq": 18,
+        "status": 0,
+        "rootVpid": 1073741824,
+        "t_ns": 417345367,
+        "script": "set -o pipefail && /home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts read --context /var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/context.json | tee /tmp/scm16-review0047-primary/spec-read-native.json",
+        "units": [
+          {
+            "at": 0,
+            "line": 1,
+            "bytes": 280,
+            "nodes": [
+              {
+                "k": "and_or",
+                "lo": 0,
+                "hi": 280,
+                "state": "ok"
+              },
+              {
+                "k": "pipeline",
+                "lo": 0,
+                "hi": 15,
+                "p": 0,
+                "state": "ok"
+              },
+              {
+                "k": "simple",
+                "lo": 0,
+                "hi": 15,
+                "p": 1,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 23103,
+                "at": 32451,
+                "argv": [
+                  "set",
+                  "-o",
+                  "pipefail"
+                ],
+                "res": "intrinsic",
+                "end_ns": 55554,
+                "end_seq": 5
+              },
+              {
+                "k": "word",
+                "lo": 0,
+                "hi": 3,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 4,
+                "hi": 6,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 7,
+                "hi": 15,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "pipeline",
+                "lo": 19,
+                "hi": 280,
+                "p": 0,
+                "state": "ok",
+                "taken": true
+              },
+              {
+                "k": "simple",
+                "lo": 19,
+                "hi": 222,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 417181871,
+                "at": 67286,
+                "argv": [
+                  "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+                  "read",
+                  "--context",
+                  "/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/context.json"
+                ],
+                "res": "external",
+                "pid": 2072262,
+                "end_ns": 417249157,
+                "end_seq": 16
+              },
+              {
+                "k": "word",
+                "lo": 19,
+                "hi": 104,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 105,
+                "hi": 109,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 110,
+                "hi": 119,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 120,
+                "hi": 222,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "simple",
+                "lo": 225,
+                "hi": 280,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 416720116,
+                "at": 609621,
+                "argv": [
+                  "tee",
+                  "/tmp/scm16-review0047-primary/spec-read-native.json"
+                ],
+                "res": "native",
+                "end_ns": 417329737,
+                "end_seq": 17
+              },
+              {
+                "k": "word",
+                "lo": 225,
+                "hi": 228,
+                "p": 12,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 229,
+                "hi": 280,
+                "p": 12,
+                "state": "skipped"
+              }
+            ],
+            "syntax": "AQAAAAAAAAEAAJgCAQAPAAABAgAPAAADAwADAQADc2V0BAQGAQACLW8FBw8BAAhwaXBlZmFpbAAAAAEABhOYAgAAAgcT3gEAAAQIE2gBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvcmVzdWx0LWRlbGl2ZXJ5L3NjcmlwdHMvcm91dGVyLnRzCWltAQAEcmVhZApudwEACS0tY29udGV4dAt43gEBAGYvdmFyL2hvbWUvemVub2JpdXMvLmxvY2FsL3N0YXRlL3Jlc3VsdC1kZWxpdmVyeS9ydW5zL2Y5YTIzMDkwLTI4YjEtNGQwMC1hMDUyLWQxZmYyNDBjNWZiNC9jb250ZXh0Lmpzb24AAAAM4QGYAgAAAg3hAeQBAQADdGVlDuUBmAIBADMvdG1wL3NjbTE2LXJldmlldzAwNDctcHJpbWFyeS9zcGVjLXJlYWQtbmF0aXZlLmpzb24AAAAC"
+          }
+        ],
+        "history": [
+          {
+            "seq": 1,
+            "t_ns": 0,
+            "event_seq": 257,
+            "vpid": 1073741824,
+            "kind": "RunStart"
+          },
+          {
+            "seq": 3,
+            "t_ns": 32451,
+            "event_seq": 259,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 28,
+              "vpid": 1073741824,
+              "seq": 43
+            },
+            "vpid": 1073741824,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 4,
+            "t_ns": 32451,
+            "event_seq": 260,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 28,
+              "vpid": 1073741824,
+              "seq": 43
+            },
+            "vpid": 1073741824,
+            "kind": "CmdExpanded",
+            "argv": [
+              "set",
+              "-o",
+              "pipefail"
+            ],
+            "assigns": [],
+            "resolved": "intrinsic",
+            "redirs": []
+          },
+          {
+            "seq": 5,
+            "t_ns": 55554,
+            "event_seq": 261,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 28,
+              "vpid": 1073741824,
+              "seq": 43
+            },
+            "vpid": 1073741824,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 23103,
+            "pipestatus": []
+          },
+          {
+            "seq": 6,
+            "t_ns": 56977,
+            "event_seq": 262,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Branch",
+            "construct": "and",
+            "taken": true,
+            "status": 0
+          },
+          {
+            "seq": 7,
+            "t_ns": 63479,
+            "event_seq": 263,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Pipeline"
+          },
+          {
+            "seq": 9,
+            "t_ns": 67286,
+            "event_seq": 265,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741839,
+              "seq": 44
+            },
+            "vpid": 1073741839,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 10,
+            "t_ns": 67286,
+            "event_seq": 266,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741839,
+              "seq": 44
+            },
+            "vpid": 1073741839,
+            "kind": "CmdExpanded",
+            "argv": [
+              "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+              "read",
+              "--context",
+              "/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/context.json"
+            ],
+            "assigns": [],
+            "resolved": "external",
+            "redirs": []
+          },
+          {
+            "seq": 11,
+            "t_ns": 598651,
+            "event_seq": 267,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741839,
+              "seq": 44
+            },
+            "vpid": 1073741839,
+            "kind": "Spawn",
+            "pid": 2072262,
+            "argv": [
+              "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/scripts/router.ts",
+              "read",
+              "--context",
+              "/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/context.json"
+            ]
+          },
+          {
+            "seq": 13,
+            "t_ns": 609621,
+            "event_seq": 269,
+            "u": 0,
+            "n": 12,
+            "command": {
+              "run": 0,
+              "vpid": 1073741840,
+              "seq": 45
+            },
+            "vpid": 1073741840,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 14,
+            "t_ns": 609621,
+            "event_seq": 270,
+            "u": 0,
+            "n": 12,
+            "command": {
+              "run": 0,
+              "vpid": 1073741840,
+              "seq": 45
+            },
+            "vpid": 1073741840,
+            "kind": "CmdExpanded",
+            "argv": [
+              "tee",
+              "/tmp/scm16-review0047-primary/spec-read-native.json"
+            ],
+            "assigns": [],
+            "resolved": "native",
+            "redirs": []
+          },
+          {
+            "seq": 15,
+            "t_ns": 413624882,
+            "u": 0,
+            "n": 12,
+            "command": {
+              "run": 0,
+              "vpid": 1073741840,
+              "seq": 45
+            },
+            "vpid": 1073741840,
+            "kind": "Output",
+            "text": "{\n  \"axis\": \"spec\",\n  \"changed_scope\": [\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts\",\n    \"mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts\",\n    \"mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json\",\n    \"mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json\"\n  ],\n  \"findings\": [],\n  \"operation_id\": \"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\n  \"parent_run_id\": \"cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\",\n  \"report\": \"Spec: PASS for skill-contract-manifests-16-web-design-metadata. No missing, partial, unasked, or incorrect requirement found. Reviewed the complete canonical ticket and initiative, all 11 current scope files, the original implementation delta, and the final fix delta.\\n\\nThe manifest separates historical numeric-1 acceptance from current string-v2 production. The explicit reader rejects absent, unknown, null, mixed, duplicate, and string-v1 identities. Pure owner hooks use shared persistence for deliberate conversion. Identity-token replacement preserves every other authored byte, unknown property, number lexeme, association, checksum, and capture time. Immutable content and historical paths refuse conversion. Bulk outcomes retain partial failures.\\n\\nConsumption resolves installed assets independently of the caller directory and provenance locations. Realpath containment, strict UTF-8 decoding before JSON parsing, and checksum validation stop invalid consumption without repair. No normalization or implicit BOM removal occurs. Intentionally encoded U+FFFD remains valid. The five source associations remain distinct. Prose, opaque assets, and display text receive no independent identity.\\n\\nIndependently inspected the first-use definitions for standards-013/014. Both are resolved without changed contract meaning, literals, commands, or conversion authority. Creator metadata agrees at 0.1.10.\\n\\nParsed the primary\u2019s retained postcommit native execution: 56 expected outcomes, comprising 21 successes and 35 refusals, outer exit 0, empty stderr. Did not rerun native smoke or bun.test/AJV.\\n\\n[INFERENCE] Moving-base generated metadata can still require integration reconciliation. No owning merge attempt occurred; this source review does not approve integration.\",\n  \"review_base_commit\": \"72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1\",\n  \"run_id\": \"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\n  \"schemaVersion\": \"review-axis/v1\",\n  \"source_commit\": \"b0d12b0912d15b1c1add96caca33afa573f5144b\",\n  \"source_tree\": \"c163046bd7dd4e1a0874a34215b523a8c13af70a\"\n}\n",
+            "fd": 1
+          },
+          {
+            "seq": 16,
+            "t_ns": 417249157,
+            "event_seq": 271,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741839,
+              "seq": 44
+            },
+            "vpid": 1073741839,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 417181871,
+            "pipestatus": []
+          },
+          {
+            "seq": 17,
+            "t_ns": 417329737,
+            "event_seq": 272,
+            "u": 0,
+            "n": 12,
+            "command": {
+              "run": 0,
+              "vpid": 1073741840,
+              "seq": 45
+            },
+            "vpid": 1073741840,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 416720116,
+            "pipestatus": []
+          },
+          {
+            "seq": 18,
+            "t_ns": 417345367,
+            "event_seq": 273,
+            "vpid": 1073741824,
+            "kind": "RunEnd",
+            "status": 0
+          }
+        ]
+      },
+      "meta": {
+        "limits": {
+          "columnTruncated": {
+            "maxColumn": 768,
+            "unit": "bytes",
+            "artifactId": "63",
+            "lines": {
+              "first": 19,
+              "last": 19
+            }
+          }
+        }
+      }
+    }
+  }
+}

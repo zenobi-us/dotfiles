@@ -1,0 +1,25 @@
+{
+  "axis": "standards",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "findings": [],
+  "operation_id": "2b9e41d0-47da-42a5-81fa-7147648136c7",
+  "parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "report": "Standards review: no hard violations or actionable heuristic smells found for tracker/tickets/skill-contract-manifests-16-web-design-metadata.md. Reviewed all 11 scope files, the complete original implementation delta, the frozen full-feature delta, and the seven-commit inventory. Canonical ticket, initiative, domain context, and retained receipts came from the publication checkout. Standards-013 and standards-014 are resolved: both complete references define their acronyms at first prose use. The five Inventory records and two identity records retain their meanings. Purpose, readers, dates, referrals, commands, and separate conversion authority remain intact. The added prose respects sentence limits, paragraph limits, vertical collections, two-level lists, and American spelling. Prior table-presentation and spelling corrections remain intact. The implementation keeps pure owner hooks separate from shared persistence. Identity rejection, lossless token replacement, unknown-property preservation, strict catalog decoding, installed-root containment, distinct associations, and checksum refusal remain explicit. Comments explain the relevant ownership and preservation constraints. No additional contract identity appears on prose, assets, or display text. Creator metadata agrees at 0.1.10. Independent runtime check: the absolute sources.ts validate command exited 0 from /tmp and reported the current identity, original capture time, and all five associations. The full native smoke was not rerun. The primary reports its fresh 56-row execution separately; that remains primary-owned evidence. [INFERENCE] Moving-base generated metadata can require integration reconciliation. No merge was attempted, and this risk is not a frozen-source finding.",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "run_id": "2b9e41d0-47da-42a5-81fa-7147648136c7",
+  "schemaVersion": "review-axis/v1",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a"
+}

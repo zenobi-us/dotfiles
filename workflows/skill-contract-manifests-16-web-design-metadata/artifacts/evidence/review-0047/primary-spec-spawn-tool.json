@@ -1,0 +1,533 @@
+{
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "spawn",
+    "--muxer",
+    "herdr-app",
+    "--agent",
+    "omp",
+    "--cwd",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "--result-schema",
+    "review-axis/v1",
+    "--prompt-file",
+    "/tmp/scm16-review0047-primary/spec-prompt.txt",
+    "--title",
+    "skill-contract-manifests-16-web-design-metadata \u00b7 spec review9"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "tool": {
+    "text": "{\"schemaVersion\":\"muxer-spawn/v2\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"target\":\"t2n2\",\"parentRunId\":\"cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\",\"operationId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"contextFile\":\"/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/context.json\",\"deliveryContext\":{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"context\",\"audience\":\"agent\",\"mode\":\"artifact-reference\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"operationId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"target\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb\u2026\n\n\nRan in a temporary shell while the session shell is busy with another command: session variables and functions were unavailable, and nothing set here persists.\n\n[Some lines truncated to 768 bytes. Use artifact://38:raw:1-1 to read line 1 whole]",
+    "details": {
+      "wallTimeNoticeEmitted": false,
+      "timeoutSeconds": 90,
+      "wallTimeMs": 618.552324000746,
+      "trace": {
+        "v": 1,
+        "seq": 18,
+        "status": 0,
+        "rootVpid": 1073741824,
+        "t_ns": 616743568,
+        "script": "set -o pipefail && /home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts spawn --muxer herdr-app --agent omp --cwd /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata --result-schema review-axis/v1 --prompt-file /tmp/scm16-review0047-primary/spec-prompt.txt --title 'skill-contract-manifests-16-web-design-metadata \u00b7 spec review9' | tee /tmp/scm16-review0047-primary/spec-spawn-native.json",
+        "units": [
+          {
+            "at": 0,
+            "line": 1,
+            "bytes": 492,
+            "nodes": [
+              {
+                "k": "and_or",
+                "lo": 0,
+                "hi": 492,
+                "state": "ok"
+              },
+              {
+                "k": "pipeline",
+                "lo": 0,
+                "hi": 15,
+                "p": 0,
+                "state": "ok"
+              },
+              {
+                "k": "simple",
+                "lo": 0,
+                "hi": 15,
+                "p": 1,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 13185,
+                "at": 40095,
+                "argv": [
+                  "set",
+                  "-o",
+                  "pipefail"
+                ],
+                "res": "intrinsic",
+                "end_ns": 53280,
+                "end_seq": 5
+              },
+              {
+                "k": "word",
+                "lo": 0,
+                "hi": 3,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 4,
+                "hi": 6,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 7,
+                "hi": 15,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "pipeline",
+                "lo": 19,
+                "hi": 492,
+                "p": 0,
+                "state": "ok",
+                "taken": true
+              },
+              {
+                "k": "simple",
+                "lo": 19,
+                "hi": 433,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 616593226,
+                "at": 63870,
+                "argv": [
+                  "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+                  "spawn",
+                  "--muxer",
+                  "herdr-app",
+                  "--agent",
+                  "omp",
+                  "--cwd",
+                  "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+                  "--result-schema",
+                  "review-axis/v1",
+                  "--prompt-file",
+                  "/tmp/scm16-review0047-primary/spec-prompt.txt",
+                  "--title",
+                  "skill-contract-manifests-16-web-design-metadata \u00b7 spec review9"
+                ],
+                "res": "external",
+                "pid": 2065201,
+                "end_ns": 616657096,
+                "end_seq": 16
+              },
+              {
+                "k": "word",
+                "lo": 19,
+                "hi": 104,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 105,
+                "hi": 110,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 111,
+                "hi": 118,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 119,
+                "hi": 128,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 129,
+                "hi": 136,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 137,
+                "hi": 140,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 141,
+                "hi": 146,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 147,
+                "hi": 268,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 269,
+                "hi": 284,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 285,
+                "hi": 299,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 300,
+                "hi": 313,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 314,
+                "hi": 359,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 360,
+                "hi": 367,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 368,
+                "hi": 433,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "simple",
+                "lo": 436,
+                "hi": 492,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 616333139,
+                "at": 398496,
+                "argv": [
+                  "tee",
+                  "/tmp/scm16-review0047-primary/spec-spawn-native.json"
+                ],
+                "res": "native",
+                "end_ns": 616731635,
+                "end_seq": 17
+              },
+              {
+                "k": "word",
+                "lo": 436,
+                "hi": 439,
+                "p": 22,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 440,
+                "hi": 492,
+                "p": 22,
+                "state": "skipped"
+              }
+            ],
+            "syntax": "AQAAAAAAAAEAAOwDAQAPAAABAgAPAAADAwADAQADc2V0BAQGAQACLW8FBw8BAAhwaXBlZmFpbAAAAAEABhPsAwAAAgcTsQMAAA4IE2gBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvbXV4ZXItc3ViYWdlbnRzL3NjcmlwdHMvcm91dGVyLnRzCWluAQAFc3Bhd24Kb3YBAActLW11eGVyC3eAAQEACWhlcmRyLWFwcAyBAYgBAQAHLS1hZ2VudA2JAYwBAQADb21wDo0BkgEBAAUtLWN3ZA+TAYwCAQB5L3J1bi9tZWRpYS96ZW5vYml1cy9TdG9yZS9Qcm9qZWN0cy9NaW5lL0dpdGh1Yi9Eb3RmaWxlcy53b3JrdHJlZXMvZmVhdHVyZS1za2lsbC1jb250cmFjdC1tYW5pZmVzdHMtMTYtd2ViLWRlc2lnbi1tZXRhZGF0YRCNApwCAQAPLS1yZXN1bHQtc2NoZW1hEZ0CqwIBAA5yZXZpZXctYXhpcy92MRKsArkCAQANLS1wcm9tcHQtZmlsZRO6AucCAQAtL3RtcC9zY20xNi1yZXZpZXcwMDQ3LXByaW1hcnkvc3BlYy1wcm9tcHQudHh0FOgC7wIBAActLXRpdGxlFfACsQMBAj9za2lsbC1jb250cmFjdC1tYW5pZmVzdHMtMTYtd2ViLWRlc2lnbi1tZXRhZGF0YSDCtyBzcGVjIHJldmlldzkAAAAWtAPsAwAAAhe0A7cDAQADdGVlGLgD7AMBADQvdG1wL3NjbTE2LXJldmlldzAwNDctcHJpbWFyeS9zcGVjLXNwYXduLW5hdGl2ZS5qc29uAAAAAg=="
+          }
+        ],
+        "history": [
+          {
+            "seq": 1,
+            "t_ns": 0,
+            "event_seq": 0,
+            "vpid": 1073741824,
+            "kind": "RunStart"
+          },
+          {
+            "seq": 3,
+            "t_ns": 40095,
+            "event_seq": 2,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 2,
+              "vpid": 1073741824,
+              "seq": 2
+            },
+            "vpid": 1073741824,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 4,
+            "t_ns": 40095,
+            "event_seq": 3,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 2,
+              "vpid": 1073741824,
+              "seq": 2
+            },
+            "vpid": 1073741824,
+            "kind": "CmdExpanded",
+            "argv": [
+              "set",
+              "-o",
+              "pipefail"
+            ],
+            "assigns": [],
+            "resolved": "intrinsic",
+            "redirs": []
+          },
+          {
+            "seq": 5,
+            "t_ns": 53280,
+            "event_seq": 4,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 2,
+              "vpid": 1073741824,
+              "seq": 2
+            },
+            "vpid": 1073741824,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 13185,
+            "pipestatus": []
+          },
+          {
+            "seq": 6,
+            "t_ns": 54542,
+            "event_seq": 5,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Branch",
+            "construct": "and",
+            "taken": true,
+            "status": 0
+          },
+          {
+            "seq": 7,
+            "t_ns": 59592,
+            "event_seq": 6,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Pipeline"
+          },
+          {
+            "seq": 9,
+            "t_ns": 63870,
+            "event_seq": 8,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741825,
+              "seq": 3
+            },
+            "vpid": 1073741825,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 10,
+            "t_ns": 63870,
+            "event_seq": 9,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741825,
+              "seq": 3
+            },
+            "vpid": 1073741825,
+            "kind": "CmdExpanded",
+            "argv": [
+              "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+              "spawn",
+              "--muxer",
+              "herdr-app",
+              "--agent",
+              "omp",
+              "--cwd",
+              "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+              "--result-schema",
+              "review-axis/v1",
+              "--prompt-file",
+              "/tmp/scm16-review0047-primary/spec-prompt.txt",
+              "--title",
+              "skill-contract-manifests-16-web-design-metadata \u00b7 spec review9"
+            ],
+            "assigns": [],
+            "resolved": "external",
+            "redirs": []
+          },
+          {
+            "seq": 11,
+            "t_ns": 386183,
+            "event_seq": 10,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741825,
+              "seq": 3
+            },
+            "vpid": 1073741825,
+            "kind": "Spawn",
+            "pid": 2065201,
+            "argv": [
+              "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+              "spawn",
+              "--muxer",
+              "herdr-app",
+              "--agent",
+              "omp",
+              "--cwd",
+              "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+              "--result-schema",
+              "review-axis/v1",
+              "--prompt-file",
+              "/tmp/scm16-review0047-primary/spec-prompt.txt",
+              "--title",
+              "skill-contract-manifests-16-web-design-metadata \u00b7 spec review9"
+            ]
+          },
+          {
+            "seq": 13,
+            "t_ns": 398496,
+            "event_seq": 12,
+            "u": 0,
+            "n": 22,
+            "command": {
+              "run": 0,
+              "vpid": 1073741826,
+              "seq": 4
+            },
+            "vpid": 1073741826,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 14,
+            "t_ns": 398496,
+            "event_seq": 13,
+            "u": 0,
+            "n": 22,
+            "command": {
+              "run": 0,
+              "vpid": 1073741826,
+              "seq": 4
+            },
+            "vpid": 1073741826,
+            "kind": "CmdExpanded",
+            "argv": [
+              "tee",
+              "/tmp/scm16-review0047-primary/spec-spawn-native.json"
+            ],
+            "assigns": [],
+            "resolved": "native",
+            "redirs": []
+          },
+          {
+            "seq": 15,
+            "t_ns": 611241828,
+            "u": 0,
+            "n": 22,
+            "command": {
+              "run": 0,
+              "vpid": 1073741826,
+              "seq": 4
+            },
+            "vpid": 1073741826,
+            "kind": "Output",
+            "text": "{\"schemaVersion\":\"muxer-spawn/v2\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"target\":\"t2n2\",\"parentRunId\":\"cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\",\"operationId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"contextFile\":\"/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/context.json\",\"deliveryContext\":{\"schemaVersion\":\"result-delivery/v2\",\"kind\":\"context\",\"audience\":\"agent\",\"mode\":\"artifact-reference\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"operationId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"target\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/result.json\",\"schema\":\"review-axis/v1\"}},\"resultTarget\":{\"path\":\"/var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/result.json\",\"ref\":\"file:///var/home/zenobius/.local/state/result-delivery/runs/f9a23090-28b1-4d00-a052-d1ff240c5fb4/result.json\",\"schema\":\"review-axis/v1\"},\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"depth\":2}\n",
+            "fd": 1
+          },
+          {
+            "seq": 16,
+            "t_ns": 616657096,
+            "event_seq": 14,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741825,
+              "seq": 3
+            },
+            "vpid": 1073741825,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 616593226,
+            "pipestatus": []
+          },
+          {
+            "seq": 17,
+            "t_ns": 616731635,
+            "event_seq": 15,
+            "u": 0,
+            "n": 22,
+            "command": {
+              "run": 0,
+              "vpid": 1073741826,
+              "seq": 4
+            },
+            "vpid": 1073741826,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 616333139,
+            "pipestatus": []
+          },
+          {
+            "seq": 18,
+            "t_ns": 616743568,
+            "event_seq": 16,
+            "vpid": 1073741824,
+            "kind": "RunEnd",
+            "status": 0
+          }
+        ]
+      },
+      "meta": {
+        "limits": {
+          "columnTruncated": {
+            "maxColumn": 768,
+            "unit": "bytes",
+            "artifactId": "38",
+            "lines": {
+              "first": 1,
+              "last": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

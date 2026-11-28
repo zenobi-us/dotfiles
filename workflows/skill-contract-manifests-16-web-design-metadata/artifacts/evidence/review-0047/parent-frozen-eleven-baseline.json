@@ -1,0 +1,63 @@
+{
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "bindings": [
+    {
+      "mode": "100644",
+      "git_blob": "f3a91598affe2089d1e130d5f43922b13570983a",
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "8ecd28576c393b9320201949692c479a644cbef3",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "4313780965d87c644c29364fbc10663bb6f566fa",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "f0f3b36b6d9f505ac8d78fbf5e6c2957064fbec1",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "2c722299299bd4054f49bd7e29d5e164b8464103",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "606b19275b7199aa9681c6e9e2e25d7169675912",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md"
+    },
+    {
+      "mode": "100644",
+      "git_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts"
+    },
+    {
+      "mode": "100755",
+      "git_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts"
+    },
+    {
+      "mode": "100755",
+      "git_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts"
+    }
+  ],
+  "method": "Immutable committed objects only; no working/index mutation, tests or source review rerun."
+}

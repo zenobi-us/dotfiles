@@ -124,3 +124,15 @@ Current projections: `projections/pr-draft.md` and `projections/implementation-l
 No implementation question remains. Source is local, not merged or pushed. No extra agents, services, permanent tests, or dependency changes occurred. No source refresh or original-provenance access occurred.
 
 The primary remains live for normal parent closure. Parent owns fresh independent review, acceptance, tracker changes, YAML views, publication commits, and integration.
+
+
+## Latest review: review-0047
+
+- **Verdict:** FAILURE for `b0d12b0912d15b1c1add96caca33afa573f5144b`, tree `c163046bd7dd4e1a0874a34215b523a8c13af70a`.
+- **Independent axes:** Standards and Spec each reported no findings. Their reports remain unchanged.
+- **Primary finding:** `standards-015` at `references/style-selection.md:48` requires prose `cwd` to become current working directory.
+- **Prior findings:** `standards-013` and `standards-014` are resolved.
+- **Validation:** All56 fresh postcommit outcomes match; all11 frozen objects, protected7 and all5assets preserved. No native or axis rerun.
+- **Resources:** Both leaves and all4 primary registered processes are stopped and confirmed. Caller correction132 and exact shutdown133–135 evidence remain retained.
+- **Review:** [Immutable report](../artifacts/reviews/review-review-0047.md).
+- **Reconciliation:** [Validated completion](../events/review-complete-0048.yaml).

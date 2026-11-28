@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "stderr": "",
+  "duration_seconds": 7.571888995997142,
+  "rows": 56,
+  "success0": 21,
+  "expected1": 35,
+  "pass_lines": [
+    "PASS: 56 native commands; identity, historical conversion, authored bytes, style/provenance, integrity and partial bulk boundaries."
+  ],
+  "all_rows_expected": true
+}

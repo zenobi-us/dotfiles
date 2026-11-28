@@ -1,0 +1,17 @@
+{
+  "corrections": [
+    {
+      "operation": "read-only historical receipt inspection",
+      "original_error": "json.decoder.JSONDecodeError at line1 column2: YAML flow document is not JSON",
+      "source_or_native_failure": false,
+      "correction": "Read actual YAML receipts verbatim through read; no source, native, or axis command rerun."
+    }
+  ],
+  "warnings": [
+    {
+      "operation": "mise exec mq reference and initiative reads",
+      "exit_code": 0,
+      "stderr": "DOTFILE_REPO_ROOT unset warning retained in complete mq capture."
+    }
+  ]
+}

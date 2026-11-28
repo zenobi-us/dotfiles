@@ -1,0 +1,24 @@
+{
+  "receipt_ref": "workflows/skill-contract-manifests-16-web-design-metadata/events/review-0047.yaml",
+  "review_artifact_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0047.md",
+  "event_equals_assigned_transport_domain": true,
+  "schemaVersion": "worktree-receipt/v3",
+  "status": "completed",
+  "verdict": "FAILURE",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "primary_finding_ids": [
+    "standards-015"
+  ],
+  "leaf_findings": {
+    "standards": 0,
+    "spec": 0
+  },
+  "transport_sha256": "b55ff4da47c7db390d727ce6f934f4689e51fcaab427659d4940d64cce759879",
+  "review_artifact_sha256": "d9c9c26087bb02f33c6c3827412bcd552c81f61479a5d28a76f89426a28fd454",
+  "body_publications": 1,
+  "writer_calls": 1,
+  "native56_calls": 1,
+  "axes_shutdown": "confirmed",
+  "primary_session_left_for_parent": true
+}

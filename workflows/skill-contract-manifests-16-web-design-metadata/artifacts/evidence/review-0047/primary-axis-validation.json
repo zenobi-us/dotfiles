@@ -1,0 +1,30 @@
+{
+  "caller_shape_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/caller-axis-report-shape.json",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "both_payloads_valid": true,
+  "axes": {
+    "standards": {
+      "run_id": "2b9e41d0-47da-42a5-81fa-7147648136c7",
+      "operation_id": "2b9e41d0-47da-42a5-81fa-7147648136c7",
+      "parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+      "depth": 2,
+      "transport_sha256": "c54a3400238ca1febeecf0487ae47d71694d0e02ce7c0fd00e294ecd3115c6b6",
+      "findings": 0,
+      "read_and_acked": true,
+      "shutdown": "confirmed"
+    },
+    "spec": {
+      "run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+      "operation_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+      "parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+      "depth": 2,
+      "transport_sha256": "18627e331eab539a7f0294642472718debe87562f1bc7bc18dc3f9213e628e32",
+      "findings": 0,
+      "read_and_acked": true,
+      "shutdown": "pending"
+    }
+  },
+  "closure_expectation_error": "Helper assumed immediate confirmed shutdown after normal hc kill/rm. Standards confirmed, Spec remained pending with original identities. Assertion failed. No extra signal or observation retry was sent; primary stopped before solebody/receipt and notified parent."
+}

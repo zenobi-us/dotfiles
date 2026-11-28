@@ -1,0 +1,399 @@
+{
+  "argv": [
+    "hc",
+    "rm",
+    "t2n2"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "tool": {
+    "text": "{\"removed\":\"t2n2\"}\n",
+    "details": {
+      "wallTimeNoticeEmitted": false,
+      "timeoutSeconds": 60,
+      "wallTimeMs": 10.892030000686646,
+      "trace": {
+        "v": 1,
+        "seq": 18,
+        "status": 0,
+        "rootVpid": 1073741824,
+        "t_ns": 10284092,
+        "script": "set -o pipefail && hc rm t2n2 | tee /tmp/scm16-review0047-primary/spec-rm-native.json",
+        "units": [
+          {
+            "at": 0,
+            "line": 1,
+            "bytes": 85,
+            "nodes": [
+              {
+                "k": "and_or",
+                "lo": 0,
+                "hi": 85,
+                "state": "ok"
+              },
+              {
+                "k": "pipeline",
+                "lo": 0,
+                "hi": 15,
+                "p": 0,
+                "state": "ok"
+              },
+              {
+                "k": "simple",
+                "lo": 0,
+                "hi": 15,
+                "p": 1,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 20698,
+                "at": 30528,
+                "argv": [
+                  "set",
+                  "-o",
+                  "pipefail"
+                ],
+                "res": "intrinsic",
+                "end_ns": 51226,
+                "end_seq": 5
+              },
+              {
+                "k": "word",
+                "lo": 0,
+                "hi": 3,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 4,
+                "hi": 6,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 7,
+                "hi": 15,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "pipeline",
+                "lo": 19,
+                "hi": 85,
+                "p": 0,
+                "state": "ok",
+                "taken": true
+              },
+              {
+                "k": "simple",
+                "lo": 19,
+                "hi": 29,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 10180508,
+                "at": 62387,
+                "argv": [
+                  "hc",
+                  "rm",
+                  "t2n2"
+                ],
+                "res": "external",
+                "pid": 2072616,
+                "end_ns": 10242895,
+                "end_seq": 16
+              },
+              {
+                "k": "word",
+                "lo": 19,
+                "hi": 21,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 22,
+                "hi": 24,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 25,
+                "hi": 29,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "simple",
+                "lo": 32,
+                "hi": 85,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 9878423,
+                "at": 399879,
+                "argv": [
+                  "tee",
+                  "/tmp/scm16-review0047-primary/spec-rm-native.json"
+                ],
+                "res": "native",
+                "end_ns": 10278302,
+                "end_seq": 17
+              },
+              {
+                "k": "word",
+                "lo": 32,
+                "hi": 35,
+                "p": 11,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 36,
+                "hi": 85,
+                "p": 11,
+                "state": "skipped"
+              }
+            ],
+            "syntax": "AQAAAAAAAAEAAFUBAA8AAAECAA8AAAMDAAMBAANzZXQEBAYBAAItbwUHDwEACHBpcGVmYWlsAAAAAQAGE1UAAAIHEx0AAAMIExUBAAJoYwkWGAEAAnJtChkdAQAEdDJuMgAAAAsgVQAAAgwgIwEAA3RlZQ0kVQEAMS90bXAvc2NtMTYtcmV2aWV3MDA0Ny1wcmltYXJ5L3NwZWMtcm0tbmF0aXZlLmpzb24AAAAC"
+          }
+        ],
+        "history": [
+          {
+            "seq": 1,
+            "t_ns": 0,
+            "event_seq": 325,
+            "vpid": 1073741824,
+            "kind": "RunStart"
+          },
+          {
+            "seq": 3,
+            "t_ns": 30528,
+            "event_seq": 327,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 32,
+              "vpid": 1073741824,
+              "seq": 55
+            },
+            "vpid": 1073741824,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 4,
+            "t_ns": 30528,
+            "event_seq": 328,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 32,
+              "vpid": 1073741824,
+              "seq": 55
+            },
+            "vpid": 1073741824,
+            "kind": "CmdExpanded",
+            "argv": [
+              "set",
+              "-o",
+              "pipefail"
+            ],
+            "assigns": [],
+            "resolved": "intrinsic",
+            "redirs": []
+          },
+          {
+            "seq": 5,
+            "t_ns": 51226,
+            "event_seq": 329,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 32,
+              "vpid": 1073741824,
+              "seq": 55
+            },
+            "vpid": 1073741824,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 20698,
+            "pipestatus": []
+          },
+          {
+            "seq": 6,
+            "t_ns": 52589,
+            "event_seq": 330,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Branch",
+            "construct": "and",
+            "taken": true,
+            "status": 0
+          },
+          {
+            "seq": 7,
+            "t_ns": 58791,
+            "event_seq": 331,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Pipeline"
+          },
+          {
+            "seq": 9,
+            "t_ns": 62387,
+            "event_seq": 333,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741847,
+              "seq": 56
+            },
+            "vpid": 1073741847,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 10,
+            "t_ns": 67367,
+            "event_seq": 334,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741847,
+              "seq": 56
+            },
+            "vpid": 1073741847,
+            "kind": "CmdExpanded",
+            "argv": [
+              "hc",
+              "rm",
+              "t2n2"
+            ],
+            "assigns": [],
+            "resolved": "external",
+            "redirs": []
+          },
+          {
+            "seq": 11,
+            "t_ns": 387726,
+            "event_seq": 335,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741847,
+              "seq": 56
+            },
+            "vpid": 1073741847,
+            "kind": "Spawn",
+            "pid": 2072616,
+            "argv": [
+              "hc",
+              "rm",
+              "t2n2"
+            ]
+          },
+          {
+            "seq": 13,
+            "t_ns": 399879,
+            "event_seq": 337,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741848,
+              "seq": 57
+            },
+            "vpid": 1073741848,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 14,
+            "t_ns": 399879,
+            "event_seq": 338,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741848,
+              "seq": 57
+            },
+            "vpid": 1073741848,
+            "kind": "CmdExpanded",
+            "argv": [
+              "tee",
+              "/tmp/scm16-review0047-primary/spec-rm-native.json"
+            ],
+            "assigns": [],
+            "resolved": "native",
+            "redirs": []
+          },
+          {
+            "seq": 15,
+            "t_ns": 10136326,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741848,
+              "seq": 57
+            },
+            "vpid": 1073741848,
+            "kind": "Output",
+            "text": "{\"removed\":\"t2n2\"}\n",
+            "fd": 1
+          },
+          {
+            "seq": 16,
+            "t_ns": 10242895,
+            "event_seq": 339,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741847,
+              "seq": 56
+            },
+            "vpid": 1073741847,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 10180508,
+            "pipestatus": []
+          },
+          {
+            "seq": 17,
+            "t_ns": 10278302,
+            "event_seq": 340,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741848,
+              "seq": 57
+            },
+            "vpid": 1073741848,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 9878423,
+            "pipestatus": []
+          },
+          {
+            "seq": 18,
+            "t_ns": 10284092,
+            "event_seq": 341,
+            "vpid": 1073741824,
+            "kind": "RunEnd",
+            "status": 0
+          }
+        ]
+      }
+    }
+  }
+}

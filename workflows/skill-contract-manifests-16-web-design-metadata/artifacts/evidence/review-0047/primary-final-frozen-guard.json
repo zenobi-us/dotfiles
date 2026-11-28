@@ -1,0 +1,42 @@
+{
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "clean": true,
+  "all11_final_working_bindings_equal": true,
+  "protected7_original_blob_proof_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-frozen-bindings.json",
+  "all5_assets_equal": true,
+  "catalog_capture_provenance_associations_preserved": true,
+  "git_status": {
+    "argv": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "exit_code": 0,
+    "duration_seconds": 0.06613969698082656,
+    "stdout": "",
+    "stderr": ""
+  },
+  "git_identities": {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD",
+      "HEAD^{tree}",
+      "--abbrev-ref",
+      "HEAD"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+    "exit_code": 0,
+    "duration_seconds": 0.003784624976105988,
+    "stdout": "b0d12b0912d15b1c1add96caca33afa573f5144b\nc163046bd7dd4e1a0874a34215b523a8c13af70a\nfeature/skill-contract-manifests-16-web-design-metadata\n",
+    "stderr": ""
+  },
+  "both_axis_tabs_absent": true,
+  "standards_shutdown": "confirmed",
+  "spec_shutdown": "confirmed",
+  "native_executions": 1
+}

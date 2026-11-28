@@ -1,0 +1,25 @@
+{
+  "axis": "spec",
+  "changed_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "findings": [],
+  "operation_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+  "parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "report": "Spec: PASS for skill-contract-manifests-16-web-design-metadata. No missing, partial, unasked, or incorrect requirement found. Reviewed the complete canonical ticket and initiative, all 11 current scope files, the original implementation delta, and the final fix delta.\n\nThe manifest separates historical numeric-1 acceptance from current string-v2 production. The explicit reader rejects absent, unknown, null, mixed, duplicate, and string-v1 identities. Pure owner hooks use shared persistence for deliberate conversion. Identity-token replacement preserves every other authored byte, unknown property, number lexeme, association, checksum, and capture time. Immutable content and historical paths refuse conversion. Bulk outcomes retain partial failures.\n\nConsumption resolves installed assets independently of the caller directory and provenance locations. Realpath containment, strict UTF-8 decoding before JSON parsing, and checksum validation stop invalid consumption without repair. No normalization or implicit BOM removal occurs. Intentionally encoded U+FFFD remains valid. The five source associations remain distinct. Prose, opaque assets, and display text receive no independent identity.\n\nIndependently inspected the first-use definitions for standards-013/014. Both are resolved without changed contract meaning, literals, commands, or conversion authority. Creator metadata agrees at 0.1.10.\n\nParsed the primary’s retained postcommit native execution: 56 expected outcomes, comprising 21 successes and 35 refusals, outer exit 0, empty stderr. Did not rerun native smoke or bun.test/AJV.\n\n[INFERENCE] Moving-base generated metadata can still require integration reconciliation. No owning merge attempt occurred; this source review does not approve integration.",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+  "schemaVersion": "review-axis/v1",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a"
+}

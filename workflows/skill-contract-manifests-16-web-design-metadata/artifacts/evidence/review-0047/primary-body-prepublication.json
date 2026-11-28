@@ -1,0 +1,160 @@
+{
+  "receipt_id": "review-0047",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "verdict": "FAILURE",
+  "producer": "review-0047",
+  "formatter_model": "null-input scalar literal without terminal LF; text formatter appends exactly one LF",
+  "expected_bytes": 4903,
+  "expected_sha256": "d9c9c26087bb02f33c6c3827412bcd552c81f61479a5d28a76f89426a28fd454",
+  "actual_capture_bytes": 4903,
+  "actual_capture_sha256": "d9c9c26087bb02f33c6c3827412bcd552c81f61479a5d28a76f89426a28fd454",
+  "exact_byte_equality": true,
+  "candidate_frontmatter_exact": true,
+  "link_checks": [
+    {
+      "text": "Ticket",
+      "url": "../../../../tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "exists": true
+    },
+    {
+      "text": "11-file bindings",
+      "url": "../evidence/review-0047/primary-frozen-bindings.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-frozen-bindings.json",
+      "exists": true
+    },
+    {
+      "text": "fresh Standards leaf",
+      "url": "../evidence/review-0047/primary-standards-read-native.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-standards-read-native.json",
+      "exists": true
+    },
+    {
+      "text": "style-selection.md:48",
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md#L48",
+      "kind": "external",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata/mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "exists": true
+    },
+    {
+      "text": "Exact finding and source-position proof",
+      "url": "../evidence/review-0047/primary-additional-standards-finding.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-additional-standards-finding.json",
+      "exists": true
+    },
+    {
+      "text": "primary inspection",
+      "url": "../evidence/review-0047/primary-manual-inspection.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-manual-inspection.json",
+      "exists": true
+    },
+    {
+      "text": "fresh Spec leaf",
+      "url": "../evidence/review-0047/primary-spec-read-native.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-spec-read-native.json",
+      "exists": true
+    },
+    {
+      "text": "Complete capture",
+      "url": "../evidence/review-0047/primary-native56-postcommit.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-native56-postcommit.json",
+      "exists": true
+    },
+    {
+      "text": "Final clean guard",
+      "url": "../evidence/review-0047/primary-final-frozen-guard.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-final-frozen-guard.json",
+      "exists": true
+    },
+    {
+      "text": "Axis validation",
+      "url": "../evidence/review-0047/primary-axis-validation.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-axis-validation.json",
+      "exists": true
+    },
+    {
+      "text": "Standards proof",
+      "url": "../evidence/review-0047/primary-standards-resources-after-native.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-standards-resources-after-native.json",
+      "exists": true
+    },
+    {
+      "text": "Spec proof",
+      "url": "../evidence/review-0047/primary-spec-resources-final-authority0135-native.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-spec-resources-final-authority0135-native.json",
+      "exists": true
+    },
+    {
+      "text": "Caller correction132",
+      "url": "../../../goal-skill-contract-manifests/events/checkpoint-0132.yaml",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/checkpoint-0132.yaml",
+      "exists": true
+    },
+    {
+      "text": "Observation133",
+      "url": "../../../goal-skill-contract-manifests/events/checkpoint-0133.yaml",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/checkpoint-0133.yaml",
+      "exists": true
+    },
+    {
+      "text": "signal authority134",
+      "url": "../../../goal-skill-contract-manifests/events/checkpoint-0134.yaml",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/checkpoint-0134.yaml",
+      "exists": true
+    },
+    {
+      "text": "final proof135",
+      "url": "../../../goal-skill-contract-manifests/events/checkpoint-0135.yaml",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/goal-skill-contract-manifests/events/checkpoint-0135.yaml",
+      "exists": true
+    },
+    {
+      "text": "Partial signal proof",
+      "url": "../evidence/review-0047/parent-authorized-spec-shutdown.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-authorized-spec-shutdown.json",
+      "exists": true
+    },
+    {
+      "text": "guard failure",
+      "url": "../evidence/review-0047/parent-spec-identity-read-failure.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/parent-spec-identity-read-failure.json",
+      "exists": true
+    },
+    {
+      "text": "Helper corrections",
+      "url": "../evidence/review-0047/primary-helper-corrections.json",
+      "kind": "relative",
+      "target": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-helper-corrections.json",
+      "exists": true
+    }
+  ],
+  "both_axes_validated_acked_closed_confirmed": true,
+  "leaf_findings": {
+    "standards": 0,
+    "spec": 0
+  },
+  "separate_primary_findings": [
+    "standards-015"
+  ],
+  "stderr_warning": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "source_guard_ref": "workflows/skill-contract-manifests-16-web-design-metadata/artifacts/evidence/review-0047/primary-final-frozen-guard.json"
+}

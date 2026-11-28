@@ -1,0 +1,33 @@
+{
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "read_scope": [
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+    "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+  ],
+  "full_feature_diff_ref": "primary-full-feature-diff.json",
+  "fixed_findings": {
+    "standards-013": "Both metadata first-use prose definitions are present: CLI, JSON, UTC, ISO, UTF-8, BOM, SHA-256.",
+    "standards-014": "Upgrade first prose uses define UTF-8 and JSON."
+  },
+  "preservation": {
+    "inventory_records": 5,
+    "identity_records": 2,
+    "separate_conversion_authority": true,
+    "all_literal_commands_retained": true,
+    "all5_asset_blob_and_checksum_equality": true,
+    "catalog_nonidentity_bytes_equal": true,
+    "protected7_blob_equality": true
+  },
+  "runtime_review": "Owner hooks are pure. Shared upgrade writer locks/canonicalizes/persists verified content. Readers resolve bundled root from import.meta.url; no original provenance path access. Strict UTF-8 roundtrip precedes JSON.parse. Identity token replacement preserves all remaining text.",
+  "limits": "Primary observations do not replace either fresh independent axis; no verdict yet."
+}

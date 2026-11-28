@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "wait",
+    "2b9e41d0-47da-42a5-81fa-7147648136c7"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "tool": {
+    "text": "Backgrounded as job bg_6 (killed once it has run 300s in total; `timeout: 0` disables the deadline); its output is injected into the conversation as a follow-up the moment it finishes. Do NOT poll for it (no `sleep`, `ps`, `pgrep`, `top`, `pidwait`, log tailing): every poll is a wasted turn. Do other work, or end your reply and wait to be woken.",
+    "details": {
+      "async": {
+        "state": "running",
+        "jobId": "bg_6",
+        "type": "bash"
+      },
+      "timeoutSeconds": 300
+    }
+  }
+}

@@ -1,0 +1,388 @@
+{
+  "argv": [
+    "herdr-app",
+    "ls"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "tool": {
+    "text": "{\n  \"spaces\": [\n    {\n      \"id\": \"spe45e3a290a7169a83b0357ebf63b9682\",\n      \"name\": \"Dotfiles\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/finance\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tbae75d29018190fc873ff17539081b275\",\n          \"name\": \"t1tb\",\n          \"active\": false,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t27n\",\n              \"pane\": \"p680d280643e3f3e7674213a70d811960\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            },\n            {\n              \"terminal\": \"t2jf\",\n              \"pane\": \"pa8fce4e7bb620b6771502393e7acdba2\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        },\n        {\n          \"id\": \"tbe54ef9a9c03991c5c02d91d7247a167c\",\n          \"name\": \"OMP\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2dv\",\n              \"pane\": \"p7e1ee1978781e9c7b30772486cbade2c\",\n              \"status\": \"working\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"sp1d348e80aaa29bb9e45cfa8b31b7f1c3\",\n      \"name\": \"feature-skill-contract-manifests-16-web-design-metadata\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tb2add55949a7db1d29cf26ed9a8d290d3\",\n          \"name\": \"skill-contract-manifests-16-web-design-metadata \u00b7 review9\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2mw\",\n              \"pane\": \"pc47ac48c30b3850192eaf6fc3aba9727\",\n              \"status\": \"working\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"spca1c0868790ec1d450089b3788844696\",\n      \"name\": \"finance\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tbfb2960b90a0820f66d7835405342e851\",\n          \"name\": \"1\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t1yk\",\n              \"pane\": \"p3f03a96212d38abe75e76f2c3118a3e3\",\n              \"status\": \"idle\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"spfc73af3306768ff31c4d6084d01dbdfe\",\n      \"name\": \"serverfiles\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/finance\",\n      \"machine\": null,\n      \"active\": true,\n      \"tabs\": [\n        {\n          \"id\": \"tb5a7fba06a9a7805c438ad5d0c234a067\",\n          \"name\": \"1\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2h5\",\n              \"pane\": \"peffd8f5f8a76a0de38a293c939115168\",\n              \"status\": \"working\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            },\n            {\n              \"terminal\": \"t2mp\",\n              \"pane\": \"pc002bf3d3a08fe9836571ae4a0e40570\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        },\n        {\n          \"id\": \"tba8b7dfb033315ff63ee91081696ff44a\",\n          \"name\": \"2\",\n          \"active\": false,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2kn\",\n              \"pane\": \"p1076a3e8b811f913ad7c326a7430a45c\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"sp6ea778c6bf0cea6e12ea4aa68ee3c2dc\",\n      \"name\": \"nvim\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tbe7ef56c7ec8782261b57393603647803\",\n          \"name\": \"1\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2jq\",\n              \"pane\": \"pf430dc89dd2e1ee6ad933fc4c98fe816\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            },\n            {\n              \"terminal\": \"t2jr\",\n              \"pane\": \"p0dac007a175dddfb20433520d9a0946a\",\n              \"status\": \"idle\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"recent\": [\n    {\n      \"name\": \"shells-zsh\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/shells-zsh\"\n    },\n    {\n      \"name\": \"commands-terminal\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/commands-terminal\"\n    },\n    {\n      \"name\": \"flux-production-architecture-03-local-nfs\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-03-local-nfs\"\n    },\n    {\n      \"name\": \"\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\"\n    },\n    {\n      \"name\": \"flux-production-architecture-04-production-k0s\",\n      \"folder\": \"/var/home/zenobius/Applications/serverfiles.worktrees/flux-production-architecture-04-production-k0s\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-15-plain-language\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-14-homeassistant\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant\"\n    },\n    {\n      \"name\": \"resolve-skill-contract-manifests-11-artifact-sharing-finish\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish\"\n    },\n    {\n      \"name\": \"flux-production-architecture-02-release-gate\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-02-release-gate\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-18-manifest-coverage\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-11-artifact-sharing\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing\"\n    },\n    {\n      \"name\": \"flux-production-architecture-05-production-nfs\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-05-production-nfs\"\n    },\n    {\n      \"name\": \"flux-production-architecture-01-shared-configuration\",\n      \"folder\": \"/var/home/zenobius/Applications/serverfiles.worktrees/flux-production-architecture-01-shared-configuration\"\n    },\n    {\n      \"name\": \"resolve-skill-contract-manifests-07-shared-context-finish\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-07-shared-context\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context\"\n    },\n    {\n      \"name\": \"resolve-skill-contract-manifests-08-worktree-finish\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-13-twg-benchmark\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-12-backlog-grooming\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-12-backlog-grooming\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-08-worktree\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree\"\n    }\n  ]\n}\n",
+    "details": {
+      "wallTimeNoticeEmitted": false,
+      "timeoutSeconds": 60,
+      "wallTimeMs": 11.396214999258518,
+      "trace": {
+        "v": 1,
+        "seq": 19,
+        "status": 0,
+        "rootVpid": 1073741824,
+        "t_ns": 9908540,
+        "script": "set -o pipefail && herdr-app ls | tee /tmp/scm16-review0047-primary/desktop-final-axes-native.json",
+        "units": [
+          {
+            "at": 0,
+            "line": 1,
+            "bytes": 98,
+            "nodes": [
+              {
+                "k": "and_or",
+                "lo": 0,
+                "hi": 98,
+                "state": "ok"
+              },
+              {
+                "k": "pipeline",
+                "lo": 0,
+                "hi": 15,
+                "p": 0,
+                "state": "ok"
+              },
+              {
+                "k": "simple",
+                "lo": 0,
+                "hi": 15,
+                "p": 1,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 28954,
+                "at": 42500,
+                "argv": [
+                  "set",
+                  "-o",
+                  "pipefail"
+                ],
+                "res": "intrinsic",
+                "end_ns": 71454,
+                "end_seq": 5
+              },
+              {
+                "k": "word",
+                "lo": 0,
+                "hi": 3,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 4,
+                "hi": 6,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 7,
+                "hi": 15,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "pipeline",
+                "lo": 19,
+                "hi": 98,
+                "p": 0,
+                "state": "ok",
+                "taken": true
+              },
+              {
+                "k": "simple",
+                "lo": 19,
+                "hi": 31,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 9731418,
+                "at": 87785,
+                "argv": [
+                  "herdr-app",
+                  "ls"
+                ],
+                "res": "external",
+                "pid": 2270227,
+                "end_ns": 9819203,
+                "end_seq": 17
+              },
+              {
+                "k": "word",
+                "lo": 19,
+                "hi": 28,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 29,
+                "hi": 31,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "simple",
+                "lo": 34,
+                "hi": 98,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 7799872,
+                "at": 2093349,
+                "argv": [
+                  "tee",
+                  "/tmp/scm16-review0047-primary/desktop-final-axes-native.json"
+                ],
+                "res": "native",
+                "end_ns": 9893221,
+                "end_seq": 18
+              },
+              {
+                "k": "word",
+                "lo": 34,
+                "hi": 37,
+                "p": 10,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 38,
+                "hi": 98,
+                "p": 10,
+                "state": "skipped"
+              }
+            ],
+            "syntax": "AQAAAAAAAAEAAGIBAA8AAAECAA8AAAMDAAMBAANzZXQEBAYBAAItbwUHDwEACHBpcGVmYWlsAAAAAQAGE2IAAAIHEx8AAAIIExwBAAloZXJkci1hcHAJHR8BAAJscwAAAAoiYgAAAgsiJQEAA3RlZQwmYgEAPC90bXAvc2NtMTYtcmV2aWV3MDA0Ny1wcmltYXJ5L2Rlc2t0b3AtZmluYWwtYXhlcy1uYXRpdmUuanNvbgAAAAI="
+          }
+        ],
+        "history": [
+          {
+            "seq": 1,
+            "t_ns": 0,
+            "event_seq": 449,
+            "vpid": 1073741824,
+            "kind": "RunStart"
+          },
+          {
+            "seq": 3,
+            "t_ns": 42500,
+            "event_seq": 451,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 44,
+              "vpid": 1073741824,
+              "seq": 75
+            },
+            "vpid": 1073741824,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 4,
+            "t_ns": 42500,
+            "event_seq": 452,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 44,
+              "vpid": 1073741824,
+              "seq": 75
+            },
+            "vpid": 1073741824,
+            "kind": "CmdExpanded",
+            "argv": [
+              "set",
+              "-o",
+              "pipefail"
+            ],
+            "assigns": [],
+            "resolved": "intrinsic",
+            "redirs": []
+          },
+          {
+            "seq": 5,
+            "t_ns": 71454,
+            "event_seq": 453,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 44,
+              "vpid": 1073741824,
+              "seq": 75
+            },
+            "vpid": 1073741824,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 28954,
+            "pipestatus": []
+          },
+          {
+            "seq": 6,
+            "t_ns": 74901,
+            "event_seq": 454,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Branch",
+            "construct": "and",
+            "taken": true,
+            "status": 0
+          },
+          {
+            "seq": 7,
+            "t_ns": 83627,
+            "event_seq": 455,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Pipeline"
+          },
+          {
+            "seq": 9,
+            "t_ns": 87785,
+            "event_seq": 457,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741855,
+              "seq": 76
+            },
+            "vpid": 1073741855,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 10,
+            "t_ns": 1496622,
+            "event_seq": 458,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741855,
+              "seq": 76
+            },
+            "vpid": 1073741855,
+            "kind": "CmdExpanded",
+            "argv": [
+              "herdr-app",
+              "ls"
+            ],
+            "assigns": [],
+            "resolved": "external",
+            "redirs": []
+          },
+          {
+            "seq": 11,
+            "t_ns": 2065647,
+            "event_seq": 459,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741855,
+              "seq": 76
+            },
+            "vpid": 1073741855,
+            "kind": "Spawn",
+            "pid": 2270227,
+            "argv": [
+              "herdr-app",
+              "ls"
+            ]
+          },
+          {
+            "seq": 13,
+            "t_ns": 2093349,
+            "event_seq": 461,
+            "u": 0,
+            "n": 10,
+            "command": {
+              "run": 0,
+              "vpid": 1073741856,
+              "seq": 77
+            },
+            "vpid": 1073741856,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 14,
+            "t_ns": 2093349,
+            "event_seq": 462,
+            "u": 0,
+            "n": 10,
+            "command": {
+              "run": 0,
+              "vpid": 1073741856,
+              "seq": 77
+            },
+            "vpid": 1073741856,
+            "kind": "CmdExpanded",
+            "argv": [
+              "tee",
+              "/tmp/scm16-review0047-primary/desktop-final-axes-native.json"
+            ],
+            "assigns": [],
+            "resolved": "native",
+            "redirs": []
+          },
+          {
+            "seq": 16,
+            "t_ns": 9450993,
+            "u": 0,
+            "n": 10,
+            "command": {
+              "run": 0,
+              "vpid": 1073741856,
+              "seq": 77
+            },
+            "vpid": 1073741856,
+            "kind": "Output",
+            "text": "{\n  \"spaces\": [\n    {\n      \"id\": \"spe45e3a290a7169a83b0357ebf63b9682\",\n      \"name\": \"Dotfiles\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/finance\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tbae75d29018190fc873ff17539081b275\",\n          \"name\": \"t1tb\",\n          \"active\": false,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t27n\",\n              \"pane\": \"p680d280643e3f3e7674213a70d811960\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            },\n            {\n              \"terminal\": \"t2jf\",\n              \"pane\": \"pa8fce4e7bb620b6771502393e7acdba2\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        },\n        {\n          \"id\": \"tbe54ef9a9c03991c5c02d91d7247a167c\",\n          \"name\": \"OMP\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2dv\",\n              \"pane\": \"p7e1ee1978781e9c7b30772486cbade2c\",\n              \"status\": \"working\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"sp1d348e80aaa29bb9e45cfa8b31b7f1c3\",\n      \"name\": \"feature-skill-contract-manifests-16-web-design-metadata\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tb2add55949a7db1d29cf26ed9a8d290d3\",\n          \"name\": \"skill-contract-manifests-16-web-design-metadata \u00b7 review9\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2mw\",\n              \"pane\": \"pc47ac48c30b3850192eaf6fc3aba9727\",\n              \"status\": \"working\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"spca1c0868790ec1d450089b3788844696\",\n      \"name\": \"finance\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tbfb2960b90a0820f66d7835405342e851\",\n          \"name\": \"1\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t1yk\",\n              \"pane\": \"p3f03a96212d38abe75e76f2c3118a3e3\",\n              \"status\": \"idle\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"spfc73af3306768ff31c4d6084d01dbdfe\",\n      \"name\": \"serverfiles\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/finance\",\n      \"machine\": null,\n      \"active\": true,\n      \"tabs\": [\n        {\n          \"id\": \"tb5a7fba06a9a7805c438ad5d0c234a067\",\n          \"name\": \"1\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2h5\",\n              \"pane\": \"peffd8f5f8a76a0de38a293c939115168\",\n              \"status\": \"working\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            },\n            {\n              \"terminal\": \"t2mp\",\n              \"pane\": \"pc002bf3d3a08fe9836571ae4a0e40570\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        },\n        {\n          \"id\": \"tba8b7dfb033315ff63ee91081696ff44a\",\n          \"name\": \"2\",\n          \"active\": false,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2kn\",\n              \"pane\": \"p1076a3e8b811f913ad7c326a7430a45c\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"sp6ea778c6bf0cea6e12ea4aa68ee3c2dc\",\n      \"name\": \"nvim\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n      \"machine\": null,\n      \"active\": false,\n      \"tabs\": [\n        {\n          \"id\": \"tbe7ef56c7ec8782261b57393603647803\",\n          \"name\": \"1\",\n          \"active\": true,\n          \"settled\": false,\n          \"terminals\": [\n            {\n              \"terminal\": \"t2jq\",\n              \"pane\": \"pf430dc89dd2e1ee6ad933fc4c98fe816\",\n              \"status\": null,\n              \"app\": null,\n              \"name\": null,\n              \"sub_agents\": []\n            },\n            {\n              \"terminal\": \"t2jr\",\n              \"pane\": \"p0dac007a175dddfb20433520d9a0946a\",\n              \"status\": \"idle\",\n              \"app\": \"omp\",\n              \"name\": null,\n              \"sub_agents\": []\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"recent\": [\n    {\n      \"name\": \"shells-zsh\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/shells-zsh\"\n    },\n    {\n      \"name\": \"commands-terminal\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/commands-terminal\"\n    },\n    {\n      \"name\": \"flux-production-architecture-03-local-nfs\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-03-local-nfs\"\n    },\n    {\n      \"name\": \"\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\"\n    },\n    {\n      \"name\": \"flux-production-architecture-04-production-k0s\",\n      \"folder\": \"/var/home/zenobius/Applications/serverfiles.worktrees/flux-production-architecture-04-production-k0s\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-15-plain-language\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-14-homeassistant\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant\"\n    },\n    {\n      \"name\": \"resolve-skill-contract-manifests-11-artifact-sharing-finish\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish\"\n    },\n    {\n      \"name\": \"flux-production-architecture-02-release-gate\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-02-release-gate\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-18-manifest-coverage\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-11-artifact-sharing\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing\"\n    },\n    {\n      \"name\": \"flux-production-architecture-05-production-nfs\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/serverfiles.worktrees/flux-production-architecture-05-production-nfs\"\n    },\n    {\n      \"name\": \"flux-production-architecture-01-shared-configuration\",\n      \"folder\": \"/var/home/zenobius/Applications/serverfiles.worktrees/flux-production-architecture-01-shared-configuration\"\n    },\n    {\n      \"name\": \"resolve-skill-contract-manifests-07-shared-context-finish\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-07-shared-context\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context\"\n    },\n    {\n      \"name\": \"resolve-skill-contract-manifests-08-worktree-finish\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-13-twg-benchmark\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-12-backlog-grooming\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-12-backlog-grooming\"\n    },\n    {\n      \"name\": \"feature-skill-contract-manifests-08-worktree\",\n      \"folder\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree\"\n    }\n  ]\n}\n",
+            "fd": 1
+          },
+          {
+            "seq": 17,
+            "t_ns": 9819203,
+            "event_seq": 463,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741855,
+              "seq": 76
+            },
+            "vpid": 1073741855,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 9731418,
+            "pipestatus": []
+          },
+          {
+            "seq": 18,
+            "t_ns": 9893221,
+            "event_seq": 464,
+            "u": 0,
+            "n": 10,
+            "command": {
+              "run": 0,
+              "vpid": 1073741856,
+              "seq": 77
+            },
+            "vpid": 1073741856,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 7799872,
+            "pipestatus": []
+          },
+          {
+            "seq": 19,
+            "t_ns": 9908540,
+            "event_seq": 465,
+            "vpid": 1073741824,
+            "kind": "RunEnd",
+            "status": 0
+          }
+        ]
+      }
+    }
+  }
+}

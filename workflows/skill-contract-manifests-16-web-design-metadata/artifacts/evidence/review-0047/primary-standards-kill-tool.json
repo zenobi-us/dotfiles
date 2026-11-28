@@ -1,0 +1,412 @@
+{
+  "argv": [
+    "hc",
+    "kill",
+    "t2n3"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "tool": {
+    "text": "{\"address\":\"t2n3\",\"argv\":[\"/usr/bin/zsh\",\"-ic\",\"\\\"$@\\\"; exec \\\"$0\\\" -i\",\"/usr/bin/zsh\",\"env\",\"MUXER_SUBAGENT_DEPTH=2\",\"XDG_STATE_HOME=/home/zenobius/.local/state\",\"RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/2b9e41d0-47da-42a5-81fa-7147648136c7/context.json\",\"MUXER_SUBAGENT_RUN_ID=2b9e41d0-47da-42a5-81fa-7147648136c7\",\"MUXER_SUBAGENT_ROLE=child\",\"MUXER_SUBAGENT_PARENT_RUN_ID=cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\",\"omp\",\"--\",\"@/home/zenobius/.local/state/muxer-subagents/runs/2b9e41d0-47da-42a5-81fa-7147648136c7/prompt.md\"],\"cols\":120,\"created_ms\":1795829489192,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"die_with_parent\":false,\"exit_code\":1\u2026\n\n\n[Some lines truncated to 768 bytes. Use artifact://60:raw:1-1 to read line 1 whole]",
+    "details": {
+      "wallTimeNoticeEmitted": false,
+      "timeoutSeconds": 60,
+      "wallTimeMs": 99.58852399885654,
+      "trace": {
+        "v": 1,
+        "seq": 18,
+        "status": 0,
+        "rootVpid": 1073741824,
+        "t_ns": 97272809,
+        "script": "set -o pipefail && hc kill t2n3 | tee /tmp/scm16-review0047-primary/standards-kill-native.json",
+        "units": [
+          {
+            "at": 0,
+            "line": 1,
+            "bytes": 94,
+            "nodes": [
+              {
+                "k": "and_or",
+                "lo": 0,
+                "hi": 94,
+                "state": "ok"
+              },
+              {
+                "k": "pipeline",
+                "lo": 0,
+                "hi": 15,
+                "p": 0,
+                "state": "ok"
+              },
+              {
+                "k": "simple",
+                "lo": 0,
+                "hi": 15,
+                "p": 1,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 26570,
+                "at": 44904,
+                "argv": [
+                  "set",
+                  "-o",
+                  "pipefail"
+                ],
+                "res": "intrinsic",
+                "end_ns": 71474,
+                "end_seq": 5
+              },
+              {
+                "k": "word",
+                "lo": 0,
+                "hi": 3,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 4,
+                "hi": 6,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 7,
+                "hi": 15,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "pipeline",
+                "lo": 19,
+                "hi": 94,
+                "p": 0,
+                "state": "ok",
+                "taken": true
+              },
+              {
+                "k": "simple",
+                "lo": 19,
+                "hi": 31,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 97093734,
+                "at": 86973,
+                "argv": [
+                  "hc",
+                  "kill",
+                  "t2n3"
+                ],
+                "res": "external",
+                "pid": 2072194,
+                "end_ns": 97180707,
+                "end_seq": 16
+              },
+              {
+                "k": "word",
+                "lo": 19,
+                "hi": 21,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 22,
+                "hi": 26,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 27,
+                "hi": 31,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "simple",
+                "lo": 34,
+                "hi": 94,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 96799663,
+                "at": 461454,
+                "argv": [
+                  "tee",
+                  "/tmp/scm16-review0047-primary/standards-kill-native.json"
+                ],
+                "res": "native",
+                "end_ns": 97261117,
+                "end_seq": 17
+              },
+              {
+                "k": "word",
+                "lo": 34,
+                "hi": 37,
+                "p": 11,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 38,
+                "hi": 94,
+                "p": 11,
+                "state": "skipped"
+              }
+            ],
+            "syntax": "AQAAAAAAAAEAAF4BAA8AAAECAA8AAAMDAAMBAANzZXQEBAYBAAItbwUHDwEACHBpcGVmYWlsAAAAAQAGE14AAAIHEx8AAAMIExUBAAJoYwkWGgEABGtpbGwKGx8BAAR0Mm4zAAAACyJeAAACDCIlAQADdGVlDSZeAQA4L3RtcC9zY20xNi1yZXZpZXcwMDQ3LXByaW1hcnkvc3RhbmRhcmRzLWtpbGwtbmF0aXZlLmpzb24AAAAC"
+          }
+        ],
+        "history": [
+          {
+            "seq": 1,
+            "t_ns": 0,
+            "event_seq": 206,
+            "vpid": 1073741824,
+            "kind": "RunStart"
+          },
+          {
+            "seq": 3,
+            "t_ns": 44904,
+            "event_seq": 208,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 25,
+              "vpid": 1073741824,
+              "seq": 34
+            },
+            "vpid": 1073741824,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 4,
+            "t_ns": 44904,
+            "event_seq": 209,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 25,
+              "vpid": 1073741824,
+              "seq": 34
+            },
+            "vpid": 1073741824,
+            "kind": "CmdExpanded",
+            "argv": [
+              "set",
+              "-o",
+              "pipefail"
+            ],
+            "assigns": [],
+            "resolved": "intrinsic",
+            "redirs": []
+          },
+          {
+            "seq": 5,
+            "t_ns": 71474,
+            "event_seq": 210,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 25,
+              "vpid": 1073741824,
+              "seq": 34
+            },
+            "vpid": 1073741824,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 26570,
+            "pipestatus": []
+          },
+          {
+            "seq": 6,
+            "t_ns": 74189,
+            "event_seq": 211,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Branch",
+            "construct": "and",
+            "taken": true,
+            "status": 0
+          },
+          {
+            "seq": 7,
+            "t_ns": 82054,
+            "event_seq": 212,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Pipeline"
+          },
+          {
+            "seq": 9,
+            "t_ns": 86973,
+            "event_seq": 214,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741833,
+              "seq": 35
+            },
+            "vpid": 1073741833,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 10,
+            "t_ns": 93175,
+            "event_seq": 215,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741833,
+              "seq": 35
+            },
+            "vpid": 1073741833,
+            "kind": "CmdExpanded",
+            "argv": [
+              "hc",
+              "kill",
+              "t2n3"
+            ],
+            "assigns": [],
+            "resolved": "external",
+            "redirs": []
+          },
+          {
+            "seq": 11,
+            "t_ns": 444112,
+            "event_seq": 216,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741833,
+              "seq": 35
+            },
+            "vpid": 1073741833,
+            "kind": "Spawn",
+            "pid": 2072194,
+            "argv": [
+              "hc",
+              "kill",
+              "t2n3"
+            ]
+          },
+          {
+            "seq": 13,
+            "t_ns": 461454,
+            "event_seq": 218,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741834,
+              "seq": 36
+            },
+            "vpid": 1073741834,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 14,
+            "t_ns": 461454,
+            "event_seq": 219,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741834,
+              "seq": 36
+            },
+            "vpid": 1073741834,
+            "kind": "CmdExpanded",
+            "argv": [
+              "tee",
+              "/tmp/scm16-review0047-primary/standards-kill-native.json"
+            ],
+            "assigns": [],
+            "resolved": "native",
+            "redirs": []
+          },
+          {
+            "seq": 15,
+            "t_ns": 97026027,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741834,
+              "seq": 36
+            },
+            "vpid": 1073741834,
+            "kind": "Output",
+            "text": "{\"address\":\"t2n3\",\"argv\":[\"/usr/bin/zsh\",\"-ic\",\"\\\"$@\\\"; exec \\\"$0\\\" -i\",\"/usr/bin/zsh\",\"env\",\"MUXER_SUBAGENT_DEPTH=2\",\"XDG_STATE_HOME=/home/zenobius/.local/state\",\"RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/2b9e41d0-47da-42a5-81fa-7147648136c7/context.json\",\"MUXER_SUBAGENT_RUN_ID=2b9e41d0-47da-42a5-81fa-7147648136c7\",\"MUXER_SUBAGENT_ROLE=child\",\"MUXER_SUBAGENT_PARENT_RUN_ID=cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\",\"omp\",\"--\",\"@/home/zenobius/.local/state/muxer-subagents/runs/2b9e41d0-47da-42a5-81fa-7147648136c7/prompt.md\"],\"cols\":120,\"created_ms\":1795829489192,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"die_with_parent\":false,\"exit_code\":1,\"finished_ms\":1795829710618,\"identity\":\"ghostty\",\"keep\":true,\"labels\":{\"herdr.seen\":\"0\",\"herdr.space\":\"sp1d348e80aaa29bb9e45cfa8b31b7f1c3\",\"herdr.tab\":\"tbfd9fb80db8cc3212b43db84ddf1ba728\",\"where\":\"feature-skill-contract-manifests-16-web-design-metadata / skill-contract-manifests-16-web-design-metadata \u00b7 standards review9\"},\"name\":null,\"notify\":true,\"parent\":null,\"pid\":2065348,\"reason\":\"killed\",\"reported\":true,\"rm\":false,\"rows\":40,\"screen\":\"exact\",\"signal\":null,\"state\":\"finished\",\"status\":null,\"status_ms\":1795829710618,\"template\":null,\"title\":\"\u03c0 > \ud83d\udccf SKILL: Review skill contract standards\",\"turn\":1}\n",
+            "fd": 1
+          },
+          {
+            "seq": 16,
+            "t_ns": 97180707,
+            "event_seq": 220,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741833,
+              "seq": 35
+            },
+            "vpid": 1073741833,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 97093734,
+            "pipestatus": []
+          },
+          {
+            "seq": 17,
+            "t_ns": 97261117,
+            "event_seq": 221,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741834,
+              "seq": 36
+            },
+            "vpid": 1073741834,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 96799663,
+            "pipestatus": []
+          },
+          {
+            "seq": 18,
+            "t_ns": 97272809,
+            "event_seq": 222,
+            "vpid": 1073741824,
+            "kind": "RunEnd",
+            "status": 0
+          }
+        ]
+      },
+      "meta": {
+        "limits": {
+          "columnTruncated": {
+            "maxColumn": 768,
+            "unit": "bytes",
+            "artifactId": "60",
+            "lines": {
+              "first": 1,
+              "last": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

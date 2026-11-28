@@ -1,0 +1,199 @@
+{
+  "bindings": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "blob": "4313780965d87c644c29364fbc10663bb6f566fa",
+      "sha256": "ca33880c87addac855ec2880727e4df80052687f066d6810da5fc66435755171",
+      "bytes": 3407,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "blob": "16d989843ab202569632d7af4372e14804a1cc60",
+      "sha256": "ea12d09bce474f16b59befc359fc7508b599305bf4cbc3b55b331c5d7f980981",
+      "bytes": 2000,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+      "sha256": "96a6bd0367752103073d287a8c3dbc7e386c4cd8395da14a4d92894ace6c6a25",
+      "bytes": 514,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "blob": "606b19275b7199aa9681c6e9e2e25d7169675912",
+      "sha256": "8d440016ecbf988620b12ddad3ace0171775f3745bc68565e85030391451b510",
+      "bytes": 5569,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata.md",
+      "blob": "2c722299299bd4054f49bd7e29d5e164b8464103",
+      "sha256": "19b593637c25b2f6cb7be780ee27d61b526c6c8fc70e4523588e13bac684297c",
+      "bytes": 7416,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/source-metadata-upgrade.md",
+      "blob": "f0f3b36b6d9f505ac8d78fbf5e6c2957064fbec1",
+      "sha256": "da975d2f8f124116065778a2d124572f70d302ef2fc7f81e4f03bd517c3f7a85",
+      "bytes": 3455,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "sha256": "065df09b323427003487104c7ccf53d07f306ce24ec3741be651bb40c23cc9d7",
+      "bytes": 7838,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "sha256": "ff08047faf9b864ba5a974fdd158f95b606a45e7c51571fd33f1ac28067a7415",
+      "bytes": 1826,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "sha256": "a1b750a1df4524b3bde4e57fc8a2ca628046638b55420e211b584ba8728001f1",
+      "bytes": 7725,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+      "blob": "f3a91598affe2089d1e130d5f43922b13570983a",
+      "sha256": "d01970fb730313a18e419a394f27854f1bc0eba7ce9fd2c34641f470abbcbc6d",
+      "bytes": 1390,
+      "working_equals_committed": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+      "blob": "8ecd28576c393b9320201949692c479a644cbef3",
+      "sha256": "367c9341bf829eec0b4a369d1104bce1eb117939d135961c61666a542bb741f2",
+      "bytes": 295,
+      "working_equals_committed": true
+    }
+  ],
+  "protected7": [
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/SKILL.md",
+      "old_blob": "4313780965d87c644c29364fbc10663bb6f566fa",
+      "current_blob": "4313780965d87c644c29364fbc10663bb6f566fa",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/assets/sources.json",
+      "old_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+      "current_blob": "16d989843ab202569632d7af4372e14804a1cc60",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/contracts.json",
+      "old_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+      "current_blob": "d836fee30815e3d1d6f494b19d6c5faa8f971216",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/references/style-selection.md",
+      "old_blob": "606b19275b7199aa9681c6e9e2e25d7169675912",
+      "current_blob": "606b19275b7199aa9681c6e9e2e25d7169675912",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/source-metadata.ts",
+      "old_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "current_blob": "89f2cf8d962545533d622d989ebca0556f0d411f",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/scripts/sources.ts",
+      "old_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "current_blob": "1a2a5323618fd87347d58af15f4ecafb2562c0fe",
+      "equal": true
+    },
+    {
+      "path": "mise/conf.d/devtools-agent/bundles/creator/skills/web-design/tests/source-metadata-smoke.ts",
+      "old_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "current_blob": "cce148b205250203af99fff3c98d4312f5f4b000",
+      "equal": true
+    }
+  ],
+  "assets5": [
+    {
+      "style": "report-dashboard",
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "provenance": {
+        "repository": "https://github.com/zenobi-us/llm-benchmarking-margin",
+        "path": "dashboard/DESIGN.md",
+        "localPath": "../llm-benchmarking-margin/dashboard/DESIGN.md"
+      },
+      "original_blob": "f6a33e7fcb5ecbf918674b9394ad6321e2da9d75",
+      "current_blob": "f6a33e7fcb5ecbf918674b9394ad6321e2da9d75",
+      "same_blob": true,
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc",
+      "checksum_equal": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "provenance": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/DESIGN.md",
+        "localPath": "../finance/pkgs/ledger-app/DESIGN.md"
+      },
+      "original_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "current_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "same_blob": true,
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "checksum_equal": true
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "provenance": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/UI-FOUNDATION.md",
+        "localPath": "../finance/pkgs/ledger-app/UI-FOUNDATION.md"
+      },
+      "original_blob": "6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f",
+      "current_blob": "6cb7ef168ab213c975e9ac0a6312f4d8a41efc4f",
+      "same_blob": true,
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3",
+      "checksum_equal": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/DESIGN.md",
+      "provenance": {
+        "repository": "https://github.com/zenobi-us/dotfiles",
+        "path": "DESIGN.md",
+        "localPath": "DESIGN.md"
+      },
+      "original_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "current_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "same_blob": true,
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "checksum_equal": true
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "provenance": {
+        "repository": "https://github.com/zenobi-us/lazyvim.profile",
+        "path": "DESIGN.md",
+        "localPath": "/home/zenobius/.config/nvim/DESIGN.md"
+      },
+      "original_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "current_blob": "632e9ec057ed3accde822cb8943bf8a62b58134c",
+      "same_blob": true,
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9",
+      "checksum_equal": true
+    }
+  ],
+  "catalog_nonidentity_bytes_equal": true,
+  "capturedAt": "2026-10-22T10:12:43.516Z"
+}

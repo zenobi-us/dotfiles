@@ -48,3 +48,6 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 - Review 2026-11-27T21:32:23.324Z: FAILURE. Source `b039c503841014575faf26c16d3dfa61e9c63db6`, tree `29ef53bfe84e272f0ea7e965bc554f33f21f194c`. Two low hard first-use definition findings remain. Spec has no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0041.md).
+
+
+- Review 2026-11-28T05:35:31.689Z: FAILURE. Source `b0d12b0912d15b1c1add96caca33afa573f5144b`, tree `c163046bd7dd4e1a0874a34215b523a8c13af70a`. One primary hard first-use finding remains; both independent leaves reported no findings. [Independent review](../../workflows/skill-contract-manifests-16-web-design-metadata/artifacts/reviews/review-review-0047.md).

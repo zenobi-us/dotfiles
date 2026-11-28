@@ -1,0 +1,92 @@
+{
+  "receipt_id": "review-0047",
+  "transport_sha256": "b55ff4da47c7db390d727ce6f934f4689e51fcaab427659d4940d64cce759879",
+  "event_equals_delivered_domain": true,
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "review_base_commit": "72e2f3b5fd3cb34a6fc7326ebf0ed7a519b797f1",
+  "usable_review": true,
+  "actual_verdict": "FAILURE",
+  "primary_additional_findings": [
+    "standards-015"
+  ],
+  "primary_finding_line": 48,
+  "leaf_findings": {
+    "standards": 0,
+    "spec": 0
+  },
+  "leaf_reports_unchanged": true,
+  "body_bytes": 4903,
+  "body_sha256": "d9c9c26087bb02f33c6c3827412bcd552c81f61479a5d28a76f89426a28fd454",
+  "full_body_read_via_mq": true,
+  "actual_native_rows": 56,
+  "success0": 21,
+  "expected1": 35,
+  "all_expected": true,
+  "outer_exit": 0,
+  "stderr_empty": true,
+  "duration_seconds": 7.571888995997142,
+  "execution": "once fresh postcommit beforehold; no rerun",
+  "all11_independent_parent_git_objects_match": true,
+  "protected7_all5assets_catalog_capture_provenance_order_preserved": true,
+  "prior013_014_resolved": true,
+  "axes": {
+    "standards": {
+      "run_id": "2b9e41d0-47da-42a5-81fa-7147648136c7",
+      "operation_id": "2b9e41d0-47da-42a5-81fa-7147648136c7",
+      "depth": 2,
+      "parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+      "transport_sha256": "c54a3400238ca1febeecf0487ae47d71694d0e02ce7c0fd00e294ecd3115c6b6",
+      "assigned_domain_equal": true,
+      "ack_equal": true,
+      "findings": 0,
+      "shutdown": "confirmed",
+      "registered_processes_stopped": 2
+    },
+    "spec": {
+      "run_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+      "operation_id": "f9a23090-28b1-4d00-a052-d1ff240c5fb4",
+      "depth": 2,
+      "parent_run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+      "transport_sha256": "18627e331eab539a7f0294642472718debe87562f1bc7bc18dc3f9213e628e32",
+      "assigned_domain_equal": true,
+      "ack_equal": true,
+      "findings": 0,
+      "shutdown": "confirmed",
+      "registered_processes_stopped": 2
+    }
+  },
+  "caller_correction_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0132.yaml",
+  "shutdown_authority_refs": [
+    "workflows/goal-skill-contract-manifests/events/checkpoint-0133.yaml",
+    "workflows/goal-skill-contract-manifests/events/checkpoint-0134.yaml",
+    "workflows/goal-skill-contract-manifests/events/checkpoint-0135.yaml"
+  ],
+  "original_pending_assertions_partial_signal_and_eacces_retained": true,
+  "authorized_extra_signals": [
+    {
+      "pid": 2065925,
+      "start_ticks": "53479138",
+      "signals": [
+        "TERM",
+        "KILL"
+      ],
+      "fresh_boot_start_run_tag_checked_before_each": true,
+      "exit_observed": true
+    },
+    {
+      "pid": 2066693,
+      "start_ticks": "53480464",
+      "signals": [],
+      "guard_failure": "EACCES beforeTERM, failedstepnotretried/guardnotrelaxed",
+      "later_absent": true
+    }
+  ],
+  "spec_native_final_shutdown": "confirmed",
+  "primary_normal_shutdown": "confirmed",
+  "primary_registered_processes_stopped": 4,
+  "primary_extra_signals": 0,
+  "source_desktop_absent": true,
+  "source_accepted": false,
+  "integration_attempted": false
+}

@@ -1,0 +1,412 @@
+{
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "resources",
+    "f9a23090-28b1-4d00-a052-d1ff240c5fb4"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata",
+  "tool": {
+    "text": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2n2\",\"createdAt\":\"2026-11-28T01:31:29.151Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"parentRunId\":\"cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"observedAt\":\"2026-11-28T05:31:54.778Z\",\"processes\":[{\"pid\":2065925,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"53479138\",\"command\":\"omp\",\"parentPid\":2065336,\"cwd\":\"/run/media/zenobius/Store\u2026\n\n\n[Some lines truncated to 768 bytes. Use artifact://81:raw:1-1 to read line 1 whole]",
+    "details": {
+      "wallTimeNoticeEmitted": false,
+      "timeoutSeconds": 60,
+      "wallTimeMs": 589.8843419998884,
+      "trace": {
+        "v": 1,
+        "seq": 18,
+        "status": 0,
+        "rootVpid": 1073741824,
+        "t_ns": 588392488,
+        "script": "set -o pipefail && /home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts resources f9a23090-28b1-4d00-a052-d1ff240c5fb4 | tee /tmp/scm16-review0047-primary/spec-resources-final-authority0135-native.json",
+        "units": [
+          {
+            "at": 0,
+            "line": 1,
+            "bytes": 234,
+            "nodes": [
+              {
+                "k": "and_or",
+                "lo": 0,
+                "hi": 234,
+                "state": "ok"
+              },
+              {
+                "k": "pipeline",
+                "lo": 0,
+                "hi": 15,
+                "p": 0,
+                "state": "ok"
+              },
+              {
+                "k": "simple",
+                "lo": 0,
+                "hi": 15,
+                "p": 1,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 30207,
+                "at": 50925,
+                "argv": [
+                  "set",
+                  "-o",
+                  "pipefail"
+                ],
+                "res": "intrinsic",
+                "end_ns": 81132,
+                "end_seq": 5
+              },
+              {
+                "k": "word",
+                "lo": 0,
+                "hi": 3,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 4,
+                "hi": 6,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 7,
+                "hi": 15,
+                "p": 2,
+                "state": "skipped"
+              },
+              {
+                "k": "pipeline",
+                "lo": 19,
+                "hi": 234,
+                "p": 0,
+                "state": "ok",
+                "taken": true
+              },
+              {
+                "k": "simple",
+                "lo": 19,
+                "hi": 151,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 588196772,
+                "at": 98364,
+                "argv": [
+                  "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+                  "resources",
+                  "f9a23090-28b1-4d00-a052-d1ff240c5fb4"
+                ],
+                "res": "external",
+                "pid": 2268442,
+                "end_ns": 588295136,
+                "end_seq": 16
+              },
+              {
+                "k": "word",
+                "lo": 19,
+                "hi": 104,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 105,
+                "hi": 114,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 115,
+                "hi": 151,
+                "p": 7,
+                "state": "skipped"
+              },
+              {
+                "k": "simple",
+                "lo": 154,
+                "hi": 234,
+                "p": 6,
+                "state": "ok",
+                "runs": 1,
+                "st": 0,
+                "ns": 587778689,
+                "at": 597148,
+                "argv": [
+                  "tee",
+                  "/tmp/scm16-review0047-primary/spec-resources-final-authority0135-native.json"
+                ],
+                "res": "native",
+                "end_ns": 588375837,
+                "end_seq": 17
+              },
+              {
+                "k": "word",
+                "lo": 154,
+                "hi": 157,
+                "p": 11,
+                "state": "skipped"
+              },
+              {
+                "k": "word",
+                "lo": 158,
+                "hi": 234,
+                "p": 11,
+                "state": "skipped"
+              }
+            ],
+            "syntax": "AQAAAAAAAAEAAOoBAQAPAAABAgAPAAADAwADAQADc2V0BAQGAQACLW8FBw8BAAhwaXBlZmFpbAAAAAEABhPqAQAAAgcTlwEAAAMIE2gBAFUvaG9tZS96ZW5vYml1cy8ub21wL2FnZW50L2J1bmRsZXMvYWdlbnQtY29yZS9za2lsbHMvbXV4ZXItc3ViYWdlbnRzL3NjcmlwdHMvcm91dGVyLnRzCWlyAQAJcmVzb3VyY2VzCnOXAQEAJGY5YTIzMDkwLTI4YjEtNGQwMC1hMDUyLWQxZmYyNDBjNWZiNAAAAAuaAeoBAAACDJoBnQEBAAN0ZWUNngHqAQEATC90bXAvc2NtMTYtcmV2aWV3MDA0Ny1wcmltYXJ5L3NwZWMtcmVzb3VyY2VzLWZpbmFsLWF1dGhvcml0eTAxMzUtbmF0aXZlLmpzb24AAAAC"
+          }
+        ],
+        "history": [
+          {
+            "seq": 1,
+            "t_ns": 0,
+            "event_seq": 425,
+            "vpid": 1073741824,
+            "kind": "RunStart"
+          },
+          {
+            "seq": 3,
+            "t_ns": 50925,
+            "event_seq": 427,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 42,
+              "vpid": 1073741824,
+              "seq": 71
+            },
+            "vpid": 1073741824,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 4,
+            "t_ns": 50925,
+            "event_seq": 428,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 42,
+              "vpid": 1073741824,
+              "seq": 71
+            },
+            "vpid": 1073741824,
+            "kind": "CmdExpanded",
+            "argv": [
+              "set",
+              "-o",
+              "pipefail"
+            ],
+            "assigns": [],
+            "resolved": "intrinsic",
+            "redirs": []
+          },
+          {
+            "seq": 5,
+            "t_ns": 81132,
+            "event_seq": 429,
+            "u": 0,
+            "n": 2,
+            "command": {
+              "run": 42,
+              "vpid": 1073741824,
+              "seq": 71
+            },
+            "vpid": 1073741824,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 30207,
+            "pipestatus": []
+          },
+          {
+            "seq": 6,
+            "t_ns": 83736,
+            "event_seq": 430,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Branch",
+            "construct": "and",
+            "taken": true,
+            "status": 0
+          },
+          {
+            "seq": 7,
+            "t_ns": 92503,
+            "event_seq": 431,
+            "u": 0,
+            "n": 6,
+            "vpid": 1073741824,
+            "kind": "Pipeline"
+          },
+          {
+            "seq": 9,
+            "t_ns": 98364,
+            "event_seq": 433,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741853,
+              "seq": 72
+            },
+            "vpid": 1073741853,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 10,
+            "t_ns": 98364,
+            "event_seq": 434,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741853,
+              "seq": 72
+            },
+            "vpid": 1073741853,
+            "kind": "CmdExpanded",
+            "argv": [
+              "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+              "resources",
+              "f9a23090-28b1-4d00-a052-d1ff240c5fb4"
+            ],
+            "assigns": [],
+            "resolved": "external",
+            "redirs": []
+          },
+          {
+            "seq": 11,
+            "t_ns": 577401,
+            "event_seq": 435,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741853,
+              "seq": 72
+            },
+            "vpid": 1073741853,
+            "kind": "Spawn",
+            "pid": 2268442,
+            "argv": [
+              "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+              "resources",
+              "f9a23090-28b1-4d00-a052-d1ff240c5fb4"
+            ]
+          },
+          {
+            "seq": 13,
+            "t_ns": 597148,
+            "event_seq": 437,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741854,
+              "seq": 73
+            },
+            "vpid": 1073741854,
+            "kind": "CmdStart"
+          },
+          {
+            "seq": 14,
+            "t_ns": 597148,
+            "event_seq": 438,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741854,
+              "seq": 73
+            },
+            "vpid": 1073741854,
+            "kind": "CmdExpanded",
+            "argv": [
+              "tee",
+              "/tmp/scm16-review0047-primary/spec-resources-final-authority0135-native.json"
+            ],
+            "assigns": [],
+            "resolved": "native",
+            "redirs": []
+          },
+          {
+            "seq": 15,
+            "t_ns": 583639771,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741854,
+              "seq": 73
+            },
+            "vpid": 1073741854,
+            "kind": "Output",
+            "text": "{\"schemaVersion\":\"muxer-resource-report/v2\",\"manifest\":{\"schemaVersion\":\"muxer-run/v2\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t2n2\",\"createdAt\":\"2026-11-28T01:31:29.151Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"operationId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"parentRunId\":\"cc605e9b-863f-4787-8ae7-d9c5ff01c0d6\"},\"resources\":{\"schemaVersion\":\"muxer-resources/v2\",\"runId\":\"f9a23090-28b1-4d00-a052-d1ff240c5fb4\",\"observedAt\":\"2026-11-28T05:31:54.778Z\",\"processes\":[{\"pid\":2065925,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"53479138\",\"command\":\"omp\",\"parentPid\":2065336,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"stopped\"},{\"pid\":2066693,\"bootId\":\"1093b557-9bca-45b2-a143-4217cd820f51\",\"startTicks\":\"53480464\",\"command\":\"omp\",\"parentPid\":2065925,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-16-web-design-metadata\",\"state\":\"stopped\"}],\"shutdown\":\"confirmed\"}}\n",
+            "fd": 1
+          },
+          {
+            "seq": 16,
+            "t_ns": 588295136,
+            "event_seq": 439,
+            "u": 0,
+            "n": 7,
+            "command": {
+              "run": 0,
+              "vpid": 1073741853,
+              "seq": 72
+            },
+            "vpid": 1073741853,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 588196772,
+            "pipestatus": []
+          },
+          {
+            "seq": 17,
+            "t_ns": 588375837,
+            "event_seq": 440,
+            "u": 0,
+            "n": 11,
+            "command": {
+              "run": 0,
+              "vpid": 1073741854,
+              "seq": 73
+            },
+            "vpid": 1073741854,
+            "kind": "CmdEnd",
+            "status": 0,
+            "dur_ns": 587778689,
+            "pipestatus": []
+          },
+          {
+            "seq": 18,
+            "t_ns": 588392488,
+            "event_seq": 441,
+            "vpid": 1073741824,
+            "kind": "RunEnd",
+            "status": 0
+          }
+        ]
+      },
+      "meta": {
+        "limits": {
+          "columnTruncated": {
+            "maxColumn": 768,
+            "unit": "bytes",
+            "artifactId": "81",
+            "lines": {
+              "first": 1,
+              "last": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

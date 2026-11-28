@@ -1,0 +1,8 @@
+{
+  "pid": 1946878,
+  "start_ticks": "52210391",
+  "run_id": "cc605e9b-863f-4787-8ae7-d9c5ff01c0d6",
+  "signals_sent": 0,
+  "method": "signal-free exact pidfd exit observation after normal primary closure",
+  "result": "already_absent"
+}
