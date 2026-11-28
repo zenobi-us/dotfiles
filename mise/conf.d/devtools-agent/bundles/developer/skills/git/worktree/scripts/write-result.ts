@@ -15,6 +15,7 @@ import { generateReceipt } from "./phase-context";
 import { receiptIdentity, strictReceipt } from "./contract-identity";
 import { readContextResolution } from "./context-resolution";
 import { relocateRepository } from "./repository-relocation";
+import { validateReceiptArtifacts, validateReceiptSize } from "./receipt-size";
 
 const sharedContextCli = fileURLToPath(new URL("../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts", import.meta.url));
 const app = new Crust("write-worktree-result").meta({ description: "Write one immutable worktree phase-result receipt and deliver the same object to its caller." }).flags({
@@ -33,7 +34,7 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     if (!isAbsolute(flags.repository)) throw new Error("--repository must be absolute");
     if (flags.format !== undefined && flags.format !== "human" && flags.format !== "json") throw new Error("--format must be human or json");
     let context = flags["parent-event"] ? undefined : await loadDeliveryContext(flags["delivery-context"]);
-    if (context?.mode === "artifact-reference" && !["worktree-receipt/v1", "worktree-receipt/v2", "worktree-receipt/v3"].includes(context.target?.schema ?? "")) throw new Error("The handoff must expect a supported worktree-receipt schema");
+    if (context?.mode === "artifact-reference" && !["worktree-receipt/v1", "worktree-receipt/v2", "worktree-receipt/v3", "worktree-receipt/v4"].includes(context.target?.schema ?? "")) throw new Error("The handoff must expect a supported worktree-receipt schema");
     if (context && context.mode !== "artifact-reference" && flags.format) context = { ...context, mode: flags.format, audience: flags.format === "human" ? "human" : "machine" };
     const text = flags.input ? await Bun.file(flags.input).text() : await Bun.stdin.text();
     const input = object(JSON.parse(text));
@@ -149,11 +150,24 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
       const issues = receiptParentIssues(receipt, parent).filter(issue => issue.severity === "error");
       if (issues.length) throw new Error(issues.map(issue => `[${issue.code}] ${issue.message}`).join("\n"));
     }
+    const serialized = Bun.YAML.stringify(receipt);
+    validateReceiptSize(receipt, serialized);
+    let evidenceTarget: Record<string, unknown> | undefined;
+    if (receipt.schemaVersion === "worktree-receipt/v4" && receipt.evidence != null) {
+      const evidence = object(receipt.evidence);
+      const runId = typeof evidence.ref === "string" ? evidence.ref.split("/").at(-1) : undefined;
+      if (!runId || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(runId)) throw new Error("Evidence must name a resolved evidence run");
+      const resolved = Bun.spawnSync([sharedContextCli, "resolve", "evidence", "--workflow", String(workflowId), "--run", runId, "--json"], { cwd: flags.repository, stdout: "pipe", stderr: "pipe" });
+      if (resolved.exitCode !== 0) throw new Error("Shared-context could not resolve the evidence run. No receipt was written.");
+      evidenceTarget = { ...await readContextResolution(JSON.parse(new TextDecoder().decode(resolved.stdout))) };
+      if (evidenceTarget.kind !== "evidence" || evidenceTarget.ref !== evidence.ref || evidenceTarget.store !== evidence.store) throw new Error("Receipt evidence does not match the independently resolved evidence run");
+    }
+    await validateReceiptArtifacts(receipt, target, evidenceTarget);
     await mkdir(dirname(destination), { recursive: true });
     // Store roots can use system aliases such as /home; workflow descendants still require no-follow traversal.
     const storageDestination = join(await realpath(String(target.root)), relative(String(target.root), destination));
     publicationAttempted = true;
-    receiptWritten = await publishImmutableFile(storageDestination, Bun.YAML.stringify(receipt));
+    receiptWritten = await publishImmutableFile(storageDestination, serialized);
     if (!receiptWritten) throw new Error("The receipt already exists. Inspect it; do not repeat the phase. Use delivery recovery to resend an existing result.");
     console.log(context ? await deliverResult(receipt, context) : JSON.stringify(receipt, null, 2));
   } catch (error) {

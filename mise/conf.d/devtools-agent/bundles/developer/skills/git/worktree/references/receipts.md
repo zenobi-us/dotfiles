@@ -2,7 +2,7 @@
 
 Use receipts as the durable record for every worktree phase. Read [Contract boundaries](contracts.md) for owner definitions, current output, retained handoffs and authorized view upgrades.
 
-New phase executions use `worktree-receipt/v3`. Retained `worktree-receipt/v1` and `worktree-receipt/v2` events and explicitly authorized v1 envelope repairs keep their original semantics. Preserve original bytes. Mixed parent chains are valid. Read [Concurrent work streams](concurrency.md) before start, review, goal dispatch or finish. It owns cross-initiative coordination and the distinction between source review and integration validation.
+New phase executions use `worktree-receipt/v4`. Retained `worktree-receipt/v1`, `worktree-receipt/v2` and `worktree-receipt/v3` events and explicitly authorized v1 envelope repairs keep their original semantics. Preserve original bytes. Mixed parent chains are valid. Read [Concurrent work streams](concurrency.md) before start, review, goal dispatch or finish. It owns cross-initiative coordination and the distinction between source review and integration validation.
 
 Use the absolute installed `scripts/write-result.ts` with `--parent-event --repository <absolute-repository> --phase-context <phase-context.json> --input <outcome.json>` for parent records. Omit `--parent-event` for child results and use the assigned v2 delivery context. Parent writes do not consume child result slots. The writer validates store/source identity and refuses duplicate events. It resolves the configured store root to its physical path for publication, so system aliases such as `/home` work without changing receipt root fields or stable references. Workflow descendants still use no-follow traversal; symlinked event directories and event files remain rejected. Before publishing v2 events, it also checks the parent identity and timestamp. A child result must name its matching phase-start receipt for the same ticket. A successful phase completion must name its matching child result and preserve that result’s source commit, tree, branch and status. Failed launches can close an attempt without a child result.
 
@@ -110,7 +110,7 @@ For an explicitly authorized v1 repair, pass `--repair-authorization <approval-i
 
 An explicitly authorized history repair may restore missing receipts from retained source-worktree or Git records. Create byte-identical copies with exclusive writes; record their source and SHA-256. Preserve every original receipt and parent link.
 
-To supplement a malformed historical envelope, append a normal receipt with a valid parent and current source identity. An authorized repair may retain the historical v1 envelope; do not invent v2 candidate evidence for an old integration. New phase executions use v3. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and one or more of:
+To supplement a malformed historical envelope, append a normal receipt with a valid parent and current source identity. An authorized repair may retain the historical v1 envelope; do not invent v2 candidate evidence for an old integration. New phase executions use v4. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and one or more of:
 
 - `evidence`: the missing `{store, ref}` envelope. It must identify an existing object in the independently resolved evidence store under this workflow. Preserve the recorded evidence; do not invent an execution.
 - `normalize_workflow_root: true`: normalize a historical repository-worktree store root to the current workflow store root. The original root must equal the recorded worktree; repository, store and workflow reference must already match.
@@ -124,7 +124,7 @@ For a terminal v1 finish repair, retain the exact reviewed source commit/tree an
 
 ### Moved publication checkout
 
-For a moved base checkout, use `relocate_repository: {from, to}` in each checksum-bound history supplement. Append a v3 `operator-approval` with `status: approved`, explicit repair authorization, all target receipts in `inputs`, and a valid parent. Publish it with the installed `scripts/write-result.ts --parent-event --repository <current-checkout> --phase-context <context.json> --input <outcome.json>`.
+For a moved base checkout, use `relocate_repository: {from, to}` in each checksum-bound history supplement. Append a v4 `operator-approval` with `status: approved`, explicit repair authorization, all target receipts in `inputs`, and a valid parent. Publish it with the installed `scripts/write-result.ts --parent-event --repository <current-checkout> --phase-context <context.json> --input <outcome.json>`.
 
 The old path MUST be absent. Its recorded `repository` and `workflow.root` MUST both equal `from`; `to` MUST equal the current publication checkout. The workflow store and reference MUST remain unchanged. A surviving source worktree MUST share the current checkout's real Git common directory. Its recorded commit/tree MUST exist, and the commit MUST be an ancestor of its current HEAD. A matching remote or copied commit is insufficient.
 
@@ -154,7 +154,7 @@ For active workflows, `repository` MAY name another existing checkout of the sam
 Every ticket-phase receipt MUST include:
 
 ```yaml
-schemaVersion: worktree-receipt/v3
+schemaVersion: worktree-receipt/v4
 receipt_id: review-0003
 workflow_id: GH-42
 phase: review
@@ -211,16 +211,62 @@ Temporary handoffs MUST NOT appear as authoritative outputs.
 When dispatched by a goal coordinator, every phase handoff and ticket-phase receipt MUST carry `goal_run_id` and `goal_dispatch_ref`. Include the reservation in receipt `inputs`; parent and child phases preserve these fields. A standalone worktree command omits them. Keep the goal run fixed across the receipt chain. Each new phase-start may name its own reserved dispatch; its child result and parent completion must retain that phase dispatch. Reconciliation may link older receipts through a new coordinator event without rewriting those receipts.
 
 When an input or output references an external evidence object, include its
-`sha256` checksum with the stable `ref`. Local file evidence does not need a
-checksum.
+`sha256` checksum with the stable `ref`. V4 file artifacts require a checksum and byte count, including local files. Historical local file evidence does not need a checksum.
 
 Implementation receipts MUST also record changed files, validation results, the implementation summary, and open questions.
 
-Completed review receipts MUST record `verdict: SUCCESS|FAILURE` and every finding with an ID, severity, ADR reference, file, line, description, required change, and validation command.
+Completed v4 review receipts MUST record `verdict: SUCCESS|FAILURE` and compact finding metadata or a finding-manifest reference. The immutable review artifact MUST contain every full finding, including ID, severity, ADR reference, file, line, description, required change, and validation command.
 
 When a blocked or failed review has no usable verdict, omit `verdict`. An explicit verdict MUST be `SUCCESS` or `FAILURE`. A missing verdict does not establish review success.
 
 Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, unresolved finding IDs, validation results, and the new source commit.
+
+## Bounded receipt content
+
+New v4 receipts are metadata records, not evidence containers. Preserve all v1-v3 historical bytes. Never truncate evidence or rewrite an old event to meet these limits.
+
+| Boundary | Maximum UTF-8 bytes |
+| --- | ---: |
+| Complete serialized YAML event | 65,536 |
+| Complete pretty-printed JSON result | 65,536 |
+| Each string value | 2,048 |
+| Aggregate narrative text | 8,192 |
+| Each field name | 128 |
+
+The writer checks the generated envelope before creating an event or delivering a result. It rejects oversized content with its measured size and an artifact-extraction instruction. It does not auto-extract, truncate, or silently drop fields.
+
+Keep identity, status, source hashes, commands, working directories, exit codes, finding IDs and short outcomes inline. Store full logs, reports, diffs, file contents, review findings, transcripts, snapshots and binary evidence in immutable artifacts. Never embed another receipt, an artifact body, stdout/stderr, base64, or a data URI. Reference prior events instead of copying their chains.
+
+Narrative means string values outside identity and reference envelopes, changed-file/scope/contract lists, integration commands, finding metadata and technical check/integration fields. `scripts/receipt-size.ts` owns the exact field classification. All strings, including metadata, still have the per-string limit. The total event and JSON limits apply to every field.
+
+Validation entries contain `argv`, absolute `cwd`, `exit_code`, `source_commit`, `source_tree`, an optional short `summary`, and an optional artifact `ref`. Put full stdout/stderr in a log artifact. The integration helper’s raw `output` field also belongs in that artifact, never the receipt. Keep source-bound passing integration checks inline; a log reference does not replace them.
+
+V4 review receipts contain the verdict and compact `findings`: `{id, severity, file, line, ref}`. Store each finding's ADR reference, description, required change and validation command in the immutable review artifact. Use `findings_ref` instead of an oversized finding index. A completed review must list its review artifact in `outputs`. Historical v1-v3 reviews keep their original finding requirements.
+
+If the changed-file list exceeds the limits, store it in an immutable JSON manifest under `artifacts/snapshots/`, set `changed_files_ref`, and retain non-empty inline `scope_paths` covering every changed path for coordination. Review `changed_scope` can use covering repository-relative directories; retain the exact file list in the manifest. Keep required integration commands inline.
+
+Every referenced file artifact MUST exist before publication. List it in `inputs` or `outputs` with only `kind`, `ref`, `sha256`, `bytes`, `media_type` and optional `store`. The writer verifies its exact byte count and SHA-256. Use a workflow-relative `artifacts/...` ref or its canonical store ref. For a separately resolved evidence run, use its canonical file ref and matching store. Absolute paths, arbitrary URLs, directories and escaping paths or symlinks are not artifact references.
+
+Artifact pointers in `*_ref`, findings or validation entries MUST also appear in `inputs` or `outputs`. Ticket, receipt, dispatch and evidence-run directory references remain metadata; they do not require file metadata. Never place content inside a reference object.
+
+```yaml
+validation_results:
+  - argv: [bun, test]
+    cwd: /absolute/source
+    exit_code: 0
+    source_commit: 0123456789abcdef0123456789abcdef01234567
+    source_tree: 89abcdef0123456789abcdef0123456789abcdef01
+    summary: All selected checks passed.
+    ref: artifacts/evidence/build-0002.log
+outputs:
+  - kind: artifact
+    ref: artifacts/evidence/build-0002.log
+    sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+    bytes: 284711
+    media_type: text/plain
+```
+
+Compute the checksum and byte count from the actual artifact. Do not copy the example values.
 
 ## Receipt validation
 
@@ -234,14 +280,14 @@ The next event must be a fresh review `phase-start`. Set outcome `source_transit
 
 ## Generated phase context
 
-New publication uses `--phase-context <phase-context.json> --input <outcome.json>`. The writer generates the receipt envelope. `--input` contains status, inputs, outputs, validation results and phase-specific evidence, not identity fields. Identity fields in outcomes are rejected, even when they match. New executions use v3. Generated v2 output requires a retained v2 parent: an assigned child result for its matching phase-start, a parent completion, a failed/blocked missing-result closure, or continuation of an existing finish checkpoint/result. Fresh v2 phase starts are rejected. Generated v1 child results require an existing v1 phase-start and its explicitly assigned v1 handoff. An initial generated v1 start is rejected. Full v1 envelopes remain supported for retained history and authorized repairs; this is not a v2 fallback.
+New publication uses `--phase-context <phase-context.json> --input <outcome.json>`. The writer generates the receipt envelope. `--input` contains status, inputs, outputs, validation results and phase-specific evidence, not identity fields. Identity fields in outcomes are rejected, even when they match. New executions use v4. Generated v2 output requires a retained v2 parent: an assigned child result for its matching phase-start, a parent completion, a failed/blocked missing-result closure, or continuation of an existing finish checkpoint/result. Fresh v2 and v3 phase starts are rejected. V3 output requires a retained v3 parent and the same assigned-result or reconciliation gates; new phases use v4. Generated v1 child results require an existing v1 phase-start and its explicitly assigned v1 handoff. An initial generated v1 start is rejected. Full v1 envelopes remain supported for retained history and authorized repairs; this is not a v2 fallback.
 
 The parent prepares the context from resolved phase authorization, not from execution cwd. It includes the canonical ticket, workflow ID, parent event ID, intended source branch and worktree, base branch and actual session. Resolve the workflow through the designated publication checkout. The writer independently resolves its store fields and reads the named parent. Ticket, workflow, source path, branch, base and goal identity must agree with that parent. Only the initial start may have a null parent.
 
 ```json
 {
   "schemaVersion": "worktree-phase-context/v2",
-  "receipt_schema": "worktree-receipt/v3",
+  "receipt_schema": "worktree-receipt/v4",
   "receipt_id": "implementation-0002",
   "workflow_id": "TASK-1",
   "event": "phase-result",
@@ -262,9 +308,9 @@ Finish may execute from the parent checkout or another directory. After verified
 
 ## Child result delivery
 
-Use the agent-core result-delivery skill for transport, not workflow authority. Before launch, select worktree-receipt/v3 as the result schema and retain the muxer delivery context and target. Retained v1 handoffs must still receive v1 results; do not change a live handoff's schema.
+Use the agent-core result-delivery skill for transport, not workflow authority. Before launch, select worktree-receipt/v4 as the result schema and retain the muxer delivery context and target. Retained v1 handoffs must still receive v1 results; do not change a live handoff's schema.
 
-Launch the child through the muxer spawn router with --result-schema worktree-receipt/v3. The router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Include the phase-start reference and result requirements. Do not launch the child twice.
+Launch the child through the muxer spawn router with --result-schema worktree-receipt/v4. The router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Include the phase-start reference and result requirements. Do not launch the child twice.
 
 The child prepares outcome and evidence as one JSON object, plus the validated phase context below. Resolve WORKTREE_SKILL_ROOT to this installed skill directory. From the source repository, invoke its absolute scripts/write-result.ts entrypoint with --repository, --phase-context and --input pointing to the context and outcome JSON files. Its mise shebang selects Bun. The command resolves the workflow through shared-context, checks the envelope and current source identities, writes an immutable YAML event and delivers the same object to the parent. It does not approve the phase, claim a ticket, merge, commit or push. Existing phase preconditions still apply.
 
@@ -477,4 +523,3 @@ Retained full-v1 child publication checks the observed source branch as well as 
 ## Retained workflow-root continuation
 
 Generated publication uses the same linked-checkout rule as inspection. A retained repository workflow root may equal the receipt repository or source workspace when both roots resolve to the same real Git common directory. Store and workflow reference must still match the resolved workflow. A matching origin or source commit is not enough. Keep retained parent bytes unchanged and record the current resolved workflow root in the new receipt.
-

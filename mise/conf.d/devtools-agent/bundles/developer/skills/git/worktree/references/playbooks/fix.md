@@ -39,7 +39,7 @@ Follow the shared decision and execution gates in `references/receipts.md` befor
 5. Write a temporary fix handoff containing the source worktree, source and
    base branches, current source commit, workflow store and reference, selected
    engineering skill, review receipt, blocking findings, and expected validation.
-6. Use the muxer spawn router in the existing worktree workspace with the fix handoff and `--result-schema worktree-receipt/v3`. It opens a fresh session. Retain its delivery context and assigned result target. Do not send text to the prior session.
+6. Use the muxer spawn router in the existing worktree workspace with the fix handoff and `--result-schema worktree-receipt/v4`. It opens a fresh session. Retain its delivery context and assigned result target. Do not send text to the prior session.
 7. Require the fixer to write its phase-result through `scripts/write-result.ts`, following `references/receipts.md`. This writes the authoritative YAML event and delivers the same object without a second reporting call. Do not launch it a second time.
 8. Wait through the muxer contract. Read the assigned result through result-delivery, then validate the authoritative receipt, source and artifacts. Acknowledge only after domain checks. No completion marker is required.
 9. If the fixer is blocked, fails validation, or has no usable durable result, append an accurate failed/blocked fix phase-complete receipt and preserve the worktree and partial source. A process signal or transport reference is not proof. Do not start review until a valid clean implementation/fix target is established.
@@ -47,7 +47,7 @@ Follow the shared decision and execution gates in `references/receipts.md` befor
     new source commit, the new draft snapshot under `artifacts/snapshots/`, and
     the regenerated manifest and projections.
 11. Close the fixer pane and verify phase-owned resource shutdown through muxer-subagents. Preserve unknown and unrelated processes. Keep the worktree available.
-12. Create a v2 phase-complete receipt linked to the fix result through `scripts/write-result.ts --parent-event`. Record shutdown observations; unresolved resources remain cleanup pending.
+12. Create a v4 phase-complete receipt linked to the fix result through `scripts/write-result.ts --parent-event`. Record shutdown observations; unresolved resources remain cleanup pending.
 13. Regenerate the manifest and workflow projections. Inspect the recorded outcome afresh and report its next action and reason. A valid clean fix result requires fresh review because source changed; a failed, blocked, or missing result requires the inspected recovery/observation action instead.
 
 ## Fix receipt requirements
@@ -69,6 +69,6 @@ Report the source branch, worktree path, fixer agent, workspace path, pane or se
 
 ## Generated receipt identity
 
-Use `references/receipts.md` to prepare `worktree-phase-context/v1` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
+Use `references/receipts.md` to prepare `worktree-phase-context/v2` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
 
 Bind the context to the canonical ticket, resolved workflow ID, existing parent receipt, verified source worktree and current session. For child results, include the assigned run ID and operation ID in the session. Keep the source path separate from execution cwd and the publication checkout. Parent completion preserves the child result identity. Review, submit and finish preserve the frozen reviewed commit and tree; implementation and fix observe the new committed source. Retain the source identity after finish removes the worktree. Reject changed identity before publication or delivery.

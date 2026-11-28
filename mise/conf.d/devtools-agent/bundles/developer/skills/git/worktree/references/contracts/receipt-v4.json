@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-receipt/v4",
+  "title": "Bounded worktree receipt",
+  "type": "object",
+  "required": ["schemaVersion", "receipt_id", "workflow_id", "phase", "event", "status", "attempt", "parent_receipt", "repository", "worktree", "workspace_path", "source_branch", "base_branch", "source_commit", "source_tree", "created_at", "muxer", "agent", "pane_id", "session_id", "ticket", "ticket_ref", "workflow", "inputs", "outputs"],
+  "properties": {
+    "schemaVersion": {"const": "worktree-receipt/v4"},
+    "source_commit": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+    "source_tree": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+    "attempt": {"type": "integer", "minimum": 0},
+    "ticket": {"type": "object", "required": ["backend", "id", "ref"]},
+    "workflow": {"type": "object", "required": ["store", "root", "ref"]},
+    "inputs": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "outputs": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "findings": {"type": "array", "items": {
+      "type": "object", "required": ["id", "severity", "file", "line", "ref"],
+      "properties": {"id": {"type": "string"}, "severity": {"type": "string"}, "file": {"type": "string"}, "line": {"type": "integer", "minimum": 1}, "ref": {"type": "string"}},
+      "additionalProperties": false
+    }}
+  },
+  "$defs": {
+    "reference": {
+      "type": "object", "required": ["kind", "ref"],
+      "properties": {"kind": {"type": "string"}, "ref": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "bytes": {"type": "integer", "minimum": 0}, "media_type": {"type": "string"}, "store": {"type": "string"}},
+      "additionalProperties": false
+    }
+  },
+  "not": {"required": ["schema"]},
+  "additionalProperties": true,
+  "x-owner-validator": "scripts/receipt-validation.ts",
+  "x-size-policy": {
+    "unit": "UTF-8 bytes",
+    "serialized_yaml_max": 65536,
+    "pretty_json_max": 65536,
+    "string_value_max": 2048,
+    "narrative_total_max": 8192,
+    "field_name_max": 128,
+    "definition": "references/receipts.md#bounded-receipt-content"
+  },
+  "x-artifacts": "All file artifacts in inputs/outputs require ref, sha256, bytes and media_type. The writer verifies existing regular files against independently resolved workflow/evidence roots before publication. Finding and *_ref artifact pointers must also be listed in inputs/outputs. Receipt, ticket, dispatch and evidence-run directory references remain metadata, not file artifacts.",
+  "x-compatibility": "Immutable. Retains v2/v3 source, parent and integration semantics; full review findings and evidence bodies move to immutable artifacts. Do not upgrade historical events. Retain v1-v3 readers and assigned historical result/completion handoffs. New phase starts use v4 through worktree-phase-context/v2. Use receipt-validation.ts, receipt-contract.ts, receipt-size.ts and receipt-diagnostics.ts together."
+}

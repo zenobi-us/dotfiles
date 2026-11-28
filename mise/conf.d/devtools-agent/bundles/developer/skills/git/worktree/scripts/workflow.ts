@@ -18,6 +18,7 @@ import { inspectReceiptDiagnostics } from "./receipt-diagnostics";
 import type { ReceiptDiagnostic } from "./receipt-diagnostics";
 import { linkedWorkflowRoot, repositoryIdentity, validateReceipt, validateSourcePaths, validateSourceWorktree } from "./receipt-validation";
 import { relocateRepository } from "./repository-relocation";
+import { validateReceiptArtifacts } from "./receipt-size";
 
 type Fields = Record<string, unknown>;
 type Document = ParsedDocument;
@@ -249,6 +250,16 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: TicketRe
     }
     validationCode = "invalid_receipt";
     const { status, outputs, createdAt, parentReceipt } = validateReceipt(fields);
+    if (!options && fields.schemaVersion === "worktree-receipt/v4") {
+     let evidenceRecord;
+     if (fields.evidence != null) {
+      const evidence = object(fields.evidence, "receipt evidence");
+      const run = text(evidence.ref, "receipt evidence ref").split("/").at(-1)!;
+      evidenceRecord = await resolveContextRecord(context, { kind: "evidence", workflow: workflowId, run });
+      if (evidenceRecord.store !== evidence.store || evidenceRecord.ref !== evidence.ref) throw new Error("Receipt evidence differs from the resolved evidence run.");
+     }
+     await validateReceiptArtifacts(fields, { ...record }, evidenceRecord ? { ...evidenceRecord } : undefined);
+    }
     // Historical receipts can outlive removed worktrees.
     if (await exists(workspacePath)) {
      validationCode = "path_inconsistency";

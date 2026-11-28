@@ -87,7 +87,7 @@ Record the assessed scope as optional `scope_paths` in the new phase-start recei
      `projections/implementation-log.md`, and
      `projections/latest-status.yaml`.
    - Preserve failed or blocked outcomes in the result. Do not paste the full receipt or a completion marker into final chat.
-6. Use the `muxer-subagents` spawn router with the worktree, handoff file, explicit muxer and agent, and `--result-schema worktree-receipt/v3`. Retain its delivery context and assigned target. The router opens and launches the fresh session; do not launch it again.
+6. Use the `muxer-subagents` spawn router with the worktree, handoff file, explicit muxer and agent, and `--result-schema worktree-receipt/v4`. Retain its delivery context and assigned target. The router opens and launches the fresh session; do not launch it again.
 7. Do not open another implementation session for this worktree while one is active.
 8. Wait for completion using the muxer contract. Read the assigned result through result-delivery, then validate the authoritative result and artifacts independently. Acknowledge the transport after domain checks. Do not scrape final pane text for JSON or a completion marker.
 9. If the result is blocked, validation fails, or no usable result exists, append an accurate failed/blocked phase-complete receipt and keep the worktree and partial source. A later start recovers this attempt through a fresh session after the recovery gates.
@@ -117,6 +117,6 @@ Report:
 
 ## Generated receipt identity
 
-Use `references/receipts.md` to prepare `worktree-phase-context/v1` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
+Use `references/receipts.md` to prepare `worktree-phase-context/v2` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
 
 Bind the context to the canonical ticket, resolved workflow ID, existing parent receipt, verified source worktree and current session. For child results, include the assigned run ID and operation ID in the session. Keep the source path separate from execution cwd and the publication checkout. Parent completion preserves the child result identity. Review, submit and finish preserve the frozen reviewed commit and tree; implementation and fix observe the new committed source. Retain the source identity after finish removes the worktree. Reject changed identity before publication or delivery.

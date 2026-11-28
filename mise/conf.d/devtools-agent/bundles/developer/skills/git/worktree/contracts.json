@@ -1,6 +1,7 @@
 {
   "schemaVersion": "skill-contract-manifest/v1",
   "produces": [
+    "worktree-receipt/v4",
     "worktree-receipt/v3",
     "worktree-receipt/v1",
     "worktree-receipt/v2",
@@ -16,6 +17,7 @@
     "worktree-integration/v2"
   ],
   "accepts": [
+    "worktree-receipt/v4",
     "worktree-receipt/v3",
     "worktree-phase-context/v2",
     "worktree-goal/v2",
@@ -41,6 +43,7 @@
     "worktree-receipt/v1": "file:references/contracts/receipt-v1.json",
     "worktree-receipt/v2": "file:references/contracts/receipt-v2.json",
     "worktree-receipt/v3": "file:references/contracts/receipt-v3.json",
+    "worktree-receipt/v4": "file:references/contracts/receipt-v4.json",
     "worktree-phase-context/v1": "file:references/contracts/phase-context-v1.json",
     "worktree-phase-context/v2": "file:references/contracts/phase-context-v2.json",
     "worktree-goal/v1": "file:references/contracts/goal-v1.json",

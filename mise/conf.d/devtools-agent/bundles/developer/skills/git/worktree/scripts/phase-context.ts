@@ -12,12 +12,12 @@ const identityKeys = ["schema", "schemaVersion", "receipt_id", "event", "phase",
 /** Validate the complete context before the writer creates directories or delivers a result. */
 export async function generateReceipt(context: Fields, outcome: Fields, repository: string, workflow: Fields, parent: Fields | undefined, exec: Exec, handoff?: { runId?: string; operationId?: string }): Promise<Fields> {
   const contextContract = contractIdentity(context, "worktree-phase-context", 2, [1]);
-  const supported = contextContract === "worktree-phase-context/v2" ? ["worktree-receipt/v3"] : ["worktree-receipt/v1", "worktree-receipt/v2"];
+  const supported = contextContract === "worktree-phase-context/v2" ? ["worktree-receipt/v3", "worktree-receipt/v4"] : ["worktree-receipt/v1", "worktree-receipt/v2"];
   if (!supported.includes(String(context.receipt_schema))) throw new Error("Phase context requires its supported receipt_schema");
-  if (context.receipt_schema === "worktree-receipt/v1" && (!handoff || parent?.schema !== "worktree-receipt/v1" || parent.event !== "phase-start" || context.event !== "phase-result")) throw new Error("Generated v1 identity requires a retained v1 phase-start and assigned handoff; new executions use v3");
+  if (context.receipt_schema === "worktree-receipt/v1" && (!handoff || parent?.schema !== "worktree-receipt/v1" || parent.event !== "phase-start" || context.event !== "phase-result")) throw new Error("Generated v1 identity requires a retained v1 phase-start and assigned handoff; new executions use v4");
   if (context.receipt_schema === "worktree-receipt/v1" && parent?.phase !== (context.phase === "implementation" ? "start" : context.phase)) throw new Error("Generated v1 identity requires a matching parent phase");
-  if (context.receipt_schema === "worktree-receipt/v2") {
-    const retained = parent?.schema === "worktree-receipt/v2";
+  if (["worktree-receipt/v2", "worktree-receipt/v3"].includes(String(context.receipt_schema))) {
+    const retained = (parent?.schemaVersion ?? parent?.schema) === context.receipt_schema;
     const parentPhase = context.phase === "implementation" ? "start" : context.phase;
     const assignedResult = handoff && context.event === "phase-result" && context.phase !== "finish"
       && parent?.event === "phase-start" && parent.phase === parentPhase;
@@ -30,7 +30,7 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
       || context.phase === "finish" && parent?.phase === "finish"
       && ["phase-checkpoint", "phase-result"].includes(String(context.event))
     );
-    if (!retained || !(assignedResult || reconciliation)) throw new Error("Generated v2 identity requires retained v2 authorization and an assigned handoff or historical reconciliation; new executions use v3");
+    if (!retained || !(assignedResult || reconciliation)) throw new Error("Historical receipt identity requires retained authorization and an assigned handoff or reconciliation; new executions use v4");
   }
   for (const key of identityKeys) if (Object.hasOwn(outcome, key)) throw new Error("Outcome must not supply receipt identity: " + key);
   const ticket = record(context.ticket, "phase ticket");
@@ -117,7 +117,7 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
     if (frozen && dirty && !partialResultClosure) throw new Error("Frozen source worktree has uncommitted changes");
   }
   const receipt: Fields = {
-    ...outcome, ...(context.receipt_schema === "worktree-receipt/v3" ? { schemaVersion: context.receipt_schema } : { schema: context.receipt_schema }), receipt_id: text(context.receipt_id, "phase receipt_id"), event, phase,
+    ...outcome, ...(contextContract === "worktree-phase-context/v2" ? { schemaVersion: context.receipt_schema } : { schema: context.receipt_schema }), receipt_id: text(context.receipt_id, "phase receipt_id"), event, phase,
     attempt: context.attempt, parent_receipt: context.parent_receipt, repository,
     worktree: root, workspace_path: root, source_branch: branch, base_branch: base, source_commit: commit, source_tree: tree,
     ticket: { backend: ticket.backend, id: ticket.id, ref: ticket.ref }, ticket_ref: ticket.ref, workflow_id: workflowId,

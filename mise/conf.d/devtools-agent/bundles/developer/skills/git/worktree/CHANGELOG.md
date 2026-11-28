@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-29
+
+- Produce bounded v4 receipt metadata through v2 phase contexts. Reject events or JSON results above 64 KiB, strings above 2 KiB and aggregate narrative above 8 KiB before publication or delivery.
+- Store logs, full findings and binary evidence in immutable artifacts. Require file references with SHA-256, byte count and media type; verify bytes on publication and inspection.
+- Preserve v1-v3 events and assigned historical handoffs. Reject fresh v3 phase starts; do not rewrite historical receipts.
+
 ## 2026-11-26
 
 - Failed or blocked start, implementation and fix completions can retain dirty partial source from matching unsuccessful results. The child commit and tree remain fixed. Successful work, review, submit and finish still require clean source.

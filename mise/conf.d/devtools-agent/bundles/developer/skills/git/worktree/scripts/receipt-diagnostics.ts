@@ -13,7 +13,7 @@ export interface ReceiptDiagnostic extends ReceiptIssue { ref: string }
 /** V1 source changes remain visible as warnings; new v2 completions must bind their result exactly. */
 export function receiptParentIssues(receipt: Fields, parent?: Fields): ReceiptIssue[] {
   const issues: ReceiptIssue[] = [];
-  const strict = receipt.schema === "worktree-receipt/v2" || receipt.schemaVersion === "worktree-receipt/v3";
+  const strict = receipt.schema === "worktree-receipt/v2" || ["worktree-receipt/v3", "worktree-receipt/v4"].includes(String(receipt.schemaVersion));
   if (receipt.parent_receipt == null) {
     if (strict && ((receipt.event === "phase-result" && receipt.phase !== "finish") || (receipt.event === "phase-complete" && receipt.status === "completed"))) issues.push({ code: "missing_parent", severity: "error", message: "A child result or successful phase completion requires its parent receipt." });
     return issues;

@@ -70,9 +70,9 @@ Reject the request when any of these conditions is true:
    - relevant ADRs and validation commands;
    - exact review artifact path;
    - review receipt path.
-7. Use the muxer spawn router in the existing worktree workspace with the review handoff and `--result-schema worktree-receipt/v3`. It opens the fresh session. Retain its delivery context and assigned result target. Do not send input to the previous session.
+7. Use the muxer spawn router in the existing worktree workspace with the review handoff and `--result-schema worktree-receipt/v4`. It opens the fresh session. Retain its delivery context and assigned result target. Do not send input to the previous session.
 8. Require the reviewer to write its phase-result with `"$WORKTREE_SKILL_ROOT/scripts/write-result.ts" --repository <absolute-designated-context-checkout> --phase-context <phase-context.json> --input <outcome.json>`, following `references/receipts.md`. This writes authoritative YAML and delivers the parent result in one operation. Resolve publication through the supplied context checkout, not the review source cwd; keep all publication writes outside the frozen source. Do not launch the agent a second time.
-   Its v2 review result MUST record `review_base_commit`, `changed_scope`, `affected_contracts`, and `integration_checks` under those exact names. Require explicit changed paths; an empty `changed_scope` is appropriate only for a metadata-only source review. Require at least one real integration check with a non-empty executable/argument array. Keep source commit/tree exact and include the affected producer/consumer contracts in the review artifact.
+   Its v4 review result MUST record `review_base_commit`, `changed_scope`, `affected_contracts`, and `integration_checks` under those exact names. Require explicit changed paths; an empty `changed_scope` is appropriate only for a metadata-only source review. Require at least one real integration check with a non-empty executable/argument array. Keep source commit/tree exact and include the affected producer/consumer contracts in the review artifact.
 9. Wait through the muxer contract. Read the assigned transport result through result-delivery. Validate the authoritative receipt and artifact independently before acknowledgement. Do not extract JSON from pane output.
 10. Verify that the reviewer created one immutable phase-result receipt and one
     review artifact. The artifact MUST identify the frozen source commit.
@@ -84,6 +84,8 @@ Reject the request when any of these conditions is true:
 15. Close the review pane or session. Do not close the worktree workspace.
 16. Create a phase-complete receipt that links to the phase-result receipt.
     Regenerate the manifest and projections without dropping earlier reviews.
+
+Require compact finding metadata in the v4 receipt and full findings only in the immutable review artifact. Record its SHA-256, byte count and media type in `outputs`. Follow the bounded-content rules in `references/receipts.md`; do not duplicate the artifact body.
 
 ## Review requirements
 
@@ -130,6 +132,6 @@ Use `NO ADR` when no ADR applies. State why the finding blocks completion.
 
 ## Generated receipt identity
 
-Use `references/receipts.md` to prepare `worktree-phase-context/v1` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
+Use `references/receipts.md` to prepare `worktree-phase-context/v2` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
 
 Bind the context to the canonical ticket, resolved workflow ID, existing parent receipt, verified source worktree and current session. For child results, include the assigned run ID and operation ID in the session. Keep the source path separate from execution cwd and the publication checkout. Parent completion preserves the child result identity. Review, submit and finish preserve the frozen reviewed commit and tree; implementation and fix observe the new committed source. Retain the source identity after finish removes the worktree. Reject changed identity before publication or delivery.

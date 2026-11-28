@@ -13,10 +13,11 @@ export function contractIdentity(fields: Fields, family: string, current: number
 }
 
 export function receiptIdentity(fields: Fields): string {
-  return contractIdentity(fields, "worktree-receipt", 3, [1, 2]);
+  if (fields.schemaVersion === "worktree-receipt/v3" && !Object.hasOwn(fields, "schema")) return "worktree-receipt/v3";
+  return contractIdentity(fields, "worktree-receipt", 4, [1, 2]);
 }
 
-/** V2 and v3 share source/integration semantics, but never share wire identities. */
+/** V2–v4 share source/integration semantics, but never share wire identities. */
 export function strictReceipt(fields: Fields): boolean {
   return receiptIdentity(fields) !== "worktree-receipt/v1";
 }

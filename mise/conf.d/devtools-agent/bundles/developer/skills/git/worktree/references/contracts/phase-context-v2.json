@@ -22,7 +22,8 @@
     },
     "receipt_schema": {
       "enum": [
-        "worktree-receipt/v3"
+        "worktree-receipt/v3",
+        "worktree-receipt/v4"
       ]
     },
     "source": {

@@ -1,7 +1,9 @@
-// V1/v2 history stays immutable; v3 keeps v2 semantics with an explicit schemaVersion field.
+// Historical receipts remain immutable; v4 adds bounded metadata and artifact references.
 import { isAbsolute } from "node:path";
 import { strictReceipt } from "./contract-identity";
+import { validateReceiptSize } from "./receipt-size";
 export function validateReceiptContract(fields: Record<string, unknown>): void {
+  validateReceiptSize(fields);
   if (!strictReceipt(fields)) return;
   if (!["start", "implementation", "review", "fix", "submit", "finish"].includes(String(fields.phase))) throw new Error("V2 receipts require a canonical phase name.");
   if (fields.phase === "review" && fields.event === "phase-complete" && fields.verdict != null) throw new Error("A parent review completion cannot supply its own verdict.");

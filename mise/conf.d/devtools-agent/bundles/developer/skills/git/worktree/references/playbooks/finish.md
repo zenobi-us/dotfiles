@@ -27,7 +27,7 @@ Use the shared recovery decision. Observe active owners and reservations. Obtain
 2. Verify prior integration using its recorded method, frozen inputs, expected tree and actual parents. V1 retains its single-parent squash contract. V2 uses the selected integration method.
 3. If current evidence verifies a terminal `FINISHED` receipt, return that result without further mutation.
 4. If integration already exists, preserve its mapping and resume at validation, publication, tracker completion or cleanup. Never create another merge merely because the source workspace was removed or the remote tip advanced.
-5. Append a v2 attempt linked to prior receipts. Use `scripts/write-result.ts --parent-event` for parent records. Preserve every prior event.
+5. Append a v4 attempt linked to prior receipts. Use `scripts/write-result.ts --parent-event` for parent records. Preserve every prior event.
 
 ## Execute only the remaining operations
 
@@ -38,6 +38,14 @@ Use the shared recovery decision. Observe active owners and reservations. Obtain
 5. **Complete the ticket.** Verify source review, candidate-bound checks and remote publication. Use the ticket skill for only the missing completion/publication operations. If already completed, verify its evidence. Append `ticket_completed` after backend publication succeeds. Remote advancement during a tracker push is a tracker-publication problem, not permission to repeat product integration.
 6. **Clean up.** Recheck publication and tracker completion. Use muxer-subagents to verify phase-owned resources have stopped. Close only recorded source/candidate workspaces, not another initiative's workspace or a reused workspace. Use `cleanup-merged` for each recorded branch with `--min-age=0s`; verified integration and completed publication authorize those named branches only. Keep dirty, busy or refused resources. Record cleanup pending separately from accepted implementation. Append `worktree_removed` only after all required source and candidate resources are verified absent.
 7. **Finalize.** Append `FINISHED` with all terminal fields and complete integration evidence. Regenerate projections. On failure append `FINISH_FAILED`, last verified checkpoint, failed operation, actual observations and preserved resource identities. Unknown outcomes use null. Failed cleanup does not reopen reviewed and published acceptance.
+
+## Bound integration evidence before receipt publication
+
+`integration.ts apply` returns execution evidence, not a receipt. Its `validation_results` entries can contain unbounded `output` strings. Never copy those entries directly into a v4 receipt.
+
+Before each checkpoint write, store every check's complete `output` in a new immutable log under the resolved workflow artifacts or separately resolved evidence run. Record each file's stable ref, SHA-256, byte count and media type in `outputs`. Replace the inline `output` with that `ref`; preserve `argv`, `cwd`, `exit_code`, `source_commit` and `source_tree`. Keep the original helper response outside the receipt if needed for recovery. Do not discard failed-check output or truncate it to pass validation.
+
+The writer rejects raw `output`, stdout/stderr, oversized fields and mismatched artifacts before event or transport writes. If extraction or publication fails, preserve the candidate and actual integration/publication state. Reconcile the verified boundary; do not rerun a merge or push merely to obtain smaller output.
 
 ## Recovery boundaries
 
@@ -60,6 +68,6 @@ Report the canonical ticket, source review, integration commit and method, finis
 
 ## Generated receipt identity
 
-Use `references/receipts.md` to prepare `worktree-phase-context/v1` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
+Use `references/receipts.md` to prepare `worktree-phase-context/v2` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
 
 Bind the context to the canonical ticket, resolved workflow ID, existing parent receipt, verified source worktree and current session. For child results, include the assigned run ID and operation ID in the session. Keep the source path separate from execution cwd and the publication checkout. Parent completion preserves the child result identity. Review, submit and finish preserve the frozen reviewed commit and tree; implementation and fix observe the new committed source. Retain the source identity after finish removes the worktree. Reject changed identity before publication or delivery.
