@@ -1,0 +1,60 @@
+{
+  "native_inventory_complete": false,
+  "native_hard_blockers": [],
+  "native_record_diagnostics": [],
+  "native_ownership": "unknown",
+  "sole_matching_owner": "herdr-app:t2dv viareview-complete48",
+  "source_commit": "b0d12b0912d15b1c1add96caca33afa573f5144b",
+  "source_tree": "c163046bd7dd4e1a0874a34215b523a8c13af70a",
+  "source_available_candidates": 1,
+  "source_errors": [],
+  "prior_review_reservation_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0130.yaml",
+  "prior_review_reconciliation_verified": true,
+  "existing_generated_metadata_overlaps": [
+    {
+      "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+      "assessment": "cleanup-only",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        },
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json",
+          "active": "mise/conf.d/devtools-agent/bundles/creator/.claude-plugin/plugin.json"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/worktree-receipt-recovery-04-repair.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+          "active": "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+        }
+      ]
+    }
+  ],
+  "assessment": "Freshfix7 limited toone newlyadded prose sentence. Native globalinventoryincomplete/ownershipunknown preserved; currentticket has solematchingparent48owner, exactsourceonecandidate/noerrors, priorreview130reconciled. Same4 generatedmetadataoverlaps are different sourceindices; no sharedbasehook/sourcepush/integration authorized. Allreviewresources confirmedstopped. Optionalreadonlytee missingdirectorycaptureerror retained; existingvalidatedimmutable8objectrecords savedwithoutGit/native rerun."
+}
